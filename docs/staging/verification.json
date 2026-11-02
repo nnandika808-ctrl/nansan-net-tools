@@ -1,5 +1,5 @@
 {
-  "observed_at": "2026-11-02T20:54:14.859Z",
+  "observed_at": "2026-11-02T21:51:53.205Z",
   "scope": "Private staging only; temporary test identity; no production changes",
   "status": "PASSED",
   "operations": {
@@ -13,8 +13,8 @@
     },
     "backup": {
       "status": "restore_verified",
-      "restore_tested_at": "2026-11-03 03:54:42",
-      "bytes": 18156
+      "restore_tested_at": "2026-11-03 04:52:23",
+      "bytes": 20188
     },
     "off_host_backup": false
   },
@@ -37,11 +37,11 @@
   },
   "performance": {
     "scope": "12 sequential catalog requests through SSH; not a capacity/load test",
-    "median_ms": 242,
-    "p95_ms": 292
+    "median_ms": 243,
+    "p95_ms": 268
   },
   "cleanup": {
     "temporary_identity_removed": true
   },
-  "completed_at": "2026-11-02T20:54:53.755Z"
+  "completed_at": "2026-11-02T21:52:34.955Z"
 }

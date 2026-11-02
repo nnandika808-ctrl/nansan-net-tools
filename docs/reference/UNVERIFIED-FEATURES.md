@@ -11,7 +11,7 @@
 | G05 game ports | All 106 observed game entries | BLOCKED — independently verify port/protocol rules and provenance; do not invent ports |
 | G03 | More than two WAN, decimal ratios and unexercised classifiers/local modes | UNVERIFIED — expand audit and tests before support claims |
 | G04 quoting | Initial escaping candidate | WITHDRAWN — byte-level inspection shows normal outer quotes. Nested script escaping is a separate context; no reference bug established |
-| G04 | DHCP renew/unbind and Netwatch | Six disposable CHR cases pass simulated bound/repeated-bound/unbound and route enable/disable events; real DHCP server interactions, reachability and traffic failover remain UNVERIFIED |
+| G04 | DHCP renew/unbind and Netwatch | Six simulated-event cases passed. Three ROS7 synthetic-DHCP/UDP/NAT/renew/unbind protocol cases passed; two ROS6 gateway-only renewal cases FAILED. Physical ISP behavior and broader combinations remain UNVERIFIED |
 | G04 | More than 3 WAN in CHR, custom classifiers/targets, interface changes | UNVERIFIED — ten-WAN parameters were observed, but not exercised in CHR |
 | Rights | Full text fixtures and exclusive datasets | Scope of owner-reported Facebook permission is not established |
 
