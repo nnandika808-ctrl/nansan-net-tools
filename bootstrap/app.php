@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\ActiveUser;
+use App\Http\Middleware\CountPublicPageView;
 use App\Http\Middleware\HandleInertiaRequests;
 use App\Http\Middleware\Maintenance;
 use App\Http\Middleware\SecurityHeaders;
@@ -17,7 +18,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->trustProxies(at: ['127.0.0.1', '::1'], headers: Request::HEADER_X_FORWARDED_FOR | Request::HEADER_X_FORWARDED_PROTO | Request::HEADER_X_FORWARDED_PORT);
-        $middleware->web(append: [HandleInertiaRequests::class, ActiveUser::class, SecurityHeaders::class, Maintenance::class]);
+        $middleware->web(append: [HandleInertiaRequests::class, ActiveUser::class, SecurityHeaders::class, Maintenance::class, CountPublicPageView::class]);
         $middleware->alias(['active' => ActiveUser::class]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

@@ -2,7 +2,7 @@
 
 Run php artisan test, npm test, npm run typecheck, npm run lint, npm run build and npm run test:e2e. Windows PHP is .runtime/tools/php/php.exe; use npm.cmd if PowerShell script policy blocks npm.ps1.
 
-Latest backend: **45 tests, 219 assertions passed**. Frontend: **6 component/form tests passed**; TypeScript, ESLint and production build passed. Browser suite: 12 passed, including SEO/FAQ, validated templates and English content. GitHub CI run 41514788703 passed PHP 8.4, frontend checks, isolated MySQL/Redis integration, Chromium E2E and dependency audits. New changes require their own CI result.
+Latest backend: **49 tests, 248 assertions passed**. Frontend: **6 component/form tests passed**; TypeScript, ESLint and production build passed. Browser suite: 13 passed, including SEO/FAQ, validated templates and English content. GitHub CI run 41514788703 passed PHP 8.4, frontend checks, isolated MySQL/Redis integration, Chromium E2E and dependency audits. New changes require their own CI result.
 
 Backend tests use isolated SQLite; CI additionally runs PlatformTest on its disposable MySQL service. Browser tests reset only .runtime/e2e.sqlite at 127.0.0.1:8001 after verifying it is a regular workspace file, not a symlink. Test identities are never seeded into a deployed database. Backend HTTP tests disable Vite; browser tests build/load real assets. Vitest excludes the Laravel HMR plugin, rather than bypassing its CI protection.
 

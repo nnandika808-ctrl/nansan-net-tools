@@ -1,0 +1,7 @@
+{
+  "observed_at": "2026-11-02T20:31:58.231Z",
+  "staging_owner_login": "passed",
+  "staging_owner_logout": "passed",
+  "password_storage": "Windows DPAPI; not printed or saved as plaintext",
+  "screenshots": "Guest desktop and mobile only; ignored .runtime paths"
+}

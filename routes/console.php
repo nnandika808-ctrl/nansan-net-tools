@@ -22,6 +22,7 @@ Schedule::call(function () {
     }
 })->dailyAt('04:00')->when(fn () => (bool) config('nansan.backup_disk'));
 Schedule::call(function () {
+    DB::table('page_view_daily')->where('day', '<', now()->subDays(90)->toDateString())->delete();
     DB::table('audit_logs')->where('created_at', '<', now()->subDays(90))->delete();
     DB::table('user_activity_logs')->where('created_at', '<', now()->subDays(30))->delete();
 })->dailyAt('03:00');

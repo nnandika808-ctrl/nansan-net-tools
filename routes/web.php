@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AnalyticsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BackupController;
 use App\Http\Controllers\CatalogController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\MediaController;
 use App\Http\Controllers\MonitoringController;
 use App\Http\Controllers\SeoController;
 use App\Http\Controllers\TemplateController;
+use App\Http\Controllers\VersionController;
 use App\Http\Controllers\WorkspaceController;
 use App\Models\CmsPage;
 use App\Models\DocumentationArticle;
@@ -63,6 +65,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/feedback', [FeedbackController::class, 'store'])->middleware('throttle:writes');
 });
 Route::prefix('admin')->middleware(['auth', 'can:admin'])->group(function () {
+    Route::get('/analytics', [AnalyticsController::class, 'index']);
+    Route::get('/tools/{tool}/versions', [VersionController::class, 'index']);
+    Route::post('/tools/{tool}/versions', [VersionController::class, 'store']);
+    Route::put('/tools/{tool}/versions/{id}', [VersionController::class, 'store']);
+    Route::delete('/tools/{tool}/versions/{id}', [VersionController::class, 'destroy']);
     Route::get('/tools/{tool}/templates', [TemplateController::class, 'index']);
     Route::post('/tools/{tool}/templates', [TemplateController::class, 'store']);
     Route::put('/tools/{tool}/templates/{id}', [TemplateController::class, 'store']);

@@ -24,3 +24,5 @@ Deletion is password-verified, deactivates the account, rotates persistent auth 
 MySQL/MariaDB migration, index and concurrency checks are still required on staging; SQLite tests alone cannot prove MySQL locking semantics.
 
 English CMS fields are nullable additions: title_en/body_en on articles, pages and announcements; excerpt_en on articles; description_en on tools. English seeding fills only missing translations and preserves owner edits. Both Markdown bodies are sanitized through the same renderer.
+
+page_view_daily contains only day, public path and an atomic request count, with a unique day/path key and 90-day retention. It stores no visitor identifiers. Schema review drafts are stored in generator_versions / generator_form_definitions with status DRAFT and no passing evidence; code-backed audited schemas are immutable through the editor.

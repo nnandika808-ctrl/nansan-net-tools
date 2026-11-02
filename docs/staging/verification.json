@@ -1,5 +1,5 @@
 {
-  "observed_at": "2026-11-02T20:06:13.300Z",
+  "observed_at": "2026-11-02T20:32:03.901Z",
   "scope": "Private staging only; temporary test identity; no production changes",
   "status": "PASSED",
   "operations": {
@@ -13,10 +13,21 @@
     },
     "backup": {
       "status": "restore_verified",
-      "restore_tested_at": "2026-11-03 03:06:41",
-      "bytes": 14072
+      "restore_tested_at": "2026-11-03 03:32:32",
+      "bytes": 17762
     },
     "off_host_backup": false
+  },
+  "security": {
+    "login_csp": "present",
+    "frame_policy": "DENY",
+    "private_cache": "no-store",
+    "indexing": "noindex",
+    "private_paths": {
+      "/.env": 403,
+      "/.git/config": 403,
+      "/vendor/autoload.php": 404
+    }
   },
   "http": {
     "public_routes": 5,
@@ -26,11 +37,11 @@
   },
   "performance": {
     "scope": "12 sequential catalog requests through SSH; not a capacity/load test",
-    "median_ms": 221,
-    "p95_ms": 233
+    "median_ms": 211,
+    "p95_ms": 229
   },
   "cleanup": {
     "temporary_identity_removed": true
   },
-  "completed_at": "2026-11-02T20:06:51.431Z"
+  "completed_at": "2026-11-02T20:32:42.666Z"
 }

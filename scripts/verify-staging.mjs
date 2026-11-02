@@ -24,6 +24,10 @@ process.stdin.on('data',chunk=>{secret+=chunk.toString();if(secret.includes('\u0
    browser=await chromium.launch({channel:'chrome',headless:true});const context=await browser.newContext();const page=await context.newPage();
    const origin='http://127.0.0.1:8091';
    for(const path of ['/','/tools','/docs','/robots.txt','/up']){const response=await context.request.get(origin+path);if(response.status()!==200)throw new Error('Public route '+path+' returned '+response.status());if(path==='/robots.txt'&&!(await response.text()).includes('Disallow: /'))throw new Error('Staging indexing guard missing.');}
+   const login=await context.request.get(origin+'/login');const headers=login.headers();
+   if(!headers['content-security-policy']?.includes("default-src 'self'")||headers['x-frame-options']!=='DENY'||!headers['cache-control']?.includes('no-store')||!headers['x-robots-tag']?.includes('noindex'))throw new Error('Required staging security headers missing.');
+   const denied={};for(const path of ['/.env','/.git/config','/vendor/autoload.php']){const response=await context.request.get(origin+path);denied[path]=response.status();if(![403,404].includes(response.status()))throw new Error('Private source path was not denied.');}
+   report.security={login_csp:'present',frame_policy:'DENY',private_cache:'no-store',indexing:'noindex',private_paths:denied};
    await page.goto(origin+'/login');await page.getByLabel('Username',{exact:true}).fill(identity.username);await page.getByLabel('Password',{exact:true}).fill(identity.password);await page.getByRole('button',{name:'Masuk',exact:true}).click();await page.waitForURL('**/dashboard');identity.password='';
    for(const path of ['/account','/admin','/admin/monitoring','/admin/tools/pcc-starlink/preview']){const response=await page.goto(origin+path);if(response.status()!==200)throw new Error('Authenticated route '+path+' returned '+response.status());}
    await page.getByRole('button',{name:'Preview draft',exact:true}).click();await page.locator('pre').filter({hasText:'STARLINK1'}).waitFor();
