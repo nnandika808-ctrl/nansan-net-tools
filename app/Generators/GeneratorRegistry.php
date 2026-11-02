@@ -8,7 +8,11 @@ final class GeneratorRegistry
     public function module(string $id): GeneratorModule
     {
         abort_unless(in_array($id,self::IDS,true),404);
-        return $id==='G03'?new \App\Generators\Modules\PccModule:new UnverifiedGenerator($id);
+        return match ($id) {
+            'G03' => new \App\Generators\Modules\PccModule,
+            'G04' => new \App\Generators\Modules\StarlinkModule,
+            default => new UnverifiedGenerator($id),
+        };
     }
     public function isPublished(string $id): bool { return in_array($id,self::PUBLISHED,true); }
 }

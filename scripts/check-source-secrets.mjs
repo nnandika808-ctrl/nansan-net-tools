@@ -6,7 +6,7 @@ const secrets=[/gh[pousr]_[A-Za-z0-9]{20,}/,/github_pat_[A-Za-z0-9_]{30,}/,/----
 const failures=[];
 for(const file of new Set(files)){
  if(forbidden.some(re=>re.test(file))){failures.push({file,reason:'private runtime path'});continue;}
- if(!fs.statSync(file).isFile())continue;
+ if(!fs.existsSync(file)||!fs.statSync(file).isFile())continue;
  const content=fs.readFileSync(file,'utf8');
  if(secrets.some(re=>re.test(content)))failures.push({file,reason:'credential-like material'});
 }

@@ -1,0 +1,59 @@
+{
+  "started_at": "2026-11-02T19:46:05.763Z",
+  "completed_at": "2026-11-02T19:47:16.883Z",
+  "image_version": "7.25",
+  "image_sha256": "5b9c77075b67f8b53f747f9d918d0e446e8cfbd943dc82ee28b7fcb68130d140",
+  "emulator": "QEMU 11.1.0 TCG",
+  "isolation": "Fresh official CHR; snapshot overlay discarded; three restricted user-mode virtual networks; no bridge; serial console bound to loopback; no router IP accepted",
+  "qemu_pid": 3660,
+  "identity": "NANSAN-LAB-77bbbb5bd2ad",
+  "cases": [
+    {
+      "test_id": "ros7-two-equal",
+      "status": "SYNTAX_AND_SIMULATED_EVENTS_PASSED",
+      "commands": 30,
+      "nat_rules": 2,
+      "bound_route_count": 4,
+      "repeated_bound_no_duplicates": true,
+      "unbound_route_count": 0,
+      "netwatch_disabled_routes": null
+    },
+    {
+      "test_id": "ros7-three-manual",
+      "status": "SYNTAX_AND_SIMULATED_EVENTS_PASSED",
+      "commands": 38,
+      "nat_rules": 3,
+      "bound_route_count": 6,
+      "repeated_bound_no_duplicates": true,
+      "unbound_route_count": 0,
+      "netwatch_disabled_routes": null
+    },
+    {
+      "test_id": "ros7-manual-unreduced",
+      "status": "SYNTAX_AND_SIMULATED_EVENTS_PASSED",
+      "commands": 32,
+      "nat_rules": 2,
+      "bound_route_count": 4,
+      "repeated_bound_no_duplicates": true,
+      "unbound_route_count": 0,
+      "netwatch_disabled_routes": null
+    },
+    {
+      "test_id": "ros7-three-netwatch",
+      "status": "SYNTAX_AND_SIMULATED_EVENTS_PASSED",
+      "commands": 49,
+      "nat_rules": 3,
+      "bound_route_count": 9,
+      "repeated_bound_no_duplicates": true,
+      "unbound_route_count": 0,
+      "netwatch_disabled_routes": 6
+    }
+  ],
+  "scope": "Command import syntax and selected object counts only. No traffic distribution/failover proof.",
+  "status": "SCOPED_SYNTAX_CHECKS_PASSED",
+  "observed_version": "7.25",
+  "preconditions": [
+    "ether1 and ether2 are disposable virtual WAN interfaces",
+    "bridge LAN interface created by the lab harness, as required by the interface-target fixture"
+  ]
+}

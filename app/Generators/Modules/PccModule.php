@@ -70,7 +70,7 @@ final class PccModule implements GeneratorModule
     public function generate(array $input): GeneratedScript
     {
         $data=$this->validate($input);
-        return new GeneratedScript([['title'=>'PCC — DRAFT / LAB UNVERIFIED','script'=>RouterOs::render($this->configuration($data))]],$data['routeros-version']==='v7.xx'?'7':'6','0.1.0-draft',['Hanya lima skenario dua WAN yang dibandingkan. Pengujian RouterOS belum dilakukan.','Komentar dan formatting berbeda dari referensi; tidak diklaim exact match.']);
+        return new GeneratedScript([['title'=>'PCC — DRAFT','script'=>RouterOs::render($this->configuration($data))]],$data['routeros-version']==='v7.xx'?'7':'6','0.1.0-draft',['Lima skenario dua WAN dibandingkan dan lolos pemeriksaan sintaks/jumlah NAT di CHR 6.49.19 atau 7.25. Distribusi trafik dan failover belum terverifikasi.','Komentar dan formatting berbeda dari referensi; tidak diklaim exact match.']);
     }
     private function gcd(int $a,int $b): int { while($b!==0){[$a,$b]=[$b,$a%$b];}return $a; }
 }

@@ -99,6 +99,14 @@ class PlatformTest extends TestCase
         $this->actingAs($this->admin())->postJson('/admin/tools/'.$tool->slug.'/preview',['input'=>['num-wan-lines'=>2]])->assertOk()->assertJsonPath('version','0.1.0-draft')->assertJsonCount(1,'steps');
         $this->assertDatabaseCount('script_histories',0);$this->postJson('/tools/'.$tool->slug.'/generate',['input'=>['num-wan-lines'=>2]])->assertStatus(423);
     }
+    public function test_starlink_preview_is_private_and_cannot_publish_or_create_history(): void
+    {
+        $this->seedTools();$tool=Tool::where('generator_id','G04')->firstOrFail();
+        $this->actingAs(User::factory()->create())->get('/admin/tools/'.$tool->slug.'/preview')->assertForbidden();
+        $this->actingAs($this->admin())->postJson('/admin/tools/'.$tool->slug.'/preview',['input'=>['count'=>3,'mode'=>'manual','netwatchEnable'=>true,'netwatchTargets'=>'']])->assertOk()->assertJsonCount(1,'steps');
+        $this->assertDatabaseCount('script_histories',0);
+        $this->postJson('/tools/'.$tool->slug.'/generate',['input'=>['count'=>2]])->assertStatus(423);
+    }
     public function test_password_change_requires_current_password(): void
     {
         $u=User::factory()->create(); $this->actingAs($u)->putJson('/account/password',['current_password'=>'wrong','password'=>'NewSecurePassword123','password_confirmation'=>'NewSecurePassword123'])->assertUnprocessable();

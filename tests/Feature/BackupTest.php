@@ -19,4 +19,10 @@ class BackupTest extends TestCase
     {
         config(['nansan.backup_disk'=>'backups','nansan.backup_key'=>null]);$this->expectException(\RuntimeException::class);app(BackupService::class)->create();
     }
+    public function test_scratch_mysql_restore_rejects_source_credentials_before_connecting(): void
+    {
+        config(['nansan.restore_mysql'=>['host'=>'127.0.0.1','port'=>3306,'username'=>'app_source','password'=>'unused-test-secret','client'=>'mysql'],'database.connections.mysql.username'=>'app_source']);
+        $this->expectExceptionMessage('Restore account must differ');
+        app(\App\Services\MysqlRestoreVerifier::class)->verify('unused.sql',[]);
+    }
 }

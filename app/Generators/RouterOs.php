@@ -10,7 +10,7 @@ final class RouterOs
     }
     public static function render(array $entries): string
     {
-        $lines=['# NANSAN NET Tools — independent implementation','# DRAFT: RouterOS lab verification is pending.'];$path=null;
+        $lines=['# NANSAN NET Tools — independent implementation','# DRAFT: full traffic and failover verification is pending.'];$path=null;
         foreach($entries as $entry){
             if($path!==$entry['path']) { $path=$entry['path']; $lines[]=$path; }
             $parts=[$entry['operation']];

@@ -222,6 +222,27 @@ def main():
             'dir ' + str(BASE / 'redis'), 'appendonly yes', 'appendfilename "staging.aof"',
             'maxmemory 128mb', 'maxmemory-policy noeviction', 'logfile ""',
         ]) + '\n', 0o600, OWNER)
+    # Private, same-host encrypted snapshots and a restricted scratch-restore role.
+    # Off-host storage remains a separate, unconfigured production requirement.
+    values = dict(line.split('=', 1) for line in env_path.read_text().splitlines() if '=' in line and not line.startswith('#'))
+    restore_marker = BASE / 'shared/.restore-account-owned'
+    if not values.get('RESTORE_MYSQL_PASSWORD'):
+        if sql("SELECT User FROM mysql.user WHERE User='nansan_restore';").strip() and not restore_marker.exists():
+            raise RuntimeError('Restore account already exists without project ownership')
+        restore_password = secrets.token_hex(24)
+        for source in ['127.0.0.1', 'localhost']:
+            sql("CREATE USER IF NOT EXISTS 'nansan_restore'@'" + source + "' IDENTIFIED BY '" + restore_password + "';"
+                "ALTER USER 'nansan_restore'@'" + source + "' IDENTIFIED BY '" + restore_password + "';"
+                "GRANT ALL PRIVILEGES ON `nansan\\_restore\\_%`.* TO 'nansan_restore'@'" + source + "';")
+        write(restore_marker, MARKER + '\n', 0o600)
+        values.update({'RESTORE_MYSQL_HOST': '127.0.0.1', 'RESTORE_MYSQL_PORT': '3306', 'RESTORE_MYSQL_USERNAME': 'nansan_restore', 'RESTORE_MYSQL_PASSWORD': restore_password})
+    if not values.get('BACKUP_ENCRYPTION_KEY'):
+        values['BACKUP_ENCRYPTION_KEY'] = base64.b64encode(secrets.token_bytes(32)).decode()
+    if not values.get('BACKUP_DISK'):
+        values['BACKUP_DISK'] = 'backups'
+    values['MYSQL_CLIENT_PATH'] = shutil.which('mysql') or '/usr/bin/mysql'
+    values['MYSQLDUMP_PATH'] = shutil.which('mysqldump') or '/usr/bin/mysqldump'
+    write(env_path, '\n'.join(key + '=' + value for key, value in values.items()) + '\n', 0o600, OWNER)
     os.symlink(env_path, release / '.env')
     run(['chown', '-R', OWNER + ':' + OWNER, str(release)], quiet=True)
     composer_env = {**runtime_env, 'HOME': str(BASE / 'shared'), 'COMPOSER_HOME': str(BASE / 'shared/composer'), 'COMPOSER_CACHE_DIR': str(BASE / 'shared/composer-cache')}

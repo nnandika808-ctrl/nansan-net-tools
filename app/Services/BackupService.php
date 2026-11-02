@@ -57,14 +57,19 @@ class BackupService
             $this->decrypt($directory.'/archive.enc',$directory.'/archive.zip',$this->key());
             $zip=new ZipArchive;if($zip->open($directory.'/archive.zip')!==true)throw new RuntimeException('Invalid archive.');
             $manifest=json_decode($zip->getFromName('manifest.json'),true,512,JSON_THROW_ON_ERROR);
-            if(($manifest['driver']??null)!=='sqlite')throw new RuntimeException('MySQL restore requires an explicitly configured isolated restore target; it has not been verified.');
+            if(($manifest['driver']??null)==='mysql'){
+                $bytes=$zip->getFromName('database.sql');if($bytes===false)throw new RuntimeException('Database snapshot missing.');
+                file_put_contents($directory.'/database.sql',$bytes);
+                app(MysqlRestoreVerifier::class)->verify($directory.'/database.sql',$manifest['counts']);
+            }elseif(($manifest['driver']??null)==='sqlite'){
             $bytes=$zip->getFromName('database.sqlite');if($bytes===false)throw new RuntimeException('Database snapshot missing.');file_put_contents($directory.'/restored.sqlite',$bytes);
             $restored=new \PDO('sqlite:'.$directory.'/restored.sqlite');
             if($restored->query('PRAGMA integrity_check')->fetchColumn()!=='ok')throw new RuntimeException('Restored database integrity check failed.');
             foreach($manifest['counts'] as $table=>$count){if(!in_array($table,['users','tools','documentation_articles'],true))throw new RuntimeException('Unexpected count target.');if((int)$restored->query('SELECT COUNT(*) FROM '.$table)->fetchColumn()!==$count)throw new RuntimeException('Restored row count mismatch.');}
+            }else throw new RuntimeException('Unsupported snapshot driver.');
             foreach($manifest['files'] as $name=>$digest){$bytes=$zip->getFromName($name);if($bytes===false||!hash_equals($digest,hash('sha256',$bytes)))throw new RuntimeException('Restored media hash mismatch.');}
             $restored=null;$zip->close();
-            DB::table('backup_records')->where('id',$id)->update(['status'=>'restore_verified','restore_tested_at'=>now(),'message'=>'SQLite snapshot restored in isolated scratch DB; media checksums verified.','updated_at'=>now()]);Audit::record('backup.restore_verified','backup',$id);
+            DB::table('backup_records')->where('id',$id)->update(['status'=>'restore_verified','restore_tested_at'=>now(),'message'=>$manifest['driver'].' snapshot restored in isolated scratch DB; media checksums verified.','updated_at'=>now()]);Audit::record('backup.restore_verified','backup',$id);
         }finally{$restored=null;if($zip)try{$zip->close();}catch(\Throwable){}foreach(glob($directory.'/*')?:[] as $file)if(is_file($file))unlink($file);rmdir($directory);}
     }
     private function key(): string

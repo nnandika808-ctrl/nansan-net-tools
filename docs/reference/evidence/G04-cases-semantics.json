@@ -1,0 +1,3936 @@
+[
+  {
+    "test_id": "ros6-two-equal",
+    "url": "https://buananet.com/mikrotik-pcc-lb-starlink.html",
+    "observed_at": "2026-11-03",
+    "input": {
+      "id": "ros6-two-equal",
+      "ros": "v6",
+      "count": 2,
+      "mode": "equal",
+      "weights": [
+        1,
+        1
+      ],
+      "netwatch": false,
+      "interfaces": [
+        "ether1",
+        "ether2"
+      ],
+      "targets": ""
+    },
+    "entries": [
+      {
+        "path": "/ip dns",
+        "operation": "set",
+        "fields": {
+          "servers": "8.8.8.8,8.8.4.4,1.1.1.1,9.9.9.9"
+        }
+      },
+      {
+        "path": "/ip firewall address-list",
+        "operation": "add",
+        "fields": {
+          "address": "192.168.0.0/16",
+          "list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall address-list",
+        "operation": "add",
+        "fields": {
+          "address": "172.16.0.0/12",
+          "list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall address-list",
+        "operation": "add",
+        "fields": {
+          "address": "10.0.0.0/8",
+          "list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall nat",
+        "operation": "add",
+        "fields": {
+          "chain": "srcnat",
+          "out-interface": "ether1",
+          "action": "masquerade"
+        }
+      },
+      {
+        "path": "/ip firewall nat",
+        "operation": "add",
+        "fields": {
+          "chain": "srcnat",
+          "out-interface": "ether2",
+          "action": "masquerade"
+        }
+      },
+      {
+        "path": "/ip dhcp-client",
+        "operation": "add",
+        "fields": {
+          "interface": "ether1",
+          "disabled": "no",
+          "add-default-route": "no",
+          "default-route-distance": "1",
+          "use-peer-dns": "no",
+          "script": {
+            "interface": "ether1",
+            "removesBeforeBoundCheck": true,
+            "boundCondition": true,
+            "routes": [
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether1",
+                "distance": "1",
+                "comment": "MAIN-STARLINK1"
+              },
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether1",
+                "routing-mark": "STARLINK1",
+                "distance": "1",
+                "comment": "LB-STARLINK1"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "path": "/ip dhcp-client",
+        "operation": "add",
+        "fields": {
+          "interface": "ether2",
+          "disabled": "no",
+          "add-default-route": "no",
+          "default-route-distance": "2",
+          "use-peer-dns": "no",
+          "script": {
+            "interface": "ether2",
+            "removesBeforeBoundCheck": true,
+            "boundCondition": true,
+            "routes": [
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether2",
+                "distance": "2",
+                "comment": "MAIN-STARLINK2"
+              },
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether2",
+                "routing-mark": "STARLINK2",
+                "distance": "1",
+                "comment": "LB-STARLINK2"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "prerouting",
+          "hotspot": "from-client,!auth",
+          "disabled": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "prerouting",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "postrouting",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "forward",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "input",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "output",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "input",
+          "connection-mark": "no-mark",
+          "in-interface": "ether1",
+          "new-connection-mark": "STARLINK1-CONN",
+          "passthrough": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "input",
+          "connection-mark": "no-mark",
+          "in-interface": "ether2",
+          "new-connection-mark": "STARLINK2-CONN",
+          "passthrough": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "output",
+          "connection-mark": "STARLINK1-CONN",
+          "new-routing-mark": "STARLINK1",
+          "passthrough": "no"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "output",
+          "connection-mark": "STARLINK2-CONN",
+          "new-routing-mark": "STARLINK2",
+          "passthrough": "no"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "prerouting",
+          "connection-state": "new",
+          "connection-mark": "no-mark",
+          "new-connection-mark": "STARLINK1-CONN",
+          "passthrough": "yes",
+          "per-connection-classifier": "both-addresses-and-ports:2/0",
+          "dst-address-type": "!local",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "prerouting",
+          "connection-state": "new",
+          "connection-mark": "no-mark",
+          "new-connection-mark": "STARLINK2-CONN",
+          "passthrough": "yes",
+          "per-connection-classifier": "both-addresses-and-ports:2/1",
+          "dst-address-type": "!local",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "prerouting",
+          "connection-mark": "STARLINK1-CONN",
+          "new-routing-mark": "STARLINK1",
+          "passthrough": "yes",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "prerouting",
+          "connection-mark": "STARLINK2-CONN",
+          "new-routing-mark": "STARLINK2",
+          "passthrough": "yes",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      }
+    ],
+    "dhcp": [
+      {
+        "interface": "ether1",
+        "removesBeforeBoundCheck": true,
+        "boundCondition": true,
+        "routes": [
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether1",
+            "distance": "1",
+            "comment": "MAIN-STARLINK1"
+          },
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether1",
+            "routing-mark": "STARLINK1",
+            "distance": "1",
+            "comment": "LB-STARLINK1"
+          }
+        ]
+      },
+      {
+        "interface": "ether2",
+        "removesBeforeBoundCheck": true,
+        "boundCondition": true,
+        "routes": [
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether2",
+            "distance": "2",
+            "comment": "MAIN-STARLINK2"
+          },
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether2",
+            "routing-mark": "STARLINK2",
+            "distance": "1",
+            "comment": "LB-STARLINK2"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test_id": "ros7-two-equal",
+    "url": "https://buananet.com/mikrotik-pcc-lb-starlink.html",
+    "observed_at": "2026-11-03",
+    "input": {
+      "id": "ros7-two-equal",
+      "ros": "v7",
+      "count": 2,
+      "mode": "equal",
+      "weights": [
+        1,
+        1
+      ],
+      "netwatch": false,
+      "interfaces": [
+        "ether1",
+        "ether2"
+      ],
+      "targets": ""
+    },
+    "entries": [
+      {
+        "path": "/ip dns",
+        "operation": "set",
+        "fields": {
+          "servers": "8.8.8.8,8.8.4.4,1.1.1.1,9.9.9.9"
+        }
+      },
+      {
+        "path": "/ip firewall address-list",
+        "operation": "add",
+        "fields": {
+          "address": "192.168.0.0/16",
+          "list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall address-list",
+        "operation": "add",
+        "fields": {
+          "address": "172.16.0.0/12",
+          "list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall address-list",
+        "operation": "add",
+        "fields": {
+          "address": "10.0.0.0/8",
+          "list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/routing table",
+        "operation": "add",
+        "fields": {
+          "fib": true,
+          "name": "STARLINK1"
+        }
+      },
+      {
+        "path": "/routing table",
+        "operation": "add",
+        "fields": {
+          "fib": true,
+          "name": "STARLINK2"
+        }
+      },
+      {
+        "path": "/ip firewall nat",
+        "operation": "add",
+        "fields": {
+          "chain": "srcnat",
+          "out-interface": "ether1",
+          "action": "masquerade"
+        }
+      },
+      {
+        "path": "/ip firewall nat",
+        "operation": "add",
+        "fields": {
+          "chain": "srcnat",
+          "out-interface": "ether2",
+          "action": "masquerade"
+        }
+      },
+      {
+        "path": "/ip dhcp-client",
+        "operation": "add",
+        "fields": {
+          "interface": "ether1",
+          "disabled": "no",
+          "add-default-route": "no",
+          "default-route-distance": "1",
+          "use-peer-dns": "no",
+          "script": {
+            "interface": "ether1",
+            "removesBeforeBoundCheck": true,
+            "boundCondition": true,
+            "routes": [
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether1",
+                "distance": "1",
+                "comment": "MAIN-STARLINK1"
+              },
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether1",
+                "routing-table": "STARLINK1",
+                "distance": "1",
+                "comment": "LB-STARLINK1"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "path": "/ip dhcp-client",
+        "operation": "add",
+        "fields": {
+          "interface": "ether2",
+          "disabled": "no",
+          "add-default-route": "no",
+          "default-route-distance": "2",
+          "use-peer-dns": "no",
+          "script": {
+            "interface": "ether2",
+            "removesBeforeBoundCheck": true,
+            "boundCondition": true,
+            "routes": [
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether2",
+                "distance": "2",
+                "comment": "MAIN-STARLINK2"
+              },
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether2",
+                "routing-table": "STARLINK2",
+                "distance": "1",
+                "comment": "LB-STARLINK2"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "prerouting",
+          "hotspot": "from-client,!auth",
+          "disabled": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "prerouting",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "postrouting",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "forward",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "input",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "output",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "input",
+          "connection-mark": "no-mark",
+          "in-interface": "ether1",
+          "new-connection-mark": "STARLINK1-CONN",
+          "passthrough": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "input",
+          "connection-mark": "no-mark",
+          "in-interface": "ether2",
+          "new-connection-mark": "STARLINK2-CONN",
+          "passthrough": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "output",
+          "connection-mark": "STARLINK1-CONN",
+          "new-routing-mark": "STARLINK1",
+          "passthrough": "no"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "output",
+          "connection-mark": "STARLINK2-CONN",
+          "new-routing-mark": "STARLINK2",
+          "passthrough": "no"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "prerouting",
+          "connection-state": "new",
+          "connection-mark": "no-mark",
+          "new-connection-mark": "STARLINK1-CONN",
+          "passthrough": "yes",
+          "per-connection-classifier": "both-addresses-and-ports:2/0",
+          "dst-address-type": "!local",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "prerouting",
+          "connection-state": "new",
+          "connection-mark": "no-mark",
+          "new-connection-mark": "STARLINK2-CONN",
+          "passthrough": "yes",
+          "per-connection-classifier": "both-addresses-and-ports:2/1",
+          "dst-address-type": "!local",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "prerouting",
+          "connection-mark": "STARLINK1-CONN",
+          "new-routing-mark": "STARLINK1",
+          "passthrough": "yes",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "prerouting",
+          "connection-mark": "STARLINK2-CONN",
+          "new-routing-mark": "STARLINK2",
+          "passthrough": "yes",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      }
+    ],
+    "dhcp": [
+      {
+        "interface": "ether1",
+        "removesBeforeBoundCheck": true,
+        "boundCondition": true,
+        "routes": [
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether1",
+            "distance": "1",
+            "comment": "MAIN-STARLINK1"
+          },
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether1",
+            "routing-table": "STARLINK1",
+            "distance": "1",
+            "comment": "LB-STARLINK1"
+          }
+        ]
+      },
+      {
+        "interface": "ether2",
+        "removesBeforeBoundCheck": true,
+        "boundCondition": true,
+        "routes": [
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether2",
+            "distance": "2",
+            "comment": "MAIN-STARLINK2"
+          },
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether2",
+            "routing-table": "STARLINK2",
+            "distance": "1",
+            "comment": "LB-STARLINK2"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test_id": "ros7-three-manual",
+    "url": "https://buananet.com/mikrotik-pcc-lb-starlink.html",
+    "observed_at": "2026-11-03",
+    "input": {
+      "id": "ros7-three-manual",
+      "ros": "v7",
+      "count": 3,
+      "mode": "manual",
+      "weights": [
+        2,
+        1,
+        1
+      ],
+      "netwatch": false,
+      "interfaces": [
+        "ether1",
+        "ether2",
+        "ether3"
+      ],
+      "targets": ""
+    },
+    "entries": [
+      {
+        "path": "/ip dns",
+        "operation": "set",
+        "fields": {
+          "servers": "8.8.8.8,8.8.4.4,1.1.1.1,9.9.9.9"
+        }
+      },
+      {
+        "path": "/ip firewall address-list",
+        "operation": "add",
+        "fields": {
+          "address": "192.168.0.0/16",
+          "list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall address-list",
+        "operation": "add",
+        "fields": {
+          "address": "172.16.0.0/12",
+          "list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall address-list",
+        "operation": "add",
+        "fields": {
+          "address": "10.0.0.0/8",
+          "list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/routing table",
+        "operation": "add",
+        "fields": {
+          "fib": true,
+          "name": "STARLINK1"
+        }
+      },
+      {
+        "path": "/routing table",
+        "operation": "add",
+        "fields": {
+          "fib": true,
+          "name": "STARLINK2"
+        }
+      },
+      {
+        "path": "/routing table",
+        "operation": "add",
+        "fields": {
+          "fib": true,
+          "name": "STARLINK3"
+        }
+      },
+      {
+        "path": "/ip firewall nat",
+        "operation": "add",
+        "fields": {
+          "chain": "srcnat",
+          "out-interface": "ether1",
+          "action": "masquerade"
+        }
+      },
+      {
+        "path": "/ip firewall nat",
+        "operation": "add",
+        "fields": {
+          "chain": "srcnat",
+          "out-interface": "ether2",
+          "action": "masquerade"
+        }
+      },
+      {
+        "path": "/ip firewall nat",
+        "operation": "add",
+        "fields": {
+          "chain": "srcnat",
+          "out-interface": "ether3",
+          "action": "masquerade"
+        }
+      },
+      {
+        "path": "/ip dhcp-client",
+        "operation": "add",
+        "fields": {
+          "interface": "ether1",
+          "disabled": "no",
+          "add-default-route": "no",
+          "default-route-distance": "1",
+          "use-peer-dns": "no",
+          "script": {
+            "interface": "ether1",
+            "removesBeforeBoundCheck": true,
+            "boundCondition": true,
+            "routes": [
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether1",
+                "distance": "1",
+                "comment": "MAIN-STARLINK1"
+              },
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether1",
+                "routing-table": "STARLINK1",
+                "distance": "1",
+                "comment": "LB-STARLINK1"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "path": "/ip dhcp-client",
+        "operation": "add",
+        "fields": {
+          "interface": "ether2",
+          "disabled": "no",
+          "add-default-route": "no",
+          "default-route-distance": "2",
+          "use-peer-dns": "no",
+          "script": {
+            "interface": "ether2",
+            "removesBeforeBoundCheck": true,
+            "boundCondition": true,
+            "routes": [
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether2",
+                "distance": "2",
+                "comment": "MAIN-STARLINK2"
+              },
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether2",
+                "routing-table": "STARLINK2",
+                "distance": "1",
+                "comment": "LB-STARLINK2"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "path": "/ip dhcp-client",
+        "operation": "add",
+        "fields": {
+          "interface": "ether3",
+          "disabled": "no",
+          "add-default-route": "no",
+          "default-route-distance": "3",
+          "use-peer-dns": "no",
+          "script": {
+            "interface": "ether3",
+            "removesBeforeBoundCheck": true,
+            "boundCondition": true,
+            "routes": [
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether3",
+                "distance": "3",
+                "comment": "MAIN-STARLINK3"
+              },
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether3",
+                "routing-table": "STARLINK3",
+                "distance": "1",
+                "comment": "LB-STARLINK3"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "prerouting",
+          "hotspot": "from-client,!auth",
+          "disabled": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "prerouting",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "postrouting",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "forward",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "input",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "output",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "input",
+          "connection-mark": "no-mark",
+          "in-interface": "ether1",
+          "new-connection-mark": "STARLINK1-CONN",
+          "passthrough": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "input",
+          "connection-mark": "no-mark",
+          "in-interface": "ether2",
+          "new-connection-mark": "STARLINK2-CONN",
+          "passthrough": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "input",
+          "connection-mark": "no-mark",
+          "in-interface": "ether3",
+          "new-connection-mark": "STARLINK3-CONN",
+          "passthrough": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "output",
+          "connection-mark": "STARLINK1-CONN",
+          "new-routing-mark": "STARLINK1",
+          "passthrough": "no"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "output",
+          "connection-mark": "STARLINK2-CONN",
+          "new-routing-mark": "STARLINK2",
+          "passthrough": "no"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "output",
+          "connection-mark": "STARLINK3-CONN",
+          "new-routing-mark": "STARLINK3",
+          "passthrough": "no"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "prerouting",
+          "connection-state": "new",
+          "connection-mark": "no-mark",
+          "new-connection-mark": "STARLINK1-CONN",
+          "passthrough": "yes",
+          "per-connection-classifier": "both-addresses-and-ports:4/0",
+          "dst-address-type": "!local",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "prerouting",
+          "connection-state": "new",
+          "connection-mark": "no-mark",
+          "new-connection-mark": "STARLINK1-CONN",
+          "passthrough": "yes",
+          "per-connection-classifier": "both-addresses-and-ports:4/1",
+          "dst-address-type": "!local",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "prerouting",
+          "connection-state": "new",
+          "connection-mark": "no-mark",
+          "new-connection-mark": "STARLINK2-CONN",
+          "passthrough": "yes",
+          "per-connection-classifier": "both-addresses-and-ports:4/2",
+          "dst-address-type": "!local",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "prerouting",
+          "connection-state": "new",
+          "connection-mark": "no-mark",
+          "new-connection-mark": "STARLINK3-CONN",
+          "passthrough": "yes",
+          "per-connection-classifier": "both-addresses-and-ports:4/3",
+          "dst-address-type": "!local",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "prerouting",
+          "connection-mark": "STARLINK1-CONN",
+          "new-routing-mark": "STARLINK1",
+          "passthrough": "yes",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "prerouting",
+          "connection-mark": "STARLINK2-CONN",
+          "new-routing-mark": "STARLINK2",
+          "passthrough": "yes",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "prerouting",
+          "connection-mark": "STARLINK3-CONN",
+          "new-routing-mark": "STARLINK3",
+          "passthrough": "yes",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      }
+    ],
+    "dhcp": [
+      {
+        "interface": "ether1",
+        "removesBeforeBoundCheck": true,
+        "boundCondition": true,
+        "routes": [
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether1",
+            "distance": "1",
+            "comment": "MAIN-STARLINK1"
+          },
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether1",
+            "routing-table": "STARLINK1",
+            "distance": "1",
+            "comment": "LB-STARLINK1"
+          }
+        ]
+      },
+      {
+        "interface": "ether2",
+        "removesBeforeBoundCheck": true,
+        "boundCondition": true,
+        "routes": [
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether2",
+            "distance": "2",
+            "comment": "MAIN-STARLINK2"
+          },
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether2",
+            "routing-table": "STARLINK2",
+            "distance": "1",
+            "comment": "LB-STARLINK2"
+          }
+        ]
+      },
+      {
+        "interface": "ether3",
+        "removesBeforeBoundCheck": true,
+        "boundCondition": true,
+        "routes": [
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether3",
+            "distance": "3",
+            "comment": "MAIN-STARLINK3"
+          },
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether3",
+            "routing-table": "STARLINK3",
+            "distance": "1",
+            "comment": "LB-STARLINK3"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test_id": "ros7-manual-unreduced",
+    "url": "https://buananet.com/mikrotik-pcc-lb-starlink.html",
+    "observed_at": "2026-11-03",
+    "input": {
+      "id": "ros7-manual-unreduced",
+      "ros": "v7",
+      "count": 2,
+      "mode": "manual",
+      "weights": [
+        2,
+        2
+      ],
+      "netwatch": false,
+      "interfaces": [
+        "ether1",
+        "ether2"
+      ],
+      "targets": ""
+    },
+    "entries": [
+      {
+        "path": "/ip dns",
+        "operation": "set",
+        "fields": {
+          "servers": "8.8.8.8,8.8.4.4,1.1.1.1,9.9.9.9"
+        }
+      },
+      {
+        "path": "/ip firewall address-list",
+        "operation": "add",
+        "fields": {
+          "address": "192.168.0.0/16",
+          "list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall address-list",
+        "operation": "add",
+        "fields": {
+          "address": "172.16.0.0/12",
+          "list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall address-list",
+        "operation": "add",
+        "fields": {
+          "address": "10.0.0.0/8",
+          "list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/routing table",
+        "operation": "add",
+        "fields": {
+          "fib": true,
+          "name": "STARLINK1"
+        }
+      },
+      {
+        "path": "/routing table",
+        "operation": "add",
+        "fields": {
+          "fib": true,
+          "name": "STARLINK2"
+        }
+      },
+      {
+        "path": "/ip firewall nat",
+        "operation": "add",
+        "fields": {
+          "chain": "srcnat",
+          "out-interface": "ether1",
+          "action": "masquerade"
+        }
+      },
+      {
+        "path": "/ip firewall nat",
+        "operation": "add",
+        "fields": {
+          "chain": "srcnat",
+          "out-interface": "ether2",
+          "action": "masquerade"
+        }
+      },
+      {
+        "path": "/ip dhcp-client",
+        "operation": "add",
+        "fields": {
+          "interface": "ether1",
+          "disabled": "no",
+          "add-default-route": "no",
+          "default-route-distance": "1",
+          "use-peer-dns": "no",
+          "script": {
+            "interface": "ether1",
+            "removesBeforeBoundCheck": true,
+            "boundCondition": true,
+            "routes": [
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether1",
+                "distance": "1",
+                "comment": "MAIN-STARLINK1"
+              },
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether1",
+                "routing-table": "STARLINK1",
+                "distance": "1",
+                "comment": "LB-STARLINK1"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "path": "/ip dhcp-client",
+        "operation": "add",
+        "fields": {
+          "interface": "ether2",
+          "disabled": "no",
+          "add-default-route": "no",
+          "default-route-distance": "2",
+          "use-peer-dns": "no",
+          "script": {
+            "interface": "ether2",
+            "removesBeforeBoundCheck": true,
+            "boundCondition": true,
+            "routes": [
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether2",
+                "distance": "2",
+                "comment": "MAIN-STARLINK2"
+              },
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether2",
+                "routing-table": "STARLINK2",
+                "distance": "1",
+                "comment": "LB-STARLINK2"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "prerouting",
+          "hotspot": "from-client,!auth",
+          "disabled": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "prerouting",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "postrouting",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "forward",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "input",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "output",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "input",
+          "connection-mark": "no-mark",
+          "in-interface": "ether1",
+          "new-connection-mark": "STARLINK1-CONN",
+          "passthrough": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "input",
+          "connection-mark": "no-mark",
+          "in-interface": "ether2",
+          "new-connection-mark": "STARLINK2-CONN",
+          "passthrough": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "output",
+          "connection-mark": "STARLINK1-CONN",
+          "new-routing-mark": "STARLINK1",
+          "passthrough": "no"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "output",
+          "connection-mark": "STARLINK2-CONN",
+          "new-routing-mark": "STARLINK2",
+          "passthrough": "no"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "prerouting",
+          "connection-state": "new",
+          "connection-mark": "no-mark",
+          "new-connection-mark": "STARLINK1-CONN",
+          "passthrough": "yes",
+          "per-connection-classifier": "both-addresses-and-ports:4/0",
+          "dst-address-type": "!local",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "prerouting",
+          "connection-state": "new",
+          "connection-mark": "no-mark",
+          "new-connection-mark": "STARLINK1-CONN",
+          "passthrough": "yes",
+          "per-connection-classifier": "both-addresses-and-ports:4/1",
+          "dst-address-type": "!local",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "prerouting",
+          "connection-state": "new",
+          "connection-mark": "no-mark",
+          "new-connection-mark": "STARLINK2-CONN",
+          "passthrough": "yes",
+          "per-connection-classifier": "both-addresses-and-ports:4/2",
+          "dst-address-type": "!local",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "prerouting",
+          "connection-state": "new",
+          "connection-mark": "no-mark",
+          "new-connection-mark": "STARLINK2-CONN",
+          "passthrough": "yes",
+          "per-connection-classifier": "both-addresses-and-ports:4/3",
+          "dst-address-type": "!local",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "prerouting",
+          "connection-mark": "STARLINK1-CONN",
+          "new-routing-mark": "STARLINK1",
+          "passthrough": "yes",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "prerouting",
+          "connection-mark": "STARLINK2-CONN",
+          "new-routing-mark": "STARLINK2",
+          "passthrough": "yes",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      }
+    ],
+    "dhcp": [
+      {
+        "interface": "ether1",
+        "removesBeforeBoundCheck": true,
+        "boundCondition": true,
+        "routes": [
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether1",
+            "distance": "1",
+            "comment": "MAIN-STARLINK1"
+          },
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether1",
+            "routing-table": "STARLINK1",
+            "distance": "1",
+            "comment": "LB-STARLINK1"
+          }
+        ]
+      },
+      {
+        "interface": "ether2",
+        "removesBeforeBoundCheck": true,
+        "boundCondition": true,
+        "routes": [
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether2",
+            "distance": "2",
+            "comment": "MAIN-STARLINK2"
+          },
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether2",
+            "routing-table": "STARLINK2",
+            "distance": "1",
+            "comment": "LB-STARLINK2"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test_id": "ros7-three-netwatch",
+    "url": "https://buananet.com/mikrotik-pcc-lb-starlink.html",
+    "observed_at": "2026-11-03",
+    "input": {
+      "id": "ros7-three-netwatch",
+      "ros": "v7",
+      "count": 3,
+      "mode": "manual",
+      "weights": [
+        2,
+        1,
+        1
+      ],
+      "netwatch": true,
+      "interfaces": [
+        "ether1",
+        "ether2",
+        "ether3"
+      ],
+      "targets": ""
+    },
+    "entries": [
+      {
+        "path": "/ip dns",
+        "operation": "set",
+        "fields": {
+          "servers": "8.8.8.8,8.8.4.4,1.1.1.1,9.9.9.9"
+        }
+      },
+      {
+        "path": "/ip firewall address-list",
+        "operation": "add",
+        "fields": {
+          "address": "192.168.0.0/16",
+          "list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall address-list",
+        "operation": "add",
+        "fields": {
+          "address": "172.16.0.0/12",
+          "list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall address-list",
+        "operation": "add",
+        "fields": {
+          "address": "10.0.0.0/8",
+          "list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/routing table",
+        "operation": "add",
+        "fields": {
+          "fib": true,
+          "name": "STARLINK1"
+        }
+      },
+      {
+        "path": "/routing table",
+        "operation": "add",
+        "fields": {
+          "fib": true,
+          "name": "STARLINK2"
+        }
+      },
+      {
+        "path": "/routing table",
+        "operation": "add",
+        "fields": {
+          "fib": true,
+          "name": "STARLINK3"
+        }
+      },
+      {
+        "path": "/routing table",
+        "operation": "add",
+        "fields": {
+          "fib": true,
+          "name": "STARLINK1-MONITOR"
+        }
+      },
+      {
+        "path": "/routing table",
+        "operation": "add",
+        "fields": {
+          "fib": true,
+          "name": "STARLINK2-MONITOR"
+        }
+      },
+      {
+        "path": "/routing table",
+        "operation": "add",
+        "fields": {
+          "fib": true,
+          "name": "STARLINK3-MONITOR"
+        }
+      },
+      {
+        "path": "/ip firewall nat",
+        "operation": "add",
+        "fields": {
+          "chain": "srcnat",
+          "out-interface": "ether1",
+          "action": "masquerade"
+        }
+      },
+      {
+        "path": "/ip firewall nat",
+        "operation": "add",
+        "fields": {
+          "chain": "srcnat",
+          "out-interface": "ether2",
+          "action": "masquerade"
+        }
+      },
+      {
+        "path": "/ip firewall nat",
+        "operation": "add",
+        "fields": {
+          "chain": "srcnat",
+          "out-interface": "ether3",
+          "action": "masquerade"
+        }
+      },
+      {
+        "path": "/ip dhcp-client",
+        "operation": "add",
+        "fields": {
+          "interface": "ether1",
+          "disabled": "no",
+          "add-default-route": "no",
+          "default-route-distance": "1",
+          "use-peer-dns": "no",
+          "script": {
+            "interface": "ether1",
+            "removesBeforeBoundCheck": true,
+            "boundCondition": true,
+            "routes": [
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether1",
+                "distance": "1",
+                "comment": "MAIN-STARLINK1"
+              },
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether1",
+                "routing-table": "STARLINK1",
+                "distance": "1",
+                "comment": "LB-STARLINK1"
+              },
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether1",
+                "routing-table": "STARLINK1-MONITOR",
+                "distance": "1",
+                "comment": "MONITOR-STARLINK1"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "path": "/ip dhcp-client",
+        "operation": "add",
+        "fields": {
+          "interface": "ether2",
+          "disabled": "no",
+          "add-default-route": "no",
+          "default-route-distance": "2",
+          "use-peer-dns": "no",
+          "script": {
+            "interface": "ether2",
+            "removesBeforeBoundCheck": true,
+            "boundCondition": true,
+            "routes": [
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether2",
+                "distance": "2",
+                "comment": "MAIN-STARLINK2"
+              },
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether2",
+                "routing-table": "STARLINK2",
+                "distance": "1",
+                "comment": "LB-STARLINK2"
+              },
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether2",
+                "routing-table": "STARLINK2-MONITOR",
+                "distance": "1",
+                "comment": "MONITOR-STARLINK2"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "path": "/ip dhcp-client",
+        "operation": "add",
+        "fields": {
+          "interface": "ether3",
+          "disabled": "no",
+          "add-default-route": "no",
+          "default-route-distance": "3",
+          "use-peer-dns": "no",
+          "script": {
+            "interface": "ether3",
+            "removesBeforeBoundCheck": true,
+            "boundCondition": true,
+            "routes": [
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether3",
+                "distance": "3",
+                "comment": "MAIN-STARLINK3"
+              },
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether3",
+                "routing-table": "STARLINK3",
+                "distance": "1",
+                "comment": "LB-STARLINK3"
+              },
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether3",
+                "routing-table": "STARLINK3-MONITOR",
+                "distance": "1",
+                "comment": "MONITOR-STARLINK3"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "prerouting",
+          "hotspot": "from-client,!auth",
+          "disabled": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "prerouting",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "postrouting",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "forward",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "input",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "output",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "input",
+          "connection-mark": "no-mark",
+          "in-interface": "ether1",
+          "new-connection-mark": "STARLINK1-CONN",
+          "passthrough": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "input",
+          "connection-mark": "no-mark",
+          "in-interface": "ether2",
+          "new-connection-mark": "STARLINK2-CONN",
+          "passthrough": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "input",
+          "connection-mark": "no-mark",
+          "in-interface": "ether3",
+          "new-connection-mark": "STARLINK3-CONN",
+          "passthrough": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "output",
+          "connection-mark": "STARLINK1-CONN",
+          "new-routing-mark": "STARLINK1",
+          "passthrough": "no"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "output",
+          "connection-mark": "STARLINK2-CONN",
+          "new-routing-mark": "STARLINK2",
+          "passthrough": "no"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "output",
+          "connection-mark": "STARLINK3-CONN",
+          "new-routing-mark": "STARLINK3",
+          "passthrough": "no"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "prerouting",
+          "connection-state": "new",
+          "connection-mark": "no-mark",
+          "new-connection-mark": "STARLINK1-CONN",
+          "passthrough": "yes",
+          "per-connection-classifier": "both-addresses-and-ports:4/0",
+          "dst-address-type": "!local",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "prerouting",
+          "connection-state": "new",
+          "connection-mark": "no-mark",
+          "new-connection-mark": "STARLINK1-CONN",
+          "passthrough": "yes",
+          "per-connection-classifier": "both-addresses-and-ports:4/1",
+          "dst-address-type": "!local",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "prerouting",
+          "connection-state": "new",
+          "connection-mark": "no-mark",
+          "new-connection-mark": "STARLINK2-CONN",
+          "passthrough": "yes",
+          "per-connection-classifier": "both-addresses-and-ports:4/2",
+          "dst-address-type": "!local",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "prerouting",
+          "connection-state": "new",
+          "connection-mark": "no-mark",
+          "new-connection-mark": "STARLINK3-CONN",
+          "passthrough": "yes",
+          "per-connection-classifier": "both-addresses-and-ports:4/3",
+          "dst-address-type": "!local",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "prerouting",
+          "connection-mark": "STARLINK1-CONN",
+          "new-routing-mark": "STARLINK1",
+          "passthrough": "yes",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "prerouting",
+          "connection-mark": "STARLINK2-CONN",
+          "new-routing-mark": "STARLINK2",
+          "passthrough": "yes",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "prerouting",
+          "connection-mark": "STARLINK3-CONN",
+          "new-routing-mark": "STARLINK3",
+          "passthrough": "yes",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/routing rule",
+        "operation": "add",
+        "fields": {
+          "action": "lookup",
+          "disabled": "no",
+          "dst-address": "1.1.1.1/32",
+          "table": "STARLINK1-MONITOR"
+        }
+      },
+      {
+        "path": "/routing rule",
+        "operation": "add",
+        "fields": {
+          "action": "lookup",
+          "disabled": "no",
+          "dst-address": "1.1.1.2/32",
+          "table": "STARLINK2-MONITOR"
+        }
+      },
+      {
+        "path": "/routing rule",
+        "operation": "add",
+        "fields": {
+          "action": "lookup",
+          "disabled": "no",
+          "dst-address": "1.1.1.3/32",
+          "table": "STARLINK3-MONITOR"
+        }
+      },
+      {
+        "path": "/tool netwatch",
+        "operation": "add",
+        "fields": {
+          "host": "1.1.1.1",
+          "interval": "10s",
+          "down-script": "/ip route disable [find comment=\"LB-STARLINK1\" or comment=\"MAIN-STARLINK1\"]",
+          "up-script": "/ip route enable [find comment=\"LB-STARLINK1\" or comment=\"MAIN-STARLINK1\"]"
+        }
+      },
+      {
+        "path": "/tool netwatch",
+        "operation": "add",
+        "fields": {
+          "host": "1.1.1.2",
+          "interval": "10s",
+          "down-script": "/ip route disable [find comment=\"LB-STARLINK2\" or comment=\"MAIN-STARLINK2\"]",
+          "up-script": "/ip route enable [find comment=\"LB-STARLINK2\" or comment=\"MAIN-STARLINK2\"]"
+        }
+      },
+      {
+        "path": "/tool netwatch",
+        "operation": "add",
+        "fields": {
+          "host": "1.1.1.3",
+          "interval": "10s",
+          "down-script": "/ip route disable [find comment=\"LB-STARLINK3\" or comment=\"MAIN-STARLINK3\"]",
+          "up-script": "/ip route enable [find comment=\"LB-STARLINK3\" or comment=\"MAIN-STARLINK3\"]"
+        }
+      }
+    ],
+    "dhcp": [
+      {
+        "interface": "ether1",
+        "removesBeforeBoundCheck": true,
+        "boundCondition": true,
+        "routes": [
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether1",
+            "distance": "1",
+            "comment": "MAIN-STARLINK1"
+          },
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether1",
+            "routing-table": "STARLINK1",
+            "distance": "1",
+            "comment": "LB-STARLINK1"
+          },
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether1",
+            "routing-table": "STARLINK1-MONITOR",
+            "distance": "1",
+            "comment": "MONITOR-STARLINK1"
+          }
+        ]
+      },
+      {
+        "interface": "ether2",
+        "removesBeforeBoundCheck": true,
+        "boundCondition": true,
+        "routes": [
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether2",
+            "distance": "2",
+            "comment": "MAIN-STARLINK2"
+          },
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether2",
+            "routing-table": "STARLINK2",
+            "distance": "1",
+            "comment": "LB-STARLINK2"
+          },
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether2",
+            "routing-table": "STARLINK2-MONITOR",
+            "distance": "1",
+            "comment": "MONITOR-STARLINK2"
+          }
+        ]
+      },
+      {
+        "interface": "ether3",
+        "removesBeforeBoundCheck": true,
+        "boundCondition": true,
+        "routes": [
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether3",
+            "distance": "3",
+            "comment": "MAIN-STARLINK3"
+          },
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether3",
+            "routing-table": "STARLINK3",
+            "distance": "1",
+            "comment": "LB-STARLINK3"
+          },
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether3",
+            "routing-table": "STARLINK3-MONITOR",
+            "distance": "1",
+            "comment": "MONITOR-STARLINK3"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test_id": "ros6-two-netwatch",
+    "url": "https://buananet.com/mikrotik-pcc-lb-starlink.html",
+    "observed_at": "2026-11-03",
+    "input": {
+      "id": "ros6-two-netwatch",
+      "ros": "v6",
+      "count": 2,
+      "mode": "equal",
+      "weights": [
+        1,
+        1
+      ],
+      "netwatch": true,
+      "interfaces": [
+        "ether1",
+        "ether2"
+      ],
+      "targets": ""
+    },
+    "entries": [
+      {
+        "path": "/ip dns",
+        "operation": "set",
+        "fields": {
+          "servers": "8.8.8.8,8.8.4.4,1.1.1.1,9.9.9.9"
+        }
+      },
+      {
+        "path": "/ip firewall address-list",
+        "operation": "add",
+        "fields": {
+          "address": "192.168.0.0/16",
+          "list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall address-list",
+        "operation": "add",
+        "fields": {
+          "address": "172.16.0.0/12",
+          "list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall address-list",
+        "operation": "add",
+        "fields": {
+          "address": "10.0.0.0/8",
+          "list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall nat",
+        "operation": "add",
+        "fields": {
+          "chain": "srcnat",
+          "out-interface": "ether1",
+          "action": "masquerade"
+        }
+      },
+      {
+        "path": "/ip firewall nat",
+        "operation": "add",
+        "fields": {
+          "chain": "srcnat",
+          "out-interface": "ether2",
+          "action": "masquerade"
+        }
+      },
+      {
+        "path": "/ip dhcp-client",
+        "operation": "add",
+        "fields": {
+          "interface": "ether1",
+          "disabled": "no",
+          "add-default-route": "no",
+          "default-route-distance": "1",
+          "use-peer-dns": "no",
+          "script": {
+            "interface": "ether1",
+            "removesBeforeBoundCheck": true,
+            "boundCondition": true,
+            "routes": [
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether1",
+                "distance": "1",
+                "comment": "MAIN-STARLINK1"
+              },
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether1",
+                "routing-mark": "STARLINK1",
+                "distance": "1",
+                "comment": "LB-STARLINK1"
+              },
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether1",
+                "routing-mark": "STARLINK1-MONITOR",
+                "distance": "1",
+                "comment": "MONITOR-STARLINK1"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "path": "/ip dhcp-client",
+        "operation": "add",
+        "fields": {
+          "interface": "ether2",
+          "disabled": "no",
+          "add-default-route": "no",
+          "default-route-distance": "2",
+          "use-peer-dns": "no",
+          "script": {
+            "interface": "ether2",
+            "removesBeforeBoundCheck": true,
+            "boundCondition": true,
+            "routes": [
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether2",
+                "distance": "2",
+                "comment": "MAIN-STARLINK2"
+              },
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether2",
+                "routing-mark": "STARLINK2",
+                "distance": "1",
+                "comment": "LB-STARLINK2"
+              },
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether2",
+                "routing-mark": "STARLINK2-MONITOR",
+                "distance": "1",
+                "comment": "MONITOR-STARLINK2"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "prerouting",
+          "hotspot": "from-client,!auth",
+          "disabled": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "prerouting",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "postrouting",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "forward",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "input",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "output",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "input",
+          "connection-mark": "no-mark",
+          "in-interface": "ether1",
+          "new-connection-mark": "STARLINK1-CONN",
+          "passthrough": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "input",
+          "connection-mark": "no-mark",
+          "in-interface": "ether2",
+          "new-connection-mark": "STARLINK2-CONN",
+          "passthrough": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "output",
+          "connection-mark": "STARLINK1-CONN",
+          "new-routing-mark": "STARLINK1",
+          "passthrough": "no"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "output",
+          "connection-mark": "STARLINK2-CONN",
+          "new-routing-mark": "STARLINK2",
+          "passthrough": "no"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "prerouting",
+          "connection-state": "new",
+          "connection-mark": "no-mark",
+          "new-connection-mark": "STARLINK1-CONN",
+          "passthrough": "yes",
+          "per-connection-classifier": "both-addresses-and-ports:2/0",
+          "dst-address-type": "!local",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "prerouting",
+          "connection-state": "new",
+          "connection-mark": "no-mark",
+          "new-connection-mark": "STARLINK2-CONN",
+          "passthrough": "yes",
+          "per-connection-classifier": "both-addresses-and-ports:2/1",
+          "dst-address-type": "!local",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "prerouting",
+          "connection-mark": "STARLINK1-CONN",
+          "new-routing-mark": "STARLINK1",
+          "passthrough": "yes",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "prerouting",
+          "connection-mark": "STARLINK2-CONN",
+          "new-routing-mark": "STARLINK2",
+          "passthrough": "yes",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip route rule",
+        "operation": "add",
+        "fields": {
+          "dst-address": "1.1.1.1/32",
+          "table": "STARLINK1-MONITOR"
+        }
+      },
+      {
+        "path": "/ip route rule",
+        "operation": "add",
+        "fields": {
+          "dst-address": "1.1.1.2/32",
+          "table": "STARLINK2-MONITOR"
+        }
+      },
+      {
+        "path": "/tool netwatch",
+        "operation": "add",
+        "fields": {
+          "host": "1.1.1.1",
+          "interval": "10s",
+          "down-script": "/ip route disable [find comment=\"LB-STARLINK1\" or comment=\"MAIN-STARLINK1\"]",
+          "up-script": "/ip route enable [find comment=\"LB-STARLINK1\" or comment=\"MAIN-STARLINK1\"]"
+        }
+      },
+      {
+        "path": "/tool netwatch",
+        "operation": "add",
+        "fields": {
+          "host": "1.1.1.2",
+          "interval": "10s",
+          "down-script": "/ip route disable [find comment=\"LB-STARLINK2\" or comment=\"MAIN-STARLINK2\"]",
+          "up-script": "/ip route enable [find comment=\"LB-STARLINK2\" or comment=\"MAIN-STARLINK2\"]"
+        }
+      }
+    ],
+    "dhcp": [
+      {
+        "interface": "ether1",
+        "removesBeforeBoundCheck": true,
+        "boundCondition": true,
+        "routes": [
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether1",
+            "distance": "1",
+            "comment": "MAIN-STARLINK1"
+          },
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether1",
+            "routing-mark": "STARLINK1",
+            "distance": "1",
+            "comment": "LB-STARLINK1"
+          },
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether1",
+            "routing-mark": "STARLINK1-MONITOR",
+            "distance": "1",
+            "comment": "MONITOR-STARLINK1"
+          }
+        ]
+      },
+      {
+        "interface": "ether2",
+        "removesBeforeBoundCheck": true,
+        "boundCondition": true,
+        "routes": [
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether2",
+            "distance": "2",
+            "comment": "MAIN-STARLINK2"
+          },
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether2",
+            "routing-mark": "STARLINK2",
+            "distance": "1",
+            "comment": "LB-STARLINK2"
+          },
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether2",
+            "routing-mark": "STARLINK2-MONITOR",
+            "distance": "1",
+            "comment": "MONITOR-STARLINK2"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test_id": "ros7-ten-equal",
+    "url": "https://buananet.com/mikrotik-pcc-lb-starlink.html",
+    "observed_at": "2026-11-03",
+    "input": {
+      "id": "ros7-ten-equal",
+      "ros": "v7",
+      "count": 10,
+      "mode": "equal",
+      "weights": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "netwatch": false,
+      "interfaces": [
+        "ether1",
+        "ether2",
+        "ether3",
+        "ether4",
+        "ether5",
+        "ether6",
+        "ether7",
+        "ether8",
+        "ether9",
+        "ether10"
+      ],
+      "targets": ""
+    },
+    "entries": [
+      {
+        "path": "/ip dns",
+        "operation": "set",
+        "fields": {
+          "servers": "8.8.8.8,8.8.4.4,1.1.1.1,9.9.9.9"
+        }
+      },
+      {
+        "path": "/ip firewall address-list",
+        "operation": "add",
+        "fields": {
+          "address": "192.168.0.0/16",
+          "list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall address-list",
+        "operation": "add",
+        "fields": {
+          "address": "172.16.0.0/12",
+          "list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall address-list",
+        "operation": "add",
+        "fields": {
+          "address": "10.0.0.0/8",
+          "list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/routing table",
+        "operation": "add",
+        "fields": {
+          "fib": true,
+          "name": "STARLINK1"
+        }
+      },
+      {
+        "path": "/routing table",
+        "operation": "add",
+        "fields": {
+          "fib": true,
+          "name": "STARLINK2"
+        }
+      },
+      {
+        "path": "/routing table",
+        "operation": "add",
+        "fields": {
+          "fib": true,
+          "name": "STARLINK3"
+        }
+      },
+      {
+        "path": "/routing table",
+        "operation": "add",
+        "fields": {
+          "fib": true,
+          "name": "STARLINK4"
+        }
+      },
+      {
+        "path": "/routing table",
+        "operation": "add",
+        "fields": {
+          "fib": true,
+          "name": "STARLINK5"
+        }
+      },
+      {
+        "path": "/routing table",
+        "operation": "add",
+        "fields": {
+          "fib": true,
+          "name": "STARLINK6"
+        }
+      },
+      {
+        "path": "/routing table",
+        "operation": "add",
+        "fields": {
+          "fib": true,
+          "name": "STARLINK7"
+        }
+      },
+      {
+        "path": "/routing table",
+        "operation": "add",
+        "fields": {
+          "fib": true,
+          "name": "STARLINK8"
+        }
+      },
+      {
+        "path": "/routing table",
+        "operation": "add",
+        "fields": {
+          "fib": true,
+          "name": "STARLINK9"
+        }
+      },
+      {
+        "path": "/routing table",
+        "operation": "add",
+        "fields": {
+          "fib": true,
+          "name": "STARLINK10"
+        }
+      },
+      {
+        "path": "/ip firewall nat",
+        "operation": "add",
+        "fields": {
+          "chain": "srcnat",
+          "out-interface": "ether1",
+          "action": "masquerade"
+        }
+      },
+      {
+        "path": "/ip firewall nat",
+        "operation": "add",
+        "fields": {
+          "chain": "srcnat",
+          "out-interface": "ether2",
+          "action": "masquerade"
+        }
+      },
+      {
+        "path": "/ip firewall nat",
+        "operation": "add",
+        "fields": {
+          "chain": "srcnat",
+          "out-interface": "ether3",
+          "action": "masquerade"
+        }
+      },
+      {
+        "path": "/ip firewall nat",
+        "operation": "add",
+        "fields": {
+          "chain": "srcnat",
+          "out-interface": "ether4",
+          "action": "masquerade"
+        }
+      },
+      {
+        "path": "/ip firewall nat",
+        "operation": "add",
+        "fields": {
+          "chain": "srcnat",
+          "out-interface": "ether5",
+          "action": "masquerade"
+        }
+      },
+      {
+        "path": "/ip firewall nat",
+        "operation": "add",
+        "fields": {
+          "chain": "srcnat",
+          "out-interface": "ether6",
+          "action": "masquerade"
+        }
+      },
+      {
+        "path": "/ip firewall nat",
+        "operation": "add",
+        "fields": {
+          "chain": "srcnat",
+          "out-interface": "ether7",
+          "action": "masquerade"
+        }
+      },
+      {
+        "path": "/ip firewall nat",
+        "operation": "add",
+        "fields": {
+          "chain": "srcnat",
+          "out-interface": "ether8",
+          "action": "masquerade"
+        }
+      },
+      {
+        "path": "/ip firewall nat",
+        "operation": "add",
+        "fields": {
+          "chain": "srcnat",
+          "out-interface": "ether9",
+          "action": "masquerade"
+        }
+      },
+      {
+        "path": "/ip firewall nat",
+        "operation": "add",
+        "fields": {
+          "chain": "srcnat",
+          "out-interface": "ether10",
+          "action": "masquerade"
+        }
+      },
+      {
+        "path": "/ip dhcp-client",
+        "operation": "add",
+        "fields": {
+          "interface": "ether1",
+          "disabled": "no",
+          "add-default-route": "no",
+          "default-route-distance": "1",
+          "use-peer-dns": "no",
+          "script": {
+            "interface": "ether1",
+            "removesBeforeBoundCheck": true,
+            "boundCondition": true,
+            "routes": [
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether1",
+                "distance": "1",
+                "comment": "MAIN-STARLINK1"
+              },
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether1",
+                "routing-table": "STARLINK1",
+                "distance": "1",
+                "comment": "LB-STARLINK1"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "path": "/ip dhcp-client",
+        "operation": "add",
+        "fields": {
+          "interface": "ether2",
+          "disabled": "no",
+          "add-default-route": "no",
+          "default-route-distance": "2",
+          "use-peer-dns": "no",
+          "script": {
+            "interface": "ether2",
+            "removesBeforeBoundCheck": true,
+            "boundCondition": true,
+            "routes": [
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether2",
+                "distance": "2",
+                "comment": "MAIN-STARLINK2"
+              },
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether2",
+                "routing-table": "STARLINK2",
+                "distance": "1",
+                "comment": "LB-STARLINK2"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "path": "/ip dhcp-client",
+        "operation": "add",
+        "fields": {
+          "interface": "ether3",
+          "disabled": "no",
+          "add-default-route": "no",
+          "default-route-distance": "3",
+          "use-peer-dns": "no",
+          "script": {
+            "interface": "ether3",
+            "removesBeforeBoundCheck": true,
+            "boundCondition": true,
+            "routes": [
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether3",
+                "distance": "3",
+                "comment": "MAIN-STARLINK3"
+              },
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether3",
+                "routing-table": "STARLINK3",
+                "distance": "1",
+                "comment": "LB-STARLINK3"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "path": "/ip dhcp-client",
+        "operation": "add",
+        "fields": {
+          "interface": "ether4",
+          "disabled": "no",
+          "add-default-route": "no",
+          "default-route-distance": "4",
+          "use-peer-dns": "no",
+          "script": {
+            "interface": "ether4",
+            "removesBeforeBoundCheck": true,
+            "boundCondition": true,
+            "routes": [
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether4",
+                "distance": "4",
+                "comment": "MAIN-STARLINK4"
+              },
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether4",
+                "routing-table": "STARLINK4",
+                "distance": "1",
+                "comment": "LB-STARLINK4"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "path": "/ip dhcp-client",
+        "operation": "add",
+        "fields": {
+          "interface": "ether5",
+          "disabled": "no",
+          "add-default-route": "no",
+          "default-route-distance": "5",
+          "use-peer-dns": "no",
+          "script": {
+            "interface": "ether5",
+            "removesBeforeBoundCheck": true,
+            "boundCondition": true,
+            "routes": [
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether5",
+                "distance": "5",
+                "comment": "MAIN-STARLINK5"
+              },
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether5",
+                "routing-table": "STARLINK5",
+                "distance": "1",
+                "comment": "LB-STARLINK5"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "path": "/ip dhcp-client",
+        "operation": "add",
+        "fields": {
+          "interface": "ether6",
+          "disabled": "no",
+          "add-default-route": "no",
+          "default-route-distance": "6",
+          "use-peer-dns": "no",
+          "script": {
+            "interface": "ether6",
+            "removesBeforeBoundCheck": true,
+            "boundCondition": true,
+            "routes": [
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether6",
+                "distance": "6",
+                "comment": "MAIN-STARLINK6"
+              },
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether6",
+                "routing-table": "STARLINK6",
+                "distance": "1",
+                "comment": "LB-STARLINK6"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "path": "/ip dhcp-client",
+        "operation": "add",
+        "fields": {
+          "interface": "ether7",
+          "disabled": "no",
+          "add-default-route": "no",
+          "default-route-distance": "7",
+          "use-peer-dns": "no",
+          "script": {
+            "interface": "ether7",
+            "removesBeforeBoundCheck": true,
+            "boundCondition": true,
+            "routes": [
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether7",
+                "distance": "7",
+                "comment": "MAIN-STARLINK7"
+              },
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether7",
+                "routing-table": "STARLINK7",
+                "distance": "1",
+                "comment": "LB-STARLINK7"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "path": "/ip dhcp-client",
+        "operation": "add",
+        "fields": {
+          "interface": "ether8",
+          "disabled": "no",
+          "add-default-route": "no",
+          "default-route-distance": "8",
+          "use-peer-dns": "no",
+          "script": {
+            "interface": "ether8",
+            "removesBeforeBoundCheck": true,
+            "boundCondition": true,
+            "routes": [
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether8",
+                "distance": "8",
+                "comment": "MAIN-STARLINK8"
+              },
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether8",
+                "routing-table": "STARLINK8",
+                "distance": "1",
+                "comment": "LB-STARLINK8"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "path": "/ip dhcp-client",
+        "operation": "add",
+        "fields": {
+          "interface": "ether9",
+          "disabled": "no",
+          "add-default-route": "no",
+          "default-route-distance": "9",
+          "use-peer-dns": "no",
+          "script": {
+            "interface": "ether9",
+            "removesBeforeBoundCheck": true,
+            "boundCondition": true,
+            "routes": [
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether9",
+                "distance": "9",
+                "comment": "MAIN-STARLINK9"
+              },
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether9",
+                "routing-table": "STARLINK9",
+                "distance": "1",
+                "comment": "LB-STARLINK9"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "path": "/ip dhcp-client",
+        "operation": "add",
+        "fields": {
+          "interface": "ether10",
+          "disabled": "no",
+          "add-default-route": "no",
+          "default-route-distance": "10",
+          "use-peer-dns": "no",
+          "script": {
+            "interface": "ether10",
+            "removesBeforeBoundCheck": true,
+            "boundCondition": true,
+            "routes": [
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether10",
+                "distance": "10",
+                "comment": "MAIN-STARLINK10"
+              },
+              {
+                "dst-address": "0.0.0.0/0",
+                "gateway": "DYNAMIC_GATEWAY%ether10",
+                "routing-table": "STARLINK10",
+                "distance": "1",
+                "comment": "LB-STARLINK10"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "prerouting",
+          "hotspot": "from-client,!auth",
+          "disabled": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "prerouting",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "postrouting",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "forward",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "input",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "output",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "input",
+          "connection-mark": "no-mark",
+          "in-interface": "ether1",
+          "new-connection-mark": "STARLINK1-CONN",
+          "passthrough": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "input",
+          "connection-mark": "no-mark",
+          "in-interface": "ether2",
+          "new-connection-mark": "STARLINK2-CONN",
+          "passthrough": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "input",
+          "connection-mark": "no-mark",
+          "in-interface": "ether3",
+          "new-connection-mark": "STARLINK3-CONN",
+          "passthrough": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "input",
+          "connection-mark": "no-mark",
+          "in-interface": "ether4",
+          "new-connection-mark": "STARLINK4-CONN",
+          "passthrough": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "input",
+          "connection-mark": "no-mark",
+          "in-interface": "ether5",
+          "new-connection-mark": "STARLINK5-CONN",
+          "passthrough": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "input",
+          "connection-mark": "no-mark",
+          "in-interface": "ether6",
+          "new-connection-mark": "STARLINK6-CONN",
+          "passthrough": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "input",
+          "connection-mark": "no-mark",
+          "in-interface": "ether7",
+          "new-connection-mark": "STARLINK7-CONN",
+          "passthrough": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "input",
+          "connection-mark": "no-mark",
+          "in-interface": "ether8",
+          "new-connection-mark": "STARLINK8-CONN",
+          "passthrough": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "input",
+          "connection-mark": "no-mark",
+          "in-interface": "ether9",
+          "new-connection-mark": "STARLINK9-CONN",
+          "passthrough": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "input",
+          "connection-mark": "no-mark",
+          "in-interface": "ether10",
+          "new-connection-mark": "STARLINK10-CONN",
+          "passthrough": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "output",
+          "connection-mark": "STARLINK1-CONN",
+          "new-routing-mark": "STARLINK1",
+          "passthrough": "no"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "output",
+          "connection-mark": "STARLINK2-CONN",
+          "new-routing-mark": "STARLINK2",
+          "passthrough": "no"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "output",
+          "connection-mark": "STARLINK3-CONN",
+          "new-routing-mark": "STARLINK3",
+          "passthrough": "no"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "output",
+          "connection-mark": "STARLINK4-CONN",
+          "new-routing-mark": "STARLINK4",
+          "passthrough": "no"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "output",
+          "connection-mark": "STARLINK5-CONN",
+          "new-routing-mark": "STARLINK5",
+          "passthrough": "no"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "output",
+          "connection-mark": "STARLINK6-CONN",
+          "new-routing-mark": "STARLINK6",
+          "passthrough": "no"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "output",
+          "connection-mark": "STARLINK7-CONN",
+          "new-routing-mark": "STARLINK7",
+          "passthrough": "no"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "output",
+          "connection-mark": "STARLINK8-CONN",
+          "new-routing-mark": "STARLINK8",
+          "passthrough": "no"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "output",
+          "connection-mark": "STARLINK9-CONN",
+          "new-routing-mark": "STARLINK9",
+          "passthrough": "no"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "output",
+          "connection-mark": "STARLINK10-CONN",
+          "new-routing-mark": "STARLINK10",
+          "passthrough": "no"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "prerouting",
+          "connection-state": "new",
+          "connection-mark": "no-mark",
+          "new-connection-mark": "STARLINK1-CONN",
+          "passthrough": "yes",
+          "per-connection-classifier": "both-addresses-and-ports:10/0",
+          "dst-address-type": "!local",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "prerouting",
+          "connection-state": "new",
+          "connection-mark": "no-mark",
+          "new-connection-mark": "STARLINK2-CONN",
+          "passthrough": "yes",
+          "per-connection-classifier": "both-addresses-and-ports:10/1",
+          "dst-address-type": "!local",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "prerouting",
+          "connection-state": "new",
+          "connection-mark": "no-mark",
+          "new-connection-mark": "STARLINK3-CONN",
+          "passthrough": "yes",
+          "per-connection-classifier": "both-addresses-and-ports:10/2",
+          "dst-address-type": "!local",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "prerouting",
+          "connection-state": "new",
+          "connection-mark": "no-mark",
+          "new-connection-mark": "STARLINK4-CONN",
+          "passthrough": "yes",
+          "per-connection-classifier": "both-addresses-and-ports:10/3",
+          "dst-address-type": "!local",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "prerouting",
+          "connection-state": "new",
+          "connection-mark": "no-mark",
+          "new-connection-mark": "STARLINK5-CONN",
+          "passthrough": "yes",
+          "per-connection-classifier": "both-addresses-and-ports:10/4",
+          "dst-address-type": "!local",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "prerouting",
+          "connection-state": "new",
+          "connection-mark": "no-mark",
+          "new-connection-mark": "STARLINK6-CONN",
+          "passthrough": "yes",
+          "per-connection-classifier": "both-addresses-and-ports:10/5",
+          "dst-address-type": "!local",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "prerouting",
+          "connection-state": "new",
+          "connection-mark": "no-mark",
+          "new-connection-mark": "STARLINK7-CONN",
+          "passthrough": "yes",
+          "per-connection-classifier": "both-addresses-and-ports:10/6",
+          "dst-address-type": "!local",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "prerouting",
+          "connection-state": "new",
+          "connection-mark": "no-mark",
+          "new-connection-mark": "STARLINK8-CONN",
+          "passthrough": "yes",
+          "per-connection-classifier": "both-addresses-and-ports:10/7",
+          "dst-address-type": "!local",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "prerouting",
+          "connection-state": "new",
+          "connection-mark": "no-mark",
+          "new-connection-mark": "STARLINK9-CONN",
+          "passthrough": "yes",
+          "per-connection-classifier": "both-addresses-and-ports:10/8",
+          "dst-address-type": "!local",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "prerouting",
+          "connection-state": "new",
+          "connection-mark": "no-mark",
+          "new-connection-mark": "STARLINK10-CONN",
+          "passthrough": "yes",
+          "per-connection-classifier": "both-addresses-and-ports:10/9",
+          "dst-address-type": "!local",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "prerouting",
+          "connection-mark": "STARLINK1-CONN",
+          "new-routing-mark": "STARLINK1",
+          "passthrough": "yes",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "prerouting",
+          "connection-mark": "STARLINK2-CONN",
+          "new-routing-mark": "STARLINK2",
+          "passthrough": "yes",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "prerouting",
+          "connection-mark": "STARLINK3-CONN",
+          "new-routing-mark": "STARLINK3",
+          "passthrough": "yes",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "prerouting",
+          "connection-mark": "STARLINK4-CONN",
+          "new-routing-mark": "STARLINK4",
+          "passthrough": "yes",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "prerouting",
+          "connection-mark": "STARLINK5-CONN",
+          "new-routing-mark": "STARLINK5",
+          "passthrough": "yes",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "prerouting",
+          "connection-mark": "STARLINK6-CONN",
+          "new-routing-mark": "STARLINK6",
+          "passthrough": "yes",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "prerouting",
+          "connection-mark": "STARLINK7-CONN",
+          "new-routing-mark": "STARLINK7",
+          "passthrough": "yes",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "prerouting",
+          "connection-mark": "STARLINK8-CONN",
+          "new-routing-mark": "STARLINK8",
+          "passthrough": "yes",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "prerouting",
+          "connection-mark": "STARLINK9-CONN",
+          "new-routing-mark": "STARLINK9",
+          "passthrough": "yes",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "prerouting",
+          "connection-mark": "STARLINK10-CONN",
+          "new-routing-mark": "STARLINK10",
+          "passthrough": "yes",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      }
+    ],
+    "dhcp": [
+      {
+        "interface": "ether1",
+        "removesBeforeBoundCheck": true,
+        "boundCondition": true,
+        "routes": [
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether1",
+            "distance": "1",
+            "comment": "MAIN-STARLINK1"
+          },
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether1",
+            "routing-table": "STARLINK1",
+            "distance": "1",
+            "comment": "LB-STARLINK1"
+          }
+        ]
+      },
+      {
+        "interface": "ether2",
+        "removesBeforeBoundCheck": true,
+        "boundCondition": true,
+        "routes": [
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether2",
+            "distance": "2",
+            "comment": "MAIN-STARLINK2"
+          },
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether2",
+            "routing-table": "STARLINK2",
+            "distance": "1",
+            "comment": "LB-STARLINK2"
+          }
+        ]
+      },
+      {
+        "interface": "ether3",
+        "removesBeforeBoundCheck": true,
+        "boundCondition": true,
+        "routes": [
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether3",
+            "distance": "3",
+            "comment": "MAIN-STARLINK3"
+          },
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether3",
+            "routing-table": "STARLINK3",
+            "distance": "1",
+            "comment": "LB-STARLINK3"
+          }
+        ]
+      },
+      {
+        "interface": "ether4",
+        "removesBeforeBoundCheck": true,
+        "boundCondition": true,
+        "routes": [
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether4",
+            "distance": "4",
+            "comment": "MAIN-STARLINK4"
+          },
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether4",
+            "routing-table": "STARLINK4",
+            "distance": "1",
+            "comment": "LB-STARLINK4"
+          }
+        ]
+      },
+      {
+        "interface": "ether5",
+        "removesBeforeBoundCheck": true,
+        "boundCondition": true,
+        "routes": [
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether5",
+            "distance": "5",
+            "comment": "MAIN-STARLINK5"
+          },
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether5",
+            "routing-table": "STARLINK5",
+            "distance": "1",
+            "comment": "LB-STARLINK5"
+          }
+        ]
+      },
+      {
+        "interface": "ether6",
+        "removesBeforeBoundCheck": true,
+        "boundCondition": true,
+        "routes": [
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether6",
+            "distance": "6",
+            "comment": "MAIN-STARLINK6"
+          },
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether6",
+            "routing-table": "STARLINK6",
+            "distance": "1",
+            "comment": "LB-STARLINK6"
+          }
+        ]
+      },
+      {
+        "interface": "ether7",
+        "removesBeforeBoundCheck": true,
+        "boundCondition": true,
+        "routes": [
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether7",
+            "distance": "7",
+            "comment": "MAIN-STARLINK7"
+          },
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether7",
+            "routing-table": "STARLINK7",
+            "distance": "1",
+            "comment": "LB-STARLINK7"
+          }
+        ]
+      },
+      {
+        "interface": "ether8",
+        "removesBeforeBoundCheck": true,
+        "boundCondition": true,
+        "routes": [
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether8",
+            "distance": "8",
+            "comment": "MAIN-STARLINK8"
+          },
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether8",
+            "routing-table": "STARLINK8",
+            "distance": "1",
+            "comment": "LB-STARLINK8"
+          }
+        ]
+      },
+      {
+        "interface": "ether9",
+        "removesBeforeBoundCheck": true,
+        "boundCondition": true,
+        "routes": [
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether9",
+            "distance": "9",
+            "comment": "MAIN-STARLINK9"
+          },
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether9",
+            "routing-table": "STARLINK9",
+            "distance": "1",
+            "comment": "LB-STARLINK9"
+          }
+        ]
+      },
+      {
+        "interface": "ether10",
+        "removesBeforeBoundCheck": true,
+        "boundCondition": true,
+        "routes": [
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether10",
+            "distance": "10",
+            "comment": "MAIN-STARLINK10"
+          },
+          {
+            "dst-address": "0.0.0.0/0",
+            "gateway": "DYNAMIC_GATEWAY%ether10",
+            "routing-table": "STARLINK10",
+            "distance": "1",
+            "comment": "LB-STARLINK10"
+          }
+        ]
+      }
+    ]
+  }
+]

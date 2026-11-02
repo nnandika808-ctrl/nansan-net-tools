@@ -6,5 +6,5 @@ import path from 'node:path';
 export default defineConfig({
   plugins: [laravel({input:['resources/js/app.tsx'],refresh:true}),react(),tailwind()],
   resolve:{alias:{'@':path.resolve(import.meta.dirname,'resources/js')}},
-  test:{environment:'jsdom',setupFiles:['resources/js/test-setup.ts'],include:['resources/js/**/*.test.tsx']},
+  test:{environment:'jsdom',setupFiles:['resources/js/test-setup.ts'],include:['resources/js/**/*.test.{ts,tsx}']},
 });
