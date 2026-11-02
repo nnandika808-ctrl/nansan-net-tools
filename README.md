@@ -30,3 +30,5 @@ npm run test:e2e
 E2E uses a separate `.runtime/e2e.sqlite` database/server. Browser authentication state, local DBs, `.env`, uploads and logs are ignored by Git. Reference automation uses a loopback Playwright MCP server plus `npm run audit:browser`; never capture login forms or export authentication state.
 
 Read [PRD](docs/PRD.md), [architecture](docs/ARCHITECTURE.md), [database](docs/DATABASE.md), [security](docs/SECURITY.md), [testing](docs/TESTING.md), [deployment/rollback](docs/DEPLOYMENT.md), and the [reference audit](docs/reference/BUANANET-AUDIT.md). No automatic router execution is implemented. Production deployment requires explicit owner approval.
+
+Private staging: http://127.0.0.1:8091/login while the SSH forward is running. Admin username: nansan. Its random password is protected by Windows DPAPI in ignored runtime storage. Run powershell -NoProfile -ExecutionPolicy Bypass -File scripts/staging-admin-access.ps1 -CopyPassword to open login and copy the password without printing it. See deployment documentation for external-service blockers. Draft review: https://github.com/nnandika808-ctrl/nansan-net-tools/pull/1.

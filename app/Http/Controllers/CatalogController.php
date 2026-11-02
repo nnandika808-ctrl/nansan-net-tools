@@ -56,6 +56,6 @@ class CatalogController extends Controller
         $tools = Tool::when($data['category'] ?? null, fn ($query, $category) => $query->whereHas('category', fn ($c) => $c->where('slug', $category)))
             ->where(fn ($query) => $query->where('name', 'like', "%{$q}%")->orWhereHas('synonyms', fn ($s) => $s->where('synonym', 'like', "%{$q}%")))->limit(8)->get(['name', 'slug', 'status']);
 
-        return response()->json(['tools' => $tools, 'articles' => DocumentationArticle::published()->where('title', 'like', "%{$q}%")->limit(5)->get(['title', 'slug'])]);
+        return response()->json(['tools' => $tools, 'articles' => DocumentationArticle::published()->where(fn ($query) => $query->where('title', 'like', "%{$q}%")->orWhere('title_en', 'like', "%{$q}%"))->limit(5)->get(['title', 'title_en', 'slug'])]);
     }
 }

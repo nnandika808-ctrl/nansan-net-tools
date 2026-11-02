@@ -22,3 +22,5 @@ Secret-bearing arbitrary payload fields are rejected by generator validation. De
 Deletion is password-verified, deactivates the account, rotates persistent auth state and waits 30 full days. Cancellation requires password and a not-yet-due request. Purge rechecks/locks eligibility, deletes owned private content/media and user data, and leaves only nonpersonal operational audit entries under retention. An Admin cannot request self-deletion through the user route. Backup retention after erasure remains a production policy/restore requirement for owner review.
 
 MySQL/MariaDB migration, index and concurrency checks are still required on staging; SQLite tests alone cannot prove MySQL locking semantics.
+
+English CMS fields are nullable additions: title_en/body_en on articles, pages and announcements; excerpt_en on articles; description_en on tools. English seeding fills only missing translations and preserves owner edits. Both Markdown bodies are sanitized through the same renderer.

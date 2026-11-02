@@ -68,7 +68,7 @@ class AdminController extends Controller
 
     public function updateTool(Request $request, Tool $tool)
     {
-        $data = $request->validate(['name' => ['required', 'string', 'max:150'], 'description' => ['required', 'string', 'max:2000'], 'featured' => ['required', 'boolean'], 'sort_order' => ['required', 'integer', 'min:0', 'max:999'], 'tool_category_id' => ['required', 'exists:tool_categories,id'], 'synonyms' => ['array', 'max:20'], 'synonyms.*' => ['string', 'max:100'], 'tags' => ['array', 'max:12'], 'tags.*' => ['required', 'string', 'max:40'], 'icon' => ['sometimes', Rule::in(['route', 'queue', 'pcc', 'starlink', 'games'])], 'status' => ['prohibited'], 'handler' => ['prohibited'], 'code' => ['prohibited']]);
+        $data = $request->validate(['name' => ['required', 'string', 'max:150'], 'description' => ['required', 'string', 'max:2000'], 'description_en' => ['nullable', 'string', 'max:2000'], 'featured' => ['required', 'boolean'], 'sort_order' => ['required', 'integer', 'min:0', 'max:999'], 'tool_category_id' => ['required', 'exists:tool_categories,id'], 'synonyms' => ['array', 'max:20'], 'synonyms.*' => ['string', 'max:100'], 'tags' => ['array', 'max:12'], 'tags.*' => ['required', 'string', 'max:40'], 'icon' => ['sometimes', Rule::in(['route', 'queue', 'pcc', 'starlink', 'games'])], 'status' => ['prohibited'], 'handler' => ['prohibited'], 'code' => ['prohibited']]);
         DB::transaction(function () use ($tool, $data) {
             $tool->update(collect($data)->except(['synonyms', 'tags'])->all());
             if (isset($data['tags'])) {
@@ -111,14 +111,14 @@ class AdminController extends Controller
     {
         $model = $this->contentModel($kind);
         $record = $id ? $model::findOrFail($id) : new $model;
-        $rules = ['title' => ['required', 'string', 'max:180'], 'body' => ['required', 'string', 'max:200000']];
+        $rules = ['title' => ['required', 'string', 'max:180'], 'body' => ['required', 'string', 'max:200000'], 'title_en' => ['nullable', 'string', 'max:180'], 'body_en' => ['nullable', 'string', 'max:200000']];
         if ($kind === 'announcements') {
             $rules += ['banner' => ['boolean'], 'published_at' => ['nullable', 'date'], 'expires_at' => ['nullable', 'date', 'after:published_at']];
         } else {
             $rules += ['slug' => ['required', 'string', 'max:120', 'regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/', Rule::unique($record->getTable(), 'slug')->ignore($id)], 'status' => ['required', 'in:draft,published']];
         }
         if ($kind === 'articles') {
-            $rules += ['excerpt' => ['nullable', 'string', 'max:500'], 'published_at' => ['nullable', 'date'], 'tool_id' => ['nullable', 'exists:tools,id']];
+            $rules += ['excerpt' => ['nullable', 'string', 'max:500'], 'excerpt_en' => ['nullable', 'string', 'max:500'], 'published_at' => ['nullable', 'date'], 'tool_id' => ['nullable', 'exists:tools,id']];
         }
         $data = $request->validate($rules);
         if ($kind === 'articles') {
@@ -168,8 +168,8 @@ class AdminController extends Controller
 
     public function saveSettings(Request $request)
     {
-        $data = $request->validate(['hero_title' => ['required', 'string', 'max:180'], 'hero_description' => ['required', 'string', 'max:500'], 'maintenance_enabled' => ['boolean'], 'maintenance_message' => ['nullable', 'string', 'max:500'], 'maintenance_until' => ['nullable', 'date']]);
-        SiteSetting::updateOrCreate(['key' => 'landing'], ['value' => ['title' => $data['hero_title'], 'description' => $data['hero_description']]]);
+        $data = $request->validate(['hero_title' => ['required', 'string', 'max:180'], 'hero_description' => ['required', 'string', 'max:500'], 'hero_title_en' => ['nullable', 'string', 'max:180'], 'hero_description_en' => ['nullable', 'string', 'max:500'], 'maintenance_enabled' => ['boolean'], 'maintenance_message' => ['nullable', 'string', 'max:500'], 'maintenance_until' => ['nullable', 'date']]);
+        SiteSetting::updateOrCreate(['key' => 'landing'], ['value' => ['title' => $data['hero_title'], 'description' => $data['hero_description'], 'title_en' => $data['hero_title_en'] ?? null, 'description_en' => $data['hero_description_en'] ?? null]]);
         SiteSetting::updateOrCreate(['key' => 'maintenance'], ['value' => ['enabled' => $request->boolean('maintenance_enabled'), 'message' => $data['maintenance_message'] ?? 'Sedang dalam pemeliharaan.', 'until' => $data['maintenance_until'] ?? null]]);
         Audit::record('admin.settings_updated');
 

@@ -11,6 +11,7 @@ import json
 import os
 from pathlib import Path
 import pwd
+import re
 import secrets
 import shutil
 import sqlite3
@@ -272,6 +273,14 @@ def main():
     run(['chown', '-R', OWNER + ':' + OWNER, str(release)], quiet=True)
     composer_env = {**runtime_env, 'HOME': str(BASE / 'shared'), 'COMPOSER_HOME': str(BASE / 'shared/composer'), 'COMPOSER_CACHE_DIR': str(BASE / 'shared/composer-cache')}
     run(cli + [str(composer), 'install', '--working-dir=' + str(release), '--no-dev', '--prefer-dist', '--no-interaction', '--optimize-autoloader'], env=composer_env, user=True)
+    prior = BASE / 'current/artisan'
+    if prior.is_file():
+        backup_output = run(cli + [str(prior), 'nansan:backup'], env=runtime_env, user=True, quiet=True).decode()
+        match = re.search(r'backup #(\d+)', backup_output)
+        if not match:
+            raise RuntimeError('Pre-migration backup did not confirm creation')
+        run(cli + [str(prior), 'nansan:backup', '--verify-id=' + match.group(1)], env=runtime_env, user=True, quiet=True)
+        print('Pre-migration encrypted backup and isolated restore verified.', flush=True)
     run(cli + [str(release / 'artisan'), 'migrate', '--force'], env=runtime_env, user=True)
     run(cli + [str(release / 'artisan'), 'db:seed', '--force'], env=runtime_env, user=True)
     run(cli + [str(composer), 'check-platform-reqs', '--no-dev', '--working-dir=' + str(release)], env=composer_env, user=True)

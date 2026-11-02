@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\DocumentationArticle;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -9,6 +10,18 @@ use Tests\TestCase;
 class SeoTest extends TestCase
 {
     use RefreshDatabase;
+
+    public function test_english_content_is_seeded_preserves_owner_edits_and_sanitizes_both_languages(): void
+    {
+        $this->seed();
+        $article = DocumentationArticle::where('slug', 'verification')->firstOrFail();
+        $this->assertSame('Generator verification', $article->title_en);
+        $article->update(['title_en' => 'Owner translation', 'body_en' => '<script>alert(1)</script> **Safe English**']);
+        $this->seed();
+        $this->assertSame('Owner translation', $article->fresh()->title_en);
+        $this->get('/docs/verification')->assertOk()->assertSee('Safe English')->assertDontSee('<script>alert(1)</script>', false);
+        $this->getJson('/search?q=Owner%20translation')->assertOk()->assertJsonFragment(['title_en' => 'Owner translation']);
+    }
 
     public function test_admin_metadata_is_escaped_and_cannot_make_private_routes_indexable(): void
     {
