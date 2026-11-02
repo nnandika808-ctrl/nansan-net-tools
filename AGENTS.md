@@ -1,6 +1,6 @@
 # NANSAN NET Tools
 
-- Stack: Laravel 13, PHP 8.3+, React, TypeScript, Inertia, MySQL, Redis.
+- Stack: Laravel 13, PHP 8.4+, React, TypeScript, Inertia, MySQL, Redis.
 - Default language Indonesian. Free product; no subscriptions or payments.
 - Limit generator work to G01–G05. Audit through Playwright before changing generator logic.
 - Never extract Buananet source code. Keep unavailable datasets and untested RouterOS behavior BLOCKED/UNVERIFIED.

@@ -1,4 +1,5 @@
-import {Head,Link} from '@inertiajs/react';
+import {Link} from '@inertiajs/react';
+import {SeoHead as Head} from '@/components/SeoHead';
 import type {Article as ArticleType} from '@/types';
 import {PageHeader} from '@/components/PageHeader';
 import {usePreferences} from '@/lib/preferences';

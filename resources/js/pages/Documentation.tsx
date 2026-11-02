@@ -1,4 +1,5 @@
-import {Head,Link,router} from '@inertiajs/react';
+import {Link,router} from '@inertiajs/react';
+import {SeoHead as Head} from '@/components/SeoHead';
 import {useState} from 'react';
 import {BookOpen,ArrowUpRight,Search} from 'lucide-react';
 import type {Article,Pagination as Pages} from '@/types';

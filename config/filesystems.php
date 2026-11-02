@@ -29,7 +29,7 @@ return [
     */
 
     'disks' => [
-        'backups' => ['driver'=>'local','root'=>env('BACKUP_ROOT',storage_path('app/private/backups')),'visibility'=>'private','throw'=>true],
+        'backups' => ['driver' => 'local', 'root' => env('BACKUP_ROOT') ?: storage_path('app/private/backups'), 'visibility' => 'private', 'throw' => true],
 
         'local' => [
             'driver' => 'local',

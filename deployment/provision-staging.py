@@ -173,7 +173,7 @@ def main():
             raise RuntimeError('Private fileinfo extension did not load')
     disabled = run([str(PHP), '-r', 'echo ini_get("disable_functions");'], quiet=True).decode().strip()
     needed = {'putenv', 'proc_open', 'proc_get_status', 'proc_close', 'proc_terminate', 'proc_nice', 'escapeshellarg', 'escapeshellcmd'}
-    cli_disabled = ','.join(name.strip() for name in disabled.split(',') if name.strip() and name.strip() not in needed)
+    cli_disabled = ','.join(name.strip() for name in disabled.split(',') if name.strip() and name.strip() not in needed and not name.strip().startswith('pcntl_'))
     cli = [str(PHP), '-d', 'disable_functions=' + cli_disabled]
     run([str(BASE / 'tools/usr/sbin/nginx'), '-v'], env=runtime_env, quiet=True)
     run([str(BASE / 'tools/usr/bin/redis-server'), '--version'], env=runtime_env)
@@ -242,7 +242,32 @@ def main():
         values['BACKUP_DISK'] = 'backups'
     values['MYSQL_CLIENT_PATH'] = shutil.which('mysql') or '/usr/bin/mysql'
     values['MYSQLDUMP_PATH'] = shutil.which('mysqldump') or '/usr/bin/mysqldump'
+    values.setdefault('LOG_STACK', 'daily')
+    values.setdefault('LOG_DAILY_DAYS', '14')
     write(env_path, '\n'.join(key + '=' + value for key, value in values.items()) + '\n', 0o600, OWNER)
+    logrotate = shutil.which('logrotate')
+    if logrotate:
+        rotation = Path('/etc/logrotate.d/nansan-staging')
+        rotation_marker = '# NANSAN NET Tools private staging log rotation'
+        if rotation.exists() and not rotation.read_text().startswith(rotation_marker):
+            raise RuntimeError('Logrotate configuration exists without project ownership')
+        log = BASE / 'logs/php-fpm.log'
+        if log.is_symlink():
+            raise RuntimeError('Unexpected symlink at staging log path')
+        if not log.exists(): log.touch(mode=0o640)
+        os.chown(log, account.pw_uid, account.pw_gid)
+        write(rotation, rotation_marker + f'''\n{BASE}/logs/*.log {{
+ daily
+ rotate 14
+ compress
+ delaycompress
+ missingok
+ notifempty
+ copytruncate
+ su {OWNER} {OWNER}
+}}
+''', 0o644)
+        run([logrotate, '--debug', str(rotation)], quiet=True)
     os.symlink(env_path, release / '.env')
     run(['chown', '-R', OWNER + ':' + OWNER, str(release)], quiet=True)
     composer_env = {**runtime_env, 'HOME': str(BASE / 'shared'), 'COMPOSER_HOME': str(BASE / 'shared/composer'), 'COMPOSER_CACHE_DIR': str(BASE / 'shared/composer-cache')}

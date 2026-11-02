@@ -1,26 +1,24 @@
-# Implementation status — 2026-11-03
+# Implementation status - 2026-11-03
 
-This is an in-progress application, **not production-ready**. No production deploy/DNS/router change has occurred.
+This is a working development/staging application, **not production-ready**. Production, DNS and existing router configurations have not been changed.
 
-| Phase | Actual state | Remaining work |
+| Area | Implemented and verified | Remaining |
 |---|---|---|
-| 0 Environment | Empty workspace inspected; Node/Git/VS Code found; local PHP 8.5/Composer installed with checksums; server SSH read-only succeeded | aaPanel-specific service discovery and staging extension checks |
-| 1 Reference audit | Five authenticated form inventories, 16 behavior cases, mobile structural observations, six audit reports, five fixture directories | Exhaustive combinations/validation; rights scope; independent datasets; RouterOS lab |
-| 2 Scope/architecture | PRD, architecture/schema/route/authorization baseline documented | Review against unresolved evidence; final production decisions |
-| 3 Initialization | Laravel 13, React/TypeScript/Inertia, Vite/Tailwind/Radix components; migrations/seed; username auth/recovery/policies/preferences | Real deployment Turnstile/MySQL/Redis checks |
-| 4 Public site | Real landing, catalog/category/synonym search, documentation, legal/info pages; responsive/theme/language UI | Fully editable FAQ/landing sections; per-page SEO editor/metadata; full English content translation |
-| 5 Workspace | Dashboard, favorites, profile/avatar, password, sessions, recovery, announcements/read, feedback/screenshots, deletion grace/cancel/purge | Preset load/reuse UX and history workflow need published engines; dedicated notification center |
-| 6 Admin | Overview, user activation, metadata, article/page/announcement CRUD, media, feedback replies, maintenance/settings, audit, real/unavailable monitoring | User detail/filter/activity/reset-verification workflow; tags/icons/template/schema editors; SEO editor; visits/popular metrics; backup actions |
-| 7 Engine | Contract, typed steps, schema inventory, validation, registry lock, safe quoting, output component/download/history/preset backend | Complete dynamic field behaviors; active published generators; full regression runner/report |
-| 8 Five generators | G03 independent two-WAN draft matches five ordered rule-parameter projections | G01/G02/G04/G05 implementation blocked/unverified; all lab/full semantic/exact checks pending |
-| 9 QA/security | 26 backend + 3 PCC tests, 5 component tests, 8 E2E cases passed in their latest runs; build/type/lint passed | Combined final checks after remaining changes; security/performance/staging checks |
-| 10 Staging | Private server inspected; deployment/rollback procedure prepared | Isolated staging release, MySQL/Redis/worker/scheduler/Access/Tunnel and smoke tests not yet deployed |
-| 11–12 Production | Not ready, not deployed | Close critical gaps, staging acceptance and explicit owner approval |
+| Environment | Laravel 13, PHP 8.4+, React/TypeScript/Inertia, MySQL/Redis; required extensions checked | Production capacity and external services |
+| Reference audit | Five authenticated inventories; initial 16 scenarios; G03 five and G04 seven ordered functional observations | Exhaustive combinations, full traffic effects, dataset provenance |
+| Public site | Landing, five-tool catalog, categories/synonym search, docs/legal CMS, responsive themes; per-page SEO and bilingual FAQ editors | Full English article/legal translation and owner legal review |
+| Identity/workspace | Username/password, fail-closed Turnstile, one-use recovery codes, sessions, avatar, favorites, preferences, feedback, deletion grace/cancel/purge | Real Turnstile credentials; owner must save their recovery codes |
+| Admin | User activation/detail/activity, tool metadata/tags/icons/synonyms, validated versioned templates, CMS scheduling, media, feedback, settings/maintenance, audit, real monitoring, SEO/FAQ | Schema/version review editor and detailed analytics |
+| Generator framework | Registry publication gate, module validation, safe output/escaping, history/preset persistence with ownership | Preset load/history preference/save controls implemented; creation remains gated on publication |
+| G03 | Independent two-WAN draft, 5 parameter comparisons, 5 CHR syntax/NAT checks | Packet distribution, failover, wider WAN/options coverage |
+| G04 | Independent 2?10 WAN DHCP/Netwatch draft, dynamic form, 7 parameter/DHCP comparisons, 6 CHR syntax/simulated-event cases | Real DHCP/packet-flow/failover, CHR >3 WAN and broader options |
+| G01/G02/G05 | Audited inventories and explicit unavailable states | Permitted, independently reviewed application datasets/game port provenance; engines not published |
+| QA | 44 backend tests / 212 assertions; 6 component/form tests; type/lint/build pass. 10 E2E pass; an expanded template case is being validated | Final results recorded in TESTING and CI |
+| GitHub | Private nnandika808-ctrl/nansan-net-tools; feature/platform-audit pushed; CI run 41514788703 passed | Draft PR and latest change CI |
+| Private staging | Dedicated user, release, Nginx/FPM, MariaDB, Redis, worker and scheduler on loopback. Public/auth/admin/preview smoke pass; unique queue probe and scheduler heartbeat verified | Cloudflare Access/Tunnel, real Turnstile, off-host backups |
+| Backups | Encrypted database/media archive, stored hash verification, SQLite scratch restore test and actual MariaDB scratch restore passed | Off-host destination and protected key escrow; production retention observation |
+| Production | Not deployed or approved | Close critical gaps and obtain explicit owner approval only after readiness |
 
-Main source: `app/`, `resources/js/`, `database/migrations/`, `routes/web.php`; evidence: `docs/reference/evidence/`; tests: `tests/` and component tests.
+No generator is COMPLETE or publicly executable. G03/G04 are TESTING, accessible as Admin drafts. Parameter comparisons and simulated events do not establish full semantic or exact match. Exact full-text fixtures: zero eligible cases. No exclusive datasets or third-party source code were extracted/bundled. Owner-reported permission to follow behavior is recorded; exclusive redistribution scope is unestablished. The G04 quote candidate was withdrawn after byte inspection.
 
-Generator statuses: G01 BLOCKED (datasets), G02 BLOCKED (datasets), G03 TESTING (five two-WAN parameter projections matched; one ROS6 and four ROS7 cases accepted by disposable CHR syntax/NAT-count checks), G04 BLOCKED (DHCP/Netwatch/lab), G05 BLOCKED (port provenance). Full packet effects/failover remain unverified. The G04 escaping candidate was withdrawn after byte-level inspection showed normal outer quotes; the isolated escaped-literal probe was not an actual-reference failure. No COMPLETE/100% parity claim. Owner deferred logo. Owner-reported Facebook permission to follow behavior is recorded, but exclusive dataset redistribution rights remain unestablished.
-
-Recent additions: encrypted database/media backup service with stored-checksum validation and isolated SQLite restore test; 32 backend tests/154 assertions pass. GitHub CLI login is confirmed for nnandika808-ctrl, repository creation pending. Git branch feature/platform-audit exists. Staging provisioning has created only project-owned directories/account/database and private tool dependencies. Private fileinfo was built from verified PHP source; Composer platform requirements, MariaDB migrations and seed passed. Nginx temporary paths were corrected; the next provisioning run is pending. Existing Apache port 80 has not been changed. Turnstile/Cloudflare credentials and off-host backup target remain unconfigured.
-
-Next: complete operations/security gaps, continue legal independent reference-based generator implementation, verify isolated RouterOS lab, and prepare protected staging. Update this file whenever checks or implementation change.
+Staging evidence: docs/staging/verification.json. Latest successful probe showed MySQL, Redis/cache, actual worker processing and fresh scheduler heartbeat; backup restore_verified; temporary identity removed. Twelve sequential catalog requests through SSH: median 221 ms, observed p95 233 ms, **not a capacity benchmark**. Server has 2 GB RAM. Existing Apache port 80 remains unchanged. Secrets are generated/read only on the authorized host, never committed.

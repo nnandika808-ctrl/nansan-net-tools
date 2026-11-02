@@ -14,7 +14,8 @@ use Illuminate\Notifications\Notifiable;
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
-    protected $attributes = ['role'=>'user','status'=>'active','locale'=>'id','theme'=>'system'];
+    protected $attributes = ['role' => 'user', 'status' => 'active', 'locale' => 'id', 'theme' => 'system'];
+
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
@@ -37,7 +38,18 @@ class User extends Authenticatable
         return $this->role === 'admin' && $this->status === 'active';
     }
 
-    public function presets() { return $this->hasMany(UserPreset::class); }
-    public function histories() { return $this->hasMany(ScriptHistory::class); }
-    public function feedback() { return $this->hasMany(FeedbackReport::class); }
+    public function presets()
+    {
+        return $this->hasMany(UserPreset::class);
+    }
+
+    public function histories()
+    {
+        return $this->hasMany(ScriptHistory::class);
+    }
+
+    public function feedback()
+    {
+        return $this->hasMany(FeedbackReport::class);
+    }
 }

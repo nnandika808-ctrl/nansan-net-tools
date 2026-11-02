@@ -2,6 +2,15 @@
 
 namespace App\Providers;
 
+use App\Models\FeedbackReport;
+use App\Models\MediaFile;
+use App\Models\ScriptHistory;
+use App\Models\User;
+use App\Models\UserPreset;
+use App\Policies\OwnedRecordPolicy;
+use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,14 +28,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        \Illuminate\Support\Facades\Gate::define('admin', fn (\App\Models\User $user) => $user->isAdmin());
-        foreach ([\App\Models\UserPreset::class,\App\Models\ScriptHistory::class,\App\Models\FeedbackReport::class,\App\Models\MediaFile::class] as $model) {
-            \Illuminate\Support\Facades\Gate::policy($model,\App\Policies\OwnedRecordPolicy::class);
+        Gate::define('admin', fn (User $user) => $user->isAdmin());
+        foreach ([UserPreset::class, ScriptHistory::class, FeedbackReport::class, MediaFile::class] as $model) {
+            Gate::policy($model, OwnedRecordPolicy::class);
         }
-        \Illuminate\Support\Facades\RateLimiter::for('login',fn($request)=>\Illuminate\Cache\RateLimiting\Limit::perMinute(5)->by(hash('sha256',strtolower((string)$request->input('username')).'|'.$request->ip())));
-        \Illuminate\Support\Facades\RateLimiter::for('register',fn($request)=>\Illuminate\Cache\RateLimiting\Limit::perHour(10)->by($request->ip()));
-        \Illuminate\Support\Facades\RateLimiter::for('recovery',fn($request)=>\Illuminate\Cache\RateLimiting\Limit::perMinute(3)->by($request->ip()));
-        \Illuminate\Support\Facades\RateLimiter::for('generate',fn($request)=>\Illuminate\Cache\RateLimiting\Limit::perMinute(30)->by($request->user()->id));
-        \Illuminate\Support\Facades\RateLimiter::for('writes',fn($request)=>\Illuminate\Cache\RateLimiting\Limit::perMinute(30)->by($request->user()?->id??$request->ip()));
+        RateLimiter::for('login', fn ($request) => Limit::perMinute(5)->by(hash('sha256', strtolower((string) $request->input('username')).'|'.$request->ip())));
+        RateLimiter::for('register', fn ($request) => Limit::perHour(10)->by($request->ip()));
+        RateLimiter::for('recovery', fn ($request) => Limit::perMinute(3)->by($request->ip()));
+        RateLimiter::for('generate', fn ($request) => Limit::perMinute(30)->by($request->user()->id));
+        RateLimiter::for('writes', fn ($request) => Limit::perMinute(30)->by($request->user()?->id ?? $request->ip()));
     }
 }

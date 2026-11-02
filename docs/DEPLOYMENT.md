@@ -1,27 +1,31 @@
 # Deployment and rollback
 
-Production: `mikrotik.nansannet.cloud`. Staging: `staging.mikrotik.nansannet.cloud`. Production is not authorized for deployment. No DNS changes have been made. Hosting remains Ubuntu/aaPanel/Nginx/PHP-FPM, MySQL-compatible database, Redis and Cloudflare Tunnel; the Laravel app is not deployed to Sites/Workers.
+Production mikrotik.nansannet.cloud is **not approved/deployed**. The staging hostname staging.mikrotik.nansannet.cloud is not configured in DNS/Tunnel. Current staging is private through encrypted SSH forwarding at http://127.0.0.1:8091. Existing Apache port 80, production sites and routers were not changed.
 
-## Discovery
+## Actual private staging
 
-The owner supplied SSH access to the private Ubuntu host. Read-only discovery found Ubuntu 22.04, PHP 8.4.27, MariaDB 10.11.10, 2 GB RAM and approximately 12 GB free root disk. Nginx/Redis/Tunnel were not established by PATH/systemd checks. aaPanel-specific binary/socket paths require further inspection. No public IP is assumed. The requested 4–8 GB memory target is above the observed host RAM; capacity remains unbenchmarked.
+Ubuntu 22.04 LXC, PHP 8.4.27, MariaDB 10.11.10, 2 GB RAM. Base: /www/wwwroot/nansan-tools-staging, with a root-owned ownership marker, dated releases and atomic current symlink. A separate nansan-staging system user owns application runtime data. Composer and private Nginx/Redis dependencies were installed only under that project directory. Fileinfo was compiled from checksum-verified official PHP source and loaded only through the staging PHP scan directory; global aaPanel PHP configuration was preserved.
 
-## Required staging preparation
+Nginx listens on 127.0.0.1:8091, Redis on 127.0.0.1:6381. Dedicated PHP-FPM socket, database/user, APP_KEY, session cookie, cache/queue namespace, worker and minute systemd scheduler are isolated from existing apps. Required GD/fileinfo/PDO/sodium/zip extensions are checked by Composer. CLI process functions/signals needed by Composer/queues are enabled per staging command, not globally. Publication remains locked in code. Turnstile is enabled and fails closed until real keys are configured. Internal HTTP cookies are secure=false only inside this SSH-only preview; HTTPS deployment requires secure=true.
 
-1. Confirm aaPanel Nginx path, PHP 8.4 FPM socket/extensions, database socket auth, Redis and supervisor/systemd support.
-2. Create an isolated app user, release directory, database/user, storage and secrets for staging. Never reuse production `.env`, session cookie, storage or Redis prefix/database.
-3. Transfer a source whitelist and built assets. Exclude `.env`, `.runtime`, `.cache`, browser state, logs, test DBs and user uploads. Use `composer install --no-dev --prefer-dist --no-interaction` and `composer check-platform-reqs` with the selected PHP CLI.
-4. Set APP_ENV=staging, APP_DEBUG=false, proper URL, key, MySQL and Redis settings, real Turnstile credentials/hostnames and a distinct cookie. Keep SITE_INDEXABLE=false.
-5. Migrate and seed catalog/content. Create Admin by `php artisan nansan:admin <username>` with hidden password prompt. Seed never creates an Admin or public credentials.
-6. Point Nginx root to `public/`, deny hidden files/PHP uploads, set FPM socket and bind internal staging origin to loopback. Validate configuration before reload.
-7. Configure a distinct Redis queue worker, scheduler cron, private backup disk/retention, heartbeat monitoring and log rotation.
-8. Configure Cloudflare Tunnel to the correct local origin and protect staging with Cloudflare Access. Do not open database/Redis ports. Tunnel credentials remain server secrets. DNS/Tunnel account access must be provided through a secure authorized mechanism.
-9. Run public/auth/admin/media/CSRF smoke tests and MySQL/Redis/queue/scheduler checks, then backup+isolated restore test and performance/security checks.
+The owner Admin nansan was created through hidden Artisan prompts with a random password. Its local credential is encrypted with Windows DPAPI in ignored .runtime/staging-owner.credential.xml. To open login and copy the password without printing it, run:
 
-## Production gate
+    powershell -NoProfile -ExecutionPolicy Bypass -File scripts/staging-admin-access.ps1 -CopyPassword
 
-Complete generator verification/lab criteria, close critical gaps, review legal drafts, validate Turnstile/TLS/proxy/CSP, verify backup restore and off-host storage, ensure no test identities/data, and record staging acceptance. Only then request explicit production deployment approval.
+The file can only be decrypted by the current Windows user on this machine. Keep the SSH forward running. Generate and safely retain recovery codes from the Account page after login. No public default password or seeded Admin exists.
 
-## Release and rollback
+## Reproducible release
 
-Use a dated release and atomic current symlink. Before migration, verify a fresh database/storage backup and its hashes; document schema compatibility. Build/cache configuration/routes/views, migrate with force only for the intended environment, switch release, restart the matching worker, and run health/smoke tests. If health fails, switch to the prior release and restart its workers. Do not automatically roll back destructive migrations or overwrite a live database; restoration requires the reviewed backup and an explicit operational decision. Current prepared documents are not a claim that this procedure has been executed.
+scripts/deploy-staging.mjs pins the observed SSH fingerprint, uploads a source whitelist and verified Composer, then runs deployment/provision-staging.py. Archive excludes .env, browser state, databases, uploads, vendor and node_modules. The server generates/retains secrets, installs locked dependencies, checks platform requirements, migrates/seeds, switches current, caches Laravel metadata and restarts only project-owned FPM/web/worker services. enable --now alone is insufficient for an existing worker, so restart is explicit.
+
+Validate /up, public/auth/admin routes, CSP/CSRF, uploads and nansan:doctor --queue. scripts/verify-staging.mjs creates a guarded temporary test identity, performs real HTTP operations and removes it afterward. The successful report includes a unique worker probe, fresh scheduler heartbeat and verified encrypted backup restore. A dozen sequential SSH requests are latency samples, not load/capacity proof.
+
+## Backup and rollback
+
+Snapshots contain database and private media, authenticated sodium encryption and stored SHA-256 verification. Same-host private backup storage and a separate encryption key are configured. The nansan_restore account has privileges only on randomly named nansan_restore_* scratch databases; it cannot access the source application database. Restore verification creates a fresh scratch DB, imports, checks tables/counts/media hashes, then drops only that newly created DB. SQLite scratch restore also has test coverage. Off-host storage and independent protected key escrow remain unconfigured.
+
+Before migration on a future production release, verify a fresh backup and schema compatibility. Roll back application code by switching the owned current symlink to the preceding compatible release and restarting matching services. Never automatically roll back destructive migrations or overwrite a live database. Restoration of a live database needs a reviewed operational decision.
+
+## Remaining production gate
+
+Configure Cloudflare account/Tunnel/Access and staging DNS through an authorized secure connection; real Turnstile keys/hostnames; TLS/proxy/secure-cookie verification; off-host storage/key escrow; concurrent capacity testing; legal review and generator packet-flow/failover/dataset acceptance. Close critical gaps and obtain explicit production approval before any production deployment or DNS/router change.

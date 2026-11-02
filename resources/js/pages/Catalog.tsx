@@ -1,4 +1,5 @@
-import {Head,Link,router} from '@inertiajs/react';
+import {Link,router} from '@inertiajs/react';
+import {SeoHead as Head} from '@/components/SeoHead';
 import {Search,SlidersHorizontal} from 'lucide-react';
 import {useState} from 'react';
 import {ToolCard} from '@/components/ToolCard';

@@ -2,15 +2,30 @@
 
 namespace App\Generators\Modules;
 
-use App\Generators\{GeneratedScript, GeneratorModule, RouterOs, UnverifiedGenerator};
+use App\Generators\GeneratedScript;
+use App\Generators\GeneratorModule;
+use App\Generators\RouterOs;
+use App\Generators\UnverifiedGenerator;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\{Rule, ValidationException};
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 
 final class StarlinkModule implements GeneratorModule
 {
-    public function id(): string { return 'G04'; }
+    public function id(): string
+    {
+        return 'G04';
+    }
 
-    public function schema(): array { return (new UnverifiedGenerator($this->id()))->schema(); }
+    public function version(): string
+    {
+        return '0.1.0-draft';
+    }
+
+    public function schema(): array
+    {
+        return (new UnverifiedGenerator($this->id()))->schema();
+    }
 
     public function validate(array $input): array
     {
@@ -38,10 +53,11 @@ final class StarlinkModule implements GeneratorModule
                 : ['required', 'integer', 'min:1', 'max:256']])->all(),
         ])->validate();
         $subnets = array_map('trim', explode(',', $data['localIpTarget']));
-        if (count($subnets) !== count(array_unique($subnets)) || collect($subnets)->contains(fn ($s) => !RouterOs::ipv4Subnet($s))) {
+        if (count($subnets) !== count(array_unique($subnets)) || collect($subnets)->contains(fn ($s) => ! RouterOs::ipv4Subnet($s))) {
             throw ValidationException::withMessages(['localIpTarget' => 'Gunakan IPv4/CIDR unik, dipisahkan koma.']);
         }
-        $interfaces = []; $total = 0;
+        $interfaces = [];
+        $total = 0;
         for ($i = 1; $i <= (int) $data['count']; $i++) {
             $interfaces[] = $data['connection-'.(2 * $i - 1)];
             $total += $data['mode'] === 'manual' ? (int) $data['connection-'.(2 * $i)] : 1;
@@ -50,13 +66,16 @@ final class StarlinkModule implements GeneratorModule
             throw ValidationException::withMessages(['count' => 'Interface WAN harus berbeda.']);
         }
         // Reference uses raw integer weights: 2:2 stays denominator 4, unlike G03.
-        if ($total > 256) throw ValidationException::withMessages(['mode' => 'Maksimal 256 rule PCC.']);
+        if ($total > 256) {
+            throw ValidationException::withMessages(['mode' => 'Maksimal 256 rule PCC.']);
+        }
         if ($data['netwatchEnable'] && trim($data['netwatchTargets'] ?? '') !== '') {
             $targets = array_map('trim', explode(',', $data['netwatchTargets']));
-            if (count($targets) !== (int) $data['count'] || collect($targets)->contains(fn ($t) => !filter_var($t, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4))) {
+            if (count($targets) !== (int) $data['count'] || collect($targets)->contains(fn ($t) => ! filter_var($t, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4))) {
                 throw ValidationException::withMessages(['netwatchTargets' => 'Isi satu target IPv4 per WAN.']);
             }
         }
+
         return $data;
     }
 
@@ -66,17 +85,23 @@ final class StarlinkModule implements GeneratorModule
         $add = function (string $path, array $fields, string $operation = 'add') use (&$entries) {
             $entries[] = ['path' => $path, 'operation' => $operation, 'fields' => $fields];
         };
-        $count = (int) $data['count']; $ros7 = $data['ros'] === 'v7'; $watch = (bool) $data['netwatchEnable'];
+        $count = (int) $data['count'];
+        $ros7 = $data['ros'] === 'v7';
+        $watch = (bool) $data['netwatchEnable'];
         $add('/ip dns', ['servers' => '8.8.8.8,8.8.4.4,1.1.1.1,9.9.9.9'], 'set');
         foreach (array_map('trim', explode(',', $data['localIpTarget'])) as $subnet) {
             $add('/ip firewall address-list', ['address' => $subnet, 'list' => 'LOCAL-IP']);
         }
         if ($ros7) {
             foreach ($watch ? ['', '-MONITOR'] : [''] as $suffix) {
-                for ($i = 1; $i <= $count; $i++) $add('/routing table', ['fib' => true, 'name' => 'STARLINK'.$i.$suffix]);
+                for ($i = 1; $i <= $count; $i++) {
+                    $add('/routing table', ['fib' => true, 'name' => 'STARLINK'.$i.$suffix]);
+                }
             }
         }
-        for ($i = 1; $i <= $count; $i++) $add('/ip firewall nat', ['chain' => 'srcnat', 'out-interface' => $data['connection-'.(2 * $i - 1)], 'action' => 'masquerade']);
+        for ($i = 1; $i <= $count; $i++) {
+            $add('/ip firewall nat', ['chain' => 'srcnat', 'out-interface' => $data['connection-'.(2 * $i - 1)], 'action' => 'masquerade']);
+        }
         for ($i = 1; $i <= $count; $i++) {
             $add('/ip dhcp-client', ['interface' => $data['connection-'.(2 * $i - 1)], 'disabled' => 'no', 'add-default-route' => 'no', 'default-route-distance' => (string) $i, 'use-peer-dns' => 'no', 'comment' => 'STARLINK-'.$i, 'script' => $this->leaseScript($data, $i)]);
         }
@@ -84,24 +109,37 @@ final class StarlinkModule implements GeneratorModule
         foreach (['prerouting', 'postrouting', 'forward', 'input', 'output'] as $chain) {
             $add('/ip firewall mangle', ['action' => 'accept', 'chain' => $chain, 'dst-address-list' => 'LOCAL-IP', 'src-address-list' => 'LOCAL-IP']);
         }
-        for ($i = 1; $i <= $count; $i++) $add('/ip firewall mangle', ['action' => 'mark-connection', 'chain' => 'input', 'connection-mark' => 'no-mark', 'in-interface' => $data['connection-'.(2 * $i - 1)], 'new-connection-mark' => 'STARLINK'.$i.'-CONN', 'passthrough' => 'yes']);
-        for ($i = 1; $i <= $count; $i++) $add('/ip firewall mangle', ['action' => 'mark-routing', 'chain' => 'output', 'connection-mark' => 'STARLINK'.$i.'-CONN', 'new-routing-mark' => 'STARLINK'.$i, 'passthrough' => 'no']);
+        for ($i = 1; $i <= $count; $i++) {
+            $add('/ip firewall mangle', ['action' => 'mark-connection', 'chain' => 'input', 'connection-mark' => 'no-mark', 'in-interface' => $data['connection-'.(2 * $i - 1)], 'new-connection-mark' => 'STARLINK'.$i.'-CONN', 'passthrough' => 'yes']);
+        }
+        for ($i = 1; $i <= $count; $i++) {
+            $add('/ip firewall mangle', ['action' => 'mark-routing', 'chain' => 'output', 'connection-mark' => 'STARLINK'.$i.'-CONN', 'new-routing-mark' => 'STARLINK'.$i, 'passthrough' => 'no']);
+        }
         $target = ['dst-address-list' => '!LOCAL-IP', 'src-address-list' => 'LOCAL-IP'];
         $weights = [];
-        for ($i = 1; $i <= $count; $i++) $weights[] = $data['mode'] === 'manual' ? (int) $data['connection-'.(2 * $i)] : 1;
+        for ($i = 1; $i <= $count; $i++) {
+            $weights[] = $data['mode'] === 'manual' ? (int) $data['connection-'.(2 * $i)] : 1;
+        }
         $remainder = 0;
         foreach ($weights as $idx => $weight) {
-            for ($n = 0; $n < $weight; $n++) $add('/ip firewall mangle', ['action' => 'mark-connection', 'chain' => 'prerouting', 'connection-state' => 'new', 'connection-mark' => 'no-mark', 'new-connection-mark' => 'STARLINK'.($idx + 1).'-CONN', 'passthrough' => 'yes', 'per-connection-classifier' => $data['pccType'].':'.array_sum($weights).'/'.$remainder++, 'dst-address-type' => '!local', ...$target]);
+            for ($n = 0; $n < $weight; $n++) {
+                $add('/ip firewall mangle', ['action' => 'mark-connection', 'chain' => 'prerouting', 'connection-state' => 'new', 'connection-mark' => 'no-mark', 'new-connection-mark' => 'STARLINK'.($idx + 1).'-CONN', 'passthrough' => 'yes', 'per-connection-classifier' => $data['pccType'].':'.array_sum($weights).'/'.$remainder++, 'dst-address-type' => '!local', ...$target]);
+            }
         }
-        for ($i = 1; $i <= $count; $i++) $add('/ip firewall mangle', ['action' => 'mark-routing', 'chain' => 'prerouting', 'connection-mark' => 'STARLINK'.$i.'-CONN', 'new-routing-mark' => 'STARLINK'.$i, 'passthrough' => 'yes', ...$target]);
+        for ($i = 1; $i <= $count; $i++) {
+            $add('/ip firewall mangle', ['action' => 'mark-routing', 'chain' => 'prerouting', 'connection-mark' => 'STARLINK'.$i.'-CONN', 'new-routing-mark' => 'STARLINK'.$i, 'passthrough' => 'yes', ...$target]);
+        }
         if ($watch) {
             $targets = trim($data['netwatchTargets'] ?? '') === '' ? array_map(fn ($i) => '1.1.1.'.$i, range(1, $count)) : array_map('trim', explode(',', $data['netwatchTargets']));
-            foreach ($targets as $idx => $ip) $add($ros7 ? '/routing rule' : '/ip route rule', $ros7 ? ['action' => 'lookup', 'disabled' => 'no', 'dst-address' => $ip.'/32', 'table' => 'STARLINK'.($idx + 1).'-MONITOR'] : ['dst-address' => $ip.'/32', 'table' => 'STARLINK'.($idx + 1).'-MONITOR']);
+            foreach ($targets as $idx => $ip) {
+                $add($ros7 ? '/routing rule' : '/ip route rule', $ros7 ? ['action' => 'lookup', 'disabled' => 'no', 'dst-address' => $ip.'/32', 'table' => 'STARLINK'.($idx + 1).'-MONITOR'] : ['dst-address' => $ip.'/32', 'table' => 'STARLINK'.($idx + 1).'-MONITOR']);
+            }
             foreach ($targets as $idx => $ip) {
                 $selector = '[find comment="LB-STARLINK'.($idx + 1).'" or comment="MAIN-STARLINK'.($idx + 1).'"]';
                 $add('/tool netwatch', ['host' => $ip, 'interval' => '10s', 'down-script' => '/ip route disable '.$selector, 'up-script' => '/ip route enable '.$selector]);
             }
         }
+
         return $entries;
     }
 
@@ -109,19 +147,23 @@ final class StarlinkModule implements GeneratorModule
     {
         $interface = $data['connection-'.(2 * $i - 1)];
         $selector = 'comment="LB-STARLINK'.$i.'" or comment="MAIN-STARLINK'.$i.'"';
-        if ($data['netwatchEnable']) $selector .= ' or comment="MONITOR-STARLINK'.$i.'"';
+        if ($data['netwatchEnable']) {
+            $selector .= ' or comment="MONITOR-STARLINK'.$i.'"';
+        }
         $gateway = '($"gateway-address" . '.RouterOs::quote('%'.$interface).')';
         $script = '/ip route remove [find '.$selector.']; :if ($bound = 1) do={ ';
         $script .= '/ip route add dst-address=0.0.0.0/0 gateway='.$gateway.' distance='.$i.' comment="MAIN-STARLINK'.$i.'"; ';
         foreach ($data['netwatchEnable'] ? ['', '-MONITOR'] : [''] as $suffix) {
             $script .= '/ip route add dst-address=0.0.0.0/0 gateway='.$gateway.' '.($data['ros'] === 'v7' ? 'routing-table' : 'routing-mark').'="STARLINK'.$i.$suffix.'" distance=1 comment="'.($suffix === '' ? 'LB' : 'MONITOR').'-STARLINK'.$i.'"; ';
         }
+
         return $script.'}';
     }
 
     public function generate(array $input): GeneratedScript
     {
         $data = $this->validate($input);
+
         return new GeneratedScript([['title' => 'Starlink — DRAFT', 'script' => RouterOs::render($this->configuration($data))]], $data['ros'] === 'v7' ? '7' : '6', '0.1.0-draft', [
             'Tujuh skenario proyeksi parameter diamati. DHCP, Netwatch, distribusi trafik dan failover memerlukan verifikasi lab terpisah.',
             'Mengubah DNS router dan membuat DHCP client baru; periksa konflik konfigurasi. Bukan exact match dan belum dipublikasikan.',

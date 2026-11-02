@@ -1,5 +1,5 @@
 {
-  "observed_at": "2026-11-02T19:55:53.396Z",
+  "observed_at": "2026-11-02T20:06:13.300Z",
   "scope": "Private staging only; temporary test identity; no production changes",
   "status": "PASSED",
   "operations": {
@@ -8,13 +8,13 @@
       "database": "mysql",
       "redis": "ok",
       "cache": "ok",
-      "queue": "unavailable",
-      "scheduler": "unavailable"
+      "queue": "worker_processed_unique_probe",
+      "scheduler": "fresh_heartbeat"
     },
     "backup": {
       "status": "restore_verified",
-      "restore_tested_at": "2026-11-03 02:56:38",
-      "bytes": 13422
+      "restore_tested_at": "2026-11-03 03:06:41",
+      "bytes": 14072
     },
     "off_host_backup": false
   },
@@ -26,11 +26,11 @@
   },
   "performance": {
     "scope": "12 sequential catalog requests through SSH; not a capacity/load test",
-    "median_ms": 219,
-    "p95_ms": 242
+    "median_ms": 221,
+    "p95_ms": 233
   },
   "cleanup": {
     "temporary_identity_removed": true
   },
-  "completed_at": "2026-11-02T19:56:48.218Z"
+  "completed_at": "2026-11-02T20:06:51.431Z"
 }

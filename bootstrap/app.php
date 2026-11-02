@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Middleware\ActiveUser;
+use App\Http\Middleware\HandleInertiaRequests;
+use App\Http\Middleware\Maintenance;
+use App\Http\Middleware\SecurityHeaders;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -12,12 +16,12 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        $middleware->trustProxies(at: ['127.0.0.1','::1'],headers: Request::HEADER_X_FORWARDED_FOR | Request::HEADER_X_FORWARDED_PROTO | Request::HEADER_X_FORWARDED_PORT);
-        $middleware->web(append: [\App\Http\Middleware\HandleInertiaRequests::class, \App\Http\Middleware\ActiveUser::class, \App\Http\Middleware\SecurityHeaders::class, \App\Http\Middleware\Maintenance::class]);
-        $middleware->alias(['active'=>\App\Http\Middleware\ActiveUser::class]);
+        $middleware->trustProxies(at: ['127.0.0.1', '::1'], headers: Request::HEADER_X_FORWARDED_FOR | Request::HEADER_X_FORWARDED_PROTO | Request::HEADER_X_FORWARDED_PORT);
+        $middleware->web(append: [HandleInertiaRequests::class, ActiveUser::class, SecurityHeaders::class, Maintenance::class]);
+        $middleware->alias(['active' => ActiveUser::class]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        $exceptions->dontFlash(['password','password_confirmation','current_password','recovery_code','cf-turnstile-response']);
+        $exceptions->dontFlash(['password', 'password_confirmation', 'current_password', 'recovery_code', 'cf-turnstile-response']);
         $exceptions->shouldRenderJsonWhen(
             fn (Request $request) => $request->is('api/*') || $request->expectsJson(),
         );

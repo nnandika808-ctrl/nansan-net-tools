@@ -10,8 +10,9 @@
 | G01/G02 remote datasets | All applications and TLS/content choices | BLOCKED — obtain explicit dataset redistribution rights or independently sourced, reviewed datasets; no hotlink fallback |
 | G05 game ports | All 106 observed game entries | BLOCKED — independently verify port/protocol rules and provenance; do not invent ports |
 | G03 | More than two WAN, decimal ratios and unexercised classifiers/local modes | UNVERIFIED — expand audit and tests before support claims |
-| G04 DHCP script | Initial ROS6 output | UNVERIFIED — output visibly contains escaped quote characters; confirm byte representation and lab parsing before diagnosing or changing behavior |
-| G04 | DHCP renew/unbind, duplicate gateway, interface changes, Netwatch | UNVERIFIED — controlled lab events and packet flow required; never invent static gateways |
+| G04 quoting | Initial escaping candidate | WITHDRAWN — byte-level inspection shows normal outer quotes. Nested script escaping is a separate context; no reference bug established |
+| G04 | DHCP renew/unbind and Netwatch | Six disposable CHR cases pass simulated bound/repeated-bound/unbound and route enable/disable events; real DHCP server interactions, reachability and traffic failover remain UNVERIFIED |
+| G04 | More than 3 WAN in CHR, custom classifiers/targets, interface changes | UNVERIFIED — ten-WAN parameters were observed, but not exercised in CHR |
 | Rights | Full text fixtures and exclusive datasets | Scope of owner-reported Facebook permission is not established |
 
 No blocker is counted as passing. No generator is public until reviewed code, validated cases and authorized lab evidence meet publication criteria.

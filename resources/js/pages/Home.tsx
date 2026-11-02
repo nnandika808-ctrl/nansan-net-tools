@@ -1,4 +1,5 @@
-import {Head,Link} from '@inertiajs/react';
+import {Link} from '@inertiajs/react';
+import {SeoHead as Head} from '@/components/SeoHead';
 import {ArrowRight,ArrowUpRight,ShieldCheck,Terminal,ChevronRight,Plus,Minus,Network,BookOpen,CheckCircle2,Workflow,Globe,Satellite,LockKeyhole} from 'lucide-react';
 import {useState} from 'react';
 import {Button} from '@/components/ui/button';
@@ -6,9 +7,9 @@ import {ToolCard} from '@/components/ToolCard';
 import {Search} from '@/components/Search';
 import {usePreferences} from '@/lib/preferences';
 import type {Tool,Category,Announcement} from '@/types';
-export default function Home({tools,categories,stats,landing,announcements}:{tools:Tool[];categories:Category[];stats:{tools:number;ready:number;generated:number};landing?:{title:string;description:string};announcements:Announcement[]}){
+export default function Home({tools,categories,stats,landing,announcements,faqItems=[]}:{tools:Tool[];categories:Category[];stats:{tools:number;ready:number;generated:number};landing?:{title:string;description:string};announcements:Announcement[];faqItems?:{locale:string;question:string;answer:string}[]}){
  const {t,locale}=usePreferences();const [faq,setFaq]=useState<number|null>(0);
- const questions=locale==='id'?[
+ const customFaq=faqItems.filter(item=>item.locale===locale);const questions=customFaq.length?customFaq.map(item=>[item.question,item.answer]):locale==='id'?[
   ['Apakah semua tools benar-benar gratis?','Ya. Seluruh generator NANSAN NET Tools gratis. Tidak ada paket berbayar atau langganan.'],
   ['Versi RouterOS apa yang didukung?','Kompatibilitas ROS6 dan ROS7 dicatat per generator. Generator hanya dipublikasikan setelah output dan pengujian lab yang relevan terverifikasi.'],
   ['Mengapa generator belum tersedia?','Kami sedang mengaudit field, algoritma, dan output. Status belum tersedia berarti script belum memenuhi syarat publikasi.'],
