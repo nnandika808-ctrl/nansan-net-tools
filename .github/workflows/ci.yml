@@ -42,7 +42,7 @@ jobs:
       - run: php artisan test
       - run: npm run typecheck && npm run lint && npm test && npm run build
       - name: MySQL feature suite
-        run: php artisan test --filter=PlatformTest
+        run: php artisan test --filter='PlatformTest|TemplateTest|VersionTest|AnalyticsTest|SeoTest'
         env:
           DB_CONNECTION: mysql
           DB_DATABASE: ci_tools

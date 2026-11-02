@@ -29,9 +29,9 @@ process.stdin.on('data',chunk=>{secret+=chunk.toString();if(secret.includes('\u0
    const denied={};for(const path of ['/.env','/.git/config','/vendor/autoload.php']){const response=await context.request.get(origin+path);denied[path]=response.status();if(![403,404].includes(response.status()))throw new Error('Private source path was not denied.');}
    report.security={login_csp:'present',frame_policy:'DENY',private_cache:'no-store',indexing:'noindex',private_paths:denied};
    await page.goto(origin+'/login');await page.getByLabel('Username',{exact:true}).fill(identity.username);await page.getByLabel('Password',{exact:true}).fill(identity.password);await page.getByRole('button',{name:'Masuk',exact:true}).click();await page.waitForURL('**/dashboard');identity.password='';
-   for(const path of ['/account','/admin','/admin/monitoring','/admin/tools/pcc-starlink/preview']){const response=await page.goto(origin+path);if(response.status()!==200)throw new Error('Authenticated route '+path+' returned '+response.status());}
+   for(const path of ['/account','/admin','/admin/monitoring','/admin/analytics','/admin/tools/static-routing/versions','/admin/tools/pcc-starlink/preview']){const response=await page.goto(origin+path);if(response.status()!==200)throw new Error('Authenticated route '+path+' returned '+response.status());}
    await page.getByRole('button',{name:'Preview draft',exact:true}).click();await page.locator('pre').filter({hasText:'STARLINK1'}).waitFor();
-   report.http={public_routes:5,authenticated_routes:4,login:'passed',starlink_preview:'passed'};
+   report.http={public_routes:5,authenticated_routes:6,login:'passed',starlink_preview:'passed'};
    const elapsed=[];for(let i=0;i<12;i++){const started=performance.now();const response=await context.request.get(origin+'/tools');if(response.status()!==200)throw new Error('Sequential catalog probe failed.');elapsed.push(performance.now()-started);}elapsed.sort((a,b)=>a-b);
    report.performance={scope:'12 sequential catalog requests through SSH; not a capacity/load test',median_ms:Math.round(elapsed[6]),p95_ms:Math.round(elapsed[11])};
    if(Object.values(report.operations.doctor).some(value=>value==='unavailable'||value==='failed'))throw new Error('A required staging runtime probe is unavailable.');
