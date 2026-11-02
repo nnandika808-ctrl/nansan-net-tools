@@ -32,7 +32,7 @@ final class MysqlRestoreVerifier
             $created = true;
             $input = fopen($dump, 'rb');
             try {
-                $process = new Process([$target['client'], '--host='.$target['host'], '--port='.$target['port'], '--user='.$target['username'], '--database='.$database, '--binary-mode=1'], null, ['MYSQL_PWD' => $target['password']], $input, 300);
+                $process = new Process([$target['client'], '--host='.$target['host'], '--port='.$target['port'], '--user='.$target['username'], '--database='.$database, '--binary-mode=1'], dirname($dump), ['MYSQL_PWD' => $target['password']], $input, 300);
                 $process->disableOutput();
                 $process->run();
             } finally { fclose($input); }

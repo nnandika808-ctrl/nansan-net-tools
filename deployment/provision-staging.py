@@ -358,6 +358,9 @@ WantedBy=timers.target
     run(['systemctl', 'daemon-reload'], quiet=True)
     run(['systemctl', 'enable', '--now', 'nansan-staging-redis', 'nansan-staging-php', 'nansan-staging-web', 'nansan-staging-worker', 'nansan-staging-scheduler.timer'], quiet=True)
     run(cli + [str(BASE / 'current/artisan'), 'optimize'], user=True, env=runtime_env)
+    # enable --now does not restart an already running worker after a release switch.
+    run(['systemctl', 'restart', 'nansan-staging-php', 'nansan-staging-worker', 'nansan-staging-web'], quiet=True)
+    run(['systemctl', 'start', 'nansan-staging-scheduler.service'], quiet=True)
     print(json.dumps({'status': 'internal_staging_installed', 'release': str(release), 'origin': 'http://127.0.0.1:8091', 'redis': '127.0.0.1:6381', 'production_modified': False, 'remaining': ['Turnstile keys', 'Cloudflare Access/Tunnel', 'off-host backups', 'generator publication gates']}), flush=True)
 
 if __name__ == '__main__':

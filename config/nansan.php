@@ -8,6 +8,7 @@ return [
     'contact'=>env('CONTACT_URL'),
     'backup_disk'=>env('BACKUP_DISK'),
     'backup_key'=>env('BACKUP_ENCRYPTION_KEY'),
+    'mysql_dump_path'=>env('MYSQLDUMP_PATH','mysqldump'),
     'backup_retention_days'=>max(7,min(30,(int)env('BACKUP_RETENTION_DAYS',14))),
     'restore_mysql'=>[
         'host'=>env('RESTORE_MYSQL_HOST'), 'port'=>env('RESTORE_MYSQL_PORT',3306),

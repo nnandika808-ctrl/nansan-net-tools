@@ -20,7 +20,7 @@ class BackupService
             if($driver==='sqlite') DB::statement('VACUUM INTO '.DB::getPdo()->quote($snapshot));
             elseif($driver==='mysql'){
                 $connection=config('database.connections.mysql');$handle=fopen($snapshot,'wb');
-                $process=new Process([env('MYSQLDUMP_PATH','mysqldump'),'--single-transaction','--quick','--skip-lock-tables','--no-tablespaces','--host='.$connection['host'],'--port='.$connection['port'],'--user='.$connection['username'],$connection['database']],null,['MYSQL_PWD'=>$connection['password']],null,300);
+                $process=new Process([config('nansan.mysql_dump_path'),'--single-transaction','--quick','--skip-lock-tables','--no-tablespaces','--host='.$connection['host'],'--port='.$connection['port'],'--user='.$connection['username'],$connection['database']],base_path(),['MYSQL_PWD'=>$connection['password']],null,300);
                 try{$process->run(function($type,$buffer)use($handle){if($type===Process::OUT)fwrite($handle,$buffer);});}finally{fclose($handle);}
                 if(!$process->isSuccessful()||filesize($snapshot)<100)throw new RuntimeException('Database snapshot failed. No backup success recorded.');
             }else throw new RuntimeException('Unsupported database driver.');

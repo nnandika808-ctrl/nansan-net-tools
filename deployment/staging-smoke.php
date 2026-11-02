@@ -1,6 +1,7 @@
 <?php
 // Operator-only CLI helper. Never exposed through the web root or production.
 $root = '/www/wwwroot/nansan-tools-staging/current';
+chdir($root);
 require $root.'/vendor/autoload.php';
 $app = require $root.'/bootstrap/app.php';
 $app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();

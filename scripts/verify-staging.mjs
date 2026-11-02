@@ -30,6 +30,7 @@ process.stdin.on('data',chunk=>{secret+=chunk.toString();if(secret.includes('\u0
    report.http={public_routes:5,authenticated_routes:4,login:'passed',starlink_preview:'passed'};
    const elapsed=[];for(let i=0;i<12;i++){const started=performance.now();const response=await context.request.get(origin+'/tools');if(response.status()!==200)throw new Error('Sequential catalog probe failed.');elapsed.push(performance.now()-started);}elapsed.sort((a,b)=>a-b);
    report.performance={scope:'12 sequential catalog requests through SSH; not a capacity/load test',median_ms:Math.round(elapsed[6]),p95_ms:Math.round(elapsed[11])};
+   if(Object.values(report.operations.doctor).some(value=>value==='unavailable'||value==='failed'))throw new Error('A required staging runtime probe is unavailable.');
    report.status='PASSED';
   }catch(error){report.status='FAILED';report.error=error.message;process.exitCode=1;}
   finally{

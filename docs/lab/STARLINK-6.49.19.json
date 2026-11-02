@@ -1,17 +1,17 @@
 {
-  "started_at": "2026-11-02T19:48:00.551Z",
-  "completed_at": "2026-11-02T19:50:19.436Z",
+  "started_at": "2026-11-02T19:51:21.340Z",
+  "completed_at": "2026-11-02T19:53:53.408Z",
   "image_version": "6.49.19",
   "image_sha256": "7dbd77e5704bc5f035501e6f2beb69e7f65978645c841503d69d43df9298d15b",
   "emulator": "QEMU 11.1.0 TCG",
   "isolation": "Fresh official CHR; snapshot overlay discarded; three restricted user-mode virtual networks; no bridge; serial console bound to loopback; no router IP accepted",
-  "qemu_pid": 120,
-  "identity": "NANSAN-LAB-037a1ed88454",
+  "qemu_pid": 9100,
+  "identity": "NANSAN-LAB-68fbe710c2fb",
   "cases": [
     {
       "test_id": "ros6-two-equal",
       "status": "SYNTAX_AND_SIMULATED_EVENTS_PASSED",
-      "commands": 27,
+      "commands": 22,
       "nat_rules": 2,
       "bound_route_count": 4,
       "repeated_bound_no_duplicates": true,
@@ -20,12 +20,17 @@
     },
     {
       "test_id": "ros6-two-netwatch",
-      "status": "FAILED",
-      "error": "RLINK1-MONITOR\\\" distance=1 comment=\\\"MONITOR-STARLINK1\\\";      <ing-mark=\\\"STARLINK1-MONITOR\\\" distance=1 comment=\\\"MONITOR-STARLINK1\\\"; }<ing-mark=\\\"STARLINK1-MONITOR\\\" distance=1 comment=\\\"MONITOR-STARLINK1\\\"; }    <ing-mark=\\\"STARLINK1-MONITOR\\\" distance=1 comment=\\\"MONITOR-STARLINK1\\\"; }\"<ing-mark=\\\"STARLINK1-MONITOR\\\" distance=1 comment=\\\"MONITOR-STARLINK1\\\"; }\"   <ing-mark=\\\"STARLINK1-MONITOR\\\" distance=1 comment=\\\"MONITOR-STARLINK1\\\"; }\"<ing-mark=\\\"STARLINK1-MONITOR\\\" distance=1 comment=\\\"MONITOR-STARLINK1\\\"; }\"\nfailure: dhcp-client on that interface already exists\n<NSAN-LAB-037a1ed88454] /ip dhcp-client>                                       <NSAN-LAB-037a1ed88454] /ip dhcp-client> "
+      "status": "SYNTAX_AND_SIMULATED_EVENTS_PASSED",
+      "commands": 26,
+      "nat_rules": 2,
+      "bound_route_count": 6,
+      "repeated_bound_no_duplicates": true,
+      "unbound_route_count": 0,
+      "netwatch_disabled_routes": 4
     }
   ],
   "scope": "Command import syntax and selected object counts only. No traffic distribution/failover proof.",
-  "status": "FAILED",
+  "status": "SCOPED_SYNTAX_CHECKS_PASSED",
   "observed_version": "6.49.19 (long-term)",
   "preconditions": [
     "ether1 and ether2 are disposable virtual WAN interfaces",

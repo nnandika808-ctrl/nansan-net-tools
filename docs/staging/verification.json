@@ -1,0 +1,36 @@
+{
+  "observed_at": "2026-11-02T19:55:53.396Z",
+  "scope": "Private staging only; temporary test identity; no production changes",
+  "status": "PASSED",
+  "operations": {
+    "doctor": {
+      "environment": "staging",
+      "database": "mysql",
+      "redis": "ok",
+      "cache": "ok",
+      "queue": "unavailable",
+      "scheduler": "unavailable"
+    },
+    "backup": {
+      "status": "restore_verified",
+      "restore_tested_at": "2026-11-03 02:56:38",
+      "bytes": 13422
+    },
+    "off_host_backup": false
+  },
+  "http": {
+    "public_routes": 5,
+    "authenticated_routes": 4,
+    "login": "passed",
+    "starlink_preview": "passed"
+  },
+  "performance": {
+    "scope": "12 sequential catalog requests through SSH; not a capacity/load test",
+    "median_ms": 219,
+    "p95_ms": 242
+  },
+  "cleanup": {
+    "temporary_identity_removed": true
+  },
+  "completed_at": "2026-11-02T19:56:48.218Z"
+}
