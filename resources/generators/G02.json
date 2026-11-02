@@ -1,0 +1,339 @@
+{
+  "id": "G02",
+  "source": "https://buananet.com/mikrotik-queue-qos.html",
+  "status": "FORM_OBSERVED; OUTPUT_UNVERIFIED",
+  "observedAt": "2026-11-03",
+  "fields": [
+    {
+      "key": "Queue-Options",
+      "label": "Queue Options",
+      "type": "select",
+      "default": "Queue-Simple",
+      "options": [
+        {
+          "label": "Queue Simple",
+          "value": "Queue-Simple",
+          "disabled": false
+        },
+        {
+          "label": "Queue Tree",
+          "value": "Queue-Tree",
+          "disabled": false
+        }
+      ],
+      "referenceId": "Queue-Options"
+    },
+    {
+      "key": "Queue-List",
+      "label": "Queue List",
+      "type": "select",
+      "default": "Youtube",
+      "options": [
+        {
+          "label": "[ Streaming ]",
+          "value": "",
+          "disabled": true
+        },
+        {
+          "label": "Youtube",
+          "value": "Youtube",
+          "disabled": false
+        },
+        {
+          "label": "Tiktok",
+          "value": "Tiktok",
+          "disabled": false
+        },
+        {
+          "label": "Vidio",
+          "value": "Vidio",
+          "disabled": false
+        },
+        {
+          "label": "Iflix",
+          "value": "Iflix",
+          "disabled": false
+        },
+        {
+          "label": "Netflix",
+          "value": "Netflix",
+          "disabled": false
+        },
+        {
+          "label": "Spotify",
+          "value": "Spotify",
+          "disabled": false
+        },
+        {
+          "label": "Wetv",
+          "value": "Wetv",
+          "disabled": false
+        },
+        {
+          "label": "Vimeo",
+          "value": "Vimeo",
+          "disabled": false
+        },
+        {
+          "label": "Twitch",
+          "value": "Twitch",
+          "disabled": false
+        },
+        {
+          "label": "[ Social Media ]",
+          "value": "",
+          "disabled": true
+        },
+        {
+          "label": "Facebook",
+          "value": "Facebook",
+          "disabled": false
+        },
+        {
+          "label": "Instagram",
+          "value": "Instagram",
+          "disabled": false
+        },
+        {
+          "label": "WhatsApp",
+          "value": "WhatsApp",
+          "disabled": false
+        },
+        {
+          "label": "Twitter / X",
+          "value": "Twitter-X",
+          "disabled": false
+        },
+        {
+          "label": "Telegram",
+          "value": "Telegram",
+          "disabled": false
+        },
+        {
+          "label": "Threads",
+          "value": "Threads",
+          "disabled": false
+        },
+        {
+          "label": "Imo.im",
+          "value": "Imo",
+          "disabled": false
+        },
+        {
+          "label": "Snapchat",
+          "value": "Snapchat",
+          "disabled": false
+        },
+        {
+          "label": "Linkedin",
+          "value": "Linkedin",
+          "disabled": false
+        },
+        {
+          "label": "Pinterest",
+          "value": "Pinterest",
+          "disabled": false
+        },
+        {
+          "label": "[ E-Commerce ]",
+          "value": "",
+          "disabled": true
+        },
+        {
+          "label": "Amazon",
+          "value": "Amazon",
+          "disabled": false
+        },
+        {
+          "label": "Alibaba",
+          "value": "Alibaba",
+          "disabled": false
+        },
+        {
+          "label": "Etsy",
+          "value": "Etsy",
+          "disabled": false
+        },
+        {
+          "label": "Rakuten",
+          "value": "Rakuten",
+          "disabled": false
+        },
+        {
+          "label": "Shopify",
+          "value": "Shopify",
+          "disabled": false
+        },
+        {
+          "label": "Wish",
+          "value": "Wish",
+          "disabled": false
+        },
+        {
+          "label": "Temu",
+          "value": "Temu",
+          "disabled": false
+        },
+        {
+          "label": "Ralali",
+          "value": "Ralali",
+          "disabled": false
+        },
+        {
+          "label": "Shopee",
+          "value": "Shopee",
+          "disabled": false
+        },
+        {
+          "label": "Tokopedia",
+          "value": "Tokopedia",
+          "disabled": false
+        },
+        {
+          "label": "Bukalapak",
+          "value": "Bukalapak",
+          "disabled": false
+        },
+        {
+          "label": "Lazada",
+          "value": "Lazada",
+          "disabled": false
+        },
+        {
+          "label": "Blibli",
+          "value": "Blibli",
+          "disabled": false
+        },
+        {
+          "label": "Olx",
+          "value": "Olx",
+          "disabled": false
+        },
+        {
+          "label": "[ Video Conperence ]",
+          "value": "",
+          "disabled": true
+        },
+        {
+          "label": "Zoom Meeting",
+          "value": "Zoom",
+          "disabled": false
+        },
+        {
+          "label": "Microsoft Teams",
+          "value": "Teams",
+          "disabled": false
+        },
+        {
+          "label": "Google Meet",
+          "value": "Google-Meet",
+          "disabled": false
+        },
+        {
+          "label": "Discord",
+          "value": "Discord",
+          "disabled": false
+        },
+        {
+          "label": "Webex",
+          "value": "Webex",
+          "disabled": false
+        },
+        {
+          "label": "Skype",
+          "value": "Skype",
+          "disabled": false
+        },
+        {
+          "label": "Jitsi",
+          "value": "Jitsi",
+          "disabled": false
+        },
+        {
+          "label": "Whereby",
+          "value": "Whereby",
+          "disabled": false
+        },
+        {
+          "label": "[ Other List IP ]",
+          "value": "",
+          "disabled": true
+        },
+        {
+          "label": "Meta",
+          "value": "Meta",
+          "disabled": false
+        },
+        {
+          "label": "Google",
+          "value": "Google",
+          "disabled": false
+        },
+        {
+          "label": "Speedtest",
+          "value": "Speedtest",
+          "disabled": false
+        },
+        {
+          "label": "GGC (Google Global Cache)",
+          "value": "GGC",
+          "disabled": false
+        },
+        {
+          "label": "Nice IIX or OIXP (indonesia)",
+          "value": "NICE-OIXP",
+          "disabled": false
+        },
+        {
+          "label": "All Indonesian Bank",
+          "value": "Bank-Indonesia",
+          "disabled": false
+        }
+      ],
+      "referenceId": "Queue-List"
+    },
+    {
+      "key": "Queue-Name",
+      "label": "Queue Name",
+      "type": "text",
+      "default": "-> YOUTUBE",
+      "placeholder": "ex: -> YOUTUBE",
+      "referenceId": "Queue-Name"
+    },
+    {
+      "key": "Priority",
+      "label": "Priority (1–8)",
+      "type": "text",
+      "default": "8",
+      "placeholder": "ex: 1-8",
+      "referenceId": "Priority"
+    },
+    {
+      "key": "Max-Limit",
+      "label": "Max-Limit",
+      "type": "text",
+      "default": "20M",
+      "placeholder": "ex: 20M",
+      "referenceId": "Max-Limit"
+    },
+    {
+      "key": "match-condition",
+      "label": "Match Filter RAW",
+      "type": "select",
+      "default": "tls-host",
+      "options": [
+        {
+          "label": "TLS-HOST",
+          "value": "tls-host",
+          "disabled": false
+        },
+        {
+          "label": "CONTENT",
+          "value": "content",
+          "disabled": false
+        }
+      ],
+      "referenceId": "match-condition"
+    }
+  ]
+}

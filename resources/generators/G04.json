@@ -1,0 +1,209 @@
+{
+  "id": "G04",
+  "source": "https://buananet.com/mikrotik-pcc-lb-starlink.html",
+  "status": "FORM_OBSERVED; OUTPUT_UNVERIFIED",
+  "observedAt": "2026-11-03",
+  "fields": [
+    {
+      "key": "ros",
+      "label": "RouterOS Version",
+      "type": "select",
+      "default": "v6",
+      "options": [
+        {
+          "label": "RouterOS v6",
+          "value": "v6",
+          "disabled": false
+        },
+        {
+          "label": "RouterOS v7",
+          "value": "v7",
+          "disabled": false
+        }
+      ],
+      "referenceId": "ros"
+    },
+    {
+      "key": "count",
+      "label": "Starlink Count",
+      "type": "select",
+      "default": "2",
+      "options": [
+        {
+          "label": "2",
+          "value": "2",
+          "disabled": false
+        },
+        {
+          "label": "3",
+          "value": "3",
+          "disabled": false
+        },
+        {
+          "label": "4",
+          "value": "4",
+          "disabled": false
+        },
+        {
+          "label": "5",
+          "value": "5",
+          "disabled": false
+        },
+        {
+          "label": "6",
+          "value": "6",
+          "disabled": false
+        },
+        {
+          "label": "7",
+          "value": "7",
+          "disabled": false
+        },
+        {
+          "label": "8",
+          "value": "8",
+          "disabled": false
+        },
+        {
+          "label": "9",
+          "value": "9",
+          "disabled": false
+        },
+        {
+          "label": "10",
+          "value": "10",
+          "disabled": false
+        }
+      ],
+      "referenceId": "count"
+    },
+    {
+      "key": "mode",
+      "label": "Load Balance Mode",
+      "type": "select",
+      "default": "equal",
+      "options": [
+        {
+          "label": "Equal (Balanced)",
+          "value": "equal",
+          "disabled": false
+        },
+        {
+          "label": "Manual Ratio",
+          "value": "manual",
+          "disabled": false
+        }
+      ],
+      "referenceId": "mode"
+    },
+    {
+      "key": "localIpTarget",
+      "label": "Local IP Target (RFC1918)",
+      "type": "text",
+      "default": "192.168.0.0/16, 172.16.0.0/12, 10.0.0.0/8",
+      "referenceId": "localIpTarget"
+    },
+    {
+      "key": "pccType",
+      "label": "PCC Classifier",
+      "type": "select",
+      "default": "both-addresses-and-ports",
+      "options": [
+        {
+          "label": "both-addresses-and-ports (*Recommended)",
+          "value": "both-addresses-and-ports",
+          "disabled": false
+        },
+        {
+          "label": "both-addresses",
+          "value": "both-addresses",
+          "disabled": false
+        },
+        {
+          "label": "both-ports",
+          "value": "both-ports",
+          "disabled": false
+        },
+        {
+          "label": "dst-address",
+          "value": "dst-address",
+          "disabled": false
+        },
+        {
+          "label": "dst-address-and-port",
+          "value": "dst-address-and-port",
+          "disabled": false
+        },
+        {
+          "label": "dst-port",
+          "value": "dst-port",
+          "disabled": false
+        },
+        {
+          "label": "src-address",
+          "value": "src-address",
+          "disabled": false
+        },
+        {
+          "label": "src-address-and-port",
+          "value": "src-address-and-port",
+          "disabled": false
+        },
+        {
+          "label": "src-port",
+          "value": "src-port",
+          "disabled": false
+        }
+      ],
+      "referenceId": "pccType"
+    },
+    {
+      "key": "netwatchEnable",
+      "label": "Enable Failover Monitoring (Netwatch)",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "netwatchEnable"
+    },
+    {
+      "key": "netwatchTargets",
+      "label": "Target IP per WAN",
+      "type": "text",
+      "default": "1.1.1.1,1.1.1.2",
+      "placeholder": "auto: 1.1.1.1,1.1.1.2,1.1.1.3,... or leave empty",
+      "conditional": "netwatchEnable",
+      "referenceId": "netwatchTargets"
+    },
+    {
+      "key": "connection-1",
+      "label": "Starlink 1 interface",
+      "type": "text",
+      "default": "ether1",
+      "placeholder": "e.g., ether1 or wlan1",
+      "referenceId": ""
+    },
+    {
+      "key": "connection-2",
+      "label": "Starlink 1 ratio",
+      "type": "number",
+      "default": "1",
+      "min": 1,
+      "referenceId": ""
+    },
+    {
+      "key": "connection-3",
+      "label": "Starlink 2 interface",
+      "type": "text",
+      "default": "ether2",
+      "placeholder": "e.g., ether1 or wlan1",
+      "referenceId": ""
+    },
+    {
+      "key": "connection-4",
+      "label": "Starlink 2 ratio",
+      "type": "number",
+      "default": "1",
+      "min": 1,
+      "referenceId": ""
+    }
+  ]
+}

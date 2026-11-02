@@ -1,0 +1,16 @@
+import {Head,Link,router} from '@inertiajs/react';
+import {useState} from 'react';
+import {Download,Trash2,Bookmark} from 'lucide-react';
+import type {Pagination as Pages,Tool} from '@/types';
+import {PageHeader} from '@/components/PageHeader';
+import {EmptyState} from '@/components/EmptyState';
+import {Pagination} from '@/components/ui/pagination';
+import {Dialog} from '@/components/ui/dialog';
+import {Button} from '@/components/ui/button';
+import {usePreferences} from '@/lib/preferences';
+import {date} from '@/lib/utils';
+interface RecordItem{id:number;name?:string;tool:Tool;created_at:string;ros_version?:string;generator_version:string;input:Record<string,string|boolean>}
+export default function Records({kind,records}:{kind:'histories'|'presets';records:Pages<RecordItem>}){
+ const {t,locale}=usePreferences();const [target,setTarget]=useState<RecordItem|null>(null);const [rename,setRename]=useState<RecordItem|null>(null);const [name,setName]=useState('');const isHistory=kind==='histories';
+ return <><Head title={t(isHistory?'history':'presets')}/><PageHeader title={t(isHistory?'history':'presets')} description={locale==='id'?'Data konfigurasi pribadi untuk akun Anda.':'Your private configuration records.'}/><section className="panel">{!records.data.length?<EmptyState title={t('empty')} description={locale==='id'?'Fitur ini aktif ketika generator telah dipublikasikan.':'This feature becomes active when generators are published.'}/>:<div className="table-wrap"><table><thead><tr><th>{t('tools')}</th><th>{isHistory?'RouterOS':t('name')}</th><th>{locale==='id'?'Disimpan':'Saved'}</th><th/></tr></thead><tbody>{records.data.map(r=><tr key={r.id}><td>{r.tool.name}<small>v{r.generator_version}</small></td><td>{isHistory?r.ros_version:r.name}</td><td>{date(r.created_at)}</td><td className="table-actions">{isHistory?<a className="icon-button" aria-label={t('download')} href={'/history/'+r.id+'/download'}><Download size={16}/></a>:<><Link href={'/tools/'+r.tool.slug+'?preset='+r.id} className="icon-button" aria-label={t('show')}><Bookmark size={16}/></Link><Button size="sm" variant="ghost" onClick={()=>{setRename(r);setName(r.name??'');}}>{t('edit')}</Button></>}<button className="icon-button" aria-label={t('delete')} onClick={()=>setTarget(r)}><Trash2 size={16}/></button></td></tr>)}</tbody></table></div>}<Pagination links={records.links}/></section><Dialog open={!!target} onOpenChange={()=>setTarget(null)} title={t('delete')} description={locale==='id'?'Data ini akan dihapus dari akun Anda.':'This record will be removed from your account.'}><div className="dialog-actions"><Button variant="outline" onClick={()=>setTarget(null)}>{t('cancel')}</Button><Button variant="destructive" onClick={()=>{if(target)router.delete((isHistory?'/history/':'/presets/')+target.id,{onSuccess:()=>setTarget(null)});}}>{t('delete')}</Button></div></Dialog><Dialog open={!!rename} onOpenChange={()=>setRename(null)} title={t('edit')}><form onSubmit={e=>{e.preventDefault();if(rename)router.patch('/presets/'+rename.id,{name},{onSuccess:()=>setRename(null)});}}><label className="field">{t('name')}<input className="input" required maxLength={100} value={name} onChange={e=>setName(e.target.value)}/></label><Button type="submit">{t('save')}</Button></form></Dialog></>;
+}

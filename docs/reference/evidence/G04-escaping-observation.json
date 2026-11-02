@@ -1,0 +1,40 @@
+[
+  {
+    "url": "https://buananet.com/mikrotik-pcc-lb-starlink.html",
+    "observed_at": "2026-11-03",
+    "scenario": "v6 default two Starlink",
+    "access": "authenticated_form",
+    "ros": "v6",
+    "interfaceValuePrefixCodepoints": [
+      34,
+      101,
+      116,
+      104,
+      101,
+      114,
+      49,
+      34
+    ],
+    "containsLiteralEscapedQuote": true,
+    "outputLength": 3967
+  },
+  {
+    "url": "https://buananet.com/mikrotik-pcc-lb-starlink.html",
+    "observed_at": "2026-11-03",
+    "scenario": "v7 default two Starlink",
+    "access": "authenticated_form",
+    "ros": "v7",
+    "interfaceValuePrefixCodepoints": [
+      34,
+      101,
+      116,
+      104,
+      101,
+      114,
+      49,
+      34
+    ],
+    "containsLiteralEscapedQuote": true,
+    "outputLength": 4061
+  }
+]

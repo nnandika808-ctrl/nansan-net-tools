@@ -1,0 +1,43 @@
+{
+  "test_id": "simple-youtube-default",
+  "generator": "G02",
+  "reference_url": "https://buananet.com/mikrotik-queue-qos.html",
+  "tested_at": "2026-11-03",
+  "routeros_version": "See scenario input delta and preceding scenario",
+  "input": null,
+  "input_delta": {},
+  "options": null,
+  "expected_behavior": {
+    "outputLength": 2155,
+    "lineCount": 100,
+    "commandPaths": [
+      "/file",
+      "/tool fetch",
+      "/queue simple",
+      "/ip firewall mangle",
+      "/ip firewall address-list"
+    ],
+    "pcc": [],
+    "hasRos6RoutingMark": false,
+    "hasRos7RoutingTable": false,
+    "hasDhcpClient": false,
+    "hasNetwatch": false,
+    "hasRemoteDataset": true,
+    "hasStep1": true,
+    "hasStep2": true,
+    "activeGameCount": 0,
+    "disabledFields": [],
+    "visibleFieldIds": [
+      "Queue-Options",
+      "Queue-List",
+      "Queue-Name",
+      "Priority",
+      "Max-Limit",
+      "match-condition"
+    ]
+  },
+  "expected_structure": null,
+  "expected_output": null,
+  "status": "BLOCKED",
+  "rights": "Functional observations only. No full reference output or exclusive dataset included."
+}

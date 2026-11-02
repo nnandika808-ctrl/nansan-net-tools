@@ -1,0 +1,368 @@
+{
+  "id": "G03",
+  "url": "https://buananet.com/pcc.html",
+  "observed_at": "2026-11-03",
+  "method": "Playwright MCP 0.0.84; authenticated manual session",
+  "status": "FORM_OBSERVED; OUTPUT_UNVERIFIED",
+  "title": "MikroTik PCC Load Balancing Script Generator | Buananet.com",
+  "heading": "MIKROTIK  LOAD BALANCING PCC SCRIPT GENERATOR",
+  "fields": [
+    {
+      "id": "num-wan-lines",
+      "name": "",
+      "tag": "INPUT",
+      "type": "number",
+      "label": "Number of WAN Lines",
+      "placeholder": null,
+      "value": "2",
+      "required": false,
+      "disabled": false,
+      "min": "2",
+      "max": ""
+    },
+    {
+      "id": "routeros-version",
+      "name": "",
+      "tag": "SELECT",
+      "type": "select-one",
+      "label": "RouterOS Version",
+      "placeholder": null,
+      "value": "v6.xx",
+      "required": false,
+      "disabled": false,
+      "options": [
+        {
+          "label": "RouterOS v6.xx",
+          "value": "v6.xx",
+          "selected": true,
+          "disabled": false
+        },
+        {
+          "label": "RouterOS v7.xx",
+          "value": "v7.xx",
+          "selected": false,
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "id": "local-target-type",
+      "name": "",
+      "tag": "SELECT",
+      "type": "select-one",
+      "label": "Local Target Type",
+      "placeholder": null,
+      "value": "IP Address List",
+      "required": false,
+      "disabled": false,
+      "options": [
+        {
+          "label": "IP Address List",
+          "value": "IP Address List",
+          "selected": true,
+          "disabled": false
+        },
+        {
+          "label": "In. Interface",
+          "value": "In. Interface",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "In. Interface List",
+          "value": "In. Interface List",
+          "selected": false,
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "id": "interface-target",
+      "name": "",
+      "tag": "INPUT",
+      "type": "text",
+      "label": "Local IP Target",
+      "placeholder": "e.g., 192.168.1.0/24, 10.0.0.0/8",
+      "value": "192.168.0.0/16, 172.16.0.0/12, 10.0.0.0/8",
+      "required": false,
+      "disabled": false,
+      "min": "",
+      "max": ""
+    },
+    {
+      "id": "bandwidth-ratio-checkbox",
+      "name": "",
+      "tag": "INPUT",
+      "type": "checkbox",
+      "label": "Bandwidth Ratio",
+      "placeholder": null,
+      "value": "on",
+      "checked": false,
+      "required": false,
+      "disabled": false,
+      "min": "",
+      "max": ""
+    },
+    {
+      "id": "recursive-checkbox",
+      "name": "",
+      "tag": "INPUT",
+      "type": "checkbox",
+      "label": "Recursive Gateway",
+      "placeholder": null,
+      "value": "on",
+      "checked": false,
+      "required": false,
+      "disabled": false,
+      "min": "",
+      "max": ""
+    },
+    {
+      "id": "pccType",
+      "name": "",
+      "tag": "SELECT",
+      "type": "select-one",
+      "label": null,
+      "placeholder": null,
+      "value": "both-addresses-and-ports",
+      "required": false,
+      "disabled": false,
+      "options": [
+        {
+          "label": "both-addresses-and-ports (*Recommended)",
+          "value": "both-addresses-and-ports",
+          "selected": true,
+          "disabled": false
+        },
+        {
+          "label": "both-addresses",
+          "value": "both-addresses",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "both-ports",
+          "value": "both-ports",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "dst-address",
+          "value": "dst-address",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "dst-address-and-port",
+          "value": "dst-address-and-port",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "dst-port",
+          "value": "dst-port",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "src-address",
+          "value": "src-address",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "src-address-and-port",
+          "value": "src-address-and-port",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "src-port",
+          "value": "src-port",
+          "selected": false,
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "id": "wan-isp-1",
+      "name": "",
+      "tag": "INPUT",
+      "type": "text",
+      "label": "WAN ISP-1",
+      "placeholder": "e.g., ether1",
+      "value": "ether1",
+      "required": false,
+      "disabled": false,
+      "min": "",
+      "max": ""
+    },
+    {
+      "id": "speed-isp-1",
+      "name": "",
+      "tag": "INPUT",
+      "type": "number",
+      "label": "ISP-1 Speed (Mbps)",
+      "placeholder": "e.g., 50",
+      "value": "",
+      "required": false,
+      "disabled": true,
+      "min": "",
+      "max": ""
+    },
+    {
+      "id": "gateway-isp-1",
+      "name": "",
+      "tag": "INPUT",
+      "type": "text",
+      "label": "Gateway ISP-1",
+      "placeholder": "e.g., 192.168.1.1",
+      "value": "192.168.1.1",
+      "required": false,
+      "disabled": false,
+      "min": "",
+      "max": ""
+    },
+    {
+      "id": "ip-public-check-isp-1",
+      "name": "",
+      "tag": "INPUT",
+      "type": "text",
+      "label": "IP or DNS Check ISP-1",
+      "placeholder": "e.g., 1.1.1.x",
+      "value": "",
+      "required": false,
+      "disabled": true,
+      "min": "",
+      "max": ""
+    },
+    {
+      "id": "wan-isp-2",
+      "name": "",
+      "tag": "INPUT",
+      "type": "text",
+      "label": "WAN ISP-2",
+      "placeholder": "e.g., ether2",
+      "value": "ether2",
+      "required": false,
+      "disabled": false,
+      "min": "",
+      "max": ""
+    },
+    {
+      "id": "speed-isp-2",
+      "name": "",
+      "tag": "INPUT",
+      "type": "number",
+      "label": "ISP-2 Speed (Mbps)",
+      "placeholder": "e.g., 50",
+      "value": "",
+      "required": false,
+      "disabled": true,
+      "min": "",
+      "max": ""
+    },
+    {
+      "id": "gateway-isp-2",
+      "name": "",
+      "tag": "INPUT",
+      "type": "text",
+      "label": "Gateway ISP-2",
+      "placeholder": "e.g., 192.168.2.1",
+      "value": "192.168.2.1",
+      "required": false,
+      "disabled": false,
+      "min": "",
+      "max": ""
+    },
+    {
+      "id": "ip-public-check-isp-2",
+      "name": "",
+      "tag": "INPUT",
+      "type": "text",
+      "label": "IP or DNS Check ISP-2",
+      "placeholder": "e.g., 1.1.1.x",
+      "value": "",
+      "required": false,
+      "disabled": true,
+      "min": "",
+      "max": ""
+    },
+    {
+      "id": "script-output",
+      "name": "",
+      "tag": "TEXTAREA",
+      "type": "textarea",
+      "label": null,
+      "placeholder": null,
+      "value": "[output omitted]",
+      "required": false,
+      "disabled": false
+    }
+  ],
+  "buttons": [
+    {
+      "id": "signout",
+      "text": "Logout",
+      "disabled": false
+    },
+    {
+      "id": "ShowProfile",
+      "text": "My Profile",
+      "disabled": false
+    },
+    {
+      "id": "",
+      "text": "LB PCC Calculator",
+      "disabled": false
+    },
+    {
+      "id": "generate-script-btn",
+      "text": "Generate",
+      "disabled": false
+    },
+    {
+      "id": "clear-all-btn",
+      "text": "Clear All",
+      "disabled": false
+    },
+    {
+      "id": "copy-script-btn",
+      "text": "Copy Script",
+      "disabled": false
+    },
+    {
+      "id": "verify",
+      "text": "VERIFY YOUR E-MAIL NOW",
+      "disabled": false
+    },
+    {
+      "id": "not-subscribe",
+      "text": "SUBSCRIBE NOW",
+      "disabled": false
+    },
+    {
+      "id": "buananet-chat-btn",
+      "text": "💬 Ask Assistant",
+      "disabled": false
+    },
+    {
+      "id": "send-btn",
+      "text": "➤",
+      "disabled": false
+    }
+  ],
+  "outputs": [
+    {
+      "tag": "TEXTAREA",
+      "id": "script-output",
+      "length": 65
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "chat-input",
+      "length": 0
+    }
+  ],
+  "accessMessage": false
+}

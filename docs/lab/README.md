@@ -1,0 +1,9 @@
+# Disposable RouterOS lab
+
+The lab uses official MikroTik CHR images in QEMU 11.1.0, snapshot overlays discarded on shutdown, three restricted user-mode virtual networks, and a serial console bound to loopback. It does not accept a router IP and never connects to existing/production routers. Images and binaries are excluded from Git. The QEMU installer SHA-512 was verified against its published checksum; CHR download/archive and disk hashes are recorded as provenance, not claimed as a vendor signature verification.
+
+Actual runs on 2026-11-03: CHR 6.49.19 accepted the one ROS6 PCC case; CHR 7.25 accepted the four ROS7 PCC cases. Reports record command counts and two NAT rules per case. The interface-target scenario requires an existing bridge; the harness creates that lab prerequisite and does not add it to generator output. Initial console automation needed a prompt-truncation fix; this did not require changing PCC logic.
+
+These results prove command acceptance and selected object counts for the tested inputs. They do not prove route reachability, packet distribution, failover, repeated-import safety, other WAN counts, or arbitrary RouterOS versions. G03 is still not COMPLETE or public.
+
+An isolated parser probe rejected a deliberately escaped interface literal (`out-interface=\"ether1\"`). Subsequent byte-level browser inspection in `../reference/evidence/G04-escaping-observation.json` shows the actual G04 interface value starts with code point 34 (ordinary quote), **not** 92 (backslash). Backslash quoting inside its nested DHCP script is a separate context. The probe therefore does **not** establish a bug in Buananet's generated output; the earlier candidate is withdrawn. Do not change the reference behavior on that assumption.

@@ -1,0 +1,51 @@
+{
+  "started_at": "2026-11-02T19:11:41.985Z",
+  "completed_at": "2026-11-02T19:12:35.382Z",
+  "image_version": "7.25",
+  "image_sha256": "5b9c77075b67f8b53f747f9d918d0e446e8cfbd943dc82ee28b7fcb68130d140",
+  "emulator": "QEMU 11.1.0 TCG",
+  "isolation": "Fresh official CHR; snapshot overlay discarded; three restricted user-mode virtual networks; no bridge; serial console bound to loopback; no router IP accepted",
+  "qemu_pid": 14280,
+  "identity": "NANSAN-LAB-8876f570fa4b",
+  "cases": [
+    {
+      "test_id": "ros7-two-wan-equal",
+      "status": "SYNTAX_AND_NAT_COUNT_PASSED",
+      "commands": 30,
+      "nat_rules": 2
+    },
+    {
+      "test_id": "ros7-ratio-50-100",
+      "status": "SYNTAX_AND_NAT_COUNT_PASSED",
+      "commands": 31,
+      "nat_rules": 2
+    },
+    {
+      "test_id": "ros7-recursive",
+      "status": "SYNTAX_AND_NAT_COUNT_PASSED",
+      "commands": 33,
+      "nat_rules": 2
+    },
+    {
+      "test_id": "ros7-interface-target",
+      "status": "SYNTAX_AND_NAT_COUNT_PASSED",
+      "commands": 30,
+      "nat_rules": 2
+    }
+  ],
+  "scope": "Command import syntax and selected object counts only. No traffic distribution/failover proof.",
+  "status": "SCOPED_SYNTAX_CHECKS_PASSED",
+  "observed_version": "7.25",
+  "preconditions": [
+    "ether1 and ether2 are disposable virtual WAN interfaces",
+    "bridge LAN interface created by the lab harness, as required by the interface-target fixture"
+  ],
+  "escaped_interface_quote_probe": {
+    "input_quote_codepoints": [
+      92,
+      34
+    ],
+    "accepted": false,
+    "result": "hain=srcnat acti<-LAB-8876f570fa4b] /ip/firewall/mangle> /ip firewall nat add chain=srcnat act>< /ip firewall nat add chain=srcnat actio                                      < /ip firewall nat add chain=srcnat action=masquerade out-interface=\\\"ether1\\\" < /ip firewall nat add chain=srcnat action=masquerade out-interface=\\\"ether1\\\"><on=masquerade out-interface=\\\"ether1\\\" c                                      <on=masquerade out-interface=\\\"ether1\\\" comment=\"NANSAN-QUOTE-PROBE\"<on=masquerade out-interface=\\\"ether1\\\" comment=\"NANSAN-QUOTE-PROBE\"\nsyntax error (line 1 column 67)\n<-LAB-8876f570fa4b] /ip/firewall/mangle>                                       <-LAB-8876f570fa4b] /ip/firewall/mangle> "
+  }
+}

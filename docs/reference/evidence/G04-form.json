@@ -1,0 +1,358 @@
+{
+  "id": "G04",
+  "url": "https://buananet.com/mikrotik-pcc-lb-starlink.html",
+  "observed_at": "2026-11-03",
+  "method": "Playwright MCP 0.0.84; authenticated manual session",
+  "status": "FORM_OBSERVED; OUTPUT_UNVERIFIED",
+  "title": "Starlink Load Balancing PCC MikroTik Generator | Buananet.com",
+  "heading": "STARLINK LOAD BALANCING PCC MIKROTIK GENERATOR",
+  "fields": [
+    {
+      "id": "ros",
+      "name": "",
+      "tag": "SELECT",
+      "type": "select-one",
+      "label": null,
+      "placeholder": null,
+      "value": "v6",
+      "required": false,
+      "disabled": false,
+      "options": [
+        {
+          "label": "RouterOS v6",
+          "value": "v6",
+          "selected": true,
+          "disabled": false
+        },
+        {
+          "label": "RouterOS v7",
+          "value": "v7",
+          "selected": false,
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "id": "count",
+      "name": "",
+      "tag": "SELECT",
+      "type": "select-one",
+      "label": null,
+      "placeholder": null,
+      "value": "2",
+      "required": false,
+      "disabled": false,
+      "options": [
+        {
+          "label": "2",
+          "value": "2",
+          "selected": true,
+          "disabled": false
+        },
+        {
+          "label": "3",
+          "value": "3",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "4",
+          "value": "4",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "5",
+          "value": "5",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "6",
+          "value": "6",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "7",
+          "value": "7",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "8",
+          "value": "8",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "9",
+          "value": "9",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "10",
+          "value": "10",
+          "selected": false,
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "id": "mode",
+      "name": "",
+      "tag": "SELECT",
+      "type": "select-one",
+      "label": null,
+      "placeholder": null,
+      "value": "equal",
+      "required": false,
+      "disabled": false,
+      "options": [
+        {
+          "label": "Equal (Balanced)",
+          "value": "equal",
+          "selected": true,
+          "disabled": false
+        },
+        {
+          "label": "Manual Ratio",
+          "value": "manual",
+          "selected": false,
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "id": "localIpTarget",
+      "name": "",
+      "tag": "INPUT",
+      "type": "text",
+      "label": null,
+      "placeholder": null,
+      "value": "192.168.0.0/16, 172.16.0.0/12, 10.0.0.0/8",
+      "required": false,
+      "disabled": false,
+      "min": "",
+      "max": ""
+    },
+    {
+      "id": "pccType",
+      "name": "",
+      "tag": "SELECT",
+      "type": "select-one",
+      "label": null,
+      "placeholder": null,
+      "value": "both-addresses-and-ports",
+      "required": false,
+      "disabled": false,
+      "options": [
+        {
+          "label": "both-addresses-and-ports (*Recommended)",
+          "value": "both-addresses-and-ports",
+          "selected": true,
+          "disabled": false
+        },
+        {
+          "label": "both-addresses",
+          "value": "both-addresses",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "both-ports",
+          "value": "both-ports",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "dst-address",
+          "value": "dst-address",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "dst-address-and-port",
+          "value": "dst-address-and-port",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "dst-port",
+          "value": "dst-port",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "src-address",
+          "value": "src-address",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "src-address-and-port",
+          "value": "src-address-and-port",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "src-port",
+          "value": "src-port",
+          "selected": false,
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "id": "netwatchEnable",
+      "name": "",
+      "tag": "INPUT",
+      "type": "checkbox",
+      "label": "Enable Failover Monitoring (Netwatch)",
+      "placeholder": null,
+      "value": "on",
+      "checked": false,
+      "required": false,
+      "disabled": false,
+      "min": "",
+      "max": ""
+    },
+    {
+      "id": "netwatchTargets",
+      "name": "",
+      "tag": "INPUT",
+      "type": "text",
+      "label": null,
+      "placeholder": "auto: 1.1.1.1,1.1.1.2,1.1.1.3,... or leave empty",
+      "value": "1.1.1.1,1.1.1.2",
+      "required": false,
+      "disabled": false,
+      "min": "",
+      "max": ""
+    },
+    {
+      "id": "",
+      "name": "",
+      "tag": "INPUT",
+      "type": "text",
+      "label": null,
+      "placeholder": "e.g., ether1 or wlan1",
+      "value": "ether1",
+      "required": false,
+      "disabled": false,
+      "min": "",
+      "max": ""
+    },
+    {
+      "id": "",
+      "name": "",
+      "tag": "INPUT",
+      "type": "number",
+      "label": null,
+      "placeholder": null,
+      "value": "1",
+      "required": false,
+      "disabled": false,
+      "min": "1",
+      "max": ""
+    },
+    {
+      "id": "",
+      "name": "",
+      "tag": "INPUT",
+      "type": "text",
+      "label": null,
+      "placeholder": "e.g., ether1 or wlan1",
+      "value": "ether2",
+      "required": false,
+      "disabled": false,
+      "min": "",
+      "max": ""
+    },
+    {
+      "id": "",
+      "name": "",
+      "tag": "INPUT",
+      "type": "number",
+      "label": null,
+      "placeholder": null,
+      "value": "1",
+      "required": false,
+      "disabled": false,
+      "min": "1",
+      "max": ""
+    },
+    {
+      "id": "out",
+      "name": "",
+      "tag": "TEXTAREA",
+      "type": "textarea",
+      "label": null,
+      "placeholder": null,
+      "value": "[output omitted]",
+      "required": false,
+      "disabled": false
+    }
+  ],
+  "buttons": [
+    {
+      "id": "signout",
+      "text": "Logout",
+      "disabled": false
+    },
+    {
+      "id": "ShowProfile",
+      "text": "My Profile",
+      "disabled": false
+    },
+    {
+      "id": "",
+      "text": "Generate Script",
+      "disabled": false
+    },
+    {
+      "id": "",
+      "text": "Copy",
+      "disabled": false
+    },
+    {
+      "id": "",
+      "text": "Download .rsc",
+      "disabled": false
+    },
+    {
+      "id": "not-subscribe",
+      "text": "SUBSCRIBE NOW",
+      "disabled": false
+    },
+    {
+      "id": "",
+      "text": "CLOSE",
+      "disabled": false
+    },
+    {
+      "id": "buananet-chat-btn",
+      "text": "💬 Ask Assistant",
+      "disabled": false
+    },
+    {
+      "id": "send-btn",
+      "text": "➤",
+      "disabled": false
+    }
+  ],
+  "outputs": [
+    {
+      "tag": "TEXTAREA",
+      "id": "out",
+      "length": 3967
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "chat-input",
+      "length": 0
+    }
+  ],
+  "accessMessage": false
+}

@@ -1,0 +1,467 @@
+{
+  "id": "G01",
+  "url": "https://buananet.com/mikrotik-static-routing.html",
+  "observed_at": "2026-11-03",
+  "method": "Playwright MCP 0.0.84; authenticated manual session",
+  "status": "FORM_OBSERVED; OUTPUT_UNVERIFIED",
+  "title": "MikroTik Static Routing Youtube, Tiktok, Facebook, WhatsApp, etc | Buananet.com",
+  "heading": "STATIC ROUTING\n          YOUTUBE, TIKTOK, FACEBOOK, WHATSAPP, etc.",
+  "fields": [
+    {
+      "id": "routing-list",
+      "name": "",
+      "tag": "SELECT",
+      "type": "select-one",
+      "label": null,
+      "placeholder": null,
+      "value": "Youtube",
+      "required": false,
+      "disabled": false,
+      "options": [
+        {
+          "label": "[ Streaming ]",
+          "value": "",
+          "selected": false,
+          "disabled": true
+        },
+        {
+          "label": "Youtube",
+          "value": "Youtube",
+          "selected": true,
+          "disabled": false
+        },
+        {
+          "label": "Tiktok",
+          "value": "Tiktok",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "Vidio",
+          "value": "Vidio",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "Iflix",
+          "value": "Iflix",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "Netflix",
+          "value": "Netflix",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "Spotify",
+          "value": "Spotify",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "Wetv",
+          "value": "Wetv",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "Vimeo",
+          "value": "Vimeo",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "Twitch",
+          "value": "Twitch",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "[ Social Media ]",
+          "value": "",
+          "selected": false,
+          "disabled": true
+        },
+        {
+          "label": "Facebook",
+          "value": "Facebook",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "Instagram",
+          "value": "Instagram",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "WhatsApp",
+          "value": "WhatsApp",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "Twitter / X",
+          "value": "Twitter-X",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "Telegram",
+          "value": "Telegram",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "Threads",
+          "value": "Threads",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "Imo.im",
+          "value": "Imo",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "Snapchat",
+          "value": "Snapchat",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "Linkedin",
+          "value": "Linkedin",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "Pinterest",
+          "value": "Pinterest",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "[ E-Commerce ]",
+          "value": "",
+          "selected": false,
+          "disabled": true
+        },
+        {
+          "label": "Amazon",
+          "value": "Amazon",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "Alibaba",
+          "value": "Alibaba",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "Etsy",
+          "value": "Etsy",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "Rakuten",
+          "value": "Rakuten",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "Shopify",
+          "value": "Shopify",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "Wish",
+          "value": "Wish",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "Temu",
+          "value": "Temu",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "Ralali",
+          "value": "Ralali",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "Shopee",
+          "value": "Shopee",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "Tokopedia",
+          "value": "Tokopedia",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "Bukalapak",
+          "value": "Bukalapak",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "Lazada",
+          "value": "Lazada",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "Blibli",
+          "value": "Blibli",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "Olx",
+          "value": "Olx",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "[ Video Conperence ]",
+          "value": "",
+          "selected": false,
+          "disabled": true
+        },
+        {
+          "label": "Zoom Meeting",
+          "value": "Zoom",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "Microsoft Teams",
+          "value": "Teams",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "Google Meet",
+          "value": "Google-Meet",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "Discord",
+          "value": "Discord",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "Webex",
+          "value": "Webex",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "Skype",
+          "value": "Skype",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "Jitsi",
+          "value": "Jitsi",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "Whereby",
+          "value": "Whereby",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "[ Other List IP ]",
+          "value": "",
+          "selected": false,
+          "disabled": true
+        },
+        {
+          "label": "Meta",
+          "value": "Meta",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "Google",
+          "value": "Google",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "Speedtest",
+          "value": "Speedtest",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "GGC (Google Global Cache)",
+          "value": "GGC",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "Nice IIX or OIXP (indonesia)",
+          "value": "NICE-OIXP",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "All Indonesian Bank",
+          "value": "Bank-Indonesia",
+          "selected": false,
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "id": "ros-list",
+      "name": "",
+      "tag": "SELECT",
+      "type": "select-one",
+      "label": null,
+      "placeholder": null,
+      "value": "ros6",
+      "required": false,
+      "disabled": false,
+      "options": [
+        {
+          "label": "RouterOS v6.xx",
+          "value": "ros6",
+          "selected": true,
+          "disabled": false
+        },
+        {
+          "label": "RouterOS v7.xx",
+          "value": "ros7",
+          "selected": false,
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "id": "match-condition",
+      "name": "",
+      "tag": "SELECT",
+      "type": "select-one",
+      "label": null,
+      "placeholder": null,
+      "value": "tls-host",
+      "required": false,
+      "disabled": false,
+      "options": [
+        {
+          "label": "TLS-HOST",
+          "value": "tls-host",
+          "selected": true,
+          "disabled": false
+        },
+        {
+          "label": "CONTENT",
+          "value": "content",
+          "selected": false,
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "id": "gateway-option",
+      "name": "",
+      "tag": "INPUT",
+      "type": "text",
+      "label": null,
+      "placeholder": "e.g., 192.168.1.1",
+      "value": "192.168.1.1",
+      "required": false,
+      "disabled": false,
+      "min": "",
+      "max": ""
+    },
+    {
+      "id": "routing-mark",
+      "name": "",
+      "tag": "INPUT",
+      "type": "text",
+      "label": null,
+      "placeholder": "e.g., To-ISP-1",
+      "value": "To-ISP-1",
+      "required": false,
+      "disabled": false,
+      "min": "",
+      "max": ""
+    }
+  ],
+  "buttons": [
+    {
+      "id": "signout",
+      "text": "Logout",
+      "disabled": false
+    },
+    {
+      "id": "ShowProfile",
+      "text": "My Profile",
+      "disabled": false
+    },
+    {
+      "id": "bt",
+      "text": "Generate Script",
+      "disabled": false
+    },
+    {
+      "id": "",
+      "text": "Copy STEP 1",
+      "disabled": false
+    },
+    {
+      "id": "",
+      "text": "Copy STEP 2",
+      "disabled": false
+    },
+    {
+      "id": "verify",
+      "text": "VERIFY YOUR E-MAIL NOW",
+      "disabled": false
+    },
+    {
+      "id": "not-subscribe",
+      "text": "SUBSCRIBE NOW",
+      "disabled": false
+    },
+    {
+      "id": "buananet-chat-btn",
+      "text": "💬 Ask Assistant",
+      "disabled": false
+    },
+    {
+      "id": "send-btn",
+      "text": "➤",
+      "disabled": false
+    }
+  ],
+  "outputs": [
+    {
+      "tag": "TEXTAREA",
+      "id": "chat-input",
+      "length": 0
+    }
+  ],
+  "accessMessage": false
+}

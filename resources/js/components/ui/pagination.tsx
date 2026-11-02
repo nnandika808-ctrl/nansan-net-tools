@@ -1,0 +1,2 @@
+import {Link} from '@inertiajs/react';
+export function Pagination({links}:{links:{url:string|null;label:string;active:boolean}[]}) {return <nav className="pagination" aria-label="Pagination">{links.map((l,i)=>l.url?<Link key={i} href={l.url} className={l.active?'active':''} preserveScroll>{l.label.replace(/&laquo;|&raquo;/g,'')}</Link>:<span key={i}>{l.label.replace(/&laquo;|&raquo;/g,'')}</span>)}</nav>;}

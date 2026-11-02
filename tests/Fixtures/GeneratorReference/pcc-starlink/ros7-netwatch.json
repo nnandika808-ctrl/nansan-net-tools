@@ -1,0 +1,70 @@
+{
+  "test_id": "ros7-netwatch",
+  "generator": "G04",
+  "reference_url": "https://buananet.com/mikrotik-pcc-lb-starlink.html",
+  "tested_at": "2026-11-03",
+  "routeros_version": "See scenario input delta and preceding scenario",
+  "input": null,
+  "input_delta": {
+    "netwatchEnable": true
+  },
+  "options": null,
+  "expected_behavior": {
+    "outputLength": 7418,
+    "lineCount": 71,
+    "commandPaths": [
+      "/ip dns",
+      "/ip firewall address-list",
+      "/routing table",
+      "/ip firewall nat",
+      "/ip dhcp-client",
+      "/ip firewall mangle",
+      "/routing rule",
+      "/tool netwatch"
+    ],
+    "pcc": [
+      {
+        "classifier": "both-addresses-and-ports",
+        "denominator": 4,
+        "remainder": 0
+      },
+      {
+        "classifier": "both-addresses-and-ports",
+        "denominator": 4,
+        "remainder": 1
+      },
+      {
+        "classifier": "both-addresses-and-ports",
+        "denominator": 4,
+        "remainder": 2
+      },
+      {
+        "classifier": "both-addresses-and-ports",
+        "denominator": 4,
+        "remainder": 3
+      }
+    ],
+    "hasRos6RoutingMark": true,
+    "hasRos7RoutingTable": true,
+    "hasDhcpClient": true,
+    "hasNetwatch": true,
+    "hasRemoteDataset": false,
+    "hasStep1": false,
+    "hasStep2": false,
+    "activeGameCount": 1,
+    "disabledFields": [],
+    "visibleFieldIds": [
+      "ros",
+      "count",
+      "mode",
+      "localIpTarget",
+      "pccType",
+      "netwatchEnable",
+      "netwatchTargets"
+    ]
+  },
+  "expected_structure": null,
+  "expected_output": null,
+  "status": "BLOCKED",
+  "rights": "Functional observations only. No full reference output or exclusive dataset included."
+}

@@ -1,0 +1,11 @@
+import {useEffect,useState} from 'react';
+import {Link} from '@inertiajs/react';
+import {Search as SearchIcon,LoaderCircle,ArrowUpRight} from 'lucide-react';
+import {usePreferences} from '@/lib/preferences';
+type Results={tools:{name:string;slug:string}[];articles:{title:string;slug:string}[]};
+export function Search({large=false}:{large?:boolean}){
+ const {t}=usePreferences();const [query,setQuery]=useState('');const [results,setResults]=useState<Results|null>(null);const [loading,setLoading]=useState(false);const [error,setError]=useState(false);
+ useEffect(()=>{if(query.trim().length<2){return;}const abort=new AbortController();const timer=setTimeout(()=>{setLoading(true);setError(false);fetch('/search?q='+encodeURIComponent(query),{signal:abort.signal,headers:{Accept:'application/json'}}).then(r=>{if(!r.ok)throw new Error('search');return r.json();}).then(setResults).catch(e=>{if(e.name!=='AbortError')setError(true);}).finally(()=>{if(!abort.signal.aborted)setLoading(false);});},300);return()=>{clearTimeout(timer);abort.abort();};},[query]);
+ const highlight=(text:string)=>{const idx=text.toLowerCase().indexOf(query.toLowerCase());return idx<0?text:<>{text.slice(0,idx)}<mark>{text.slice(idx,idx+query.length)}</mark>{text.slice(idx+query.length)}</>;};
+ return <div className={'search-wrap '+(large?'search-large':'')}><div className="search-input"><SearchIcon size={21}/><input aria-label={t('search')} placeholder={large?t('searchHint'):t('search')} value={query} onChange={e=>{setQuery(e.target.value);setResults(null);}} onKeyDown={e=>{if(e.key==='Escape')setQuery('');}}/>{loading?<LoaderCircle className="spin" size={19}/>:<kbd>⌕</kbd>}</div>{query.length>=2&&<div className="search-results" aria-live="polite">{loading?<div className="skeleton"/>:error?<p role="alert">{t('unavailable')}</p>:results?<>{results.tools.map(r=><Link key={r.slug} href={'/tools/'+r.slug} onClick={()=>setQuery('')}>{highlight(r.name)}<ArrowUpRight size={15}/></Link>)}{results.articles.map(r=><Link key={r.slug} href={'/docs/'+r.slug} onClick={()=>setQuery('')}>{highlight(r.title)}<span>{t('docs')}</span></Link>)}{!results.tools.length&&!results.articles.length&&<p>{t('noResults')}</p>}</>:<p>{t('working')}</p>}</div>}</div>;
+}

@@ -1,0 +1,203 @@
+{
+  "id": "G03",
+  "source": "https://buananet.com/pcc.html",
+  "status": "FORM_OBSERVED; OUTPUT_UNVERIFIED",
+  "observedAt": "2026-11-03",
+  "fields": [
+    {
+      "key": "num-wan-lines",
+      "label": "Number of WAN Lines",
+      "type": "number",
+      "default": "2",
+      "min": 2,
+      "referenceId": "num-wan-lines"
+    },
+    {
+      "key": "routeros-version",
+      "label": "RouterOS Version",
+      "type": "select",
+      "default": "v6.xx",
+      "options": [
+        {
+          "label": "RouterOS v6.xx",
+          "value": "v6.xx",
+          "disabled": false
+        },
+        {
+          "label": "RouterOS v7.xx",
+          "value": "v7.xx",
+          "disabled": false
+        }
+      ],
+      "referenceId": "routeros-version"
+    },
+    {
+      "key": "local-target-type",
+      "label": "Local Target Type",
+      "type": "select",
+      "default": "IP Address List",
+      "options": [
+        {
+          "label": "IP Address List",
+          "value": "IP Address List",
+          "disabled": false
+        },
+        {
+          "label": "In. Interface",
+          "value": "In. Interface",
+          "disabled": false
+        },
+        {
+          "label": "In. Interface List",
+          "value": "In. Interface List",
+          "disabled": false
+        }
+      ],
+      "referenceId": "local-target-type"
+    },
+    {
+      "key": "interface-target",
+      "label": "Local IP Target",
+      "type": "text",
+      "default": "192.168.0.0/16, 172.16.0.0/12, 10.0.0.0/8",
+      "placeholder": "e.g., 192.168.1.0/24, 10.0.0.0/8",
+      "referenceId": "interface-target"
+    },
+    {
+      "key": "bandwidth-ratio-checkbox",
+      "label": "Bandwidth Ratio",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "bandwidth-ratio-checkbox"
+    },
+    {
+      "key": "recursive-checkbox",
+      "label": "Recursive Gateway",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "recursive-checkbox"
+    },
+    {
+      "key": "pccType",
+      "label": "PCC Classifier",
+      "type": "select",
+      "default": "both-addresses-and-ports",
+      "options": [
+        {
+          "label": "both-addresses-and-ports (*Recommended)",
+          "value": "both-addresses-and-ports",
+          "disabled": false
+        },
+        {
+          "label": "both-addresses",
+          "value": "both-addresses",
+          "disabled": false
+        },
+        {
+          "label": "both-ports",
+          "value": "both-ports",
+          "disabled": false
+        },
+        {
+          "label": "dst-address",
+          "value": "dst-address",
+          "disabled": false
+        },
+        {
+          "label": "dst-address-and-port",
+          "value": "dst-address-and-port",
+          "disabled": false
+        },
+        {
+          "label": "dst-port",
+          "value": "dst-port",
+          "disabled": false
+        },
+        {
+          "label": "src-address",
+          "value": "src-address",
+          "disabled": false
+        },
+        {
+          "label": "src-address-and-port",
+          "value": "src-address-and-port",
+          "disabled": false
+        },
+        {
+          "label": "src-port",
+          "value": "src-port",
+          "disabled": false
+        }
+      ],
+      "referenceId": "pccType"
+    },
+    {
+      "key": "wan-isp-1",
+      "label": "WAN ISP-1",
+      "type": "text",
+      "default": "ether1",
+      "placeholder": "e.g., ether1",
+      "referenceId": "wan-isp-1"
+    },
+    {
+      "key": "speed-isp-1",
+      "label": "ISP-1 Speed (Mbps)",
+      "type": "number",
+      "default": "",
+      "placeholder": "e.g., 50",
+      "conditional": "bandwidth-ratio-checkbox",
+      "referenceId": "speed-isp-1"
+    },
+    {
+      "key": "gateway-isp-1",
+      "label": "Gateway ISP-1",
+      "type": "text",
+      "default": "192.168.1.1",
+      "placeholder": "e.g., 192.168.1.1",
+      "referenceId": "gateway-isp-1"
+    },
+    {
+      "key": "ip-public-check-isp-1",
+      "label": "IP or DNS Check ISP-1",
+      "type": "text",
+      "default": "",
+      "placeholder": "e.g., 1.1.1.x",
+      "conditional": "recursive-checkbox",
+      "referenceId": "ip-public-check-isp-1"
+    },
+    {
+      "key": "wan-isp-2",
+      "label": "WAN ISP-2",
+      "type": "text",
+      "default": "ether2",
+      "placeholder": "e.g., ether2",
+      "referenceId": "wan-isp-2"
+    },
+    {
+      "key": "speed-isp-2",
+      "label": "ISP-2 Speed (Mbps)",
+      "type": "number",
+      "default": "",
+      "placeholder": "e.g., 50",
+      "conditional": "bandwidth-ratio-checkbox",
+      "referenceId": "speed-isp-2"
+    },
+    {
+      "key": "gateway-isp-2",
+      "label": "Gateway ISP-2",
+      "type": "text",
+      "default": "192.168.2.1",
+      "placeholder": "e.g., 192.168.2.1",
+      "referenceId": "gateway-isp-2"
+    },
+    {
+      "key": "ip-public-check-isp-2",
+      "label": "IP or DNS Check ISP-2",
+      "type": "text",
+      "default": "",
+      "placeholder": "e.g., 1.1.1.x",
+      "conditional": "recursive-checkbox",
+      "referenceId": "ip-public-check-isp-2"
+    }
+  ]
+}

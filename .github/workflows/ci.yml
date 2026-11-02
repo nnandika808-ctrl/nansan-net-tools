@@ -1,0 +1,66 @@
+name: Checks
+on:
+  push:
+    branches: [main, 'feature/**']
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.4
+        env:
+          MYSQL_DATABASE: ci_tools
+          MYSQL_USER: ci_tools
+          MYSQL_PASSWORD: isolated_ci_password
+          MYSQL_ROOT_PASSWORD: isolated_ci_root_password
+        ports: ['3306:3306']
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s --health-timeout=5s --health-retries=10
+      redis:
+        image: redis:7-alpine
+        ports: ['6379:6379']
+        options: --health-cmd="redis-cli ping" --health-interval=5s --health-timeout=5s --health-retries=10
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: mbstring, intl, pdo_mysql, pdo_sqlite, gd, zip, sodium
+          coverage: none
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: '24'
+          cache: npm
+      - run: composer install --prefer-dist --no-interaction
+      - run: npm ci
+      - run: node scripts/setup-local.mjs
+      - run: php artisan key:generate --force
+      - run: php artisan test
+      - run: npm run typecheck && npm run lint && npm test && npm run build
+      - name: MySQL feature suite
+        run: php artisan test --filter=PlatformTest
+        env:
+          DB_CONNECTION: mysql
+          DB_DATABASE: ci_tools
+          DB_USERNAME: ci_tools
+          DB_PASSWORD: isolated_ci_password
+          CACHE_STORE: array
+      - name: MySQL, Redis and queued heartbeat
+        run: php artisan migrate --force && php tests/Support/check-services.php
+        env:
+          APP_ENV: testing
+          DB_CONNECTION: mysql
+          DB_DATABASE: ci_tools
+          DB_USERNAME: ci_tools
+          DB_PASSWORD: isolated_ci_password
+          CACHE_STORE: redis
+          QUEUE_CONNECTION: redis
+          REDIS_HOST: 127.0.0.1
+          REDIS_PASSWORD: 'null'
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+      - run: composer audit && npm audit

@@ -1,0 +1,1519 @@
+[
+  {
+    "test_id": "ros6-two-wan-equal",
+    "url": "https://buananet.com/pcc.html",
+    "observed_at": "2026-11-03",
+    "status": "REFERENCE_OBSERVED; IMPLEMENTATION_UNVERIFIED",
+    "input": {
+      "num-wan-lines": "2",
+      "routeros-version": "v6.xx",
+      "local-target-type": "IP Address List",
+      "interface-target": "192.168.0.0/16, 172.16.0.0/12, 10.0.0.0/8",
+      "bandwidth-ratio-checkbox": false,
+      "recursive-checkbox": false,
+      "pccType": "both-addresses-and-ports",
+      "wan-isp-1": "ether1",
+      "speed-isp-1": "",
+      "gateway-isp-1": "192.168.1.1",
+      "ip-public-check-isp-1": "",
+      "wan-isp-2": "ether2",
+      "speed-isp-2": "",
+      "gateway-isp-2": "192.168.2.1",
+      "ip-public-check-isp-2": ""
+    },
+    "entries": [
+      {
+        "path": "/ip firewall address-list",
+        "operation": "add",
+        "fields": {
+          "address": "192.168.0.0/16",
+          "list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall address-list",
+        "operation": "add",
+        "fields": {
+          "address": "172.16.0.0/12",
+          "list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall address-list",
+        "operation": "add",
+        "fields": {
+          "address": "10.0.0.0/8",
+          "list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall nat",
+        "operation": "add",
+        "fields": {
+          "chain": "srcnat",
+          "out-interface": "ether1",
+          "dst-address-list": "!LOCAL-IP",
+          "action": "masquerade"
+        }
+      },
+      {
+        "path": "/ip firewall nat",
+        "operation": "add",
+        "fields": {
+          "chain": "srcnat",
+          "out-interface": "ether2",
+          "dst-address-list": "!LOCAL-IP",
+          "action": "masquerade"
+        }
+      },
+      {
+        "path": "/ip route",
+        "operation": "add",
+        "fields": {
+          "check-gateway": "ping",
+          "distance": "1",
+          "gateway": "192.168.1.1",
+          "routing-mark": "to-ISP1",
+          "scope": "30",
+          "target-scope": "10"
+        }
+      },
+      {
+        "path": "/ip route",
+        "operation": "add",
+        "fields": {
+          "check-gateway": "ping",
+          "distance": "1",
+          "gateway": "192.168.2.1",
+          "routing-mark": "to-ISP2",
+          "scope": "30",
+          "target-scope": "10"
+        }
+      },
+      {
+        "path": "/ip route",
+        "operation": "add",
+        "fields": {
+          "check-gateway": "ping",
+          "distance": "1",
+          "gateway": "192.168.1.1",
+          "scope": "30",
+          "target-scope": "10"
+        }
+      },
+      {
+        "path": "/ip route",
+        "operation": "add",
+        "fields": {
+          "check-gateway": "ping",
+          "distance": "2",
+          "gateway": "192.168.2.1",
+          "scope": "30",
+          "target-scope": "10"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "prerouting",
+          "hotspot": "from-client,!auth",
+          "disabled": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "prerouting",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "postrouting",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "forward",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "input",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "output",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "input",
+          "connection-mark": "no-mark",
+          "in-interface": "ether1",
+          "new-connection-mark": "ISP1-conn",
+          "passthrough": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "input",
+          "connection-mark": "no-mark",
+          "in-interface": "ether2",
+          "new-connection-mark": "ISP2-conn",
+          "passthrough": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "output",
+          "connection-mark": "ISP1-conn",
+          "new-routing-mark": "to-ISP1",
+          "passthrough": "no"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "output",
+          "connection-mark": "ISP2-conn",
+          "new-routing-mark": "to-ISP2",
+          "passthrough": "no"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "prerouting",
+          "connection-state": "new",
+          "connection-mark": "no-mark",
+          "new-connection-mark": "ISP1-conn",
+          "passthrough": "yes",
+          "per-connection-classifier": "both-addresses-and-ports:2/0",
+          "dst-address-type": "!local",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "prerouting",
+          "connection-state": "new",
+          "connection-mark": "no-mark",
+          "new-connection-mark": "ISP2-conn",
+          "passthrough": "yes",
+          "per-connection-classifier": "both-addresses-and-ports:2/1",
+          "dst-address-type": "!local",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "prerouting",
+          "connection-mark": "ISP1-conn",
+          "new-routing-mark": "to-ISP1",
+          "passthrough": "yes",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "prerouting",
+          "connection-mark": "ISP2-conn",
+          "new-routing-mark": "to-ISP2",
+          "passthrough": "yes",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      }
+    ]
+  },
+  {
+    "test_id": "ros7-two-wan-equal",
+    "url": "https://buananet.com/pcc.html",
+    "observed_at": "2026-11-03",
+    "status": "REFERENCE_OBSERVED; IMPLEMENTATION_UNVERIFIED",
+    "input": {
+      "num-wan-lines": "2",
+      "routeros-version": "v7.xx",
+      "local-target-type": "IP Address List",
+      "interface-target": "192.168.0.0/16, 172.16.0.0/12, 10.0.0.0/8",
+      "bandwidth-ratio-checkbox": false,
+      "recursive-checkbox": false,
+      "pccType": "both-addresses-and-ports",
+      "wan-isp-1": "ether1",
+      "speed-isp-1": "",
+      "gateway-isp-1": "192.168.1.1",
+      "ip-public-check-isp-1": "",
+      "wan-isp-2": "ether2",
+      "speed-isp-2": "",
+      "gateway-isp-2": "192.168.2.1",
+      "ip-public-check-isp-2": ""
+    },
+    "entries": [
+      {
+        "path": "/ip firewall address-list",
+        "operation": "add",
+        "fields": {
+          "address": "192.168.0.0/16",
+          "list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall address-list",
+        "operation": "add",
+        "fields": {
+          "address": "172.16.0.0/12",
+          "list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall address-list",
+        "operation": "add",
+        "fields": {
+          "address": "10.0.0.0/8",
+          "list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall nat",
+        "operation": "add",
+        "fields": {
+          "chain": "srcnat",
+          "out-interface": "ether1",
+          "dst-address-list": "!LOCAL-IP",
+          "action": "masquerade"
+        }
+      },
+      {
+        "path": "/ip firewall nat",
+        "operation": "add",
+        "fields": {
+          "chain": "srcnat",
+          "out-interface": "ether2",
+          "dst-address-list": "!LOCAL-IP",
+          "action": "masquerade"
+        }
+      },
+      {
+        "path": "/routing table",
+        "operation": "add",
+        "fields": {
+          "name": "to-ISP1",
+          "fib": true
+        }
+      },
+      {
+        "path": "/routing table",
+        "operation": "add",
+        "fields": {
+          "name": "to-ISP2",
+          "fib": true
+        }
+      },
+      {
+        "path": "/ip route",
+        "operation": "add",
+        "fields": {
+          "check-gateway": "ping",
+          "distance": "1",
+          "gateway": "192.168.1.1",
+          "scope": "30",
+          "target-scope": "10",
+          "routing-table": "to-ISP1"
+        }
+      },
+      {
+        "path": "/ip route",
+        "operation": "add",
+        "fields": {
+          "check-gateway": "ping",
+          "distance": "1",
+          "gateway": "192.168.2.1",
+          "scope": "30",
+          "target-scope": "10",
+          "routing-table": "to-ISP2"
+        }
+      },
+      {
+        "path": "/ip route",
+        "operation": "add",
+        "fields": {
+          "check-gateway": "ping",
+          "distance": "1",
+          "gateway": "192.168.1.1",
+          "scope": "30",
+          "target-scope": "10",
+          "routing-table": "main"
+        }
+      },
+      {
+        "path": "/ip route",
+        "operation": "add",
+        "fields": {
+          "check-gateway": "ping",
+          "distance": "2",
+          "gateway": "192.168.2.1",
+          "scope": "30",
+          "target-scope": "10",
+          "routing-table": "main"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "prerouting",
+          "hotspot": "from-client,!auth",
+          "disabled": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "prerouting",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "postrouting",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "forward",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "input",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "output",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "input",
+          "connection-mark": "no-mark",
+          "in-interface": "ether1",
+          "new-connection-mark": "ISP1-conn",
+          "passthrough": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "input",
+          "connection-mark": "no-mark",
+          "in-interface": "ether2",
+          "new-connection-mark": "ISP2-conn",
+          "passthrough": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "output",
+          "connection-mark": "ISP1-conn",
+          "new-routing-mark": "to-ISP1",
+          "passthrough": "no"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "output",
+          "connection-mark": "ISP2-conn",
+          "new-routing-mark": "to-ISP2",
+          "passthrough": "no"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "prerouting",
+          "connection-state": "new",
+          "connection-mark": "no-mark",
+          "new-connection-mark": "ISP1-conn",
+          "passthrough": "yes",
+          "per-connection-classifier": "both-addresses-and-ports:2/0",
+          "dst-address-type": "!local",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "prerouting",
+          "connection-state": "new",
+          "connection-mark": "no-mark",
+          "new-connection-mark": "ISP2-conn",
+          "passthrough": "yes",
+          "per-connection-classifier": "both-addresses-and-ports:2/1",
+          "dst-address-type": "!local",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "prerouting",
+          "connection-mark": "ISP1-conn",
+          "new-routing-mark": "to-ISP1",
+          "passthrough": "yes",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "prerouting",
+          "connection-mark": "ISP2-conn",
+          "new-routing-mark": "to-ISP2",
+          "passthrough": "yes",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      }
+    ]
+  },
+  {
+    "test_id": "ros7-ratio-50-100",
+    "url": "https://buananet.com/pcc.html",
+    "observed_at": "2026-11-03",
+    "status": "REFERENCE_OBSERVED; IMPLEMENTATION_UNVERIFIED",
+    "input": {
+      "num-wan-lines": "2",
+      "routeros-version": "v7.xx",
+      "local-target-type": "IP Address List",
+      "interface-target": "192.168.0.0/16, 172.16.0.0/12, 10.0.0.0/8",
+      "bandwidth-ratio-checkbox": true,
+      "recursive-checkbox": false,
+      "pccType": "both-addresses-and-ports",
+      "wan-isp-1": "ether1",
+      "speed-isp-1": "50",
+      "gateway-isp-1": "192.168.1.1",
+      "ip-public-check-isp-1": "",
+      "wan-isp-2": "ether2",
+      "speed-isp-2": "100",
+      "gateway-isp-2": "192.168.2.1",
+      "ip-public-check-isp-2": ""
+    },
+    "entries": [
+      {
+        "path": "/ip firewall address-list",
+        "operation": "add",
+        "fields": {
+          "address": "192.168.0.0/16",
+          "list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall address-list",
+        "operation": "add",
+        "fields": {
+          "address": "172.16.0.0/12",
+          "list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall address-list",
+        "operation": "add",
+        "fields": {
+          "address": "10.0.0.0/8",
+          "list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall nat",
+        "operation": "add",
+        "fields": {
+          "chain": "srcnat",
+          "out-interface": "ether1",
+          "dst-address-list": "!LOCAL-IP",
+          "action": "masquerade"
+        }
+      },
+      {
+        "path": "/ip firewall nat",
+        "operation": "add",
+        "fields": {
+          "chain": "srcnat",
+          "out-interface": "ether2",
+          "dst-address-list": "!LOCAL-IP",
+          "action": "masquerade"
+        }
+      },
+      {
+        "path": "/routing table",
+        "operation": "add",
+        "fields": {
+          "name": "to-ISP1",
+          "fib": true
+        }
+      },
+      {
+        "path": "/routing table",
+        "operation": "add",
+        "fields": {
+          "name": "to-ISP2",
+          "fib": true
+        }
+      },
+      {
+        "path": "/ip route",
+        "operation": "add",
+        "fields": {
+          "check-gateway": "ping",
+          "distance": "1",
+          "gateway": "192.168.1.1",
+          "scope": "30",
+          "target-scope": "10",
+          "routing-table": "to-ISP1"
+        }
+      },
+      {
+        "path": "/ip route",
+        "operation": "add",
+        "fields": {
+          "check-gateway": "ping",
+          "distance": "1",
+          "gateway": "192.168.2.1",
+          "scope": "30",
+          "target-scope": "10",
+          "routing-table": "to-ISP2"
+        }
+      },
+      {
+        "path": "/ip route",
+        "operation": "add",
+        "fields": {
+          "check-gateway": "ping",
+          "distance": "1",
+          "gateway": "192.168.1.1",
+          "scope": "30",
+          "target-scope": "10",
+          "routing-table": "main"
+        }
+      },
+      {
+        "path": "/ip route",
+        "operation": "add",
+        "fields": {
+          "check-gateway": "ping",
+          "distance": "2",
+          "gateway": "192.168.2.1",
+          "scope": "30",
+          "target-scope": "10",
+          "routing-table": "main"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "prerouting",
+          "hotspot": "from-client,!auth",
+          "disabled": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "prerouting",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "postrouting",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "forward",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "input",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "output",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "input",
+          "connection-mark": "no-mark",
+          "in-interface": "ether1",
+          "new-connection-mark": "ISP1-conn",
+          "passthrough": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "input",
+          "connection-mark": "no-mark",
+          "in-interface": "ether2",
+          "new-connection-mark": "ISP2-conn",
+          "passthrough": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "output",
+          "connection-mark": "ISP1-conn",
+          "new-routing-mark": "to-ISP1",
+          "passthrough": "no"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "output",
+          "connection-mark": "ISP2-conn",
+          "new-routing-mark": "to-ISP2",
+          "passthrough": "no"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "prerouting",
+          "connection-state": "new",
+          "connection-mark": "no-mark",
+          "new-connection-mark": "ISP1-conn",
+          "passthrough": "yes",
+          "per-connection-classifier": "both-addresses-and-ports:3/0",
+          "dst-address-type": "!local",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "prerouting",
+          "connection-state": "new",
+          "connection-mark": "no-mark",
+          "new-connection-mark": "ISP2-conn",
+          "passthrough": "yes",
+          "per-connection-classifier": "both-addresses-and-ports:3/1",
+          "dst-address-type": "!local",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "prerouting",
+          "connection-state": "new",
+          "connection-mark": "no-mark",
+          "new-connection-mark": "ISP2-conn",
+          "passthrough": "yes",
+          "per-connection-classifier": "both-addresses-and-ports:3/2",
+          "dst-address-type": "!local",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "prerouting",
+          "connection-mark": "ISP1-conn",
+          "new-routing-mark": "to-ISP1",
+          "passthrough": "yes",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "prerouting",
+          "connection-mark": "ISP2-conn",
+          "new-routing-mark": "to-ISP2",
+          "passthrough": "yes",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      }
+    ]
+  },
+  {
+    "test_id": "ros7-recursive",
+    "url": "https://buananet.com/pcc.html",
+    "observed_at": "2026-11-03",
+    "status": "REFERENCE_OBSERVED; IMPLEMENTATION_UNVERIFIED",
+    "input": {
+      "num-wan-lines": "2",
+      "routeros-version": "v7.xx",
+      "local-target-type": "IP Address List",
+      "interface-target": "192.168.0.0/16, 172.16.0.0/12, 10.0.0.0/8",
+      "bandwidth-ratio-checkbox": true,
+      "recursive-checkbox": true,
+      "pccType": "both-addresses-and-ports",
+      "wan-isp-1": "ether1",
+      "speed-isp-1": "50",
+      "gateway-isp-1": "192.168.1.1",
+      "ip-public-check-isp-1": "1.1.1.1",
+      "wan-isp-2": "ether2",
+      "speed-isp-2": "100",
+      "gateway-isp-2": "192.168.2.1",
+      "ip-public-check-isp-2": "8.8.8.8"
+    },
+    "entries": [
+      {
+        "path": "/ip firewall address-list",
+        "operation": "add",
+        "fields": {
+          "address": "192.168.0.0/16",
+          "list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall address-list",
+        "operation": "add",
+        "fields": {
+          "address": "172.16.0.0/12",
+          "list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall address-list",
+        "operation": "add",
+        "fields": {
+          "address": "10.0.0.0/8",
+          "list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall nat",
+        "operation": "add",
+        "fields": {
+          "chain": "srcnat",
+          "out-interface": "ether1",
+          "dst-address-list": "!LOCAL-IP",
+          "action": "masquerade"
+        }
+      },
+      {
+        "path": "/ip firewall nat",
+        "operation": "add",
+        "fields": {
+          "chain": "srcnat",
+          "out-interface": "ether2",
+          "dst-address-list": "!LOCAL-IP",
+          "action": "masquerade"
+        }
+      },
+      {
+        "path": "/routing table",
+        "operation": "add",
+        "fields": {
+          "name": "to-ISP1",
+          "fib": true
+        }
+      },
+      {
+        "path": "/routing table",
+        "operation": "add",
+        "fields": {
+          "name": "to-ISP2",
+          "fib": true
+        }
+      },
+      {
+        "path": "/ip route",
+        "operation": "add",
+        "fields": {
+          "dst-address": "1.1.1.1",
+          "distance": "1",
+          "gateway": "192.168.1.1",
+          "target-scope": "10",
+          "scope": "10"
+        }
+      },
+      {
+        "path": "/ip route",
+        "operation": "add",
+        "fields": {
+          "dst-address": "8.8.8.8",
+          "distance": "1",
+          "gateway": "192.168.2.1",
+          "target-scope": "10",
+          "scope": "10"
+        }
+      },
+      {
+        "path": "/ip route",
+        "operation": "add",
+        "fields": {
+          "check-gateway": "ping",
+          "distance": "1",
+          "gateway": "1.1.1.1",
+          "scope": "30",
+          "target-scope": "30",
+          "routing-table": "to-ISP1"
+        }
+      },
+      {
+        "path": "/ip route",
+        "operation": "add",
+        "fields": {
+          "check-gateway": "ping",
+          "distance": "1",
+          "gateway": "8.8.8.8",
+          "scope": "30",
+          "target-scope": "30",
+          "routing-table": "to-ISP2"
+        }
+      },
+      {
+        "path": "/ip route",
+        "operation": "add",
+        "fields": {
+          "check-gateway": "ping",
+          "distance": "1",
+          "gateway": "1.1.1.1",
+          "scope": "30",
+          "target-scope": "30",
+          "routing-table": "main"
+        }
+      },
+      {
+        "path": "/ip route",
+        "operation": "add",
+        "fields": {
+          "check-gateway": "ping",
+          "distance": "2",
+          "gateway": "8.8.8.8",
+          "scope": "30",
+          "target-scope": "30",
+          "routing-table": "main"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "prerouting",
+          "hotspot": "from-client,!auth",
+          "disabled": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "prerouting",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "postrouting",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "forward",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "input",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "output",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "input",
+          "connection-mark": "no-mark",
+          "in-interface": "ether1",
+          "new-connection-mark": "ISP1-conn",
+          "passthrough": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "input",
+          "connection-mark": "no-mark",
+          "in-interface": "ether2",
+          "new-connection-mark": "ISP2-conn",
+          "passthrough": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "output",
+          "connection-mark": "ISP1-conn",
+          "new-routing-mark": "to-ISP1",
+          "passthrough": "no"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "output",
+          "connection-mark": "ISP2-conn",
+          "new-routing-mark": "to-ISP2",
+          "passthrough": "no"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "prerouting",
+          "connection-state": "new",
+          "connection-mark": "no-mark",
+          "new-connection-mark": "ISP1-conn",
+          "passthrough": "yes",
+          "per-connection-classifier": "both-addresses-and-ports:3/0",
+          "dst-address-type": "!local",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "prerouting",
+          "connection-state": "new",
+          "connection-mark": "no-mark",
+          "new-connection-mark": "ISP2-conn",
+          "passthrough": "yes",
+          "per-connection-classifier": "both-addresses-and-ports:3/1",
+          "dst-address-type": "!local",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "prerouting",
+          "connection-state": "new",
+          "connection-mark": "no-mark",
+          "new-connection-mark": "ISP2-conn",
+          "passthrough": "yes",
+          "per-connection-classifier": "both-addresses-and-ports:3/2",
+          "dst-address-type": "!local",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "prerouting",
+          "connection-mark": "ISP1-conn",
+          "new-routing-mark": "to-ISP1",
+          "passthrough": "yes",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "prerouting",
+          "connection-mark": "ISP2-conn",
+          "new-routing-mark": "to-ISP2",
+          "passthrough": "yes",
+          "dst-address-list": "!LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      }
+    ]
+  },
+  {
+    "test_id": "ros7-interface-target",
+    "url": "https://buananet.com/pcc.html",
+    "observed_at": "2026-11-03",
+    "status": "REFERENCE_OBSERVED; IMPLEMENTATION_UNVERIFIED",
+    "input": {
+      "num-wan-lines": "2",
+      "routeros-version": "v7.xx",
+      "local-target-type": "In. Interface",
+      "interface-target": "bridge",
+      "bandwidth-ratio-checkbox": false,
+      "recursive-checkbox": false,
+      "pccType": "src-address",
+      "wan-isp-1": "ether1",
+      "speed-isp-1": "",
+      "gateway-isp-1": "192.168.1.1",
+      "ip-public-check-isp-1": "",
+      "wan-isp-2": "ether2",
+      "speed-isp-2": "",
+      "gateway-isp-2": "192.168.2.1",
+      "ip-public-check-isp-2": ""
+    },
+    "entries": [
+      {
+        "path": "/ip firewall address-list",
+        "operation": "add",
+        "fields": {
+          "address": "192.168.0.0/16",
+          "list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall address-list",
+        "operation": "add",
+        "fields": {
+          "address": "172.16.0.0/12",
+          "list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall address-list",
+        "operation": "add",
+        "fields": {
+          "address": "10.0.0.0/8",
+          "list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall nat",
+        "operation": "add",
+        "fields": {
+          "chain": "srcnat",
+          "out-interface": "ether1",
+          "dst-address-list": "!LOCAL-IP",
+          "action": "masquerade"
+        }
+      },
+      {
+        "path": "/ip firewall nat",
+        "operation": "add",
+        "fields": {
+          "chain": "srcnat",
+          "out-interface": "ether2",
+          "dst-address-list": "!LOCAL-IP",
+          "action": "masquerade"
+        }
+      },
+      {
+        "path": "/routing table",
+        "operation": "add",
+        "fields": {
+          "name": "to-ISP1",
+          "fib": true
+        }
+      },
+      {
+        "path": "/routing table",
+        "operation": "add",
+        "fields": {
+          "name": "to-ISP2",
+          "fib": true
+        }
+      },
+      {
+        "path": "/ip route",
+        "operation": "add",
+        "fields": {
+          "check-gateway": "ping",
+          "distance": "1",
+          "gateway": "192.168.1.1",
+          "scope": "30",
+          "target-scope": "10",
+          "routing-table": "to-ISP1"
+        }
+      },
+      {
+        "path": "/ip route",
+        "operation": "add",
+        "fields": {
+          "check-gateway": "ping",
+          "distance": "1",
+          "gateway": "192.168.2.1",
+          "scope": "30",
+          "target-scope": "10",
+          "routing-table": "to-ISP2"
+        }
+      },
+      {
+        "path": "/ip route",
+        "operation": "add",
+        "fields": {
+          "check-gateway": "ping",
+          "distance": "1",
+          "gateway": "192.168.1.1",
+          "scope": "30",
+          "target-scope": "10",
+          "routing-table": "main"
+        }
+      },
+      {
+        "path": "/ip route",
+        "operation": "add",
+        "fields": {
+          "check-gateway": "ping",
+          "distance": "2",
+          "gateway": "192.168.2.1",
+          "scope": "30",
+          "target-scope": "10",
+          "routing-table": "main"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "prerouting",
+          "hotspot": "from-client,!auth",
+          "disabled": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "prerouting",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "postrouting",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "forward",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "input",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "accept",
+          "chain": "output",
+          "dst-address-list": "LOCAL-IP",
+          "src-address-list": "LOCAL-IP"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "input",
+          "connection-mark": "no-mark",
+          "in-interface": "ether1",
+          "new-connection-mark": "ISP1-conn",
+          "passthrough": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "input",
+          "connection-mark": "no-mark",
+          "in-interface": "ether2",
+          "new-connection-mark": "ISP2-conn",
+          "passthrough": "yes"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "output",
+          "connection-mark": "ISP1-conn",
+          "new-routing-mark": "to-ISP1",
+          "passthrough": "no"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "output",
+          "connection-mark": "ISP2-conn",
+          "new-routing-mark": "to-ISP2",
+          "passthrough": "no"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "prerouting",
+          "connection-state": "new",
+          "connection-mark": "no-mark",
+          "new-connection-mark": "ISP1-conn",
+          "passthrough": "yes",
+          "per-connection-classifier": "src-address:2/0",
+          "dst-address-type": "!local",
+          "in-interface": "bridge"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-connection",
+          "chain": "prerouting",
+          "connection-state": "new",
+          "connection-mark": "no-mark",
+          "new-connection-mark": "ISP2-conn",
+          "passthrough": "yes",
+          "per-connection-classifier": "src-address:2/1",
+          "dst-address-type": "!local",
+          "in-interface": "bridge"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "prerouting",
+          "connection-mark": "ISP1-conn",
+          "new-routing-mark": "to-ISP1",
+          "passthrough": "yes",
+          "in-interface": "bridge"
+        }
+      },
+      {
+        "path": "/ip firewall mangle",
+        "operation": "add",
+        "fields": {
+          "action": "mark-routing",
+          "chain": "prerouting",
+          "connection-mark": "ISP2-conn",
+          "new-routing-mark": "to-ISP2",
+          "passthrough": "yes",
+          "in-interface": "bridge"
+        }
+      }
+    ]
+  }
+]

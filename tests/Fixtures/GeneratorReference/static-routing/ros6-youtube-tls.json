@@ -1,0 +1,44 @@
+{
+  "test_id": "ros6-youtube-tls",
+  "generator": "G01",
+  "reference_url": "https://buananet.com/mikrotik-static-routing.html",
+  "tested_at": "2026-11-03",
+  "routeros_version": "See scenario input delta and preceding scenario",
+  "input": null,
+  "input_delta": {
+    "gateway-option": "192.168.1.1"
+  },
+  "options": null,
+  "expected_behavior": {
+    "outputLength": 1945,
+    "lineCount": 94,
+    "commandPaths": [
+      "/file",
+      "/tool fetch",
+      "/ip route",
+      "/ip firewall address-list add",
+      "/ip firewall mangle"
+    ],
+    "pcc": [],
+    "hasRos6RoutingMark": true,
+    "hasRos7RoutingTable": false,
+    "hasDhcpClient": false,
+    "hasNetwatch": false,
+    "hasRemoteDataset": true,
+    "hasStep1": true,
+    "hasStep2": true,
+    "activeGameCount": 0,
+    "disabledFields": [],
+    "visibleFieldIds": [
+      "routing-list",
+      "ros-list",
+      "match-condition",
+      "gateway-option",
+      "routing-mark"
+    ]
+  },
+  "expected_structure": null,
+  "expected_output": null,
+  "status": "BLOCKED",
+  "rights": "Functional observations only. No full reference output or exclusive dataset included."
+}

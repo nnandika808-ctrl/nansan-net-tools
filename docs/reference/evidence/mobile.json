@@ -1,0 +1,67 @@
+[
+  {
+    "id": "G01",
+    "url": "https://buananet.com/mikrotik-static-routing.html",
+    "observed_at": "2026-11-03",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Result\n{\n  \"viewport\": 390,\n  \"documentWidth\": 433,\n  \"horizontalOverflow\": true,\n  \"visibleInputs\": 5\n}"
+        }
+      ]
+    }
+  },
+  {
+    "id": "G02",
+    "url": "https://buananet.com/mikrotik-queue-qos.html",
+    "observed_at": "2026-11-03",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Result\n{\n  \"viewport\": 390,\n  \"documentWidth\": 431,\n  \"horizontalOverflow\": true,\n  \"visibleInputs\": 6\n}"
+        }
+      ]
+    }
+  },
+  {
+    "id": "G03",
+    "url": "https://buananet.com/pcc.html",
+    "observed_at": "2026-11-03",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Result\n{\n  \"viewport\": 390,\n  \"documentWidth\": 382,\n  \"horizontalOverflow\": false,\n  \"visibleInputs\": 11\n}"
+        }
+      ]
+    }
+  },
+  {
+    "id": "G04",
+    "url": "https://buananet.com/mikrotik-pcc-lb-starlink.html",
+    "observed_at": "2026-11-03",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Result\n{\n  \"viewport\": 390,\n  \"documentWidth\": 382,\n  \"horizontalOverflow\": false,\n  \"visibleInputs\": 8\n}"
+        }
+      ]
+    }
+  },
+  {
+    "id": "G05",
+    "url": "https://buananet.com/static-routing-games.html",
+    "observed_at": "2026-11-03",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Result\n{\n  \"viewport\": 390,\n  \"documentWidth\": 382,\n  \"horizontalOverflow\": false,\n  \"visibleInputs\": 109\n}"
+        }
+      ]
+    }
+  }
+]

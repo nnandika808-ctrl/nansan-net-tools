@@ -1,0 +1,1034 @@
+[
+  {
+    "id": "G01",
+    "test": "ros6-youtube-tls",
+    "url": "https://buananet.com/mikrotik-static-routing.html",
+    "inputDelta": {
+      "gateway-option": "192.168.1.1"
+    },
+    "observed_at": "2026-11-03",
+    "status": "OBSERVED; PARITY_UNVERIFIED",
+    "summary": {
+      "outputLength": 1945,
+      "lineCount": 94,
+      "commandPaths": [
+        "/file",
+        "/tool fetch",
+        "/ip route",
+        "/ip firewall address-list add",
+        "/ip firewall mangle"
+      ],
+      "pcc": [],
+      "hasRos6RoutingMark": true,
+      "hasRos7RoutingTable": false,
+      "hasDhcpClient": false,
+      "hasNetwatch": false,
+      "hasRemoteDataset": true,
+      "hasStep1": true,
+      "hasStep2": true,
+      "activeGameCount": 0,
+      "disabledFields": [],
+      "visibleFieldIds": [
+        "routing-list",
+        "ros-list",
+        "match-condition",
+        "gateway-option",
+        "routing-mark"
+      ]
+    }
+  },
+  {
+    "id": "G01",
+    "test": "ros7-youtube-content",
+    "url": "https://buananet.com/mikrotik-static-routing.html",
+    "inputDelta": {
+      "ros-list": "ros7",
+      "match-condition": "content",
+      "gateway-option": "192.168.2.1",
+      "routing-mark": "To-ISP-2"
+    },
+    "observed_at": "2026-11-03",
+    "status": "OBSERVED; PARITY_UNVERIFIED",
+    "summary": {
+      "outputLength": 2018,
+      "lineCount": 97,
+      "commandPaths": [
+        "/file",
+        "/tool fetch",
+        "/routing table",
+        "/ip route",
+        "/ip firewall address-list add",
+        "/ip firewall mangle"
+      ],
+      "pcc": [],
+      "hasRos6RoutingMark": true,
+      "hasRos7RoutingTable": true,
+      "hasDhcpClient": false,
+      "hasNetwatch": false,
+      "hasRemoteDataset": true,
+      "hasStep1": true,
+      "hasStep2": true,
+      "activeGameCount": 0,
+      "disabledFields": [],
+      "visibleFieldIds": [
+        "routing-list",
+        "ros-list",
+        "match-condition",
+        "gateway-option",
+        "routing-mark"
+      ]
+    }
+  },
+  {
+    "id": "G01",
+    "test": "ros7-tiktok-tls",
+    "url": "https://buananet.com/mikrotik-static-routing.html",
+    "inputDelta": {
+      "routing-list": "Tiktok",
+      "match-condition": "tls-host"
+    },
+    "observed_at": "2026-11-03",
+    "status": "OBSERVED; PARITY_UNVERIFIED",
+    "summary": {
+      "outputLength": 2011,
+      "lineCount": 97,
+      "commandPaths": [
+        "/file",
+        "/tool fetch",
+        "/routing table",
+        "/ip route",
+        "/ip firewall address-list add",
+        "/ip firewall mangle"
+      ],
+      "pcc": [],
+      "hasRos6RoutingMark": true,
+      "hasRos7RoutingTable": true,
+      "hasDhcpClient": false,
+      "hasNetwatch": false,
+      "hasRemoteDataset": true,
+      "hasStep1": true,
+      "hasStep2": true,
+      "activeGameCount": 0,
+      "disabledFields": [],
+      "visibleFieldIds": [
+        "routing-list",
+        "ros-list",
+        "match-condition",
+        "gateway-option",
+        "routing-mark"
+      ]
+    }
+  },
+  {
+    "id": "G02",
+    "test": "simple-youtube-default",
+    "url": "https://buananet.com/mikrotik-queue-qos.html",
+    "inputDelta": {},
+    "observed_at": "2026-11-03",
+    "status": "OBSERVED; PARITY_UNVERIFIED",
+    "summary": {
+      "outputLength": 2155,
+      "lineCount": 100,
+      "commandPaths": [
+        "/file",
+        "/tool fetch",
+        "/queue simple",
+        "/ip firewall mangle",
+        "/ip firewall address-list"
+      ],
+      "pcc": [],
+      "hasRos6RoutingMark": false,
+      "hasRos7RoutingTable": false,
+      "hasDhcpClient": false,
+      "hasNetwatch": false,
+      "hasRemoteDataset": true,
+      "hasStep1": true,
+      "hasStep2": true,
+      "activeGameCount": 0,
+      "disabledFields": [],
+      "visibleFieldIds": [
+        "Queue-Options",
+        "Queue-List",
+        "Queue-Name",
+        "Priority",
+        "Max-Limit",
+        "match-condition"
+      ]
+    }
+  },
+  {
+    "id": "G02",
+    "test": "tree-youtube-priority1",
+    "url": "https://buananet.com/mikrotik-queue-qos.html",
+    "inputDelta": {
+      "Queue-Options": "Queue-Tree",
+      "Priority": "1",
+      "Max-Limit": "50M"
+    },
+    "observed_at": "2026-11-03",
+    "status": "OBSERVED; PARITY_UNVERIFIED",
+    "summary": {
+      "outputLength": 2198,
+      "lineCount": 103,
+      "commandPaths": [
+        "/file",
+        "/tool fetch",
+        "/queue tree",
+        "/ip firewall mangle",
+        "/ip firewall address-list"
+      ],
+      "pcc": [],
+      "hasRos6RoutingMark": false,
+      "hasRos7RoutingTable": false,
+      "hasDhcpClient": false,
+      "hasNetwatch": false,
+      "hasRemoteDataset": true,
+      "hasStep1": true,
+      "hasStep2": true,
+      "activeGameCount": 0,
+      "disabledFields": [],
+      "visibleFieldIds": [
+        "Queue-Options",
+        "Queue-List",
+        "Queue-Name",
+        "Priority",
+        "Max-Limit",
+        "match-condition"
+      ]
+    }
+  },
+  {
+    "id": "G02",
+    "test": "tree-tiktok-content",
+    "url": "https://buananet.com/mikrotik-queue-qos.html",
+    "inputDelta": {
+      "Queue-List": "Tiktok",
+      "match-condition": "content"
+    },
+    "observed_at": "2026-11-03",
+    "status": "OBSERVED; PARITY_UNVERIFIED",
+    "summary": {
+      "outputLength": 2181,
+      "lineCount": 103,
+      "commandPaths": [
+        "/file",
+        "/tool fetch",
+        "/queue tree",
+        "/ip firewall mangle",
+        "/ip firewall address-list"
+      ],
+      "pcc": [],
+      "hasRos6RoutingMark": false,
+      "hasRos7RoutingTable": false,
+      "hasDhcpClient": false,
+      "hasNetwatch": false,
+      "hasRemoteDataset": true,
+      "hasStep1": true,
+      "hasStep2": true,
+      "activeGameCount": 0,
+      "disabledFields": [],
+      "visibleFieldIds": [
+        "Queue-Options",
+        "Queue-List",
+        "Queue-Name",
+        "Priority",
+        "Max-Limit",
+        "match-condition"
+      ]
+    }
+  },
+  {
+    "id": "G03",
+    "test": "ros6-two-wan-equal",
+    "url": "https://buananet.com/pcc.html",
+    "inputDelta": {},
+    "observed_at": "2026-11-03",
+    "status": "OBSERVED; PARITY_UNVERIFIED",
+    "summary": {
+      "outputLength": 3365,
+      "lineCount": 41,
+      "commandPaths": [
+        "/ip firewall address-list",
+        "/ip firewall nat",
+        "/ip route",
+        "/ip firewall mangle"
+      ],
+      "pcc": [
+        {
+          "classifier": "both-addresses-and-ports",
+          "denominator": 2,
+          "remainder": 0
+        },
+        {
+          "classifier": "both-addresses-and-ports",
+          "denominator": 2,
+          "remainder": 1
+        }
+      ],
+      "hasRos6RoutingMark": true,
+      "hasRos7RoutingTable": false,
+      "hasDhcpClient": false,
+      "hasNetwatch": false,
+      "hasRemoteDataset": false,
+      "hasStep1": false,
+      "hasStep2": false,
+      "activeGameCount": 0,
+      "disabledFields": [
+        "speed-isp-1",
+        "ip-public-check-isp-1",
+        "speed-isp-2",
+        "ip-public-check-isp-2"
+      ],
+      "visibleFieldIds": [
+        "num-wan-lines",
+        "routeros-version",
+        "local-target-type",
+        "interface-target",
+        "bandwidth-ratio-checkbox",
+        "recursive-checkbox",
+        "pccType",
+        "wan-isp-1",
+        "speed-isp-1",
+        "gateway-isp-1",
+        "ip-public-check-isp-1",
+        "wan-isp-2",
+        "speed-isp-2",
+        "gateway-isp-2",
+        "ip-public-check-isp-2"
+      ]
+    }
+  },
+  {
+    "id": "G03",
+    "test": "ros7-two-wan-equal",
+    "url": "https://buananet.com/pcc.html",
+    "inputDelta": {
+      "routeros-version": "v7.xx"
+    },
+    "observed_at": "2026-11-03",
+    "status": "OBSERVED; PARITY_UNVERIFIED",
+    "summary": {
+      "outputLength": 3521,
+      "lineCount": 45,
+      "commandPaths": [
+        "/ip firewall address-list",
+        "/ip firewall nat",
+        "/routing table",
+        "/ip route",
+        "/ip firewall mangle"
+      ],
+      "pcc": [
+        {
+          "classifier": "both-addresses-and-ports",
+          "denominator": 2,
+          "remainder": 0
+        },
+        {
+          "classifier": "both-addresses-and-ports",
+          "denominator": 2,
+          "remainder": 1
+        }
+      ],
+      "hasRos6RoutingMark": true,
+      "hasRos7RoutingTable": true,
+      "hasDhcpClient": false,
+      "hasNetwatch": false,
+      "hasRemoteDataset": false,
+      "hasStep1": false,
+      "hasStep2": false,
+      "activeGameCount": 0,
+      "disabledFields": [
+        "speed-isp-1",
+        "ip-public-check-isp-1",
+        "speed-isp-2",
+        "ip-public-check-isp-2"
+      ],
+      "visibleFieldIds": [
+        "num-wan-lines",
+        "routeros-version",
+        "local-target-type",
+        "interface-target",
+        "bandwidth-ratio-checkbox",
+        "recursive-checkbox",
+        "pccType",
+        "wan-isp-1",
+        "speed-isp-1",
+        "gateway-isp-1",
+        "ip-public-check-isp-1",
+        "wan-isp-2",
+        "speed-isp-2",
+        "gateway-isp-2",
+        "ip-public-check-isp-2"
+      ]
+    }
+  },
+  {
+    "id": "G03",
+    "test": "ros7-ratio-50-100",
+    "url": "https://buananet.com/pcc.html",
+    "inputDelta": {
+      "bandwidth-ratio-checkbox": true,
+      "speed-isp-1": "50",
+      "speed-isp-2": "100"
+    },
+    "observed_at": "2026-11-03",
+    "status": "OBSERVED; PARITY_UNVERIFIED",
+    "summary": {
+      "outputLength": 3793,
+      "lineCount": 46,
+      "commandPaths": [
+        "/ip firewall address-list",
+        "/ip firewall nat",
+        "/routing table",
+        "/ip route",
+        "/ip firewall mangle"
+      ],
+      "pcc": [
+        {
+          "classifier": "both-addresses-and-ports",
+          "denominator": 3,
+          "remainder": 0
+        },
+        {
+          "classifier": "both-addresses-and-ports",
+          "denominator": 3,
+          "remainder": 1
+        },
+        {
+          "classifier": "both-addresses-and-ports",
+          "denominator": 3,
+          "remainder": 2
+        }
+      ],
+      "hasRos6RoutingMark": true,
+      "hasRos7RoutingTable": true,
+      "hasDhcpClient": false,
+      "hasNetwatch": false,
+      "hasRemoteDataset": false,
+      "hasStep1": false,
+      "hasStep2": false,
+      "activeGameCount": 1,
+      "disabledFields": [
+        "ip-public-check-isp-1",
+        "ip-public-check-isp-2"
+      ],
+      "visibleFieldIds": [
+        "num-wan-lines",
+        "routeros-version",
+        "local-target-type",
+        "interface-target",
+        "bandwidth-ratio-checkbox",
+        "recursive-checkbox",
+        "pccType",
+        "wan-isp-1",
+        "speed-isp-1",
+        "gateway-isp-1",
+        "ip-public-check-isp-1",
+        "wan-isp-2",
+        "speed-isp-2",
+        "gateway-isp-2",
+        "ip-public-check-isp-2"
+      ]
+    }
+  },
+  {
+    "id": "G03",
+    "test": "ros7-recursive",
+    "url": "https://buananet.com/pcc.html",
+    "inputDelta": {
+      "recursive-checkbox": true,
+      "ip-public-check-isp-1": "1.1.1.1",
+      "ip-public-check-isp-2": "8.8.8.8"
+    },
+    "observed_at": "2026-11-03",
+    "status": "OBSERVED; PARITY_UNVERIFIED",
+    "summary": {
+      "outputLength": 4019,
+      "lineCount": 49,
+      "commandPaths": [
+        "/ip firewall address-list",
+        "/ip firewall nat",
+        "/routing table",
+        "/ip route",
+        "/ip firewall mangle"
+      ],
+      "pcc": [
+        {
+          "classifier": "both-addresses-and-ports",
+          "denominator": 3,
+          "remainder": 0
+        },
+        {
+          "classifier": "both-addresses-and-ports",
+          "denominator": 3,
+          "remainder": 1
+        },
+        {
+          "classifier": "both-addresses-and-ports",
+          "denominator": 3,
+          "remainder": 2
+        }
+      ],
+      "hasRos6RoutingMark": true,
+      "hasRos7RoutingTable": true,
+      "hasDhcpClient": false,
+      "hasNetwatch": false,
+      "hasRemoteDataset": false,
+      "hasStep1": false,
+      "hasStep2": false,
+      "activeGameCount": 2,
+      "disabledFields": [],
+      "visibleFieldIds": [
+        "num-wan-lines",
+        "routeros-version",
+        "local-target-type",
+        "interface-target",
+        "bandwidth-ratio-checkbox",
+        "recursive-checkbox",
+        "pccType",
+        "wan-isp-1",
+        "speed-isp-1",
+        "gateway-isp-1",
+        "ip-public-check-isp-1",
+        "wan-isp-2",
+        "speed-isp-2",
+        "gateway-isp-2",
+        "ip-public-check-isp-2"
+      ]
+    }
+  },
+  {
+    "id": "G03",
+    "test": "ros7-interface-target",
+    "url": "https://buananet.com/pcc.html",
+    "inputDelta": {
+      "local-target-type": "In. Interface",
+      "interface-target": "bridge",
+      "bandwidth-ratio-checkbox": false,
+      "recursive-checkbox": false,
+      "pccType": "src-address"
+    },
+    "observed_at": "2026-11-03",
+    "status": "OBSERVED; PARITY_UNVERIFIED",
+    "summary": {
+      "outputLength": 3339,
+      "lineCount": 45,
+      "commandPaths": [
+        "/ip firewall address-list",
+        "/ip firewall nat",
+        "/routing table",
+        "/ip route",
+        "/ip firewall mangle"
+      ],
+      "pcc": [
+        {
+          "classifier": "src-address",
+          "denominator": 2,
+          "remainder": 0
+        },
+        {
+          "classifier": "src-address",
+          "denominator": 2,
+          "remainder": 1
+        }
+      ],
+      "hasRos6RoutingMark": true,
+      "hasRos7RoutingTable": true,
+      "hasDhcpClient": false,
+      "hasNetwatch": false,
+      "hasRemoteDataset": false,
+      "hasStep1": false,
+      "hasStep2": false,
+      "activeGameCount": 0,
+      "disabledFields": [
+        "speed-isp-1",
+        "ip-public-check-isp-1",
+        "speed-isp-2",
+        "ip-public-check-isp-2"
+      ],
+      "visibleFieldIds": [
+        "num-wan-lines",
+        "routeros-version",
+        "local-target-type",
+        "interface-target",
+        "bandwidth-ratio-checkbox",
+        "recursive-checkbox",
+        "pccType",
+        "wan-isp-1",
+        "speed-isp-1",
+        "gateway-isp-1",
+        "ip-public-check-isp-1",
+        "wan-isp-2",
+        "speed-isp-2",
+        "gateway-isp-2",
+        "ip-public-check-isp-2"
+      ]
+    }
+  },
+  {
+    "id": "G04",
+    "test": "ros6-two-equal",
+    "url": "https://buananet.com/mikrotik-pcc-lb-starlink.html",
+    "inputDelta": {},
+    "observed_at": "2026-11-03",
+    "status": "OBSERVED; PARITY_UNVERIFIED",
+    "summary": {
+      "outputLength": 3967,
+      "lineCount": 44,
+      "commandPaths": [
+        "/ip dns",
+        "/ip firewall address-list",
+        "/ip firewall nat",
+        "/ip dhcp-client",
+        "/ip firewall mangle"
+      ],
+      "pcc": [
+        {
+          "classifier": "both-addresses-and-ports",
+          "denominator": 2,
+          "remainder": 0
+        },
+        {
+          "classifier": "both-addresses-and-ports",
+          "denominator": 2,
+          "remainder": 1
+        }
+      ],
+      "hasRos6RoutingMark": true,
+      "hasRos7RoutingTable": false,
+      "hasDhcpClient": true,
+      "hasNetwatch": false,
+      "hasRemoteDataset": false,
+      "hasStep1": false,
+      "hasStep2": false,
+      "activeGameCount": 0,
+      "disabledFields": [],
+      "visibleFieldIds": [
+        "ros",
+        "count",
+        "mode",
+        "localIpTarget",
+        "pccType",
+        "netwatchEnable"
+      ]
+    }
+  },
+  {
+    "id": "G04",
+    "test": "ros7-three-manual",
+    "url": "https://buananet.com/mikrotik-pcc-lb-starlink.html",
+    "inputDelta": {
+      "ros": "v7",
+      "count": "3",
+      "mode": "manual"
+    },
+    "ratio": [
+      2,
+      1,
+      1
+    ],
+    "observed_at": "2026-11-03",
+    "status": "OBSERVED; PARITY_UNVERIFIED",
+    "summary": {
+      "outputLength": 5669,
+      "lineCount": 57,
+      "commandPaths": [
+        "/ip dns",
+        "/ip firewall address-list",
+        "/routing table",
+        "/ip firewall nat",
+        "/ip dhcp-client",
+        "/ip firewall mangle"
+      ],
+      "pcc": [
+        {
+          "classifier": "both-addresses-and-ports",
+          "denominator": 4,
+          "remainder": 0
+        },
+        {
+          "classifier": "both-addresses-and-ports",
+          "denominator": 4,
+          "remainder": 1
+        },
+        {
+          "classifier": "both-addresses-and-ports",
+          "denominator": 4,
+          "remainder": 2
+        },
+        {
+          "classifier": "both-addresses-and-ports",
+          "denominator": 4,
+          "remainder": 3
+        }
+      ],
+      "hasRos6RoutingMark": true,
+      "hasRos7RoutingTable": true,
+      "hasDhcpClient": true,
+      "hasNetwatch": false,
+      "hasRemoteDataset": false,
+      "hasStep1": false,
+      "hasStep2": false,
+      "activeGameCount": 0,
+      "disabledFields": [],
+      "visibleFieldIds": [
+        "ros",
+        "count",
+        "mode",
+        "localIpTarget",
+        "pccType",
+        "netwatchEnable"
+      ]
+    }
+  },
+  {
+    "id": "G04",
+    "test": "ros7-netwatch",
+    "url": "https://buananet.com/mikrotik-pcc-lb-starlink.html",
+    "inputDelta": {
+      "netwatchEnable": true
+    },
+    "observed_at": "2026-11-03",
+    "status": "OBSERVED; PARITY_UNVERIFIED",
+    "summary": {
+      "outputLength": 7418,
+      "lineCount": 71,
+      "commandPaths": [
+        "/ip dns",
+        "/ip firewall address-list",
+        "/routing table",
+        "/ip firewall nat",
+        "/ip dhcp-client",
+        "/ip firewall mangle",
+        "/routing rule",
+        "/tool netwatch"
+      ],
+      "pcc": [
+        {
+          "classifier": "both-addresses-and-ports",
+          "denominator": 4,
+          "remainder": 0
+        },
+        {
+          "classifier": "both-addresses-and-ports",
+          "denominator": 4,
+          "remainder": 1
+        },
+        {
+          "classifier": "both-addresses-and-ports",
+          "denominator": 4,
+          "remainder": 2
+        },
+        {
+          "classifier": "both-addresses-and-ports",
+          "denominator": 4,
+          "remainder": 3
+        }
+      ],
+      "hasRos6RoutingMark": true,
+      "hasRos7RoutingTable": true,
+      "hasDhcpClient": true,
+      "hasNetwatch": true,
+      "hasRemoteDataset": false,
+      "hasStep1": false,
+      "hasStep2": false,
+      "activeGameCount": 1,
+      "disabledFields": [],
+      "visibleFieldIds": [
+        "ros",
+        "count",
+        "mode",
+        "localIpTarget",
+        "pccType",
+        "netwatchEnable",
+        "netwatchTargets"
+      ]
+    }
+  },
+  {
+    "id": "G05",
+    "test": "ros6-one-game",
+    "url": "https://buananet.com/static-routing-games.html",
+    "inputDelta": {
+      "ip-gateway-input": "192.168.2.1",
+      "ArenaOfValor-Mobile": true
+    },
+    "observed_at": "2026-11-03",
+    "status": "OBSERVED; PARITY_UNVERIFIED",
+    "summary": {
+      "outputLength": 4933,
+      "lineCount": 162,
+      "commandPaths": [
+        "/ip firewall address-list",
+        "/ip route",
+        "/ip firewall mangle",
+        "/ip firewall raw",
+        "/routing table"
+      ],
+      "pcc": [],
+      "hasRos6RoutingMark": true,
+      "hasRos7RoutingTable": false,
+      "hasDhcpClient": false,
+      "hasNetwatch": false,
+      "hasRemoteDataset": false,
+      "hasStep1": false,
+      "hasStep2": false,
+      "activeGameCount": 1,
+      "disabledFields": [],
+      "visibleFieldIds": [
+        "ros-list",
+        "ip-gateway-input",
+        "myInput",
+        "ArenaOfValor-Mobile",
+        "AmongUs-Mobile",
+        "BooyaCapsaSusun-Mobile",
+        "BooyaDominoQiuqiu-Mobile",
+        "ClashOfClans-Mobile",
+        "ClashRoyale-Mobile",
+        "CODCallOfDuty-Mobile",
+        "DOTA2-Mobile",
+        "DominoQq-Mobile",
+        "DragonNest-Mobile",
+        "DreamLeagueSoccer-Mobile",
+        "FIFAONLINE-Mobile",
+        "FreeFire-Mobile",
+        "GenshinImpact-Mobile",
+        "HiggsDomino-Mobile",
+        "LeagueofLegends-Mobile",
+        "LastEmpireWarZ-Mobile",
+        "LineLetsGetRich-Mobile",
+        "Minecraft-Mobile",
+        "MobileLegends-Mobile",
+        "Mostly-Mobile",
+        "NarutoLittleNinja-Mobile",
+        "Netmarble-Mobile",
+        "PointBlank-Mobile",
+        "PUBG-Mobile",
+        "Roblox-Mobile",
+        "RpgToramOnline-Mobile",
+        "RulesOfSurvival-Mobile",
+        "ShinobiHeroes-Mobile",
+        "BallPool-WebGames",
+        "CastleVille-WebGames",
+        "Headshot-WebGames",
+        "EmpireAllies-WebGames",
+        "LeagueofAngels-WebGames",
+        "MegarealmRiseOfChaos-WebGames",
+        "PerjuanganSemut-WebGames",
+        "Roblox-WebGames",
+        "SwordofAngels-WebGames",
+        "TexasHoldEmPoker-WebGames",
+        "Warflare-WebGames",
+        "WildOnes-WebGames",
+        "Atlantica-PC",
+        "AuraKingdom-PC",
+        "Ayodance-PC",
+        "OriginAPEXLegends-PC",
+        "BlackDesertOnline-PC",
+        "BlackDesertOnlinePS-PC",
+        "BlackDesertOnlineSteam-PC",
+        "BlackDesertOnlineXbox-PC",
+        "Blackretribution-PC",
+        "BlizzardBattleNet-PC",
+        "BountyHound-PC",
+        "CabalExtremePrivate-PC",
+        "CabalIndonesia-PC",
+        "CallofDutyBO-PC",
+        "CallofDutyBOPS-PC",
+        "CallofDutyBOXBox-PC",
+        "CallofDutyMWPC-PC",
+        "CallofDutyMWPS-PC",
+        "CallofDutyMWXBox-PC",
+        "ClashofGod-PC",
+        "CSGOPlaystation-PC",
+        "CSGOSteam-PC",
+        "CSGOXbox-PC",
+        "CrossFireindonesia-PC",
+        "DiabloIII-PC",
+        "DiabloII-PC",
+        "Diablo-PC",
+        "Dota2Steam-PC",
+        "DragonNest-PC",
+        "Dragona-PC",
+        "FifaOnline3-PC",
+        "FORTNITEEPICGAMES-PC",
+        "LeagueofLegend-PC",
+        "GrandChase-PC",
+        "Hearthstone-PC",
+        "HeroesoftheStorm-PC",
+        "HONHeroesofNewerth-PC",
+        "HeroesofAtarsia-PC",
+        "IdolStreet-PC",
+        "Left4Dead2Steam-PC",
+        "Lineage2-PC",
+        "LostSaga-PC",
+        "Luneofeden-PC",
+        "Mercenaryops-PC",
+        "Mircovolt-PC",
+        "ModoMarble-PC",
+        "Overwatch-PC",
+        "PaladinsHiRez-PC",
+        "PointBlank-PC",
+        "PUBG-PC",
+        "Ragnarok2-PC",
+        "RFRisingForce-PC",
+        "ROERingofElysium-PC",
+        "ROSRulesOfSurvival-PC",
+        "SealOnline-PC",
+        "SpecialForce-PC",
+        "StarCraftII-PC",
+        "StarCraft-PC",
+        "Valorant-PC",
+        "WarcraftIIBattleNet-PC",
+        "WarcraftIII-PC",
+        "Warframe-PC",
+        "WorldofTanks-PC",
+        "WorldofWarcraft-PC",
+        "XshotIndonesia-PC"
+      ]
+    }
+  },
+  {
+    "id": "G05",
+    "test": "ros7-two-games",
+    "url": "https://buananet.com/static-routing-games.html",
+    "inputDelta": {
+      "ros-list": "ros7",
+      "PUBG-PC": true
+    },
+    "observed_at": "2026-11-03",
+    "status": "OBSERVED; PARITY_UNVERIFIED",
+    "summary": {
+      "outputLength": 5269,
+      "lineCount": 168,
+      "commandPaths": [
+        "/ip firewall address-list",
+        "/routing table",
+        "/ip route",
+        "/ip firewall mangle",
+        "/ip firewall raw"
+      ],
+      "pcc": [],
+      "hasRos6RoutingMark": true,
+      "hasRos7RoutingTable": true,
+      "hasDhcpClient": false,
+      "hasNetwatch": false,
+      "hasRemoteDataset": false,
+      "hasStep1": false,
+      "hasStep2": false,
+      "activeGameCount": 2,
+      "disabledFields": [],
+      "visibleFieldIds": [
+        "ros-list",
+        "ip-gateway-input",
+        "myInput",
+        "ArenaOfValor-Mobile",
+        "AmongUs-Mobile",
+        "BooyaCapsaSusun-Mobile",
+        "BooyaDominoQiuqiu-Mobile",
+        "ClashOfClans-Mobile",
+        "ClashRoyale-Mobile",
+        "CODCallOfDuty-Mobile",
+        "DOTA2-Mobile",
+        "DominoQq-Mobile",
+        "DragonNest-Mobile",
+        "DreamLeagueSoccer-Mobile",
+        "FIFAONLINE-Mobile",
+        "FreeFire-Mobile",
+        "GenshinImpact-Mobile",
+        "HiggsDomino-Mobile",
+        "LeagueofLegends-Mobile",
+        "LastEmpireWarZ-Mobile",
+        "LineLetsGetRich-Mobile",
+        "Minecraft-Mobile",
+        "MobileLegends-Mobile",
+        "Mostly-Mobile",
+        "NarutoLittleNinja-Mobile",
+        "Netmarble-Mobile",
+        "PointBlank-Mobile",
+        "PUBG-Mobile",
+        "Roblox-Mobile",
+        "RpgToramOnline-Mobile",
+        "RulesOfSurvival-Mobile",
+        "ShinobiHeroes-Mobile",
+        "BallPool-WebGames",
+        "CastleVille-WebGames",
+        "Headshot-WebGames",
+        "EmpireAllies-WebGames",
+        "LeagueofAngels-WebGames",
+        "MegarealmRiseOfChaos-WebGames",
+        "PerjuanganSemut-WebGames",
+        "Roblox-WebGames",
+        "SwordofAngels-WebGames",
+        "TexasHoldEmPoker-WebGames",
+        "Warflare-WebGames",
+        "WildOnes-WebGames",
+        "Atlantica-PC",
+        "AuraKingdom-PC",
+        "Ayodance-PC",
+        "OriginAPEXLegends-PC",
+        "BlackDesertOnline-PC",
+        "BlackDesertOnlinePS-PC",
+        "BlackDesertOnlineSteam-PC",
+        "BlackDesertOnlineXbox-PC",
+        "Blackretribution-PC",
+        "BlizzardBattleNet-PC",
+        "BountyHound-PC",
+        "CabalExtremePrivate-PC",
+        "CabalIndonesia-PC",
+        "CallofDutyBO-PC",
+        "CallofDutyBOPS-PC",
+        "CallofDutyBOXBox-PC",
+        "CallofDutyMWPC-PC",
+        "CallofDutyMWPS-PC",
+        "CallofDutyMWXBox-PC",
+        "ClashofGod-PC",
+        "CSGOPlaystation-PC",
+        "CSGOSteam-PC",
+        "CSGOXbox-PC",
+        "CrossFireindonesia-PC",
+        "DiabloIII-PC",
+        "DiabloII-PC",
+        "Diablo-PC",
+        "Dota2Steam-PC",
+        "DragonNest-PC",
+        "Dragona-PC",
+        "FifaOnline3-PC",
+        "FORTNITEEPICGAMES-PC",
+        "LeagueofLegend-PC",
+        "GrandChase-PC",
+        "Hearthstone-PC",
+        "HeroesoftheStorm-PC",
+        "HONHeroesofNewerth-PC",
+        "HeroesofAtarsia-PC",
+        "IdolStreet-PC",
+        "Left4Dead2Steam-PC",
+        "Lineage2-PC",
+        "LostSaga-PC",
+        "Luneofeden-PC",
+        "Mercenaryops-PC",
+        "Mircovolt-PC",
+        "ModoMarble-PC",
+        "Overwatch-PC",
+        "PaladinsHiRez-PC",
+        "PointBlank-PC",
+        "PUBG-PC",
+        "Ragnarok2-PC",
+        "RFRisingForce-PC",
+        "ROERingofElysium-PC",
+        "ROSRulesOfSurvival-PC",
+        "SealOnline-PC",
+        "SpecialForce-PC",
+        "StarCraftII-PC",
+        "StarCraft-PC",
+        "Valorant-PC",
+        "WarcraftIIBattleNet-PC",
+        "WarcraftIII-PC",
+        "Warframe-PC",
+        "WorldofTanks-PC",
+        "WorldofWarcraft-PC",
+        "XshotIndonesia-PC"
+      ]
+    }
+  }
+]

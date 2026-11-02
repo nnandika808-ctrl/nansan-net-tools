@@ -1,0 +1,785 @@
+{
+  "id": "G05",
+  "source": "https://buananet.com/static-routing-games.html",
+  "status": "FORM_OBSERVED; OUTPUT_UNVERIFIED",
+  "observedAt": "2026-11-03",
+  "fields": [
+    {
+      "key": "ros-list",
+      "label": "RouterOS Version",
+      "type": "select",
+      "default": "ros6",
+      "options": [
+        {
+          "label": "RouterOS v6.xx",
+          "value": "ros6",
+          "disabled": false
+        },
+        {
+          "label": "RouterOS v7.xx",
+          "value": "ros7",
+          "disabled": false
+        }
+      ],
+      "referenceId": "ros-list"
+    },
+    {
+      "key": "ip-gateway-input",
+      "label": "Gateway to WAN / ISP Game",
+      "type": "text",
+      "default": "",
+      "placeholder": "ex: 192.168.2.1 or pppoe-out",
+      "referenceId": "ip-gateway-input"
+    },
+    {
+      "key": "myInput",
+      "label": "Find Games",
+      "type": "text",
+      "default": "",
+      "placeholder": "Find Games..",
+      "referenceId": "myInput"
+    },
+    {
+      "key": "ArenaOfValor-Mobile",
+      "label": "Arena Of Valor (AOV) - Mobile",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "ArenaOfValor-Mobile"
+    },
+    {
+      "key": "AmongUs-Mobile",
+      "label": "Among Us - Mobile",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "AmongUs-Mobile"
+    },
+    {
+      "key": "BooyaCapsaSusun-Mobile",
+      "label": "Booya Capsa Susun - Mobile",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "BooyaCapsaSusun-Mobile"
+    },
+    {
+      "key": "BooyaDominoQiuqiu-Mobile",
+      "label": "Booya Domino Qiuqiu - Mobile",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "BooyaDominoQiuqiu-Mobile"
+    },
+    {
+      "key": "ClashOfClans-Mobile",
+      "label": "Clash Of Clans (C0C) - Mobile",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "ClashOfClans-Mobile"
+    },
+    {
+      "key": "ClashRoyale-Mobile",
+      "label": "Clash Royale - Mobile",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "ClashRoyale-Mobile"
+    },
+    {
+      "key": "CODCallOfDuty-Mobile",
+      "label": "Call of Duty (COD) - Mobile",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "CODCallOfDuty-Mobile"
+    },
+    {
+      "key": "DOTA2-Mobile",
+      "label": "DOTA2 - Mobile",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "DOTA2-Mobile"
+    },
+    {
+      "key": "DominoQq-Mobile",
+      "label": "Domino Qq - Mobile",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "DominoQq-Mobile"
+    },
+    {
+      "key": "DragonNest-Mobile",
+      "label": "DragonNest (DN) - Mobile",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "DragonNest-Mobile"
+    },
+    {
+      "key": "DreamLeagueSoccer-Mobile",
+      "label": "Dream League Soccer - Mobile",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "DreamLeagueSoccer-Mobile"
+    },
+    {
+      "key": "FIFAONLINE-Mobile",
+      "label": "Fifa Online - Mobile",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "FIFAONLINE-Mobile"
+    },
+    {
+      "key": "FreeFire-Mobile",
+      "label": "FreeFire (FF) - Mobile",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "FreeFire-Mobile"
+    },
+    {
+      "key": "GenshinImpact-Mobile",
+      "label": "Genshin Impact - Mobile",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "GenshinImpact-Mobile"
+    },
+    {
+      "key": "HiggsDomino-Mobile",
+      "label": "Higgs Domino Island - Mobile",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "HiggsDomino-Mobile"
+    },
+    {
+      "key": "LeagueofLegends-Mobile",
+      "label": "League of Legends (LOL) - Mobile",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "LeagueofLegends-Mobile"
+    },
+    {
+      "key": "LastEmpireWarZ-Mobile",
+      "label": "Last Empire War Z - Mobile",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "LastEmpireWarZ-Mobile"
+    },
+    {
+      "key": "LineLetsGetRich-Mobile",
+      "label": "Line Lets Get Rich - Mobile",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "LineLetsGetRich-Mobile"
+    },
+    {
+      "key": "Minecraft-Mobile",
+      "label": "Minecraft - Mobile",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "Minecraft-Mobile"
+    },
+    {
+      "key": "MobileLegends-Mobile",
+      "label": "Mobile Legends (ML) - Mobile",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "MobileLegends-Mobile"
+    },
+    {
+      "key": "Mostly-Mobile",
+      "label": "Mostly - Mobile",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "Mostly-Mobile"
+    },
+    {
+      "key": "NarutoLittleNinja-Mobile",
+      "label": "Naruto Little Ninja - Mobile",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "NarutoLittleNinja-Mobile"
+    },
+    {
+      "key": "Netmarble-Mobile",
+      "label": "Netmarble - Mobile",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "Netmarble-Mobile"
+    },
+    {
+      "key": "PointBlank-Mobile",
+      "label": "PointBlank (PB) - Mobile",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "PointBlank-Mobile"
+    },
+    {
+      "key": "PUBG-Mobile",
+      "label": "PUBG - Mobile",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "PUBG-Mobile"
+    },
+    {
+      "key": "Roblox-Mobile",
+      "label": "Roblox - Mobile",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "Roblox-Mobile"
+    },
+    {
+      "key": "RpgToramOnline-Mobile",
+      "label": "Rpg Toram Online - Mobile",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "RpgToramOnline-Mobile"
+    },
+    {
+      "key": "RulesOfSurvival-Mobile",
+      "label": "RulesOfSurvival (ROS) - Mobile",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "RulesOfSurvival-Mobile"
+    },
+    {
+      "key": "ShinobiHeroes-Mobile",
+      "label": "Shinobi Heroes - Mobile",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "ShinobiHeroes-Mobile"
+    },
+    {
+      "key": "BallPool-WebGames",
+      "label": "8 Ball Pool - WebGames",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "BallPool-WebGames"
+    },
+    {
+      "key": "CastleVille-WebGames",
+      "label": "Castle Ville - WebGames",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "CastleVille-WebGames"
+    },
+    {
+      "key": "Headshot-WebGames",
+      "label": "Headshot - WebGames",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "Headshot-WebGames"
+    },
+    {
+      "key": "EmpireAllies-WebGames",
+      "label": "Empire Allies - WebGames",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "EmpireAllies-WebGames"
+    },
+    {
+      "key": "LeagueofAngels-WebGames",
+      "label": "League of Angels 2 - WebGames",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "LeagueofAngels-WebGames"
+    },
+    {
+      "key": "MegarealmRiseOfChaos-WebGames",
+      "label": "Megarealm RiseOfChaos-WebGames",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "MegarealmRiseOfChaos-WebGames"
+    },
+    {
+      "key": "PerjuanganSemut-WebGames",
+      "label": "Perjuangan Semut - WebGames",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "PerjuanganSemut-WebGames"
+    },
+    {
+      "key": "Roblox-WebGames",
+      "label": "Roblox - WebGames",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "Roblox-WebGames"
+    },
+    {
+      "key": "SwordofAngels-WebGames",
+      "label": "Sword of Angels - WebGames",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "SwordofAngels-WebGames"
+    },
+    {
+      "key": "TexasHoldEmPoker-WebGames",
+      "label": "Texas Hold EmPoker - WebGames",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "TexasHoldEmPoker-WebGames"
+    },
+    {
+      "key": "Warflare-WebGames",
+      "label": "Warflare - WebGames",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "Warflare-WebGames"
+    },
+    {
+      "key": "WildOnes-WebGames",
+      "label": "WildOnes - WebGames",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "WildOnes-WebGames"
+    },
+    {
+      "key": "Atlantica-PC",
+      "label": "Atlantica - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "Atlantica-PC"
+    },
+    {
+      "key": "AuraKingdom-PC",
+      "label": "Aura Kingdom - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "AuraKingdom-PC"
+    },
+    {
+      "key": "Ayodance-PC",
+      "label": "AyoDance - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "Ayodance-PC"
+    },
+    {
+      "key": "OriginAPEXLegends-PC",
+      "label": "APEX Legends - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "OriginAPEXLegends-PC"
+    },
+    {
+      "key": "BlackDesertOnline-PC",
+      "label": "BlackDesert (BDO) - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "BlackDesertOnline-PC"
+    },
+    {
+      "key": "BlackDesertOnlinePS-PC",
+      "label": "BlackDesert (BDO) - Playstaion",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "BlackDesertOnlinePS-PC"
+    },
+    {
+      "key": "BlackDesertOnlineSteam-PC",
+      "label": "BlackDesert Steam (BDO) - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "BlackDesertOnlineSteam-PC"
+    },
+    {
+      "key": "BlackDesertOnlineXbox-PC",
+      "label": "Black Desert (BDO) - Xbox",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "BlackDesertOnlineXbox-PC"
+    },
+    {
+      "key": "Blackretribution-PC",
+      "label": "Blackretribution - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "Blackretribution-PC"
+    },
+    {
+      "key": "BlizzardBattleNet-PC",
+      "label": "Blizzard BattleNet - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "BlizzardBattleNet-PC"
+    },
+    {
+      "key": "BountyHound-PC",
+      "label": "Bounty Hound - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "BountyHound-PC"
+    },
+    {
+      "key": "CabalExtremePrivate-PC",
+      "label": "Cabal Extreme - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "CabalExtremePrivate-PC"
+    },
+    {
+      "key": "CabalIndonesia-PC",
+      "label": "Cabal Indonesia - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "CabalIndonesia-PC"
+    },
+    {
+      "key": "CallofDutyBO-PC",
+      "label": "CallofDuty(COD)BO - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "CallofDutyBO-PC"
+    },
+    {
+      "key": "CallofDutyBOPS-PC",
+      "label": "CallofDuty(COD)BO - PlaySt..",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "CallofDutyBOPS-PC"
+    },
+    {
+      "key": "CallofDutyBOXBox-PC",
+      "label": "CallofDuty(COD)BO - XBox",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "CallofDutyBOXBox-PC"
+    },
+    {
+      "key": "CallofDutyMWPC-PC",
+      "label": "CallofDuty(COD)MW - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "CallofDutyMWPC-PC"
+    },
+    {
+      "key": "CallofDutyMWPS-PC",
+      "label": "CallofDuty COD)MW - Playst..",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "CallofDutyMWPS-PC"
+    },
+    {
+      "key": "CallofDutyMWXBox-PC",
+      "label": "CallofDuty (COD)MW - XBox",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "CallofDutyMWXBox-PC"
+    },
+    {
+      "key": "ClashofGod-PC",
+      "label": "Clash of God - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "ClashofGod-PC"
+    },
+    {
+      "key": "CSGOPlaystation-PC",
+      "label": "CSGO Playstation",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "CSGOPlaystation-PC"
+    },
+    {
+      "key": "CSGOSteam-PC",
+      "label": "CSGO Steam - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "CSGOSteam-PC"
+    },
+    {
+      "key": "CSGOXbox-PC",
+      "label": "CSGO Xbox - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "CSGOXbox-PC"
+    },
+    {
+      "key": "CrossFireindonesia-PC",
+      "label": "Cross Fire indonesia - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "CrossFireindonesia-PC"
+    },
+    {
+      "key": "DiabloIII-PC",
+      "label": "Diablo III - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "DiabloIII-PC"
+    },
+    {
+      "key": "DiabloII-PC",
+      "label": "Diablo II - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "DiabloII-PC"
+    },
+    {
+      "key": "Diablo-PC",
+      "label": "Diablo I - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "Diablo-PC"
+    },
+    {
+      "key": "Dota2Steam-PC",
+      "label": "DOTA 2 Steam - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "Dota2Steam-PC"
+    },
+    {
+      "key": "DragonNest-PC",
+      "label": "DragonNest (DN) - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "DragonNest-PC"
+    },
+    {
+      "key": "Dragona-PC",
+      "label": "Dragona - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "Dragona-PC"
+    },
+    {
+      "key": "FifaOnline3-PC",
+      "label": "Fifa Online 3 (FO3) - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "FifaOnline3-PC"
+    },
+    {
+      "key": "FORTNITEEPICGAMES-PC",
+      "label": "Fortnite Epic - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "FORTNITEEPICGAMES-PC"
+    },
+    {
+      "key": "LeagueofLegend-PC",
+      "label": "League of Legend (LOL) - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "LeagueofLegend-PC"
+    },
+    {
+      "key": "GrandChase-PC",
+      "label": "Grand Chase - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "GrandChase-PC"
+    },
+    {
+      "key": "Hearthstone-PC",
+      "label": "Hearthstone - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "Hearthstone-PC"
+    },
+    {
+      "key": "HeroesoftheStorm-PC",
+      "label": "Heroes of the Storm - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "HeroesoftheStorm-PC"
+    },
+    {
+      "key": "HONHeroesofNewerth-PC",
+      "label": "Heroes of Newerth (HON) - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "HONHeroesofNewerth-PC"
+    },
+    {
+      "key": "HeroesofAtarsia-PC",
+      "label": "Heroes of Atarsia (HOA) - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "HeroesofAtarsia-PC"
+    },
+    {
+      "key": "IdolStreet-PC",
+      "label": "Idol Street - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "IdolStreet-PC"
+    },
+    {
+      "key": "Left4Dead2Steam-PC",
+      "label": "Left4Dead 2 Steam - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "Left4Dead2Steam-PC"
+    },
+    {
+      "key": "Lineage2-PC",
+      "label": "Lineage 2 - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "Lineage2-PC"
+    },
+    {
+      "key": "LostSaga-PC",
+      "label": "LostSaga (LS) - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "LostSaga-PC"
+    },
+    {
+      "key": "Luneofeden-PC",
+      "label": "Lune of eden - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "Luneofeden-PC"
+    },
+    {
+      "key": "Mercenaryops-PC",
+      "label": "Mercenary ops - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "Mercenaryops-PC"
+    },
+    {
+      "key": "Mircovolt-PC",
+      "label": "Mircovolt - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "Mircovolt-PC"
+    },
+    {
+      "key": "ModoMarble-PC",
+      "label": "Modo Marble - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "ModoMarble-PC"
+    },
+    {
+      "key": "Overwatch-PC",
+      "label": "Overwatch - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "Overwatch-PC"
+    },
+    {
+      "key": "PaladinsHiRez-PC",
+      "label": "Paladins Hi-Rez - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "PaladinsHiRez-PC"
+    },
+    {
+      "key": "PointBlank-PC",
+      "label": "PointBlank (PB) - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "PointBlank-PC"
+    },
+    {
+      "key": "PUBG-PC",
+      "label": "PUBG - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "PUBG-PC"
+    },
+    {
+      "key": "Ragnarok2-PC",
+      "label": "Ragnarok 2 - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "Ragnarok2-PC"
+    },
+    {
+      "key": "RFRisingForce-PC",
+      "label": "RF Rising Force - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "RFRisingForce-PC"
+    },
+    {
+      "key": "ROERingofElysium-PC",
+      "label": "Ring of Elysium (ROE) - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "ROERingofElysium-PC"
+    },
+    {
+      "key": "ROSRulesOfSurvival-PC",
+      "label": "Rules Of Survival (ROS) - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "ROSRulesOfSurvival-PC"
+    },
+    {
+      "key": "SealOnline-PC",
+      "label": "Seal Online - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "SealOnline-PC"
+    },
+    {
+      "key": "SpecialForce-PC",
+      "label": "Special Force - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "SpecialForce-PC"
+    },
+    {
+      "key": "StarCraftII-PC",
+      "label": "StarCraft II - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "StarCraftII-PC"
+    },
+    {
+      "key": "StarCraft-PC",
+      "label": "StarCraft - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "StarCraft-PC"
+    },
+    {
+      "key": "Valorant-PC",
+      "label": "Valorant (RIOT) - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "Valorant-PC"
+    },
+    {
+      "key": "WarcraftIIBattleNet-PC",
+      "label": "Warcraft II - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "WarcraftIIBattleNet-PC"
+    },
+    {
+      "key": "WarcraftIII-PC",
+      "label": "Warcraft III - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "WarcraftIII-PC"
+    },
+    {
+      "key": "Warframe-PC",
+      "label": "Warframe - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "Warframe-PC"
+    },
+    {
+      "key": "WorldofTanks-PC",
+      "label": "World of Tanks (WOT) - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "WorldofTanks-PC"
+    },
+    {
+      "key": "WorldofWarcraft-PC",
+      "label": "World of Warcraft - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "WorldofWarcraft-PC"
+    },
+    {
+      "key": "XshotIndonesia-PC",
+      "label": "X-shot Indonesia - PC",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "XshotIndonesia-PC"
+    }
+  ]
+}
