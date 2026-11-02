@@ -1,0 +1,9 @@
+{
+  "observed_at": "2026-11-02T21:33:29.100Z",
+  "status": "PASSED",
+  "automatic_snapshots": "none",
+  "authentication_dom_inspection": "blocked",
+  "authentication_screenshots": "blocked",
+  "ordinary_page_inspection": "allowed",
+  "real_credentials_entered": false
+}

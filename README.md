@@ -27,7 +27,7 @@ npm run build
 npm run test:e2e
 ```
 
-E2E uses a separate `.runtime/e2e.sqlite` database/server. Browser authentication state, local DBs, `.env`, uploads and logs are ignored by Git. Reference automation uses a loopback Playwright MCP server plus `npm run audit:browser`; never capture login forms or export authentication state.
+E2E uses a separate `.runtime/e2e.sqlite` database/server. Browser authentication state, local DBs, `.env`, uploads and logs are ignored by Git. Start reference automation with powershell -NoProfile -ExecutionPolicy Bypass -File scripts/start-reference-browser.ps1. It enforces isolated memory-only browser state and disables automatic snapshots; the persistent bridge blocks inspection/screenshots on visible authentication forms. Complete Premium login manually. Stop only the owned audit session with scripts/stop-reference-browser.ps1. Never export authentication state.
 
 Read [PRD](docs/PRD.md), [architecture](docs/ARCHITECTURE.md), [database](docs/DATABASE.md), [security](docs/SECURITY.md), [testing](docs/TESTING.md), [deployment/rollback](docs/DEPLOYMENT.md), and the [reference audit](docs/reference/BUANANET-AUDIT.md). No automatic router execution is implemented. Production deployment requires explicit owner approval.
 

@@ -58,5 +58,6 @@ class DatabaseSeeder extends Seeder
             CmsPage::firstOrCreate(['slug' => $slug], ['title' => $title, 'body' => $body, 'status' => 'published', 'owner_review_required' => $review]);
         }
         $this->call(EnglishContentSeeder::class);
+        $this->call(GeneratorEvidenceSeeder::class);
     }
 }

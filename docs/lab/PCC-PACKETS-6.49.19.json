@@ -1,0 +1,96 @@
+{
+  "started_at": "2026-11-02T20:58:13.495Z",
+  "completed_at": "2026-11-02T20:59:24.888Z",
+  "image_version": "6.49.19",
+  "image_sha256": "7dbd77e5704bc5f035501e6f2beb69e7f65978645c841503d69d43df9298d15b",
+  "emulator": "QEMU 11.1.0 TCG",
+  "isolation": "Snapshot-only CHR; three virtual Ethernet peers on loopback TCP; Node buffers emulate ARP/ICMP gateways; no host bridge, raw socket, SLIRP, Internet traffic or router IP accepted",
+  "qemu_pid": 10876,
+  "identity": "NANSAN-LAB-699b19f9a50b",
+  "cases": [
+    {
+      "test_id": "ros6-two-wan-equal",
+      "status": "SYNTHETIC_UDP_DISTRIBUTION_AND_NAT_PASSED",
+      "commands": 23,
+      "nat_rules": 2,
+      "packet_flow": {
+        "flows_sent": 400,
+        "flows_observed": 400,
+        "wan1": 196,
+        "wan2": 204,
+        "missing": 0,
+        "duplicates": 0,
+        "invalid_nat_or_destination": [],
+        "samples": [
+          {
+            "sequence": 0,
+            "wan": 2,
+            "source": "192.168.2.10",
+            "destination": "198.18.0.123"
+          },
+          {
+            "sequence": 1,
+            "wan": 2,
+            "source": "192.168.2.10",
+            "destination": "198.18.0.123"
+          },
+          {
+            "sequence": 2,
+            "wan": 1,
+            "source": "192.168.1.10",
+            "destination": "198.18.0.123"
+          },
+          {
+            "sequence": 3,
+            "wan": 2,
+            "source": "192.168.2.10",
+            "destination": "198.18.0.123"
+          }
+        ],
+        "expected_wan1_share": 0.5,
+        "maximum_absolute_share_deviation": 0.12
+      }
+    }
+  ],
+  "scope": "Synthetic UDP forwarding/PCC distribution/NAT through virtual WANs. A local link-outage observation is separate from Internet/end-to-end failover proof.",
+  "status": "SCOPED_PACKET_CHECKS_PASSED",
+  "observed_version": "6.49.19 (long-term)",
+  "preconditions": [
+    "ether1 and ether2 are disposable virtual WAN interfaces",
+    "bridge LAN interface created by the lab harness, as required by the interface-target fixture",
+    "WANs 192.168.1.10/24 and 192.168.2.10/24 with emulated .1 gateways; bridge LAN 192.168.88.1/24 and ether3, all supplied only by the lab harness"
+  ],
+  "capture_readback": [
+    {
+      "wan": 1,
+      "sha256": "3ce86d20d7e875ff5274a33dd7ab0642b5d56538b2cfdf81dfaea77e3490e9db",
+      "bytes": 22010,
+      "ethernet_records": 219,
+      "synthetic_udp_packets": 196,
+      "nat_source_counts": {
+        "192.168.1.10": 196
+      },
+      "batch_counts": {
+        "a6438f0e527b": 196
+      },
+      "expected_packets": 196,
+      "consistent": true
+    },
+    {
+      "wan": 2,
+      "sha256": "14438c53ca744c3439774fa32788e1d4a46a592002f648b2279a0e79ef0c8aef",
+      "bytes": 18653,
+      "ethernet_records": 217,
+      "synthetic_udp_packets": 204,
+      "nat_source_counts": {
+        "192.168.2.10": 204
+      },
+      "batch_counts": {
+        "a6438f0e527b": 204
+      },
+      "expected_packets": 204,
+      "consistent": true
+    }
+  ],
+  "capture_readback_recorded_at": "2026-11-02T21:01:54.245Z"
+}

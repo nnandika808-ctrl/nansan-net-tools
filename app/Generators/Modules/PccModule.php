@@ -149,7 +149,7 @@ final class PccModule implements GeneratorModule
     {
         $data = $this->validate($input);
 
-        return new GeneratedScript([['title' => 'PCC — DRAFT', 'script' => RouterOs::render($this->configuration($data))]], $data['routeros-version'] === 'v7.xx' ? '7' : '6', '0.1.0-draft', ['Lima skenario dua WAN dibandingkan dan lolos pemeriksaan sintaks/jumlah NAT di CHR 6.49.19 atau 7.25. Distribusi trafik dan failover belum terverifikasi.', 'Komentar dan formatting berbeda dari referensi; tidak diklaim exact match.']);
+        return new GeneratedScript([['title' => 'PCC — DRAFT', 'script' => RouterOs::render($this->configuration($data))]], $data['routeros-version'] === 'v7.xx' ? '7' : '6', $this->version(), ['Lima skenario dua WAN cocok pada proyeksi parameter dan masing-masing meneruskan 400 aliran UDP/NAT di CHR terisolasi. Putus link ROS7 mengalihkan 100 aliran baru ke WAN2. Jaringan ISP nyata dan variasi lain belum terverifikasi.', 'Komentar dan formatting berbeda dari referensi; tidak diklaim exact match.']);
     }
 
     private function gcd(int $a, int $b): int

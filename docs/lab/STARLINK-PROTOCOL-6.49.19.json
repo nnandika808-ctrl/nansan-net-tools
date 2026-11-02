@@ -1,0 +1,187 @@
+{
+  "started_at": "2026-11-02T21:18:28.273Z",
+  "completed_at": "2026-11-02T21:21:15.557Z",
+  "image_version": "6.49.19",
+  "image_sha256": "7dbd77e5704bc5f035501e6f2beb69e7f65978645c841503d69d43df9298d15b",
+  "emulator": "QEMU 11.1.0 TCG",
+  "isolation": "Snapshot-only CHR; three virtual Ethernet peers on loopback TCP; Node buffers emulate ARP/ICMP gateways; no host bridge, raw socket, SLIRP, Internet traffic or router IP accepted",
+  "qemu_pid": 16944,
+  "identity": "NANSAN-LAB-e2987b6e10a2",
+  "cases": [
+    {
+      "test_id": "ros6-two-equal",
+      "status": "FAILED",
+      "error": "Protocol count mismatch: expected 1, observed 0 for [:len [/ip route find where comment=\"LB-STARLINK1\" and gateway=\"192.168.1.254%ether1\"]]",
+      "diagnostics": {
+        "server_replies": [
+          {
+            "message": "OFFER",
+            "gateway": "192.168.1.1",
+            "lease": "192.168.1.10",
+            "xid": 168103614
+          },
+          {
+            "message": "ACK",
+            "gateway": "192.168.1.1",
+            "lease": "192.168.1.10",
+            "xid": 168103614
+          },
+          {
+            "message": "ACK",
+            "gateway": "192.168.1.254",
+            "lease": "192.168.1.10",
+            "xid": 168103614
+          }
+        ],
+        "client_gateway_output": "NSAN_ACK_facb45d4<er1] gateway]; :put \"NANSAN_ACK_facb45d4                                      <er1] gateway]; :put \"NANSAN_ACK_facb45d43<er1] gateway]; :put \"NANSAN_ACK_facb45d43                                     <er1] gateway]; :put \"NANSAN_ACK_facb45d432<er1] gateway]; :put \"NANSAN_ACK_facb45d432                                    <er1] gateway]; :put \"NANSAN_ACK_facb45d432\"<er1] gateway]; :put \"NANSAN_ACK_facb45d432\"                                   <er1] gateway]; :put \"NANSAN_ACK_facb45d432\"<er1] gateway]; :put \"NANSAN_ACK_facb45d432\"\n192.168.1.254\nNANSAN_ACK_facb45d432\n[admin@NANSAN-LAB-e2987b6e10a2] >                                              [admin@NANSAN-LAB-e2987b6e10a2] > ",
+        "route_gateway_output": "ACK_d029c6c1<K1\"] gateway]; :put \"NANSAN_ACK_d029c6c1                                      <K1\"] gateway]; :put \"NANSAN_ACK_d029c6c15<K1\"] gateway]; :put \"NANSAN_ACK_d029c6c15                                     <K1\"] gateway]; :put \"NANSAN_ACK_d029c6c15c<K1\"] gateway]; :put \"NANSAN_ACK_d029c6c15c                                    <K1\"] gateway]; :put \"NANSAN_ACK_d029c6c15c\"<K1\"] gateway]; :put \"NANSAN_ACK_d029c6c15c\"                                   <K1\"] gateway]; :put \"NANSAN_ACK_d029c6c15c\"<K1\"] gateway]; :put \"NANSAN_ACK_d029c6c15c\"\n192.168.1.1%ether1\nNANSAN_ACK_d029c6c15c\n[admin@NANSAN-LAB-e2987b6e10a2] >                                              [admin@NANSAN-LAB-e2987b6e10a2] > ",
+        "packet_flow": {
+          "flows_sent": 400,
+          "flows_observed": 400,
+          "wan1": 203,
+          "wan2": 197,
+          "missing": 0,
+          "duplicates": 0,
+          "invalid_nat_or_destination": [],
+          "samples": [
+            {
+              "sequence": 0,
+              "wan": 1,
+              "source": "192.168.1.10",
+              "destination": "198.18.0.123"
+            },
+            {
+              "sequence": 1,
+              "wan": 2,
+              "source": "192.168.2.10",
+              "destination": "198.18.0.123"
+            },
+            {
+              "sequence": 2,
+              "wan": 2,
+              "source": "192.168.2.10",
+              "destination": "198.18.0.123"
+            },
+            {
+              "sequence": 3,
+              "wan": 2,
+              "source": "192.168.2.10",
+              "destination": "198.18.0.123"
+            }
+          ],
+          "expected_wan1_share": 0.5,
+          "maximum_absolute_share_deviation": 0.12
+        },
+        "client_gateway": "192.168.1.254",
+        "route_gateway": "192.168.1.1%ether1"
+      }
+    },
+    {
+      "test_id": "ros6-two-netwatch",
+      "status": "FAILED",
+      "error": "Protocol count mismatch: expected 1, observed 0 for [:len [/ip route find where comment=\"LB-STARLINK1\" and gateway=\"192.168.1.254%ether1\"]]",
+      "diagnostics": {
+        "server_replies": [
+          {
+            "message": "OFFER",
+            "gateway": "192.168.1.1",
+            "lease": "192.168.1.10",
+            "xid": 1992252984
+          },
+          {
+            "message": "ACK",
+            "gateway": "192.168.1.1",
+            "lease": "192.168.1.10",
+            "xid": 1992252984
+          },
+          {
+            "message": "ACK",
+            "gateway": "192.168.1.254",
+            "lease": "192.168.1.10",
+            "xid": 1992252984
+          }
+        ],
+        "client_gateway_output": "NSAN_ACK_1b4f5486<er1] gateway]; :put \"NANSAN_ACK_1b4f5486                                      <er1] gateway]; :put \"NANSAN_ACK_1b4f54864<er1] gateway]; :put \"NANSAN_ACK_1b4f54864                                     <er1] gateway]; :put \"NANSAN_ACK_1b4f54864b<er1] gateway]; :put \"NANSAN_ACK_1b4f54864b                                    <er1] gateway]; :put \"NANSAN_ACK_1b4f54864b\"<er1] gateway]; :put \"NANSAN_ACK_1b4f54864b\"                                   <er1] gateway]; :put \"NANSAN_ACK_1b4f54864b\"<er1] gateway]; :put \"NANSAN_ACK_1b4f54864b\"\n192.168.1.254\nNANSAN_ACK_1b4f54864b\n[admin@NANSAN-LAB-e2987b6e10a2] >                                              [admin@NANSAN-LAB-e2987b6e10a2] > ",
+        "route_gateway_output": "ACK_8207d2e6<K1\"] gateway]; :put \"NANSAN_ACK_8207d2e6                                      <K1\"] gateway]; :put \"NANSAN_ACK_8207d2e68<K1\"] gateway]; :put \"NANSAN_ACK_8207d2e68                                     <K1\"] gateway]; :put \"NANSAN_ACK_8207d2e68e<K1\"] gateway]; :put \"NANSAN_ACK_8207d2e68e                                    <K1\"] gateway]; :put \"NANSAN_ACK_8207d2e68e\"<K1\"] gateway]; :put \"NANSAN_ACK_8207d2e68e\"                                   <K1\"] gateway]; :put \"NANSAN_ACK_8207d2e68e\"<K1\"] gateway]; :put \"NANSAN_ACK_8207d2e68e\"\n192.168.1.1%ether1\nNANSAN_ACK_8207d2e68e\n[admin@NANSAN-LAB-e2987b6e10a2] >                                              [admin@NANSAN-LAB-e2987b6e10a2] > ",
+        "packet_flow": {
+          "flows_sent": 400,
+          "flows_observed": 400,
+          "wan1": 215,
+          "wan2": 185,
+          "missing": 0,
+          "duplicates": 0,
+          "invalid_nat_or_destination": [],
+          "samples": [
+            {
+              "sequence": 0,
+              "wan": 1,
+              "source": "192.168.1.10",
+              "destination": "198.18.0.123"
+            },
+            {
+              "sequence": 1,
+              "wan": 2,
+              "source": "192.168.2.10",
+              "destination": "198.18.0.123"
+            },
+            {
+              "sequence": 2,
+              "wan": 1,
+              "source": "192.168.1.10",
+              "destination": "198.18.0.123"
+            },
+            {
+              "sequence": 3,
+              "wan": 1,
+              "source": "192.168.1.10",
+              "destination": "198.18.0.123"
+            }
+          ],
+          "expected_wan1_share": 0.5,
+          "maximum_absolute_share_deviation": 0.12
+        },
+        "client_gateway": "192.168.1.254",
+        "route_gateway": "192.168.1.1%ether1"
+      }
+    }
+  ],
+  "scope": "Real synthetic DHCP exchanges and UDP forwarding; gateway-only renewal failed on CHR 6.49.19. Failed cases are not passing compatibility evidence.",
+  "status": "FAILED",
+  "observed_version": "6.49.19 (long-term)",
+  "preconditions": [
+    "ether1 and ether2 are disposable virtual WAN interfaces",
+    "bridge LAN interface created by the lab harness, as required by the interface-target fixture",
+    "WANs 192.168.1.10/24 and 192.168.2.10/24 with emulated .1 gateways; bridge LAN 192.168.88.1/24 and ether3, all supplied only by the lab harness"
+  ],
+  "capture_readback": [
+    {
+      "wan": 1,
+      "sha256": "dec2d2986eb96b4c238be480bc89ef6ad302d72580b7c916a15830271e092667",
+      "bytes": 44305,
+      "ethernet_records": 461,
+      "synthetic_udp_packets": 418,
+      "nat_source_counts": {
+        "192.168.1.10": 418
+      },
+      "batch_counts": {
+        "4c8330f4a72a": 203,
+        "aa182310dd7b": 215
+      }
+    },
+    {
+      "wan": 2,
+      "sha256": "dcf6d562d7a8e9d18f4710cd4c2e04b1ee8f49aa1d5db0ddba0112d38f0e6f08",
+      "bytes": 46709,
+      "ethernet_records": 519,
+      "synthetic_udp_packets": 482,
+      "nat_source_counts": {
+        "192.168.2.10": 482
+      },
+      "batch_counts": {
+        "4c8330f4a72a": 197,
+        "aa182310dd7b": 185,
+        "bb6612c3582d": 100
+      }
+    }
+  ]
+}

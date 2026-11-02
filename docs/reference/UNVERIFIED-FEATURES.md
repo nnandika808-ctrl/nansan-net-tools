@@ -16,3 +16,5 @@
 | Rights | Full text fixtures and exclusive datasets | Scope of owner-reported Facebook permission is not established |
 
 No blocker is counted as passing. No generator is public until reviewed code, validated cases and authorized lab evidence meet publication criteria.
+
+Confirmed own-draft compatibility blocker: on CHR 6.49.19, DHCP client gateway changes to 192.168.1.254 but LB-STARLINK1 keeps 192.168.1.1%ether1 on gateway-only renewal. See ../lab/STARLINK-PROTOCOL-6.49.19.json. It is not a confirmed Buananet bug; the full reference was not run for that event sequence. No automatic workaround was applied.

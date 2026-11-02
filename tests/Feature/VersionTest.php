@@ -6,6 +6,7 @@ use App\Generators\GeneratorRegistry;
 use App\Models\GeneratorVersion;
 use App\Models\Tool;
 use App\Models\User;
+use Database\Seeders\GeneratorEvidenceSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
@@ -13,6 +14,22 @@ use Tests\TestCase;
 class VersionTest extends TestCase
 {
     use RefreshDatabase;
+
+    public function test_code_evidence_seeding_does_not_overwrite_an_owner_draft_collision(): void
+    {
+        $this->seed();
+        $tool = Tool::where('generator_id', 'G03')->firstOrFail();
+        $version = GeneratorVersion::where('tool_id', $tool->id)->where('version', '0.1.0-draft')->firstOrFail();
+        $version->update(['status' => 'DRAFT', 'evidence' => null, 'changelog' => 'Owner draft must survive']);
+        try {
+            $this->seed(GeneratorEvidenceSeeder::class);
+            $this->fail('Draft collision was overwritten.');
+        } catch (\RuntimeException $error) {
+            $this->assertStringContainsString('collides', $error->getMessage());
+        }
+        $this->assertSame('Owner draft must survive', $version->fresh()->changelog);
+        $this->assertSame('DRAFT', $version->fresh()->status);
+    }
 
     public function test_schema_draft_crud_never_changes_audited_schema_or_publication(): void
     {

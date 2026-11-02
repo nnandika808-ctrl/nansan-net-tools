@@ -164,8 +164,9 @@ final class StarlinkModule implements GeneratorModule
     {
         $data = $this->validate($input);
 
-        return new GeneratedScript([['title' => 'Starlink — DRAFT', 'script' => RouterOs::render($this->configuration($data))]], $data['ros'] === 'v7' ? '7' : '6', '0.1.0-draft', [
-            'Tujuh skenario proyeksi parameter diamati. DHCP, Netwatch, distribusi trafik dan failover memerlukan verifikasi lab terpisah.',
+        return new GeneratedScript([['title' => 'Starlink — DRAFT', 'script' => RouterOs::render($this->configuration($data))]], $data['ros'] === 'v7' ? '7' : '6', $this->version(), [
+            'Tujuh proyeksi parameter dibandingkan; tiga kasus ROS7 lolos DHCP/UDP/NAT virtual, perubahan gateway, unbind dan monitoring bila diaktifkan. Ini bukan verifikasi ISP nyata atau semua kombinasi.',
+            'CHR 6.49.19 menerima gateway DHCP baru tetapi route draf tidak diperbarui saat gateway-only renewal. Kompatibilitas ROS6 memerlukan review; jangan gunakan pada jaringan operasional.',
             'Mengubah DNS router dan membuat DHCP client baru; periksa konflik konfigurasi. Bukan exact match dan belum dipublikasikan.',
         ]);
     }

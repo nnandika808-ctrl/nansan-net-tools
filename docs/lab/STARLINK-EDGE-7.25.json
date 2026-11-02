@@ -1,0 +1,192 @@
+{
+  "started_at": "2026-11-02T21:18:29.553Z",
+  "completed_at": "2026-11-02T21:24:00.784Z",
+  "image_version": "7.25",
+  "image_sha256": "5b9c77075b67f8b53f747f9d918d0e446e8cfbd943dc82ee28b7fcb68130d140",
+  "emulator": "QEMU 11.1.0 TCG",
+  "isolation": "Snapshot-only CHR; three virtual Ethernet peers on loopback TCP; Node buffers emulate ARP/ICMP gateways; no host bridge, raw socket, SLIRP, Internet traffic or router IP accepted",
+  "qemu_pid": 2188,
+  "identity": "NANSAN-LAB-a05cfaddcd7e",
+  "cases": [
+    {
+      "test_id": "ros7-two-netwatch-protocol",
+      "status": "DHCP_PROTOCOL_UDP_NAT_RENEW_UNBIND_AND_MONITORING_PASSED",
+      "commands": 30,
+      "nat_rules": 2,
+      "script_sha256": "0292f38ae06b129f75ca62fc373ea71562fb35e3e43be8fc3c7e04060d5c5354",
+      "input_basis": "Additional own-protocol combination; not a new external reference projection",
+      "dhcp_bound_clients": 2,
+      "bound_route_count": 6,
+      "netwatch_initial_up": 2,
+      "packet_flow": {
+        "flows_sent": 400,
+        "flows_observed": 400,
+        "wan1": 206,
+        "wan2": 194,
+        "missing": 0,
+        "duplicates": 0,
+        "invalid_nat_or_destination": [],
+        "samples": [
+          {
+            "sequence": 0,
+            "wan": 1,
+            "source": "192.168.1.10",
+            "destination": "198.18.0.123"
+          },
+          {
+            "sequence": 1,
+            "wan": 2,
+            "source": "192.168.2.10",
+            "destination": "198.18.0.123"
+          },
+          {
+            "sequence": 2,
+            "wan": 2,
+            "source": "192.168.2.10",
+            "destination": "198.18.0.123"
+          },
+          {
+            "sequence": 3,
+            "wan": 1,
+            "source": "192.168.1.10",
+            "destination": "198.18.0.123"
+          }
+        ],
+        "expected_wan1_share": 0.5,
+        "maximum_absolute_share_deviation": 0.12
+      },
+      "netwatch_down": 1,
+      "disabled_routes": 2,
+      "monitor_down_flow": {
+        "flows_sent": 100,
+        "flows_observed": 100,
+        "wan1": 0,
+        "wan2": 100,
+        "missing": 0,
+        "duplicates": 0,
+        "invalid_nat_or_destination": [],
+        "samples": [
+          {
+            "sequence": 0,
+            "wan": 2,
+            "source": "192.168.2.10",
+            "destination": "198.18.0.123"
+          },
+          {
+            "sequence": 1,
+            "wan": 2,
+            "source": "192.168.2.10",
+            "destination": "198.18.0.123"
+          },
+          {
+            "sequence": 2,
+            "wan": 2,
+            "source": "192.168.2.10",
+            "destination": "198.18.0.123"
+          },
+          {
+            "sequence": 3,
+            "wan": 2,
+            "source": "192.168.2.10",
+            "destination": "198.18.0.123"
+          }
+        ]
+      },
+      "renew_while_down": {
+        "monitor_still_down": true,
+        "enabled_main_and_lb_routes": 0,
+        "review_required": false
+      },
+      "netwatch_restored_up": 2,
+      "renewed_gateway": "192.168.1.254%ether1",
+      "unbound_route_count": 0,
+      "unbound_flow": {
+        "flows_sent": 100,
+        "flows_observed": 100,
+        "wan1": 0,
+        "wan2": 100,
+        "missing": 0,
+        "duplicates": 0,
+        "invalid_nat_or_destination": [],
+        "samples": [
+          {
+            "sequence": 0,
+            "wan": 2,
+            "source": "192.168.2.10",
+            "destination": "198.18.0.123"
+          },
+          {
+            "sequence": 1,
+            "wan": 2,
+            "source": "192.168.2.10",
+            "destination": "198.18.0.123"
+          },
+          {
+            "sequence": 2,
+            "wan": 2,
+            "source": "192.168.2.10",
+            "destination": "198.18.0.123"
+          },
+          {
+            "sequence": 3,
+            "wan": 2,
+            "source": "192.168.2.10",
+            "destination": "198.18.0.123"
+          }
+        ]
+      },
+      "peer_dns_ignored": true,
+      "dhcp_protocol_replies": [
+        14,
+        11
+      ],
+      "dhcp_gateway_options_per_wan": [
+        [
+          "192.168.1.1",
+          "192.168.1.254"
+        ],
+        [
+          "192.168.2.1"
+        ]
+      ]
+    }
+  ],
+  "scope": "Additional own ROS7 renewal-while-monitor-Down observation; not a new external reference comparison. No all-interleavings claim.",
+  "status": "SCOPED_PACKET_CHECKS_PASSED",
+  "observed_version": "7.25",
+  "preconditions": [
+    "ether1 and ether2 are disposable virtual WAN interfaces",
+    "bridge LAN interface created by the lab harness, as required by the interface-target fixture",
+    "WANs 192.168.1.10/24 and 192.168.2.10/24 with emulated .1 gateways; bridge LAN 192.168.88.1/24 and ether3, all supplied only by the lab harness"
+  ],
+  "capture_readback": [
+    {
+      "wan": 1,
+      "sha256": "c794e3b93f4068fad397f25303f0d8eac3a3763c8908f3a63eba1686c7fee8fb",
+      "bytes": 47306,
+      "ethernet_records": 336,
+      "synthetic_udp_packets": 206,
+      "nat_source_counts": {
+        "192.168.1.10": 206
+      },
+      "batch_counts": {
+        "481501147377": 206
+      }
+    },
+    {
+      "wan": 2,
+      "sha256": "4b8f5db8ccbeb81f0363da55496eacb343670ff635b1a60bdbf2c8476a38f81e",
+      "bytes": 56343,
+      "ethernet_records": 500,
+      "synthetic_udp_packets": 394,
+      "nat_source_counts": {
+        "192.168.2.10": 394
+      },
+      "batch_counts": {
+        "481501147377": 194,
+        "8391b5850eec": 100,
+        "f28606aaf0e1": 100
+      }
+    }
+  ]
+}
