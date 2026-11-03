@@ -1,0 +1,83 @@
+{
+  "started_at": "2026-11-03T01:11:07.242Z",
+  "completed_at": "2026-11-03T01:13:35.987Z",
+  "image_version": "6.49.19",
+  "image_sha256": "7dbd77e5704bc5f035501e6f2beb69e7f65978645c841503d69d43df9298d15b",
+  "emulator": "QEMU 11.1.0 TCG",
+  "isolation": "Snapshot-only CHR; three virtual Ethernet peers on loopback TCP; Node buffers emulate ARP/ICMP gateways; no host bridge, raw socket, SLIRP, Internet traffic or router IP accepted",
+  "source": "Full ROS6 sample pasted by owner into this conversation; origin is owner-attested, not independently fetched in this run",
+  "full_script_redistributed": false,
+  "method": "Existing scripts/routeros-lab.mjs copied into ignored runtime with only fixture/report/capture paths changed and an asserted zero-DHCP-client check before each import; command/protocol checks unchanged",
+  "cases": [
+    {
+      "test_id": "owner-supplied-ros6-two-equal",
+      "script_sha256": "cba93213535af9a3d3fac7f9d3e9d7e274113d309a58696a57ee7595e254a85d",
+      "initial_dhcp_client_count": 0,
+      "initial_import_and_udp_nat": "PASSED",
+      "flows_sent": 400,
+      "flows_observed": 400,
+      "wan1": 208,
+      "wan2": 192,
+      "missing": 0,
+      "duplicates": 0,
+      "invalid_nat_or_destination": 0,
+      "gateway_only_renewal": "FAILED",
+      "client_gateway": "192.168.1.254",
+      "route_gateway": "192.168.1.1%ether1"
+    },
+    {
+      "test_id": "own-draft-ros6-two-equal-repeat",
+      "script_sha256": "cbc942f5b568fd3458bdab1b5a47f26e7968ebd955f64bbcb9dca9df384b7fad",
+      "initial_dhcp_client_count": 0,
+      "initial_import_and_udp_nat": "PASSED",
+      "flows_sent": 400,
+      "flows_observed": 400,
+      "wan1": 196,
+      "wan2": 204,
+      "missing": 0,
+      "duplicates": 0,
+      "invalid_nat_or_destination": 0,
+      "gateway_only_renewal": "FAILED",
+      "client_gateway": "192.168.1.254",
+      "route_gateway": "192.168.1.1%ether1"
+    }
+  ],
+  "parameter_comparison": {
+    "status": "MATCHED_ORDERED_PARAMETER_AND_LIMITED_DHCP_PROJECTION",
+    "commands": 22,
+    "scope": "Same independent partial comparator as prior cases; comments/format excluded; not exact output or complete semantic equivalence"
+  },
+  "capture_readback": [
+    {
+      "wan": 1,
+      "sha256": "ab7ccb4fccb7439bbf7d6074c4a898465f0bd4e4949fd9fdd7232acfa0f959ab",
+      "bytes": 42163,
+      "ethernet_records": 436,
+      "synthetic_udp_packets": 404,
+      "nat_source_counts": {
+        "192.168.1.10": 404
+      },
+      "batch_counts": {
+        "7c1dd209ca1f": 208,
+        "aca4502b2f4c": 196
+      }
+    },
+    {
+      "wan": 2,
+      "sha256": "47789af0b4bb222998aac29d522ea1fbf46f714759823ca36c35541692d9341f",
+      "bytes": 38521,
+      "ethernet_records": 421,
+      "synthetic_udp_packets": 396,
+      "nat_source_counts": {
+        "192.168.2.10": 396
+      },
+      "batch_counts": {
+        "7c1dd209ca1f": 192,
+        "aca4502b2f4c": 204
+      }
+    }
+  ],
+  "observation": "MATCHED_SCOPED_BEHAVIOR_WITH_SHARED_ROS6_RENEWAL_LIMITATION",
+  "scope": "Two WANs, v6 default equal PCC, synthetic IPv4 UDP/NAT and a gateway-only renewal; not exact-text or complete semantic parity, real ISP testing or a universal vendor bug claim",
+  "generator_logic_changed": false
+}

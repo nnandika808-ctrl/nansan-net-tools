@@ -17,4 +17,4 @@
 
 No blocker is counted as passing. No generator is public until reviewed code, validated cases and authorized lab evidence meet publication criteria.
 
-Confirmed own-draft compatibility blocker: on CHR 6.49.19, DHCP client gateway changes to 192.168.1.254 but LB-STARLINK1 keeps 192.168.1.1%ether1 on gateway-only renewal. See ../lab/STARLINK-PROTOCOL-6.49.19.json. It is not a confirmed Buananet bug; the full reference was not run for that event sequence. No automatic workaround was applied.
+Confirmed own-draft compatibility blocker: on CHR 6.49.19, DHCP client gateway changes to 192.168.1.254 but LB-STARLINK1 keeps 192.168.1.1%ether1 on gateway-only renewal. See ../lab/STARLINK-PROTOCOL-6.49.19.json. A subsequent owner-supplied full ROS6 sample reproduced the same scoped behavior from zero DHCP clients; initial import and 400-flow forwarding passed for each script. See ../lab/OWNER-SUPPLIED-STARLINK-6.49.19.json. This is a shared compatibility limitation in the tested scenario, not evidence of a draft/reference mismatch. No automatic workaround was applied.
