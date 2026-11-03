@@ -1,5 +1,5 @@
 {
-  "observed_at": "2026-11-03T02:02:12.259Z",
+  "observed_at": "2026-11-03T02:55:48.314Z",
   "scope": "Private staging only; temporary test identity; no production changes",
   "status": "PASSED",
   "operations": {
@@ -13,8 +13,8 @@
     },
     "backup": {
       "status": "restore_verified",
-      "restore_tested_at": "2026-11-03 09:02:32",
-      "bytes": 21396
+      "restore_tested_at": "2026-11-03 09:56:23",
+      "bytes": 21886
     },
     "off_host_backup": false
   },
@@ -35,15 +35,21 @@
     "login": "passed",
     "starlink_preview": "passed",
     "static_routing_preview": "passed",
-    "static_dataset_sha256_verified": true
+    "static_dataset_sha256_verified": true,
+    "known_static_failures_marked": [
+      "Teams/tls-host/ROS7",
+      "Teams/content/ROS7",
+      "Telegram/tls-host/ROS7",
+      "Telegram/content/ROS7"
+    ]
   },
   "performance": {
     "scope": "12 sequential catalog requests through SSH; not a capacity/load test",
-    "median_ms": 242,
-    "p95_ms": 299
+    "median_ms": 251,
+    "p95_ms": 424
   },
   "cleanup": {
     "temporary_identity_removed": true
   },
-  "completed_at": "2026-11-03T02:02:45.426Z"
+  "completed_at": "2026-11-03T02:56:36.590Z"
 }

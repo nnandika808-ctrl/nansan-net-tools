@@ -1699,5 +1699,12 @@
         "7.25": "PASSED"
       }
     }
-  ]
+  ],
+  "reference_bug_decision": {
+    "date": "2026-11-03",
+    "scope": "Teams/Telegram duplicate address-list additions in both match modes on ROS7",
+    "choice": "preserve-reference-and-mark-failed",
+    "owner_statement": "Pertahankan persis dan tandai gagal",
+    "dataset_rewrite_applied": false
+  }
 }

@@ -41,7 +41,15 @@ process.stdin.on('data',chunk=>{secret+=chunk.toString();if(secret.includes('\u0
    if(!artifactPath)throw new Error('Pinned self-hosted dataset URL missing.');
    const artifact=await context.request.get(origin+artifactPath[0]);if(artifact.status()!==200)throw new Error('Self-hosted dataset download failed.');
    const artifactBody=await artifact.body();if(crypto.createHash('sha256').update(artifactBody).digest('hex')!==artifactPath[1])throw new Error('Downloaded dataset hash mismatch.');
-   report.http={public_routes:5,authenticated_routes:7,login:'passed',starlink_preview:'passed',static_routing_preview:'passed',static_dataset_sha256_verified:true};
+   const marked=await page.evaluate(async()=>{
+    const results=[];
+    for(const application of ['Teams','Telegram'])for(const mode of ['tls-host','content']){
+     const response=await fetch(location.pathname,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json','X-CSRF-TOKEN':document.querySelector('meta[name=csrf-token]').content},body:JSON.stringify({input:{'routing-list':application,'ros-list':'ros7','match-condition':mode}})});
+     const output=await response.json();if(!response.ok||!output.warnings?.some(warning=>warning.includes('gagal')))throw new Error('Known source failure is not marked in preview.');results.push(application+'/'+mode+'/ROS7');
+    }
+    return results;
+   });
+   report.http={public_routes:5,authenticated_routes:7,login:'passed',starlink_preview:'passed',static_routing_preview:'passed',static_dataset_sha256_verified:true,known_static_failures_marked:marked};
    const elapsed=[];for(let i=0;i<12;i++){const started=performance.now();const response=await context.request.get(origin+'/tools');if(response.status()!==200)throw new Error('Sequential catalog probe failed.');elapsed.push(performance.now()-started);}elapsed.sort((a,b)=>a-b);
    report.performance={scope:'12 sequential catalog requests through SSH; not a capacity/load test',median_ms:Math.round(elapsed[6]),p95_ms:Math.round(elapsed[11])};
    if(Object.values(report.operations.doctor).some(value=>value==='unavailable'||value==='failed'))throw new Error('A required staging runtime probe is unavailable.');
