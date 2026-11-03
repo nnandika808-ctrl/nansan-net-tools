@@ -38,6 +38,11 @@ class Doctor extends Command
         }
         try {
             if ($this->option('queue')) {
+                if (! in_array(config('queue.default'), ['redis', 'database'], true)) {
+                    $checks['queue'] = 'unavailable';
+                    $checks['queue_error'] = 'PersistentQueueRequired';
+                    throw new \RuntimeException('Persistent queue required');
+                }
                 QueueHeartbeat::dispatch($key);
                 $until = microtime(true) + 15;
                 do {

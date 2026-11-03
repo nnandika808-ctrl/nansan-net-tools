@@ -2,6 +2,10 @@
 
 Laravel 13 + React/TypeScript + Inertia MikroTik workspace. Free, username-based identity and private user/admin areas. **Development build; generators are not published and production is not ready.** See [actual status](docs/IMPLEMENTATION-STATUS.md) and [parity evidence](docs/GENERATOR-PARITY-MATRIX.md).
 
+## Hosting di aaPanel
+
+Ikuti [panduan aaPanel](docs/AAPANEL-HOSTING.md). CI menghasilkan artifact **nansan-hosting-[commit]** berisi ZIP dengan dependency produksi dan frontend siap pakai, checksum, serta hasil instalasi ZIP dari keadaan bersih. Ambil dari run **Checks yang sukses** di GitHub Actions; tidak perlu Node di hosting jika memakai paket ini. Konfigurasi server/secret tetap harus diisi dan diuji. `php artisan nansan:hosting-check --production --runtime` memeriksa prasyarat tanpa mencetak secret. Deployment produksi tetap memerlukan persetujuan pemilik.
+
 ## Local setup
 
 Requirements: PHP 8.4+ with Laravel/SQLite/MySQL/GD extensions, Composer 2, Node 22.12+, npm. On this Windows workspace PHP is available at `.runtime/tools/php/php.exe`; `scripts/bootstrap-tools.ps1` downloads checksum-verified official PHP/Composer for local use.
@@ -31,7 +35,7 @@ E2E uses a separate `.runtime/e2e.sqlite` database/server. Browser authenticatio
 
 Read [PRD](docs/PRD.md), [architecture](docs/ARCHITECTURE.md), [database](docs/DATABASE.md), [security](docs/SECURITY.md), [testing](docs/TESTING.md), [deployment/rollback](docs/DEPLOYMENT.md), and the [reference audit](docs/reference/BUANANET-AUDIT.md). No automatic router execution is implemented. Production deployment requires explicit owner approval.
 
-Private staging: http://127.0.0.1:8091/login while the SSH forward is running. Admin username: nansan. Its random password is protected by Windows DPAPI in ignored runtime storage. Run powershell -NoProfile -ExecutionPolicy Bypass -File scripts/staging-admin-access.ps1 -CopyPassword to open login and copy the password without printing it. See deployment documentation for external-service blockers. Draft review: https://github.com/nnandika808-ctrl/nansan-net-tools/pull/1.
+Current local design preview: http://127.0.0.1:8000 via `Buka Desain NANSAN.cmd` (Windows preview owner uses an ignored DPAPI-protected credential). Old private staging at port 8091 currently returns 502 and its expected ownership marker/current target are missing; do not bypass that guard or treat historical smoke results as current health. Current draft review: https://github.com/nnandika808-ctrl/nansan-net-tools/pull/2.
 
 Static Routing G01 now has an Admin draft at /admin/tools/static-routing/preview. All 47 choices were audited (188 app/ROS/matcher combinations); 92 parameter snapshots cover 46 applications, while both Shopify sources returned 404. Rebuild data only with the owner-authorized workflow: node scripts/collect-static-routing-data.mjs, node scripts/prepare-static-routing-data.mjs, then php scripts/index-static-routing.php. Raw source files are ignored. G01 remains unpublished; see docs/reference/G01-STATIC-ROUTING.md.
 

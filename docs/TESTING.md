@@ -1,5 +1,7 @@
 # Testing
 
+Hosting preparation (2026-11-04): 83 PHP tests / 752 assertions, 11 frontend tests, seven Node privacy/parser tests and type/lint/build pass. Six hosting regressions cover missing hashed assets/dev markers, unsafe production settings without secret leakage, public backup roots, queue timeout windows, false synchronous worker evidence and invalid heartbeats. CI also builds a locked no-dev hosting ZIP, checks archive SHA256/file inventory, extracts it into a clean directory, migrates, seeds twice, optimizes and checks public/assets/private-path/admin HTTP behavior. This isolated SQLite smoke does not replace real-host MySQL/Redis/TLS/Turnstile/backup acceptance. See [aaPanel hosting](AAPANEL-HOSTING.md) and the exact run's artifact reports.
+
 Run php artisan test, npm test, npm run typecheck, npm run lint, npm run build and npm run test:e2e. Windows PHP is .runtime/tools/php/php.exe; use npm.cmd if PowerShell script policy blocks npm.ps1.
 
 Latest backend: **65 tests, 662 assertions passed**. Frontend: **9 component/form tests passed**; TypeScript, ESLint and production build passed. Browser suite: 16 passed, including SEO/FAQ, validated templates and English content. GitHub source CI [41567842652](https://github.com/nnandika808-ctrl/nansan-net-tools/actions/runs/41567842652) at 936de3c passed PHP 8.4, frontend/privacy checks, isolated MySQL/Redis integration, Chromium E2E and dependency audits.

@@ -1,5 +1,7 @@
 # Deployment and rollback
 
+Current aaPanel installation path: [AAPANEL-HOSTING.md](AAPANEL-HOSTING.md), with CI-built no-dev ZIP, checksum and fresh extracted-archive smoke. The private staging description below is historical: the latest read-only audit found its ownership marker/current release missing and HTTP 502. Do not run a redeploy over that directory or treat the old verification as current health.
+
 Production mikrotik.nansannet.cloud is **not approved/deployed**. The staging hostname staging.mikrotik.nansannet.cloud is not configured in DNS/Tunnel. Current staging is private through encrypted SSH forwarding at http://127.0.0.1:8091. Existing Apache port 80, production sites and routers were not changed.
 
 ## Actual private staging
