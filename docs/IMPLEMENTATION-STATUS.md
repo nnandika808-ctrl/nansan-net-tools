@@ -2,6 +2,8 @@
 
 Working application and private staging; **not production-ready**. Production, DNS and physical router configurations have not been changed.
 
+Private access recovery verified 2026-11-03: the Ubuntu services were healthy, but the Windows SSH forward had stopped. The forward was restored and `/login` returned HTTP 200. `Buka NANSAN.cmd` now checks access, reconnects through hidden SSH input when needed, copies the existing DPAPI-protected Admin password and opens the browser. A cold reconnect through the PowerShell launcher was tested; the detached connection stays active after the launcher exits. No production/DNS/router changes or generator logic changes were made.
+
 | Area | Implemented and verified | Remaining |
 |---|---|---|
 | Platform | Laravel 13 / PHP 8.4+, React/TypeScript/Inertia, MySQL/Redis, required extensions | Production capacity and external-service configuration |

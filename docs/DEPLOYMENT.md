@@ -14,6 +14,8 @@ The owner Admin nansan was created through hidden Artisan prompts with a random 
 
 The file can only be decrypted by the current Windows user on this machine. Keep the SSH forward running. Generate and safely retain recovery codes from the Account page after login. No public default password or seeded Admin exists.
 
+On Windows, double-click `Buka NANSAN.cmd` in the project folder. It invokes the same owner-access helper, checks the login URL before copying the Admin password, and opens a visible browser window. If the forward is missing, it prompts for the Ubuntu root SSH password with hidden input and starts a detached, hidden Node connection pinned to the authorized server fingerprint. The SSH password travels through stdin only; it is not saved in arguments, environment or files. Runtime connection logs contain service/HTTP status, not passwords. Closing the launcher leaves the forward running; an SSH disconnect closes its listener so the next launch can reconnect. This is private access from this Windows computer, not a phone/public URL. Cold-start recovery and HTTP 200 at `/login` were verified on 2026-11-03; application generator logic was unchanged.
+
 ## Reproducible release
 
 scripts/deploy-staging.mjs pins the observed SSH fingerprint, uploads a source whitelist and verified Composer, then runs deployment/provision-staging.py. Archive excludes .env, browser state, databases, uploads, vendor and node_modules. The server generates/retains secrets, installs locked dependencies, checks platform requirements, migrates/seeds, switches current, caches Laravel metadata and restarts only project-owned FPM/web/worker services. enable --now alone is insufficient for an existing worker, so restart is explicit.

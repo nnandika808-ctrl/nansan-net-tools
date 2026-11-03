@@ -12,6 +12,7 @@ if ($Store) {
     Write-Output 'Owner credential encrypted using Windows DPAPI; no plaintext password written.'
     exit
 }
+& (Join-Path $PSScriptRoot 'start-staging-access.ps1')
 $credential = Import-Clixml -LiteralPath $credentialPath
 Write-Output ('Staging username: ' + $credential.UserName)
 if ($CopyPassword) {
@@ -20,4 +21,4 @@ if ($CopyPassword) {
 } else {
     Write-Output 'Run with -CopyPassword to copy the password without printing it.'
 }
-Start-Process 'http://127.0.0.1:8091/login' -WindowStyle Hidden
+Start-Process 'http://127.0.0.1:8091/login' -WindowStyle Normal
