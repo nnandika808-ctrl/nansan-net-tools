@@ -41,12 +41,17 @@ class StaticRoutingTest extends TestCase
         $datasets = new StaticRoutingDatasets;
         $available = array_filter($datasets->manifest()['datasets'], fn ($entry) => isset($entry['parameter_file']));
         $this->assertCount(92, $available);
+        $rendered = [];
         foreach ($available as $entry) {
             $artifact = $datasets->artifact($entry['application'], $entry['mode']);
+            $rendered[] = ['application' => $entry['application'], 'mode' => $entry['mode'], 'script' => $artifact['script']];
             $this->assertSame($entry['artifact_sha256'], hash('sha256', $artifact['script']));
             $this->assertStringNotContainsString('/tool fetch', $artifact['script']);
             $this->assertStringNotContainsString('/system', $artifact['script']);
         }
+        $roundTrip = new Process(['node', 'scripts/compare-static-routing-data.mjs'], base_path(), null, json_encode($rendered, JSON_THROW_ON_ERROR));
+        $roundTrip->mustRun();
+        $this->assertStringContainsString('92 rendered', $roundTrip->getOutput());
         config(['app.url' => 'https://tools.example.test']);
         $output = (new StaticRoutingModule)->generate([]);
         $this->assertStringContainsString('https://tools.example.test/datasets/static-routing/', $output->steps[0]['script']);

@@ -1,0 +1,77 @@
+{
+  "started_at": "2026-11-03T02:21:03.035Z",
+  "image_version": "7.25",
+  "image_sha256": "5b9c77075b67f8b53f747f9d918d0e446e8cfbd943dc82ee28b7fcb68130d140",
+  "emulator": "QEMU 11.1.0 TCG",
+  "isolation": "Fresh snapshot CHR; three restricted user-mode networks, loopback-only console and host-forwarded management SSH; no physical router, bridge or Internet access",
+  "scope": "Actual SFTP-staged dataset import and generated STEP 2 command acceptance. STEP 1 HTTPS download, application traffic, prefix freshness and ISP routing are not exercised.",
+  "preconditions": [
+    "Disposable WAN addresses and SSH management address are lab-only",
+    "An existing sentinel mangle rule is preserved; reference place-before=*0 is tested as rendered and an empty-mangle case is checked separately"
+  ],
+  "cases": [
+    {
+      "test_id": "source-ros7-teams-content",
+      "application": "Teams",
+      "mode": "content",
+      "dataset_sha256": "4446b24a8e1b76dc99f3a622abcc12d2ad187c53ac16299914b9955b2ad9dfc1",
+      "step2_sha256": "a866cc71123b00d160fc60dbdb556f412a46ae945f1a36afc5c57d60d9a98ca1",
+      "mangle_anchor": true,
+      "status": "FAILED",
+      "upload_file_visible": true,
+      "last_command": "/import file-name=\"Mikrotik-Teams.rsc\"",
+      "failed_stage": "dataset_import",
+      "error": "Script Error: failure: already have such entry (/ip/firewall/address-list/add; line 24) (:import; line 1)\n"
+    },
+    {
+      "test_id": "source-ros7-teams-tls-host",
+      "application": "Teams",
+      "mode": "tls-host",
+      "dataset_sha256": "6910a31ee2cf47bbbeddc6afbbe5b45deabb5bd03b1a7245ce084235fe72f32b",
+      "step2_sha256": "a866cc71123b00d160fc60dbdb556f412a46ae945f1a36afc5c57d60d9a98ca1",
+      "mangle_anchor": true,
+      "status": "FAILED",
+      "upload_file_visible": true,
+      "last_command": "/import file-name=\"Mikrotik-Teams.rsc\"",
+      "failed_stage": "dataset_import",
+      "error": "Script Error: failure: already have such entry (/ip/firewall/address-list/add; line 24) (:import; line 1)\n"
+    },
+    {
+      "test_id": "source-ros7-telegram-content",
+      "application": "Telegram",
+      "mode": "content",
+      "dataset_sha256": "8ee739f041e893a184c8b0159f32640aed6791fbc4936cd6dbebde6e61063bc8",
+      "step2_sha256": "2bcc1998ab945648cb761cae1d7390786315670fd285fec8dd1c1871e164498b",
+      "mangle_anchor": true,
+      "status": "FAILED",
+      "upload_file_visible": true,
+      "last_command": "/import file-name=\"Mikrotik-Telegram.rsc\"",
+      "failed_stage": "dataset_import",
+      "error": "Script Error: failure: already have such entry (/ip/firewall/address-list/add; line 19) (:import; line 1)\n"
+    },
+    {
+      "test_id": "source-ros7-telegram-tls-host",
+      "application": "Telegram",
+      "mode": "tls-host",
+      "dataset_sha256": "717fb97aa85c529331cd976bd2eecf5861c3dd13d03cdb8f2ca43b3797a87aad",
+      "step2_sha256": "2bcc1998ab945648cb761cae1d7390786315670fd285fec8dd1c1871e164498b",
+      "mangle_anchor": true,
+      "status": "FAILED",
+      "upload_file_visible": true,
+      "last_command": "/import file-name=\"Mikrotik-Telegram.rsc\"",
+      "failed_stage": "dataset_import",
+      "error": "Script Error: failure: already have such entry (/ip/firewall/address-list/add; line 19) (:import; line 1)\n"
+    }
+  ],
+  "status": "SCOPED_FAILURES_RECORDED",
+  "anchor_internal_id": "*1",
+  "ssh_progress": [
+    "Socket connected",
+    "Remote ident: 'SSH-2.0-ROSSSH'",
+    "Handshake completed"
+  ],
+  "control_transport": "Noninteractive SSH exec on the owned loopback management forward, after serial bootstrap",
+  "selection": "Original public source RSCs for Teams/Telegram, hashes checked and command allowlist parsed before execution",
+  "completed_at": "2026-11-03T02:21:48.660Z",
+  "owned_vm_stopped": true
+}

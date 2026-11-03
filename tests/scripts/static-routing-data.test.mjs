@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {parseStaticRoutingDataset} from '../../scripts/static-routing-data-parser.mjs';
 
 test('rejects executable and remote-fetch commands in dataset inputs',()=>{
-  for(const source of ['/system reset-configuration','/tool fetch url="https://example.test/x"','/ip firewall address-list\n:execute "/system reboot"','/ip firewall address-list\nadd address=192.0.2.1 list=Mikrotik-Lab ; /system reboot'])assert.throws(()=>parseStaticRoutingDataset(source,'Lab'));
+  for(const source of ['/system reset-configuration','/tool fetch url="https://example.test/x"','/ip firewall address-list\n:execute "/system reboot"','/ip firewall address-list\nadd address=192.0.2.1 list=Mikrotik-Lab ; /system reboot','/ip firewall address-list\nadd address=192.0.2.1 list=Mikrotik-Lab comment=[/system/reboot]'])assert.throws(()=>parseStaticRoutingDataset(source,'Lab'));
 });
 test('rejects broad removals and target lists outside the selected app',()=>{
   for(const source of ['/ip firewall raw\nrem [find]','/ip firewall address-list\nrem [find list="Mikrotik-Other"]','/ip firewall address-list\nadd address=192.0.2.1 list=Mikrotik-Other'])assert.throws(()=>parseStaticRoutingDataset(source,'Lab'));

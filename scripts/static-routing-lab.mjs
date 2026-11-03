@@ -5,9 +5,12 @@ import os from 'node:os';
 import crypto from 'node:crypto';
 import {spawn} from 'node:child_process';
 import {Client} from 'ssh2';
+import {parseStaticRoutingDataset} from './static-routing-data-parser.mjs';
 
 const version=process.argv[2];
-if(!['6.49.19','7.25'].includes(version)||process.argv.length!==3)throw new Error('Only approved disposable local CHR versions; no router address accepted.');
+const smoke=process.argv[3]==='--smoke';
+const referenceDuplicates=process.argv[3]==='--reference-duplicates';
+if(!['6.49.19','7.25'].includes(version)||process.argv.length>4||(process.argv[3]&&!smoke&&!referenceDuplicates))throw new Error('Only approved disposable local CHR versions and named local scenarios; no router address accepted.');
 const memory=version.startsWith('7')?384:256;
 if(os.freemem()<(memory+256)*1024**2)throw new Error('Insufficient memory for isolated VM and host headroom.');
 const root=process.cwd(),image=path.join(root,'.runtime/lab-tools',version,'chr-'+version+'.img');
@@ -69,15 +72,29 @@ try{
   sshReady=true;report.control_transport='Noninteractive SSH exec on the owned loopback management forward, after serial bootstrap';
   const sftp=await new Promise((resolve,reject)=>ssh.sftp((e,s)=>e?reject(e):resolve(s)));
   const put=(name,data)=>new Promise((resolve,reject)=>{const stream=sftp.createWriteStream(name);stream.on('error',reject);stream.on('close',resolve);stream.end(data);});
-  const cases=JSON.parse(await fs.readFile('.runtime/static-routing-lab-cases.json','utf8')).filter(c=>c.ros_version===(version.startsWith('7')?'7':'6'));
+  const cases=JSON.parse(await fs.readFile('.runtime/static-routing-lab-cases.json','utf8')).filter(c=>c.ros_version===(version.startsWith('7')?'7':'6')&&(!smoke||['Youtube','Tiktok','Netflix','Teams','Telegram'].includes(c.application))&&(!referenceDuplicates||['Teams','Telegram'].includes(c.application)));
+  if(referenceDuplicates){
+    const manifest=JSON.parse(await fs.readFile('resources/datasets/static-routing/manifest.json','utf8'));
+    for(const test of cases){
+      const entry=manifest.datasets.find(e=>e.application===test.application&&e.mode===test.mode);
+      const original=await fs.readFile('.runtime/reference-datasets/'+entry.filename,'utf8');
+      if(crypto.createHash('sha256').update(original).digest('hex')!==entry.sha256)throw new Error('Original source hash changed.');
+      parseStaticRoutingDataset(original,test.application);
+      const filename='Mikrotik-'+test.application+'.rsc';test.step2=test.step2.replaceAll(test.filename,filename);test.filename=filename;test.dataset=original;test.id='source-'+test.id;
+    }
+  }
+  report.selection=referenceDuplicates?'Original public source RSCs for Teams/Telegram, hashes checked and command allowlist parsed before execution':smoke?'Additional strict file-cleanup smoke: Youtube/Tiktok/Netflix/Teams/Telegram, both matchers':'All 92 available app/matcher datasets';
   const empty={...cases.find(c=>c.application==='Youtube'&&c.mode==='tls-host'),id:'ros'+(version.startsWith('7')?'7':'6')+'-youtube-tls-host-empty-mangle',empty:true};
-  for(const test of [...cases,empty]){
+  for(const test of referenceDuplicates?cases:[...cases,empty]){
     let stage='cleanup';
     const record={test_id:test.id,application:test.application,mode:test.mode,dataset_sha256:crypto.createHash('sha256').update(test.dataset).digest('hex'),step2_sha256:crypto.createHash('sha256').update(test.step2).digest('hex'),mangle_anchor:!test.empty,status:'RUNNING'};
     try{
       const proof=await command(':put [/system identity get name]');if(!proof.includes(identity))throw new Error('Owned VM identity check failed');
       for(const cleanup of ['/ip firewall raw remove [find]','/ip firewall address-list remove [find]',test.empty?'/ip firewall mangle remove [find]':'/ip firewall mangle remove [find where comment!="NANSAN-LAB-ANCHOR"]','/ip route remove [find where dynamic=no]',...(version.startsWith('7')?['/routing table remove [find where name!="main"]']:[])])await command(cleanup);
       stage='upload';await put(test.filename,test.dataset);
+      const visibleUntil=Date.now()+15000;let visible=false;
+      while(Date.now()<visibleUntil){const count=await command(':put [:len [/file find where name="'+test.filename+'"]]');if(/^\s*1\s*$/m.test(count)){visible=true;break;}await pause(200);}
+      if(!visible)throw new Error('SFTP upload is not visible in RouterOS file inventory; lab staging unavailable.');record.upload_file_visible=true;
       for(const raw of test.step2.split('\n')){
         const line=raw.trim();if(!line||line.startsWith('#'))continue;
         if(line.startsWith('/import '))stage='dataset_import';else if(line.startsWith('/file '))stage='file_cleanup';else stage='routing_wrapper';
@@ -101,6 +118,6 @@ try{
 finally{
   ssh?.end();socket?.destroy();if(vm.exitCode===null){vm.kill();await Promise.race([new Promise(r=>vm.once('exit',r)),pause(3000)]);}
   report.completed_at=new Date().toISOString();report.owned_vm_stopped=vm.exitCode!==null||vm.signalCode!==null;
-  await fs.writeFile('docs/lab/STATIC-ROUTING-'+version+'.json',JSON.stringify(report,null,2)+'\n');console.log('Owned VM stopped; Static Routing report saved.');
+  await fs.writeFile('docs/lab/STATIC-ROUTING-'+(referenceDuplicates?'SOURCE-DUPLICATES-':smoke?'SMOKE-':'')+version+'.json',JSON.stringify(report,null,2)+'\n');console.log('Owned VM stopped; Static Routing report saved.');
 }
 if(report.status==='BLOCKED_AUTOMATION')process.exitCode=1;

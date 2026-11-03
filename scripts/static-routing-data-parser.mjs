@@ -19,7 +19,9 @@ export function parseStaticRoutingDataset(body,application){
       commands.push({path,operation:'remove',selector:{[match[1]]:match[2]}});continue;
     }
     if(operation!=='add')throw new Error('Unexpected dataset operation');
-    const data=fields(parts);delete data.comment;
+    const data=fields(parts);
+    if(Object.values(data).some(value=>/[\[\]$;()]/.test(value)))throw new Error('Executable expressions are not allowed in dataset values or comments');
+    delete data.comment;
     if(Object.keys(data).some(k=>!allowed[path].includes(k))||parts.some(p=>!p.includes('=')))throw new Error('Unexpected dataset fields');
     if((data['address-list']??data.list)!=='Mikrotik-'+application)throw new Error('Unexpected target list');
     if(Object.values(data).some(v=>typeof v!=='string'||/[\x00-\x1f\x7f]/.test(v)||v.length>500))throw new Error('Unsafe dataset value');

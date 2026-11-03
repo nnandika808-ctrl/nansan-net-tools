@@ -76,10 +76,14 @@ final class StaticRoutingModule implements GeneratorModule
         $second .= '/ip firewall mangle remove [find comment='.RouterOs::quote('NANSAN-G01-'.$data['routing-list'])."]\n";
         $second .= RouterOs::render([$mangle]);
 
-        return new GeneratedScript([['title' => 'STEP 1 - Dataset / DRAFT', 'script' => $first], ['title' => 'STEP 2 - Routing / DRAFT', 'script' => $second]], $data['ros-list'] === 'ros7' ? '7' : '6', $this->version(), [
-            'Draf privat: 188 kombinasi wrapper diamati. Dataset snapshot berasal dari URL publik yang diminta pemilik; cakupan aplikasi dan kebaruan prefix belum diverifikasi secara independen.',
+        $warnings = ['Draf privat: 188 kombinasi wrapper diamati. Dataset snapshot berasal dari URL publik yang diminta pemilik; cakupan aplikasi dan kebaruan prefix belum diverifikasi secara independen.',
             'URL dataset milik instalasi NANSAN ini; router harus dapat menjangkaunya. Staging melalui SSH/localhost bukan alamat unduhan untuk router operasional.',
             'Urutan import, penambahan LOCAL-IP, dan place-before=*0 mengikuti perilaku yang diamati. Impor ulang/konfigurasi yang sudah ada dapat berkonflik; hasil bukan exact match atau bukti trafik ISP nyata.',
-        ]);
+        ];
+        if ($data['ros-list'] === 'ros7' && in_array($data['routing-list'], ['Teams', 'Telegram'], true)) {
+            $warnings[] = 'Dataset aplikasi ini mengandung entri alamat duplikat; impor pada CHR 7.25 gagal. Jangan gunakan draf ini pada jaringan operasional.';
+        }
+
+        return new GeneratedScript([['title' => 'STEP 1 - Dataset / DRAFT', 'script' => $first], ['title' => 'STEP 2 - Routing / DRAFT', 'script' => $second]], $data['ros-list'] === 'ros7' ? '7' : '6', $this->version(), $warnings);
     }
 }
