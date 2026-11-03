@@ -37,6 +37,8 @@ Deployed G05 visibility checks passed on release 20261103-070838: all 106 privat
 
 ## Current showcase redesign and availability (2026-11-04)
 
-Owner-requested showcase UI implemented across homepage, generator, dashboard and admin. Five G01–G05 featured cards, original router art, light default, responsive panels and real activity charts. Existing G06/G07 source is preserved without further generator work. See [design and verification notes](design/SHOWCASE-REDESIGN.md). Local preview is http://127.0.0.1:8000 through `Buka Desain NANSAN.cmd`.
+Owner-requested showcase UI implemented across homepage, generator, dashboard and admin. Five G01â€“G05 featured cards, original router art, light default, responsive panels and real activity charts. Existing G06/G07 source is preserved without further generator work. See [design and verification notes](design/SHOWCASE-REDESIGN.md). Local preview is http://127.0.0.1:8000 through `Buka Desain NANSAN.cmd`.
+
+Smooth motion added: short page/section reveals, floating decorative art and eased interactions. Reduced-motion preferences disable decorative movement, including immediate cancellation of active JavaScript animations. Browser QA checked live preference changes, SPA navigation, dialog access and both motion settings at four viewport widths without page errors or horizontal overflow. Regression rerun: 77 PHP tests / 725 assertions, 11 frontend tests and 16 E2E cases pass; type/lint/build pass. No generator or router behavior changed.
 
 Current availability supersedes earlier staging health statements: old port 8091 returned 502 and the expected remote ownership marker/current target/PHP socket were missing. No repair bypassed the ownership guard. The redesign has not been deployed to Ubuntu or production. Generator publication gates, known FAILED/BLOCKED cases and dataset review requirements remain unchanged.

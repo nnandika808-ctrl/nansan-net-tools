@@ -28,3 +28,9 @@ Logo and ribbons are code-native SVG components. Self-hosted Inter variable font
 - Two new backend tests verify real dashboard counts and seven-day admin activity; database metadata cannot report unpublished engines as active. Added this coverage to the MySQL CI suite as well.
 
 Screenshots and browser test reports remain ignored under `.runtime/showcase-qa` and `.runtime/e2e-results.json`. No authentication snapshots, credentials or runtime databases are included in source.
+
+## Smooth motion — 2026-11-04
+
+Added small page fades, staggered hero text, viewport reveals, slow floating router/laptop art, one-time greeting wave, and eased card/button/navigation/dialog/output interactions. CSS and the Web Animations API are used without additional packages. Content is never hidden pending JavaScript or an observer; observers and running animations are cleaned up on route changes. Generator commands and form state are unchanged.
+
+`prefers-reduced-motion: reduce` disables decorative motion, smooth scrolling and hover displacement. Switching that preference while the page is open immediately cancels running JavaScript animations. Browser QA confirmed the real floating animation, viewport reveal, Inertia navigation, live reduced-motion cancellation, readable content and dialog interaction. Public routes at 360/390/768/1440 px had no horizontal overflow in either motion setting and no page errors. Ignored report: `.runtime/motion-qa/results.json`.
