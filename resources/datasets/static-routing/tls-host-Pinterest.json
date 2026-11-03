@@ -1,0 +1,120 @@
+{
+  "application": "Pinterest",
+  "mode": "tls-host",
+  "commands": [
+    {
+      "path": "/ip firewall raw",
+      "operation": "remove",
+      "selector": {
+        "address-list": "Mikrotik-Pinterest"
+      }
+    },
+    {
+      "path": "/ip firewall raw",
+      "operation": "add",
+      "fields": {
+        "action": "add-dst-to-address-list",
+        "address-list": "Mikrotik-Pinterest",
+        "address-list-timeout": "1d",
+        "chain": "prerouting",
+        "protocol": "tcp",
+        "tls-host": "*pinterest.com*",
+        "dst-address-list": "!LOCAL-IP",
+        "src-address-list": "LOCAL-IP"
+      }
+    },
+    {
+      "path": "/ip firewall raw",
+      "operation": "add",
+      "fields": {
+        "action": "add-dst-to-address-list",
+        "address-list": "Mikrotik-Pinterest",
+        "address-list-timeout": "1d",
+        "chain": "prerouting",
+        "protocol": "tcp",
+        "tls-host": "*.pinterest.*",
+        "dst-address-list": "!LOCAL-IP",
+        "src-address-list": "LOCAL-IP"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "remove",
+      "selector": {
+        "list": "Mikrotik-Pinterest"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "list": "Mikrotik-Pinterest",
+        "address": "141.193.88.0/22"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "list": "Mikrotik-Pinterest",
+        "address": "54.204.48.0/24"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "list": "Mikrotik-Pinterest",
+        "address": "54.236.1.0/24"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "list": "Mikrotik-Pinterest",
+        "address": "64.45.163.0/24"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "list": "Mikrotik-Pinterest",
+        "address": "141.193.90.0/24"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "list": "Mikrotik-Pinterest",
+        "address": "192.34.198.0/24"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "list": "Mikrotik-Pinterest",
+        "address": "192.94.66.0/24"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "list": "Mikrotik-Pinterest",
+        "address": "50.196.152.64/29"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "list": "Mikrotik-Pinterest",
+        "address": "209.249.149.104/29"
+      }
+    }
+  ]
+}

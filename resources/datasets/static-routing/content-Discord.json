@@ -1,0 +1,118 @@
+{
+  "application": "Discord",
+  "mode": "content",
+  "commands": [
+    {
+      "path": "/ip firewall raw",
+      "operation": "remove",
+      "selector": {
+        "address-list": "Mikrotik-Discord"
+      }
+    },
+    {
+      "path": "/ip firewall raw",
+      "operation": "add",
+      "fields": {
+        "action": "add-dst-to-address-list",
+        "address-list": "Mikrotik-Discord",
+        "address-list-timeout": "1d",
+        "chain": "prerouting",
+        "content": "discord.com",
+        "dst-address-list": "!LOCAL-IP",
+        "src-address-list": "LOCAL-IP"
+      }
+    },
+    {
+      "path": "/ip firewall raw",
+      "operation": "add",
+      "fields": {
+        "action": "add-dst-to-address-list",
+        "address-list": "Mikrotik-Discord",
+        "address-list-timeout": "1d",
+        "chain": "prerouting",
+        "content": ".discord.",
+        "dst-address-list": "!LOCAL-IP",
+        "src-address-list": "LOCAL-IP"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "remove",
+      "selector": {
+        "list": "Mikrotik-Discord"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "66.22.192.0/18",
+        "list": "Mikrotik-Discord"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "66.22.196.0/22",
+        "list": "Mikrotik-Discord"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "66.22.200.0/22",
+        "list": "Mikrotik-Discord"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "66.22.204.0/22",
+        "list": "Mikrotik-Discord"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "66.22.208.0/22",
+        "list": "Mikrotik-Discord"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "66.22.228.0/23",
+        "list": "Mikrotik-Discord"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "66.22.220.0/23",
+        "list": "Mikrotik-Discord"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "162.159.128.233",
+        "list": "Mikrotik-Discord"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "162.159.130.235",
+        "list": "Mikrotik-Discord"
+      }
+    }
+  ]
+}

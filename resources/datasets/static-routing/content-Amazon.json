@@ -1,0 +1,94 @@
+{
+  "application": "Amazon",
+  "mode": "content",
+  "commands": [
+    {
+      "path": "/ip firewall raw",
+      "operation": "remove",
+      "selector": {
+        "address-list": "Mikrotik-Amazon"
+      }
+    },
+    {
+      "path": "/ip firewall raw",
+      "operation": "add",
+      "fields": {
+        "action": "add-dst-to-address-list",
+        "address-list": "Mikrotik-Amazon",
+        "address-list-timeout": "1d",
+        "chain": "prerouting",
+        "content": "amazon.com",
+        "dst-address-list": "!LOCAL-IP",
+        "src-address-list": "LOCAL-IP"
+      }
+    },
+    {
+      "path": "/ip firewall raw",
+      "operation": "add",
+      "fields": {
+        "action": "add-dst-to-address-list",
+        "address-list": "Mikrotik-Amazon",
+        "address-list-timeout": "1d",
+        "chain": "prerouting",
+        "content": ".amazon.",
+        "dst-address-list": "!LOCAL-IP",
+        "src-address-list": "LOCAL-IP"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "remove",
+      "selector": {
+        "list": "Mikrotik-Amazon"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "3.0.0.0/10",
+        "list": "Mikrotik-Amazon"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "3.128.0.0/10",
+        "list": "Mikrotik-Amazon"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "34.192.0.0/10",
+        "list": "Mikrotik-Amazon"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "52.0.0.0/11",
+        "list": "Mikrotik-Amazon"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "54.192.0.0/12",
+        "list": "Mikrotik-Amazon"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "35.112.0.0/12",
+        "list": "Mikrotik-Amazon"
+      }
+    }
+  ]
+}

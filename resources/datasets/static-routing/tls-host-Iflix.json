@@ -1,0 +1,88 @@
+{
+  "application": "Iflix",
+  "mode": "tls-host",
+  "commands": [
+    {
+      "path": "/ip firewall raw",
+      "operation": "remove",
+      "selector": {
+        "address-list": "Mikrotik-Iflix"
+      }
+    },
+    {
+      "path": "/ip firewall raw",
+      "operation": "add",
+      "fields": {
+        "action": "add-dst-to-address-list",
+        "address-list": "Mikrotik-Iflix",
+        "address-list-timeout": "1d",
+        "chain": "prerouting",
+        "protocol": "tcp",
+        "tls-host": "*iflix.com*",
+        "dst-address-list": "!LOCAL-IP",
+        "src-address-list": "LOCAL-IP"
+      }
+    },
+    {
+      "path": "/ip firewall raw",
+      "operation": "add",
+      "fields": {
+        "action": "add-dst-to-address-list",
+        "address-list": "Mikrotik-Iflix",
+        "address-list-timeout": "1d",
+        "chain": "prerouting",
+        "protocol": "tcp",
+        "tls-host": "*.iflix.*",
+        "dst-address-list": "!LOCAL-IP",
+        "src-address-list": "LOCAL-IP"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "remove",
+      "selector": {
+        "list": "Mikrotik-Iflix"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "103.209.104.0/24",
+        "list": "Mikrotik-Iflix"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "18.164.0.0/15",
+        "list": "Mikrotik-Iflix"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "43.155.124.23",
+        "list": "Mikrotik-Iflix"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "43.154.240.111",
+        "list": "Mikrotik-Iflix"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "43.135.105.98",
+        "list": "Mikrotik-Iflix"
+      }
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "application": "Whereby",
+  "mode": "content",
+  "commands": [
+    {
+      "path": "/ip firewall raw",
+      "operation": "remove",
+      "selector": {
+        "address-list": "Mikrotik-Whereby"
+      }
+    },
+    {
+      "path": "/ip firewall raw",
+      "operation": "add",
+      "fields": {
+        "action": "add-dst-to-address-list",
+        "address-list": "Mikrotik-Whereby",
+        "address-list-timeout": "1d",
+        "chain": "prerouting",
+        "content": "whereby.org",
+        "dst-address-list": "!LOCAL-IP",
+        "src-address-list": "LOCAL-IP"
+      }
+    },
+    {
+      "path": "/ip firewall raw",
+      "operation": "add",
+      "fields": {
+        "action": "add-dst-to-address-list",
+        "address-list": "Mikrotik-Whereby",
+        "address-list-timeout": "1d",
+        "chain": "prerouting",
+        "content": ".whereby.",
+        "dst-address-list": "!LOCAL-IP",
+        "src-address-list": "LOCAL-IP"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "remove",
+      "selector": {
+        "list": "Mikrotik-Whereby"
+      }
+    }
+  ]
+}

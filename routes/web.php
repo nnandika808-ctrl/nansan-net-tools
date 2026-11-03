@@ -13,6 +13,7 @@ use App\Http\Controllers\GeneratorController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\MonitoringController;
 use App\Http\Controllers\SeoController;
+use App\Http\Controllers\StaticRoutingDatasetController;
 use App\Http\Controllers\TemplateController;
 use App\Http\Controllers\VersionController;
 use App\Http\Controllers\WorkspaceController;
@@ -23,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [CatalogController::class, 'home'])->name('home');
 Route::get('/tools', [CatalogController::class, 'index'])->name('tools');
+Route::get('/datasets/static-routing/{digest}.rsc', StaticRoutingDatasetController::class)->where('digest', '[a-f0-9]{64}')->middleware('throttle:60,1');
 Route::get('/tools/{tool}', [CatalogController::class, 'show'])->name('tools.show');
 Route::get('/search', [CatalogController::class, 'search'])->middleware('throttle:60,1');
 Route::get('/docs', [DocumentationController::class, 'index']);

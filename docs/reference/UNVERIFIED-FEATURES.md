@@ -7,7 +7,8 @@
 | G03: https://buananet.com/pcc.html | All untested combinations | UNVERIFIED — exhaustive behavior coverage, validation, exact formatting and RouterOS lab required |
 | G04: https://buananet.com/mikrotik-pcc-lb-starlink.html | All untested combinations | UNVERIFIED — exhaustive behavior coverage, validation, exact formatting and RouterOS lab required |
 | G05: https://buananet.com/static-routing-games.html | All untested combinations | UNVERIFIED — exhaustive behavior coverage, validation, exact formatting and RouterOS lab required |
-| G01/G02 remote datasets | All applications and TLS/content choices | BLOCKED — obtain explicit dataset redistribution rights or independently sourced, reviewed datasets; no hotlink fallback |
+| G01 datasets | All 47 applications and two match modes | 92 parameter snapshots for 46 apps; Shopify sources HTTP 404. Prefix freshness, complete application coverage and public release review remain open; no hotlink fallback. |
+| G02 remote datasets | All choices | No dataset acquisition or implementation yet |
 | G05 game ports | All 106 observed game entries | BLOCKED — independently verify port/protocol rules and provenance; do not invent ports |
 | G03 | More than two WAN, decimal ratios and unexercised classifiers/local modes | UNVERIFIED — expand audit and tests before support claims |
 | G04 quoting | Initial escaping candidate | WITHDRAWN — byte-level inspection shows normal outer quotes. Nested script escaping is a separate context; no reference bug established |

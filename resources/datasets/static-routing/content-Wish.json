@@ -1,0 +1,110 @@
+{
+  "application": "Wish",
+  "mode": "content",
+  "commands": [
+    {
+      "path": "/ip firewall raw",
+      "operation": "remove",
+      "selector": {
+        "address-list": "Mikrotik-Wish"
+      }
+    },
+    {
+      "path": "/ip firewall raw",
+      "operation": "add",
+      "fields": {
+        "action": "add-dst-to-address-list",
+        "address-list": "Mikrotik-Wish",
+        "address-list-timeout": "1d",
+        "chain": "prerouting",
+        "content": "wish.com",
+        "dst-address-list": "!LOCAL-IP",
+        "src-address-list": "LOCAL-IP"
+      }
+    },
+    {
+      "path": "/ip firewall raw",
+      "operation": "add",
+      "fields": {
+        "action": "add-dst-to-address-list",
+        "address-list": "Mikrotik-Wish",
+        "address-list-timeout": "1d",
+        "chain": "prerouting",
+        "content": ".wish.",
+        "dst-address-list": "!LOCAL-IP",
+        "src-address-list": "LOCAL-IP"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "remove",
+      "selector": {
+        "list": "Mikrotik-Wish"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "104.18.42.20",
+        "list": "Mikrotik-Wish"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "172.64.145.236",
+        "list": "Mikrotik-Wish"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "104.16.0.0/12",
+        "list": "Mikrotik-Wish"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "18.160.153.28",
+        "list": "Mikrotik-Wish"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "108.138.114.142",
+        "list": "Mikrotik-Wish"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "13.249.23.20",
+        "list": "Mikrotik-Wish"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "185.17.20.0/22",
+        "list": "Mikrotik-Wish"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "185.144.120.0/22",
+        "list": "Mikrotik-Wish"
+      }
+    }
+  ]
+}

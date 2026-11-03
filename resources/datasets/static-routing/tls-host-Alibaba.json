@@ -1,0 +1,144 @@
+{
+  "application": "Alibaba",
+  "mode": "tls-host",
+  "commands": [
+    {
+      "path": "/ip firewall raw",
+      "operation": "remove",
+      "selector": {
+        "address-list": "Mikrotik-Alibaba"
+      }
+    },
+    {
+      "path": "/ip firewall raw",
+      "operation": "add",
+      "fields": {
+        "action": "add-dst-to-address-list",
+        "address-list": "Mikrotik-Alibaba",
+        "address-list-timeout": "1d",
+        "chain": "prerouting",
+        "protocol": "tcp",
+        "tls-host": "*alibaba.com*",
+        "dst-address-list": "!LOCAL-IP",
+        "src-address-list": "LOCAL-IP"
+      }
+    },
+    {
+      "path": "/ip firewall raw",
+      "operation": "add",
+      "fields": {
+        "action": "add-dst-to-address-list",
+        "address-list": "Mikrotik-Alibaba",
+        "address-list-timeout": "1d",
+        "chain": "prerouting",
+        "protocol": "tcp",
+        "tls-host": "*.alibaba.*",
+        "dst-address-list": "!LOCAL-IP",
+        "src-address-list": "LOCAL-IP"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "remove",
+      "selector": {
+        "list": "Mikrotik-Alibaba"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "3.0.0.0/10",
+        "list": "Mikrotik-Alibaba"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "3.128.0.0/10",
+        "list": "Mikrotik-Alibaba"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "34.192.0.0/10",
+        "list": "Mikrotik-Alibaba"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "52.0.0.0/11",
+        "list": "Mikrotik-Alibaba"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "54.192.0.0/12",
+        "list": "Mikrotik-Alibaba"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "35.112.0.0/12",
+        "list": "Mikrotik-Alibaba"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "47.74.0.0/17",
+        "list": "Mikrotik-Alibaba"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "47.236.0.0/16",
+        "list": "Mikrotik-Alibaba"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "47.240.0.0/16",
+        "list": "Mikrotik-Alibaba"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "47.242.0.0/16",
+        "list": "Mikrotik-Alibaba"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "59.82.0.0/16",
+        "list": "Mikrotik-Alibaba"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "39.96.0.0/14",
+        "list": "Mikrotik-Alibaba"
+      }
+    }
+  ]
+}

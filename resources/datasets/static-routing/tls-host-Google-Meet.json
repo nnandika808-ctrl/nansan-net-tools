@@ -1,0 +1,78 @@
+{
+  "application": "Google-Meet",
+  "mode": "tls-host",
+  "commands": [
+    {
+      "path": "/ip firewall raw",
+      "operation": "remove",
+      "selector": {
+        "address-list": "Mikrotik-Google-Meet"
+      }
+    },
+    {
+      "path": "/ip firewall raw",
+      "operation": "add",
+      "fields": {
+        "action": "add-dst-to-address-list",
+        "address-list": "Mikrotik-Google-Meet",
+        "address-list-timeout": "1d",
+        "chain": "prerouting",
+        "protocol": "tcp",
+        "tls-host": "*meet.google.com*",
+        "dst-address-list": "!LOCAL-IP",
+        "src-address-list": "LOCAL-IP"
+      }
+    },
+    {
+      "path": "/ip firewall raw",
+      "operation": "add",
+      "fields": {
+        "action": "add-dst-to-address-list",
+        "address-list": "Mikrotik-Google-Meet",
+        "address-list-timeout": "1d",
+        "chain": "prerouting",
+        "protocol": "tcp",
+        "tls-host": "*workspace.turns.goog*",
+        "dst-address-list": "!LOCAL-IP",
+        "src-address-list": "LOCAL-IP"
+      }
+    },
+    {
+      "path": "/ip firewall raw",
+      "operation": "add",
+      "fields": {
+        "action": "add-dst-to-address-list",
+        "address-list": "Mikrotik-Google-Meet",
+        "address-list-timeout": "1d",
+        "chain": "prerouting",
+        "protocol": "tcp",
+        "tls-host": "*meet.turns.goog*",
+        "dst-address-list": "!LOCAL-IP",
+        "src-address-list": "LOCAL-IP"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "remove",
+      "selector": {
+        "list": "Mikrotik-Google-Meet"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "74.125.250.0/24",
+        "list": "Mikrotik-Google-Meet"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "142.250.82.0/24",
+        "list": "Mikrotik-Google-Meet"
+      }
+    }
+  ]
+}

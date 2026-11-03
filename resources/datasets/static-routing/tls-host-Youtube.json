@@ -1,0 +1,206 @@
+{
+  "application": "Youtube",
+  "mode": "tls-host",
+  "commands": [
+    {
+      "path": "/ip firewall raw",
+      "operation": "remove",
+      "selector": {
+        "address-list": "Mikrotik-Youtube"
+      }
+    },
+    {
+      "path": "/ip firewall raw",
+      "operation": "add",
+      "fields": {
+        "action": "add-dst-to-address-list",
+        "address-list": "Mikrotik-Youtube",
+        "address-list-timeout": "1d",
+        "chain": "prerouting",
+        "protocol": "tcp",
+        "tls-host": "*youtube.com*",
+        "dst-address-list": "!LOCAL-IP",
+        "src-address-list": "LOCAL-IP"
+      }
+    },
+    {
+      "path": "/ip firewall raw",
+      "operation": "add",
+      "fields": {
+        "action": "add-dst-to-address-list",
+        "address-list": "Mikrotik-Youtube",
+        "address-list-timeout": "1d",
+        "chain": "prerouting",
+        "protocol": "tcp",
+        "tls-host": "*.youtube.*",
+        "dst-address-list": "!LOCAL-IP",
+        "src-address-list": "LOCAL-IP"
+      }
+    },
+    {
+      "path": "/ip firewall raw",
+      "operation": "add",
+      "fields": {
+        "action": "add-dst-to-address-list",
+        "address-list": "Mikrotik-Youtube",
+        "address-list-timeout": "1d",
+        "chain": "prerouting",
+        "protocol": "tcp",
+        "tls-host": "*.googlevideo.*",
+        "dst-address-list": "!LOCAL-IP",
+        "src-address-list": "LOCAL-IP"
+      }
+    },
+    {
+      "path": "/ip firewall raw",
+      "operation": "add",
+      "fields": {
+        "action": "add-dst-to-address-list",
+        "address-list": "Mikrotik-Youtube",
+        "address-list-timeout": "1d",
+        "chain": "prerouting",
+        "protocol": "tcp",
+        "tls-host": "*.youtu.*",
+        "dst-address-list": "!LOCAL-IP",
+        "src-address-list": "LOCAL-IP"
+      }
+    },
+    {
+      "path": "/ip firewall raw",
+      "operation": "add",
+      "fields": {
+        "action": "add-dst-to-address-list",
+        "address-list": "Mikrotik-Youtube",
+        "address-list-timeout": "1d",
+        "chain": "prerouting",
+        "protocol": "tcp",
+        "tls-host": "*.ytimg.*",
+        "dst-address-list": "!LOCAL-IP",
+        "src-address-list": "LOCAL-IP"
+      }
+    },
+    {
+      "path": "/ip firewall raw",
+      "operation": "add",
+      "fields": {
+        "action": "add-dst-to-address-list",
+        "address-list": "Mikrotik-Youtube",
+        "address-list-timeout": "1d",
+        "chain": "prerouting",
+        "protocol": "tcp",
+        "tls-host": "*yt3.ggpht.com*",
+        "dst-address-list": "!LOCAL-IP",
+        "src-address-list": "LOCAL-IP"
+      }
+    },
+    {
+      "path": "/ip firewall raw",
+      "operation": "add",
+      "fields": {
+        "action": "add-dst-to-address-list",
+        "address-list": "Mikrotik-Youtube",
+        "address-list-timeout": "1d",
+        "chain": "prerouting",
+        "protocol": "tcp",
+        "tls-host": "*youtubei.googleapis.com*",
+        "dst-address-list": "!LOCAL-IP",
+        "src-address-list": "LOCAL-IP"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "remove",
+      "selector": {
+        "list": "Mikrotik-Youtube"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "64.18.0.0/20",
+        "list": "Mikrotik-Youtube"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "64.233.160.0/19",
+        "list": "Mikrotik-Youtube"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "66.102.0.0/20",
+        "list": "Mikrotik-Youtube"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "66.249.80.0/20",
+        "list": "Mikrotik-Youtube"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "72.14.192.0/18",
+        "list": "Mikrotik-Youtube"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "74.125.0.0/16",
+        "list": "Mikrotik-Youtube"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "173.194.0.0/16",
+        "list": "Mikrotik-Youtube"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "207.126.144.0/20",
+        "list": "Mikrotik-Youtube"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "209.85.128.0/17",
+        "list": "Mikrotik-Youtube"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "216.58.208.0/20",
+        "list": "Mikrotik-Youtube"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "216.239.32.0/19",
+        "list": "Mikrotik-Youtube"
+      }
+    }
+  ]
+}

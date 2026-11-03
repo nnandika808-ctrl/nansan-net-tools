@@ -1,0 +1,150 @@
+{
+  "application": "Imo",
+  "mode": "content",
+  "commands": [
+    {
+      "path": "/ip firewall raw",
+      "operation": "remove",
+      "selector": {
+        "address-list": "Mikrotik-Imo"
+      }
+    },
+    {
+      "path": "/ip firewall raw",
+      "operation": "add",
+      "fields": {
+        "action": "add-dst-to-address-list",
+        "address-list": "Mikrotik-Imo",
+        "address-list-timeout": "1d",
+        "chain": "prerouting",
+        "content": "imo.im",
+        "dst-address-list": "!LOCAL-IP",
+        "src-address-list": "LOCAL-IP"
+      }
+    },
+    {
+      "path": "/ip firewall raw",
+      "operation": "add",
+      "fields": {
+        "action": "add-dst-to-address-list",
+        "address-list": "Mikrotik-Imo",
+        "address-list-timeout": "1d",
+        "chain": "prerouting",
+        "content": ".imo.",
+        "dst-address-list": "!LOCAL-IP",
+        "src-address-list": "LOCAL-IP"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "remove",
+      "selector": {
+        "list": "Mikrotik-Imo"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "103.65.37.0/24",
+        "list": "Mikrotik-Imo"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "172.217.194.0/24",
+        "list": "Mikrotik-Imo"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "103.65.38.0/24",
+        "list": "Mikrotik-Imo"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "103.211.229.0/24",
+        "list": "Mikrotik-Imo"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "185.22.42.0/24",
+        "list": "Mikrotik-Imo"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "192.12.31.0/24",
+        "list": "Mikrotik-Imo"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "103.208.253.0/24",
+        "list": "Mikrotik-Imo"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "54.72.242.0/24",
+        "list": "Mikrotik-Imo"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "139.99.3.0/24",
+        "list": "Mikrotik-Imo"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "52.17.115.0/24",
+        "list": "Mikrotik-Imo"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "182.0.177.0/24",
+        "list": "Mikrotik-Imo"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "74.125.68.0/24",
+        "list": "Mikrotik-Imo"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "10.19.196.0/24",
+        "list": "Mikrotik-Imo"
+      }
+    }
+  ]
+}

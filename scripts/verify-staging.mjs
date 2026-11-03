@@ -1,4 +1,5 @@
 import fs from 'node:fs/promises';
+import crypto from 'node:crypto';
 import {Client} from 'ssh2';
 import {chromium} from '@playwright/test';
 
@@ -31,7 +32,16 @@ process.stdin.on('data',chunk=>{secret+=chunk.toString();if(secret.includes('\u0
    await page.goto(origin+'/login');await page.getByLabel('Username',{exact:true}).fill(identity.username);await page.getByLabel('Password',{exact:true}).fill(identity.password);await page.getByRole('button',{name:'Masuk',exact:true}).click();await page.waitForURL('**/dashboard');identity.password='';
    for(const path of ['/account','/admin','/admin/monitoring','/admin/analytics','/admin/tools/static-routing/versions','/admin/tools/pcc-starlink/preview']){const response=await page.goto(origin+path);if(response.status()!==200)throw new Error('Authenticated route '+path+' returned '+response.status());}
    await page.getByRole('button',{name:'Preview draft',exact:true}).click();await page.locator('pre').filter({hasText:'STARLINK1'}).waitFor();
-   report.http={public_routes:5,authenticated_routes:6,login:'passed',starlink_preview:'passed'};
+   await page.goto(origin+'/admin/tools/static-routing/preview');
+   const staticPreview=page.waitForResponse(response=>response.url().endsWith('/admin/tools/static-routing/preview')&&response.request().method()==='POST');
+   await page.getByRole('button',{name:'Preview draft',exact:true}).click();const staticResponse=await staticPreview;
+   if(staticResponse.status()!==200)throw new Error('Static Routing preview failed.');
+   const staticOutput=await staticResponse.json();if(staticOutput.steps?.length!==2)throw new Error('Static Routing two-step output missing.');
+   const artifactPath=staticOutput.steps[0].script.match(/\/datasets\/static-routing\/([a-f0-9]{64})\.rsc/);
+   if(!artifactPath)throw new Error('Pinned self-hosted dataset URL missing.');
+   const artifact=await context.request.get(origin+artifactPath[0]);if(artifact.status()!==200)throw new Error('Self-hosted dataset download failed.');
+   const artifactBody=await artifact.body();if(crypto.createHash('sha256').update(artifactBody).digest('hex')!==artifactPath[1])throw new Error('Downloaded dataset hash mismatch.');
+   report.http={public_routes:5,authenticated_routes:7,login:'passed',starlink_preview:'passed',static_routing_preview:'passed',static_dataset_sha256_verified:true};
    const elapsed=[];for(let i=0;i<12;i++){const started=performance.now();const response=await context.request.get(origin+'/tools');if(response.status()!==200)throw new Error('Sequential catalog probe failed.');elapsed.push(performance.now()-started);}elapsed.sort((a,b)=>a-b);
    report.performance={scope:'12 sequential catalog requests through SSH; not a capacity/load test',median_ms:Math.round(elapsed[6]),p95_ms:Math.round(elapsed[11])};
    if(Object.values(report.operations.doctor).some(value=>value==='unavailable'||value==='failed'))throw new Error('A required staging runtime probe is unavailable.');

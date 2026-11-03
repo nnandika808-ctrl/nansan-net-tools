@@ -4,6 +4,7 @@ namespace App\Generators;
 
 use App\Generators\Modules\PccModule;
 use App\Generators\Modules\StarlinkModule;
+use App\Generators\Modules\StaticRoutingModule;
 
 final class GeneratorRegistry
 {
@@ -17,6 +18,7 @@ final class GeneratorRegistry
         abort_unless(in_array($id, self::IDS, true), 404);
 
         return match ($id) {
+            'G01' => new StaticRoutingModule,
             'G03' => new PccModule,
             'G04' => new StarlinkModule,
             default => new UnverifiedGenerator($id),

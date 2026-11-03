@@ -1,0 +1,118 @@
+{
+  "application": "Vimeo",
+  "mode": "content",
+  "commands": [
+    {
+      "path": "/ip firewall raw",
+      "operation": "remove",
+      "selector": {
+        "address-list": "Mikrotik-Vimeo"
+      }
+    },
+    {
+      "path": "/ip firewall raw",
+      "operation": "add",
+      "fields": {
+        "action": "add-dst-to-address-list",
+        "address-list": "Mikrotik-Vimeo",
+        "address-list-timeout": "1d",
+        "chain": "prerouting",
+        "content": "vimeo.com",
+        "dst-address-list": "!LOCAL-IP",
+        "src-address-list": "LOCAL-IP"
+      }
+    },
+    {
+      "path": "/ip firewall raw",
+      "operation": "add",
+      "fields": {
+        "action": "add-dst-to-address-list",
+        "address-list": "Mikrotik-Vimeo",
+        "address-list-timeout": "1d",
+        "chain": "prerouting",
+        "content": ".vimeo.",
+        "dst-address-list": "!LOCAL-IP",
+        "src-address-list": "LOCAL-IP"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "remove",
+      "selector": {
+        "list": "Mikrotik-Vimeo"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "103.229.76.0/24",
+        "list": "Mikrotik-Vimeo"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "149.72.131.0/24",
+        "list": "Mikrotik-Vimeo"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "149.72.151.0/24",
+        "list": "Mikrotik-Vimeo"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "149.72.155.0/24",
+        "list": "Mikrotik-Vimeo"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "149.72.163.0/24",
+        "list": "Mikrotik-Vimeo"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "149.72.180.0/24",
+        "list": "Mikrotik-Vimeo"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "149.72.184.0/24",
+        "list": "Mikrotik-Vimeo"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "149.72.206.0/24",
+        "list": "Mikrotik-Vimeo"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "34.143.194.0/24",
+        "list": "Mikrotik-Vimeo"
+      }
+    }
+  ]
+}

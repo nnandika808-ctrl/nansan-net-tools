@@ -1,0 +1,382 @@
+{
+  "application": "Rakuten",
+  "mode": "content",
+  "commands": [
+    {
+      "path": "/ip firewall raw",
+      "operation": "remove",
+      "selector": {
+        "address-list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall raw",
+      "operation": "add",
+      "fields": {
+        "action": "add-dst-to-address-list",
+        "address-list": "Mikrotik-Rakuten",
+        "address-list-timeout": "1d",
+        "chain": "prerouting",
+        "content": "rakuten.com",
+        "dst-address-list": "!LOCAL-IP",
+        "src-address-list": "LOCAL-IP"
+      }
+    },
+    {
+      "path": "/ip firewall raw",
+      "operation": "add",
+      "fields": {
+        "action": "add-dst-to-address-list",
+        "address-list": "Mikrotik-Rakuten",
+        "address-list-timeout": "1d",
+        "chain": "prerouting",
+        "content": ".rakuten.",
+        "dst-address-list": "!LOCAL-IP",
+        "src-address-list": "LOCAL-IP"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "remove",
+      "selector": {
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "133.237.0.0/16",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "133.237.128.0/17",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "202.72.48.0/20",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "202.72.52.0/22",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "202.72.56.0/21",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "202.72.60.0/22",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "133.237.248.0/24",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "157.192.0.0/16",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "110.165.128.0/17",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "119.30.192.0/18",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "119.31.128.0/19",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "101.102.0.0/18",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "133.106.8.0/21",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "133.106.16.0/20",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "133.106.32.0/19",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "133.106.64.0/18",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "133.106.128.0/17",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "193.82.160.0/19",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "193.114.32.0/19",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "193.114.64.0/19",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "193.114.192.0/18",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "193.115.0.0/19",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "193.117.96.0/19",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "193.118.0.0/19",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "193.118.64.0/19",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "193.119.128.0/17",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "194.193.64.0/19",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "194.193.224.0/19",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "194.223.96.0/19",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "202.176.16.0/20",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "202.216.0.0/20",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "210.157.192.0/19",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "211.7.96.0/19",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "211.133.160.0/19",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "219.105.144.0/20",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "219.105.192.0/18",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "219.106.0.0/17",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "103.124.0.0/22",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "27.111.76.0/22",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "203.216.0.0/17",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "192.51.59.0/24",
+        "list": "Mikrotik-Rakuten"
+      }
+    },
+    {
+      "path": "/ip firewall address-list",
+      "operation": "add",
+      "fields": {
+        "address": "192.160.161.0/24",
+        "list": "Mikrotik-Rakuten"
+      }
+    }
+  ]
+}

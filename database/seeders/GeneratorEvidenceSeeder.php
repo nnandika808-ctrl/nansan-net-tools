@@ -16,6 +16,7 @@ class GeneratorEvidenceSeeder extends Seeder
     {
         $registry = app(GeneratorRegistry::class);
         foreach ([
+            'G01' => ['TESTING', 'Draf 47 pilihan: 188 kombinasi wrapper diamati, 92 snapshot parameter dataset tersedia. Shopify 404; lab dan cakupan aplikasi memerlukan review.', ['docs/reference/evidence/G01-cases-semantics.json', 'resources/datasets/static-routing/manifest.json']],
             'G03' => ['TESTING', 'Draf dua WAN lulus proyeksi parameter dan paket UDP/NAT virtual. Cakupan opsi serta jaringan ISP nyata belum lengkap.', ['docs/reference/evidence/G03-cases-semantics.json', 'docs/lab/PCC-PACKETS-6.49.19.json', 'docs/lab/PCC-PACKETS-7.25.json']],
             'G04' => ['BLOCKED', 'Draf Starlink: kompatibilitas renewal gateway ROS6 memerlukan keputusan review; belum dipublikasikan.', ['docs/reference/evidence/G04-cases-semantics.json', 'docs/lab/STARLINK-PROTOCOL-6.49.19.json', 'docs/lab/STARLINK-PROTOCOL-7.25.json']],
         ] as $id => [$status,$reason,$reports]) {
