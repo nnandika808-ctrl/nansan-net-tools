@@ -91,4 +91,22 @@ class RoutingGamesTest extends TestCase
         $this->assertSame(0, $tool->fresh()->usage_count);
         $this->assertDatabaseCount('script_histories', 0);
     }
+
+    public function test_port_overview_is_admin_only_and_does_not_present_malformed_literals_as_ports(): void
+    {
+        $this->seed();
+        $this->withoutVite();
+        $user = User::factory()->create(['role' => 'admin']);
+        $preview = $this->actingAs($user)->get('/admin/tools/static-routing-games/preview')->assertOk()->viewData('page');
+        $this->assertCount(106, $preview['props']['gamePorts']);
+        $this->assertSame('tcp', $preview['props']['gamePorts'][0]['ports'][0]['protocol']);
+        $this->assertSame('10001-10094', $preview['props']['gamePorts'][0]['ports'][0]['value']);
+        $public = $this->get('/tools/static-routing-games')->assertOk()->viewData('page');
+        $this->assertArrayNotHasKey('gamePorts', $public['props']);
+        $overview = collect((new GamePortCatalog)->portOverview());
+        $failed = $overview->firstWhere('id', 'Hearthstone-PC');
+        $this->assertSame('FAILED_REFERENCE_SYNTAX', $failed['status']);
+        $this->assertSame([['protocol' => 'tcp', 'value' => '1119,3724']], $failed['ports']);
+        $this->assertSame(162, $overview->sum(fn ($game) => count($game['ports'])));
+    }
 }

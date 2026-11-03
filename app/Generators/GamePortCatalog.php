@@ -35,6 +35,22 @@ final class GamePortCatalog
         return $statuses;
     }
 
+    public function portOverview(): array
+    {
+        return array_map(function (array $game): array {
+            $ports = [];
+            foreach ($game['rules'] as $rule) {
+                $fields = $rule['fields'];
+                // Malformed literals stay in the snapshot, never presented as valid ports.
+                if (in_array($fields['protocol'] ?? null, ['tcp', 'udp'], true) && preg_match('/^[0-9,-]{1,500}$/D', $fields['dst-port'] ?? '')) {
+                    $ports[] = ['protocol' => $fields['protocol'], 'value' => $fields['dst-port']];
+                }
+            }
+
+            return ['id' => $game['id'], 'label' => $game['label'], 'status' => $game['status'], 'ports' => $ports];
+        }, $this->data()['games']);
+    }
+
     public function rules(array $selected): array
     {
         $entries = [];

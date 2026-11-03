@@ -1,10 +1,12 @@
 <?php
 
+use App\Generators\Modules\RoutingGamesModule;
 use App\Models\User;
 use App\Services\BackupService;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 // Operator-only CLI helper. Never exposed through the web root or production.
 $root = '/www/wwwroot/nansan-tools-staging/current';
@@ -34,6 +36,21 @@ if ($action === 'owner-state') {
     DB::table('sessions')->where('user_id', $user->id)->delete();
     $user->delete();
     echo '{"temporary_identity_removed":true}';
+} elseif ($action === 'game-port-audit') {
+    $cases = json_decode(stream_get_contents(STDIN), true, 512, JSON_THROW_ON_ERROR);
+    if (! is_array($cases) || count($cases) > 226) {
+        throw new RuntimeException('Invalid game audit input.');
+    }
+    $module = new RoutingGamesModule;
+    $results = [];
+    foreach ($cases as $case) {
+        try {
+            $results[] = ['id' => $case['id'], 'status' => 200, 'script' => $module->generate($case['input'])->text()];
+        } catch (HttpException $error) {
+            $results[] = ['id' => $case['id'], 'status' => $error->getStatusCode(), 'message' => $error->getMessage()];
+        }
+    }
+    echo json_encode(['release' => basename(realpath($root)), 'cases' => $results], JSON_THROW_ON_ERROR);
 } elseif ($action === 'operations') {
     Artisan::call('nansan:doctor', ['--queue' => true]);
     $doctor = trim(Artisan::output());

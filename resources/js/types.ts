@@ -7,3 +7,4 @@ export interface Article {id:number;title:string;title_en?:string|null;slug:stri
 export interface Announcement {id:number;title:string;title_en?:string|null;body:string;body_en?:string|null;published_at:string;read?:boolean}
 export interface Field {key:string;label:string;type:string;default:string|boolean;placeholder?:string;options?:{label:string;value:string;disabled?:boolean}[];min?:number;max?:number;group?:string;conditional?:string}
 export interface FormSchema {id:string;fields:Field[];source:string;status:string;field_statuses?:Record<string,{status:string;message:string}>}
+export interface GamePorts {id:string;label:string;status:string;ports:{protocol:'tcp'|'udp';value:string}[]}

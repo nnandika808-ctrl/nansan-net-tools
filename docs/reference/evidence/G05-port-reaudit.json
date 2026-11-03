@@ -1,0 +1,2650 @@
+{
+  "source": "https://buananet.com/static-routing-games.html",
+  "observed_at": "2026-11-03T06:55:07.050Z",
+  "method": "Fresh authenticated Playwright visible-output check of each of 106 games on ROS6 and ROS7, plus existing combination scenarios. No source JavaScript extraction.",
+  "observations": 226,
+  "changed_game_parameters": 0,
+  "original_snapshot_bytes_preserved": true,
+  "games": [
+    {
+      "id": "ArenaOfValor-Mobile",
+      "label": "Arena Of Valor (AOV) - Mobile",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "10001-10094",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "10101-10201,10080-10110,17000-18000",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "AmongUs-Mobile",
+      "label": "Among Us - Mobile",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "27015-27030,27036-27037",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "4380,27000-27031,27036",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "BooyaCapsaSusun-Mobile",
+      "label": "Booya Capsa Susun - Mobile",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "7090-7100",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "BooyaDominoQiuqiu-Mobile",
+      "label": "Booya Domino Qiuqiu - Mobile",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "7020-7030",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "ClashOfClans-Mobile",
+      "label": "Clash Of Clans (C0C) - Mobile",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "9330-9340",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "9330-9340",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "ClashRoyale-Mobile",
+      "label": "Clash Royale - Mobile",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "9330-9340",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "9330-9340",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "CODCallOfDuty-Mobile",
+      "label": "Call of Duty (COD) - Mobile",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "3013,10000-10019,18082,50000,65010,65050",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "7085-7995,8700,9030,10010-10019,17000-20100",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "DOTA2-Mobile",
+      "label": "DOTA2 - Mobile",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "9100-9200,8230-8250,8110-8120,27000-28998",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "27000-28998,39000",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "DominoQq-Mobile",
+      "label": "Domino Qq - Mobile",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "9122,11000-11150",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "DragonNest-Mobile",
+      "label": "DragonNest (DN) - Mobile",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "10514",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "DreamLeagueSoccer-Mobile",
+      "label": "Dream League Soccer - Mobile",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "60970-60980",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "FIFAONLINE-Mobile",
+      "label": "Fifa Online - Mobile",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "7770-7790",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "16300-16350",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "FreeFire-Mobile",
+      "label": "FreeFire (FF) - Mobile",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "6006,6674,7006,7889,8001-8012,9006,9137,10000-10012,11000-11019",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "12006,12008,13006,15006,20561,39003,39006,39698,39779,39800",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "6006,6008,7008,8008,8130,8443,9008,9120,10000-10015,10100,11000-11019,12008,13008",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "GenshinImpact-Mobile",
+      "label": "Genshin Impact - Mobile",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "42472",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "42472,22101-22102",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "HiggsDomino-Mobile",
+      "label": "Higgs Domino Island - Mobile",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "50000-50500",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "40000-40010",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "LeagueofLegends-Mobile",
+      "label": "League of Legends (LOL) - Mobile",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "2080-2099",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "5100",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "LastEmpireWarZ-Mobile",
+      "label": "Last Empire War Z - Mobile",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "9930-9940",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "LineLetsGetRich-Mobile",
+      "label": "Line Lets Get Rich - Mobile",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "10500-10515",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "Minecraft-Mobile",
+      "label": "Minecraft - Mobile",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "25565,19132-19133",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "25565,19132-19133",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "MobileLegends-Mobile",
+      "label": "Mobile Legends (ML) - Mobile",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "5000-5221,5224-5227,5229-5241,5243-5508,5551-5559,5601-5700,9000-9010,9443",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "5520-5529,10003,30000-30300,8443",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "4001-4009,5000-5221,5224-5241,5243-5509,5551-5559,5601-5700,8130,8443,9120",
+          "protocol": "udp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "2702,3702,5517,5520-5529,8001,9000-9010,9992,10003,30000-30300",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "Mostly-Mobile",
+      "label": "Mostly - Mobile",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "9933",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "NarutoLittleNinja-Mobile",
+      "label": "Naruto Little Ninja - Mobile",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "6170-6180",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "Netmarble-Mobile",
+      "label": "Netmarble - Mobile",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "12000-12010",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "PointBlank-Mobile",
+      "label": "PointBlank (PB) - Mobile",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "44590-44610",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "40000-40010",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "PUBG-Mobile",
+      "label": "PUBG - Mobile",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "7889,10012,13004,14000,17000,17500,18081,20000-20002,20371",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "8011,9030,10491,10612,12235,13004,13748,17000,17500,20000-20002",
+          "protocol": "udp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "7086-7995,10039,10096,11455,12070-12460,13894,13972,41182-41192",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "Roblox-Mobile",
+      "label": "Roblox - Mobile",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "3074",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "88,500,3074,3544,4500,49152-65535",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "RpgToramOnline-Mobile",
+      "label": "Rpg Toram Online - Mobile",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "30100-30110",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "RulesOfSurvival-Mobile",
+      "label": "RulesOfSurvival (ROS) - Mobile",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "24000-24050",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "ShinobiHeroes-Mobile",
+      "label": "Shinobi Heroes - Mobile",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "10005-10020",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "BallPool-WebGames",
+      "label": "8 Ball Pool - WebGames",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "4000",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "CastleVille-WebGames",
+      "label": "Castle Ville - WebGames",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "8890",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "Headshot-WebGames",
+      "label": "Headshot - WebGames",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "1800-1810",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "1845-1860",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "EmpireAllies-WebGames",
+      "label": "Empire Allies - WebGames",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "8890",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "LeagueofAngels-WebGames",
+      "label": "League of Angels 2 - WebGames",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "51700-51715",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "MegarealmRiseOfChaos-WebGames",
+      "label": "Megarealm RiseOfChaos-WebGames",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "26590-26600",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "PerjuanganSemut-WebGames",
+      "label": "Perjuangan Semut - WebGames",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "7200-7210,7450-7460",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "Roblox-WebGames",
+      "label": "Roblox - WebGames",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "49152-65535",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "SwordofAngels-WebGames",
+      "label": "Sword of Angels - WebGames",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "15490-15510",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "TexasHoldEmPoker-WebGames",
+      "label": "Texas Hold EmPoker - WebGames",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "9339",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "Warflare-WebGames",
+      "label": "Warflare - WebGames",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "64990-65010",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "WildOnes-WebGames",
+      "label": "WildOnes - WebGames",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "8000",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "Atlantica-PC",
+      "label": "Atlantica - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "4300",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "AuraKingdom-PC",
+      "label": "Aura Kingdom - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "5540-5580",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "Ayodance-PC",
+      "label": "AyoDance - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "18900-18910",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "OriginAPEXLegends-PC",
+      "label": "APEX Legends - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "9960-9969,1024-1124,3216,18000,18120,18060,27900,28910,29900",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "1024-1124,18000,29900,37000-40000",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "BlackDesertOnline-PC",
+      "label": "BlackDesert (BDO) - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "8888,9991-9993",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "8888,9991-9993",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "BlackDesertOnlinePS-PC",
+      "label": "BlackDesert (BDO) - Playstaion",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "1935,3478-3480",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "3074,3478-3479",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "BlackDesertOnlineSteam-PC",
+      "label": "BlackDesert Steam (BDO) - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "8888,9991-9993,27015-27030,27036-27037",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "4380,8888,9991-9993,27000-27031,27036",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "BlackDesertOnlineXbox-PC",
+      "label": "Black Desert (BDO) - Xbox",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "3074",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "88,500,3074,3544,4500",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "Blackretribution-PC",
+      "label": "Blackretribution - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "7020-7050,8200-8220,9000-9020",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "BlizzardBattleNet-PC",
+      "label": "Blizzard BattleNet - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "1119",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "1119",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "BountyHound-PC",
+      "label": "Bounty Hound - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "9810-9860",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "CabalExtremePrivate-PC",
+      "label": "Cabal Extreme - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "60170-60180,63000-64000,38101,38110-38600",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "CabalIndonesia-PC",
+      "label": "Cabal Indonesia - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "63000-64000,38101,38110-38130",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "CallofDutyBO-PC",
+      "label": "CallofDuty(COD)BO - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "3074,27014-27050",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "3478,4379-4380,27000-27031,27036",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "CallofDutyBOPS-PC",
+      "label": "CallofDuty(COD)BO - PlaySt..",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "80,443,1935,3478-3480",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "3478-3479",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "CallofDutyBOXBox-PC",
+      "label": "CallofDuty(COD)BO - XBox",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "53,80,3074",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "88,500,3074,3075,3544,4500",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "CallofDutyMWPC-PC",
+      "label": "CallofDuty(COD)MW - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "3074,27014-27050",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "3074,3478,4379-4380,27000-27031,27036",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "CallofDutyMWPS-PC",
+      "label": "CallofDuty COD)MW - Playst..",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "1935,3478-3480",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "3074,3478-3479",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "CallofDutyMWXBox-PC",
+      "label": "CallofDuty (COD)MW - XBox",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "3074",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "88,500,3074,3075,3544,4500",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "ClashofGod-PC",
+      "label": "Clash of God - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "9430-9450,5220-5230",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "CSGOPlaystation-PC",
+      "label": "CSGO Playstation",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "3478-3480,5223,8080",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "3074,3478-3479,3658",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "CSGOSteam-PC",
+      "label": "CSGO Steam - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "27015-27030,27036-27037",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "4380,27000-27031,27036",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "CSGOXbox-PC",
+      "label": "CSGO Xbox - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "3074",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "88,3074",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "CrossFireindonesia-PC",
+      "label": "Cross Fire indonesia - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "10009,13008,16666,28012",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "12020-12080,13000-13080",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "DiabloIII-PC",
+      "label": "Diablo III - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "1119",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "1119,6120",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "DiabloII-PC",
+      "label": "Diablo II - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "6112,4000",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "Diablo-PC",
+      "label": "Diablo I - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "6112-6119",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "6112-6119",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "Dota2Steam-PC",
+      "label": "DOTA 2 Steam - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "9100-9200,8230-8250,8110-8120",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "28010-28200,27010-27200,39000",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "DragonNest-PC",
+      "label": "DragonNest (DN) - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "14300-15512",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "15000-15500",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "Dragona-PC",
+      "label": "Dragona - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "10000-10030",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "FifaOnline3-PC",
+      "label": "Fifa Online 3 (FO3) - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "7770-7790",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "16300-16350",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "FORTNITEEPICGAMES-PC",
+      "label": "Fortnite Epic - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "9000-9100",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "LeagueofLegend-PC",
+      "label": "League of Legend (LOL) - PC",
+      "status": "FAILED_REFERENCE_SYNTAX",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "2080-2099",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "5100 protocol=udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "GrandChase-PC",
+      "label": "Grand Chase - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "9300,9400,9700",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "Hearthstone-PC",
+      "label": "Hearthstone - PC",
+      "status": "FAILED_REFERENCE_SYNTAX",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "1119,3724",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "1119,3724 protocol=udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "HeroesoftheStorm-PC",
+      "label": "Heroes of the Storm - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "1119-1120,3724,6113",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "1119-1120,3478-3479,3724,5060,5062,6113,6250,12000-64000",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "HONHeroesofNewerth-PC",
+      "label": "Heroes of Newerth (HON) - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "9100-9200,11200-11500",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "HeroesofAtarsia-PC",
+      "label": "Heroes of Atarsia (HOA) - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "7777,9400",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "IdolStreet-PC",
+      "label": "Idol Street - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "2001-2010",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "Left4Dead2Steam-PC",
+      "label": "Left4Dead 2 Steam - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "4360-4390",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "Lineage2-PC",
+      "label": "Lineage 2 - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "7777,10000,11000,13000",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "LostSaga-PC",
+      "label": "LostSaga (LS) - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "14000-14010",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "14000-14010",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "Luneofeden-PC",
+      "label": "Lune of eden - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "8400",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "Mercenaryops-PC",
+      "label": "Mercenary ops - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "6000-6125",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "Mircovolt-PC",
+      "label": "Mircovolt - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "13000",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "ModoMarble-PC",
+      "label": "Modo Marble - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "28900-28914",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "Overwatch-PC",
+      "label": "Overwatch - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "1119,3724,6113",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "3478-3479,5060,5062,6250,12000-64000",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "PaladinsHiRez-PC",
+      "label": "Paladins Hi-Rez - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "9000-9999",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "9002-9999",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "PointBlank-PC",
+      "label": "PointBlank (PB) - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "39190-39200",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "40000-40010",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "PUBG-PC",
+      "label": "PUBG - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "7080-8000",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "Ragnarok2-PC",
+      "label": "Ragnarok 2 - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "7201-7210,7401-7410",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "RFRisingForce-PC",
+      "label": "RF Rising Force - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "27780",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "ROERingofElysium-PC",
+      "label": "Ring of Elysium (ROE) - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "9002,10000-10015",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "ROSRulesOfSurvival-PC",
+      "label": "Rules Of Survival (ROS) - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "24000-24100",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "SealOnline-PC",
+      "label": "Seal Online - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "1818",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "SpecialForce-PC",
+      "label": "Special Force - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "27920-27940",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "30000-30030",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "StarCraftII-PC",
+      "label": "StarCraft II - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "1119,6113,1120,80,3724",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "1119,6113,1120,80,3724",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "StarCraft-PC",
+      "label": "StarCraft - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "6112",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "9401,9600,16440-16450",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "Valorant-PC",
+      "label": "Valorant (RIOT) - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "2099,5222-5223,8088,8393-8400",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "7000-7500,8088",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "WarcraftIIBattleNet-PC",
+      "label": "Warcraft II - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "6112-6119",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "6112-6119",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "WarcraftIII-PC",
+      "label": "Warcraft III - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "6112,6113-6119",
+          "protocol": "tcp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "Warframe-PC",
+      "label": "Warframe - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "4950-4955",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "6695-6699",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "WorldofTanks-PC",
+      "label": "World of Tanks (WOT) - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "20000-25000,8081,8088,32801,3280",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "12000-29999,32801-32825,",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "WorldofWarcraft-PC",
+      "label": "World of Warcraft - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "3724,1119,6012",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "3724,1119,6012",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "XshotIndonesia-PC",
+      "label": "X-shot Indonesia - PC",
+      "status": "PARAMETERS_OBSERVED",
+      "rules": [
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "7320-7350",
+          "protocol": "tcp"
+        },
+        {
+          "action": "add-dst-to-address-list",
+          "address-list": "List-IP-Games",
+          "address-list-timeout": "1d",
+          "chain": "prerouting",
+          "dst-address-list": "!LOCAL-IP",
+          "dst-port": "7800-7850,30000",
+          "protocol": "udp"
+        }
+      ],
+      "versions_checked": [
+        "6",
+        "7"
+      ]
+    }
+  ]
+}
