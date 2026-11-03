@@ -1,0 +1,72 @@
+{
+  "Video-Conference": [
+    "*.zoom.*",
+    "*.meet.*",
+    "*.webex.*",
+    "*.skype.*",
+    "*.teams.*",
+    "*.jitsi.*",
+    "*.whereby.*",
+    "*.discord.*"
+  ],
+  "E-Commerce": [
+    "*.tokopedia.*",
+    "*.shopee.*",
+    "*.bukalapak.*",
+    "*.lazada.*",
+    "*.blibli.*",
+    "*.olx.*",
+    "*.zalora.*",
+    "*.ralali.*",
+    "*.amazon.*",
+    "*.ebay.*",
+    "*.alibaba.*",
+    "*.aliexpress.*",
+    "*.etsy.*",
+    "*.walmart.*",
+    "*.rakuten.*",
+    "*.shopify.*",
+    "*.wish.*",
+    "*.temu.*"
+  ],
+  "Social-Media": [
+    "*.telegram.*",
+    "*.tdesktop.*",
+    "*.facebook.*",
+    "*.fbcdn.*",
+    "*.instagram.*",
+    "*.cdninstagram.*",
+    "*.twitter.*",
+    "*.x.*",
+    "*.snapchat.*",
+    "*.linkedin.*",
+    "*.pinterest.*",
+    "*.threads.*",
+    "*.imo.*"
+  ],
+  "Streaming-Video": [
+    "*.youtube.*",
+    "*.googlevideo.*",
+    "*.tiktok.*",
+    "*.tiktokcdn.*",
+    "*.spotify.*",
+    "*.scdn.*",
+    "*.netflix.*",
+    "*.nflxvideo.*",
+    "*.vidio.*",
+    "*.wetv.*",
+    "*.iflix.*",
+    "*.rctiplus.*",
+    "*.vimeo.*",
+    "*.twitch.*"
+  ],
+  "Speedtest": [
+    "*.speedtest.*",
+    "*.ooklaserver.*",
+    "*.ookla.*",
+    "*.fast.*",
+    "*.nperf.*",
+    "*.testmy.*",
+    "*.meteor.*"
+  ]
+}

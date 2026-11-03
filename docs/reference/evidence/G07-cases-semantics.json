@@ -1,0 +1,77 @@
+[
+  {
+    "case": {
+      "id": "C01",
+      "upMax": "3M",
+      "upBurst": "6M",
+      "upDur": "15",
+      "downMax": "5M",
+      "downBurst": "8M",
+      "downDur": "15"
+    },
+    "result": {
+      "outputTable": "BURST LIMIT FOR QUEUE SIMPLE OR QUEUE TREE\nTAB GENERAL\tUPLOAD\tDOWNLOAD\nMax Limit\t3M\t5M\nBurst Limit\t6M\t8M\nBurst Threshold\t2250K\t3750K\nBurst Time\t40\t32\nTAB ADVANCED\tUPLOAD\tDOWNLOAD\nLimit At\t375K\t625K\nPriority\t8\t8\n\n\nRATE LIMIT FOR HOTSPOT OR PPPOE\n\n3M/5M 6M/8M 2250K/3750K 40/32 8 375K/625K\nCopy Rate Limit",
+      "rateLimit": "RATE LIMIT FOR HOTSPOT OR PPPOE 3M/5M 6M/8M 2250K/3750K 40/32 8 375K/625K"
+    }
+  },
+  {
+    "case": {
+      "id": "C02",
+      "upMax": "10M",
+      "upBurst": "20M",
+      "upDur": "10",
+      "downMax": "20M",
+      "downBurst": "40M",
+      "downDur": "10"
+    },
+    "result": {
+      "outputTable": "BURST LIMIT FOR QUEUE SIMPLE OR QUEUE TREE\nTAB GENERAL\tUPLOAD\tDOWNLOAD\nMax Limit\t10M\t20M\nBurst Limit\t20M\t40M\nBurst Threshold\t7500K\t15M\nBurst Time\t27\t27\nTAB ADVANCED\tUPLOAD\tDOWNLOAD\nLimit At\t1250K\t2500K\nPriority\t8\t8\n\n\nRATE LIMIT FOR HOTSPOT OR PPPOE\n\n10M/20M 20M/40M 7500K/15M 27/27 8 1250K/2500K\nCopy Rate Limit",
+      "rateLimit": "RATE LIMIT FOR HOTSPOT OR PPPOE 10M/20M 20M/40M 7500K/15M 27/27 8 1250K/2500K"
+    }
+  },
+  {
+    "case": {
+      "id": "C03",
+      "upMax": "1M",
+      "upBurst": "2M",
+      "upDur": "20",
+      "downMax": "2M",
+      "downBurst": "4M",
+      "downDur": "20"
+    },
+    "result": {
+      "outputTable": "BURST LIMIT FOR QUEUE SIMPLE OR QUEUE TREE\nTAB GENERAL\tUPLOAD\tDOWNLOAD\nMax Limit\t1M\t2M\nBurst Limit\t2M\t4M\nBurst Threshold\t750K\t1500K\nBurst Time\t54\t54\nTAB ADVANCED\tUPLOAD\tDOWNLOAD\nLimit At\t125K\t250K\nPriority\t8\t8\n\n\nRATE LIMIT FOR HOTSPOT OR PPPOE\n\n1M/2M 2M/4M 750K/1500K 54/54 8 125K/250K\nCopy Rate Limit",
+      "rateLimit": "RATE LIMIT FOR HOTSPOT OR PPPOE 1M/2M 2M/4M 750K/1500K 54/54 8 125K/250K"
+    }
+  },
+  {
+    "case": {
+      "id": "C04",
+      "upMax": "512K",
+      "upBurst": "1M",
+      "upDur": "15",
+      "downMax": "1M",
+      "downBurst": "2M",
+      "downDur": "15"
+    },
+    "result": {
+      "outputTable": "BURST LIMIT FOR QUEUE SIMPLE OR QUEUE TREE\nTAB GENERAL\tUPLOAD\tDOWNLOAD\nMax Limit\t512K\t1M\nBurst Limit\t1M\t2M\nBurst Threshold\t384K\t750K\nBurst Time\t40\t40\nTAB ADVANCED\tUPLOAD\tDOWNLOAD\nLimit At\t64K\t125K\nPriority\t8\t8\n\n\nRATE LIMIT FOR HOTSPOT OR PPPOE\n\n512K/1M 1M/2M 384K/750K 40/40 8 64K/125K\nCopy Rate Limit",
+      "rateLimit": "RATE LIMIT FOR HOTSPOT OR PPPOE 512K/1M 1M/2M 384K/750K 40/40 8 64K/125K"
+    }
+  },
+  {
+    "case": {
+      "id": "C05",
+      "upMax": "50M",
+      "upBurst": "100M",
+      "upDur": "8",
+      "downMax": "100M",
+      "downBurst": "200M",
+      "downDur": "8"
+    },
+    "result": {
+      "outputTable": "BURST LIMIT FOR QUEUE SIMPLE OR QUEUE TREE\nTAB GENERAL\tUPLOAD\tDOWNLOAD\nMax Limit\t50M\t100M\nBurst Limit\t100M\t200M\nBurst Threshold\t37500K\t75M\nBurst Time\t22\t22\nTAB ADVANCED\tUPLOAD\tDOWNLOAD\nLimit At\t6250K\t12500K\nPriority\t8\t8\n\n\nRATE LIMIT FOR HOTSPOT OR PPPOE\n\n50M/100M 100M/200M 37500K/75M 22/22 8 6250K/12500K\nCopy Rate Limit",
+      "rateLimit": "RATE LIMIT FOR HOTSPOT OR PPPOE 50M/100M 100M/200M 37500K/75M 22/22 8 6250K/12500K"
+    }
+  }
+]

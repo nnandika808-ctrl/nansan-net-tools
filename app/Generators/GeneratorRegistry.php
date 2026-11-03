@@ -2,15 +2,17 @@
 
 namespace App\Generators;
 
+use App\Generators\Modules\BurstCalculatorModule;
 use App\Generators\Modules\PccModule;
 use App\Generators\Modules\QueueQosModule;
 use App\Generators\Modules\RoutingGamesModule;
+use App\Generators\Modules\SimpleQueueTreeModule;
 use App\Generators\Modules\StarlinkModule;
 use App\Generators\Modules\StaticRoutingModule;
 
 final class GeneratorRegistry
 {
-    public const IDS = ['G01', 'G02', 'G03', 'G04', 'G05'];
+    public const IDS = ['G01', 'G02', 'G03', 'G04', 'G05', 'G06', 'G07'];
 
     // Publication is a reviewed code change; database metadata cannot enable execution.
     private const PUBLISHED = [];
@@ -25,6 +27,8 @@ final class GeneratorRegistry
             'G03' => new PccModule,
             'G04' => new StarlinkModule,
             'G05' => new RoutingGamesModule,
+            'G06' => new SimpleQueueTreeModule,
+            'G07' => new BurstCalculatorModule,
             default => new UnverifiedGenerator($id),
         };
     }

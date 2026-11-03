@@ -1,7 +1,7 @@
 import {test,expect} from '@playwright/test';
 test('public catalog, search, docs, and generator access gate',async({page})=>{
  await page.goto('/');await expect(page.getByRole('heading',{name:'Jaringan lebih baik. Mulai dari sini.'})).toBeVisible();
- await expect(page.locator('.tool-card')).toHaveCount(5);
+ await expect(page.locator('.tool-card')).toHaveCount(7);
  await page.getByRole('textbox',{name:'Cari tools atau dokumentasi…'}).fill('Load Balance');
  await expect(page.locator('.search-results a').first()).toContainText('PCC Load Balancing');
  await page.goto('/tools/static-routing');await expect(page.getByRole('heading',{name:'Masuk ke ruang kerja Anda'})).toBeVisible();
@@ -37,7 +37,7 @@ test('admin creates a schema review draft without changing the live form',async(
  await page.goto('/tools/static-routing');await expect(page.getByLabel('Draft app label',{exact:true})).toHaveCount(0);await page.goto('/admin/analytics');await expect(page.getByRole('heading',{name:'Analytics',exact:true})).toBeVisible();
 });
 test('English preference translates documentation content and tool descriptions',async({page})=>{
- await page.goto('/');await page.evaluate(()=>localStorage.setItem('nansan-locale','en'));await page.goto('/docs/verification');await expect(page.getByRole('heading',{name:'Generator verification',exact:true})).toBeVisible();await expect(page.locator('article')).toContainText('Accuracy before publication');await expect(page.locator('html')).toHaveAttribute('lang','en');await page.goto('/tools');await expect(page.locator('.tool-card')).toContainText(['Plan application traffic routes','Manage traffic priority','Distribute connections','Plan Starlink load balancing','Select game traffic routes']);
+ await page.goto('/');await page.evaluate(()=>localStorage.setItem('nansan-locale','en'));await page.goto('/docs/verification');await expect(page.getByRole('heading',{name:'Generator verification',exact:true})).toBeVisible();await expect(page.locator('article')).toContainText('Accuracy before publication');await expect(page.locator('html')).toHaveAttribute('lang','en');await page.goto('/tools');await expect(page.locator('.tool-card')).toContainText(['Plan application traffic routes','Manage traffic priority','Distribute connections','Plan Starlink load balancing','Select game traffic routes','Hierarchical Simple Queue or Queue Tree','Calculate MikroTik burst limits']);
 });
 test('admin saves a validated parameter template and loads it in draft preview',async({page})=>{
  await page.goto('/login');await page.getByLabel('Username',{exact:true}).fill('e2e_admin');await page.getByLabel('Password',{exact:true}).fill('E2E_Only_Password_12345');await page.getByRole('button',{name:'Masuk',exact:true}).click();await expect(page).toHaveURL(/\/dashboard/);

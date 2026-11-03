@@ -1,0 +1,76 @@
+{
+  "id": "G07",
+  "source": "https://buananet.com/mikrotik-burst-limit-calculator.html",
+  "status": "FORM_OBSERVED; AUDITED",
+  "observedAt": "2026-11-03",
+  "fields": [
+    {
+      "key": "up-max-limit",
+      "label": "Upload Max Limit",
+      "type": "text",
+      "default": "3M",
+      "placeholder": "e.g., 512K, 3M, 10M",
+      "referenceId": "up-max-limit"
+    },
+    {
+      "key": "up-speed-bonus",
+      "label": "Upload Burst Limit",
+      "type": "text",
+      "default": "6M",
+      "placeholder": "e.g., 1M, 6M, 20M",
+      "referenceId": "up-speed-bonus"
+    },
+    {
+      "key": "up-interval-bonus",
+      "label": "Upload Bonus Duration (s)",
+      "type": "number",
+      "default": 15,
+      "min": 1,
+      "max": 3600,
+      "placeholder": "15",
+      "referenceId": "up-interval-bonus"
+    },
+    {
+      "key": "down-max-limit",
+      "label": "Download Max Limit",
+      "type": "text",
+      "default": "5M",
+      "placeholder": "e.g., 1M, 5M, 20M",
+      "referenceId": "down-max-limit"
+    },
+    {
+      "key": "down-speed-bonus",
+      "label": "Download Burst Limit",
+      "type": "text",
+      "default": "8M",
+      "placeholder": "e.g., 2M, 8M, 40M",
+      "referenceId": "down-speed-bonus"
+    },
+    {
+      "key": "down-interval-bonus",
+      "label": "Download Bonus Duration (s)",
+      "type": "number",
+      "default": 15,
+      "min": 1,
+      "max": 3600,
+      "placeholder": "15",
+      "referenceId": "down-interval-bonus"
+    },
+    {
+      "key": "client-name",
+      "label": "Queue / Profile Name",
+      "type": "text",
+      "default": "Burst-User",
+      "placeholder": "Burst-User",
+      "referenceId": "client-name"
+    },
+    {
+      "key": "target-ip",
+      "label": "Target IP / Subnet (Optional)",
+      "type": "text",
+      "default": "192.168.1.0/24",
+      "placeholder": "192.168.1.0/24",
+      "referenceId": "target-ip"
+    }
+  ]
+}

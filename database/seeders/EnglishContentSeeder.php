@@ -28,7 +28,7 @@ class EnglishContentSeeder extends Seeder
         ] as $slug => [$title,$body]) {
             CmsPage::where('slug', $slug)->whereNull('title_en')->update(['title_en' => $title, 'body_en' => $body]);
         }
-        foreach (['G01' => 'Plan application traffic routes through a selected gateway.', 'G02' => 'Manage traffic priority with Simple Queue or Queue Tree.', 'G03' => 'Distribute connections across WAN links with bandwidth-ratio options.', 'G04' => 'Plan Starlink load balancing with dynamic DHCP gateways.', 'G05' => 'Select game traffic routes using verified rules.'] as $id => $description) {
+        foreach (['G01' => 'Plan application traffic routes through a selected gateway.', 'G02' => 'Manage traffic priority with Simple Queue or Queue Tree.', 'G03' => 'Distribute connections across WAN links with bandwidth-ratio options.', 'G04' => 'Plan Starlink load balancing with dynamic DHCP gateways.', 'G05' => 'Select game traffic routes using verified rules.', 'G06' => 'Hierarchical Simple Queue or Queue Tree bandwidth management with RAW and Mangle classification.', 'G07' => 'Calculate MikroTik burst limits, thresholds, and burst times for queues and user profiles.', 'G07' => 'Calculate MikroTik burst limits, thresholds, and burst times for queues and user profiles.'] as $id => $description) {
             Tool::where('generator_id', $id)->whereNull('description_en')->update(['description_en' => $description]);
         }
     }

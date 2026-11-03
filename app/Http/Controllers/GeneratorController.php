@@ -16,14 +16,14 @@ class GeneratorController extends Controller
 {
     public function preview(Tool $tool, GeneratorRegistry $registry)
     {
-        abort_unless(in_array($tool->generator_id, ['G01', 'G02', 'G03', 'G04', 'G05'], true), 423, 'Draft generator ini belum diimplementasikan.');
+        abort_unless(in_array($tool->generator_id, GeneratorRegistry::IDS, true), 423, 'Draft generator ini belum diimplementasikan.');
 
         return Inertia::render('Tool', ['tool' => $tool->load('category'), 'schema' => $registry->module($tool->generator_id)->schema(), 'available' => false, 'draft' => true, 'gamePorts' => $tool->generator_id === 'G05' ? app(GamePortCatalog::class)->portOverview() : [], 'templates' => GeneratorTemplate::where('tool_id', $tool->id)->where('is_active', true)->get(['id', 'name', 'defaults', 'version']), 'documentation' => []]);
     }
 
     public function previewOutput(GenerateRequest $request, Tool $tool, GeneratorRegistry $registry)
     {
-        abort_unless(in_array($tool->generator_id, ['G01', 'G02', 'G03', 'G04', 'G05'], true), 423, 'Draft generator ini belum diimplementasikan.');
+        abort_unless(in_array($tool->generator_id, GeneratorRegistry::IDS, true), 423, 'Draft generator ini belum diimplementasikan.');
         $output = $registry->module($tool->generator_id)->generate($request->input('input'));
         Audit::record('generator.draft_preview', 'tool', $tool->id, ['version' => $output->version]);
 

@@ -1,0 +1,123 @@
+{
+  "id": "G06",
+  "source": "https://buananet.com/simple-queue-or-queue-tree-generator.html",
+  "status": "FORM_OBSERVED; AUDITED",
+  "observedAt": "2026-11-03",
+  "fields": [
+    {
+      "key": "globalQueueType",
+      "label": "Queue Architecture",
+      "type": "select",
+      "default": "Simple Queue",
+      "options": [
+        {
+          "label": "Simple Queue",
+          "value": "Simple Queue",
+          "disabled": false
+        },
+        {
+          "label": "Queue Tree",
+          "value": "Queue Tree",
+          "disabled": false
+        }
+      ],
+      "referenceId": "globalQueueType"
+    },
+    {
+      "key": "category-streaming-video",
+      "label": "Streaming Video",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "category-streaming-video"
+    },
+    {
+      "key": "category-social-media",
+      "label": "Social Media",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "category-social-media"
+    },
+    {
+      "key": "category-e-commerce",
+      "label": "E-Commerce",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "category-e-commerce"
+    },
+    {
+      "key": "category-video-conference",
+      "label": "Video Conference",
+      "type": "checkbox",
+      "default": false,
+      "referenceId": "category-video-conference"
+    },
+    {
+      "key": "downloadBandwidthISP",
+      "label": "Download Bandwidth (ISP)",
+      "type": "text",
+      "default": "100M",
+      "placeholder": "e.g., 50M, 100M, 1G",
+      "referenceId": "downloadBandwidthISP"
+    },
+    {
+      "key": "uploadBandwidthISP",
+      "label": "Upload Bandwidth (ISP)",
+      "type": "text",
+      "default": "50M",
+      "placeholder": "e.g., 20M, 50M, 500M",
+      "referenceId": "uploadBandwidthISP"
+    },
+    {
+      "key": "globalQueueTypeInput",
+      "label": "Global Queue Type",
+      "type": "select",
+      "default": "default-small",
+      "options": [
+        {
+          "label": "default - (v6.xx / v7.xx)",
+          "value": "default",
+          "disabled": false
+        },
+        {
+          "label": "default-small - (v6.xx / v7.xx)",
+          "value": "default-small",
+          "disabled": false
+        },
+        {
+          "label": "pcq - (v6.xx / v7.xx)",
+          "value": "pcq",
+          "disabled": false
+        },
+        {
+          "label": "sfq - (v6.xx / v7.xx)",
+          "value": "sfq",
+          "disabled": false
+        },
+        {
+          "label": "codel - (v7.xx Only)",
+          "value": "codel",
+          "disabled": false
+        },
+        {
+          "label": "fq-codel - (v7 Only)",
+          "value": "fq-codel",
+          "disabled": false
+        },
+        {
+          "label": "cake - (v7.xx Only)",
+          "value": "cake",
+          "disabled": false
+        }
+      ],
+      "referenceId": "globalQueueTypeInput"
+    },
+    {
+      "key": "localTarget",
+      "label": "Local Network Target",
+      "type": "text",
+      "default": "192.168.0.0/16,10.0.0.0/8,172.16.0.0/12",
+      "placeholder": "192.168.0.0/16,10.0.0.0/8,172.16.0.0/12",
+      "referenceId": "localTarget"
+    }
+  ]
+}

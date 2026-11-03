@@ -1,0 +1,129 @@
+{
+  "id": "G07",
+  "url": "https://buananet.com/mikrotik-burst-limit-calculator.html",
+  "observed_at": "2026-11-03",
+  "method": "Playwright MCP loopback bridge; manual authenticated session",
+  "status": "FORM_OBSERVED; AUDITED",
+  "title": "MikroTik Burst Limit Calculator & Traffic Shaper Tool | Buananet.com",
+  "heading": "MIKROTIK BURST LIMIT CALCULATOR",
+  "fields": [
+    {
+      "id": "up-max-limit",
+      "name": "",
+      "tag": "INPUT",
+      "type": "text",
+      "label": "Max Limit (K/M)",
+      "placeholder": "3M",
+      "value": "3M",
+      "required": false,
+      "disabled": false
+    },
+    {
+      "id": "up-speed-bonus",
+      "name": "",
+      "tag": "INPUT",
+      "type": "text",
+      "label": "Burst Limit (K/M)",
+      "placeholder": "6M",
+      "value": "6M",
+      "required": false,
+      "disabled": false
+    },
+    {
+      "id": "up-interval-bonus",
+      "name": "",
+      "tag": "INPUT",
+      "type": "text",
+      "label": "Bonus Duration (s)",
+      "placeholder": "12",
+      "value": "15",
+      "required": false,
+      "disabled": false
+    },
+    {
+      "id": "down-max-limit",
+      "name": "",
+      "tag": "INPUT",
+      "type": "text",
+      "label": "Max Limit (K/M)",
+      "placeholder": "5M",
+      "value": "5M",
+      "required": false,
+      "disabled": false
+    },
+    {
+      "id": "down-speed-bonus",
+      "name": "",
+      "tag": "INPUT",
+      "type": "text",
+      "label": "Burst Limit (K/M)",
+      "placeholder": "8M",
+      "value": "8M",
+      "required": false,
+      "disabled": false
+    },
+    {
+      "id": "down-interval-bonus",
+      "name": "",
+      "tag": "INPUT",
+      "type": "text",
+      "label": "Bonus Duration (s)",
+      "placeholder": "12",
+      "value": "15",
+      "required": false,
+      "disabled": false
+    }
+  ],
+  "buttons": [
+    {
+      "id": "signout",
+      "text": "Logout",
+      "disabled": false
+    },
+    {
+      "id": "ShowProfile",
+      "text": "My Profile",
+      "disabled": false
+    },
+    {
+      "id": "",
+      "text": "Burst Limit Simulator",
+      "disabled": false
+    },
+    {
+      "id": "",
+      "text": "Copy Rate Limit",
+      "disabled": false
+    },
+    {
+      "id": "",
+      "text": "Show Chart ☰",
+      "disabled": false
+    },
+    {
+      "id": "",
+      "text": "Show Explanation ☰",
+      "disabled": false
+    },
+    {
+      "id": "verify",
+      "text": "VERIFY YOUR E-MAIL NOW",
+      "disabled": false
+    },
+    {
+      "id": "not-subscribe",
+      "text": "SUBSCRIBE NOW",
+      "disabled": false
+    },
+    {
+      "id": "buananet-chat-btn",
+      "text": "💬 Ask Assistant",
+      "disabled": false
+    },
+    {
+      "id": "send-btn",
+      "text": "➤",
+      "disabled": false
+    }
+  ]
+}

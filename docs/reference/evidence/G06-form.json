@@ -1,0 +1,271 @@
+{
+  "id": "G06",
+  "url": "https://buananet.com/simple-queue-or-queue-tree-generator.html",
+  "observed_at": "2026-11-03",
+  "method": "Playwright MCP loopback bridge; manual authenticated session",
+  "status": "FORM_OBSERVED; AUDITED",
+  "title": "Simple Queue or Queue Tree Bandwidth Management | Buananet.com",
+  "heading": "MIKROTIK SIMPLE QUEUE AND QUEUE TREE BANDWIDTH MANAGEMENT",
+  "fields": [
+    {
+      "id": "globalQueueType",
+      "name": "",
+      "tag": "SELECT",
+      "type": "select-one",
+      "label": null,
+      "placeholder": null,
+      "value": "Simple Queue",
+      "required": false,
+      "disabled": false,
+      "options": [
+        {
+          "label": "Simple Queue",
+          "value": "Simple Queue",
+          "selected": true,
+          "disabled": false
+        },
+        {
+          "label": "Queue Tree",
+          "value": "Queue Tree",
+          "selected": false,
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "id": "category-streaming-video",
+      "name": "",
+      "tag": "INPUT",
+      "type": "checkbox",
+      "label": "Streaming Video",
+      "placeholder": null,
+      "value": "Streaming Video",
+      "checked": false,
+      "required": false,
+      "disabled": false
+    },
+    {
+      "id": "category-social-media",
+      "name": "",
+      "tag": "INPUT",
+      "type": "checkbox",
+      "label": "Social Media",
+      "placeholder": null,
+      "value": "Social Media",
+      "checked": false,
+      "required": false,
+      "disabled": false
+    },
+    {
+      "id": "category-e-commerce",
+      "name": "",
+      "tag": "INPUT",
+      "type": "checkbox",
+      "label": "E-Commerce",
+      "placeholder": null,
+      "value": "E-Commerce",
+      "checked": false,
+      "required": false,
+      "disabled": false
+    },
+    {
+      "id": "category-video-conference",
+      "name": "",
+      "tag": "INPUT",
+      "type": "checkbox",
+      "label": "Video Conference",
+      "placeholder": null,
+      "value": "Video Conference",
+      "checked": false,
+      "required": false,
+      "disabled": false
+    },
+    {
+      "id": "downloadBandwidthISP",
+      "name": "",
+      "tag": "INPUT",
+      "type": "text",
+      "label": "Download (Mbps):",
+      "placeholder": "e.g., 100M, 500M",
+      "value": "100M",
+      "required": false,
+      "disabled": false
+    },
+    {
+      "id": "uploadBandwidthISP",
+      "name": "",
+      "tag": "INPUT",
+      "type": "text",
+      "label": "Upload (Mbps):",
+      "placeholder": "e.g., 50M, 200M",
+      "value": "50M",
+      "required": false,
+      "disabled": false
+    },
+    {
+      "id": "globalQueueTypeInput",
+      "name": "",
+      "tag": "SELECT",
+      "type": "select-one",
+      "label": "Global Queue Type:",
+      "placeholder": null,
+      "value": "default-small",
+      "required": false,
+      "disabled": false,
+      "options": [
+        {
+          "label": "default - (v6.xx / v7.xx)",
+          "value": "default",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "default-small - (v6.xx / v7.xx)",
+          "value": "default-small",
+          "selected": true,
+          "disabled": false
+        },
+        {
+          "label": "pcq - (v6.xx / v7.xx)",
+          "value": "pcq",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "sfq - (v6.xx / v7.xx)",
+          "value": "sfq",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "codel - (v7.xx Only)",
+          "value": "codel",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "fq-codel - (v7 Only)",
+          "value": "fq-codel",
+          "selected": false,
+          "disabled": false
+        },
+        {
+          "label": "cake - (v7.xx Only)",
+          "value": "cake",
+          "selected": false,
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "id": "mikrotikScriptOutput",
+      "name": "",
+      "tag": "TEXTAREA",
+      "type": "textarea",
+      "label": null,
+      "placeholder": null,
+      "value": "[output omitted]",
+      "required": false,
+      "disabled": false
+    }
+  ],
+  "buttons": [
+    {
+      "id": "signout",
+      "text": "Logout",
+      "disabled": false
+    },
+    {
+      "id": "ShowProfile",
+      "text": "My Profile",
+      "disabled": false
+    },
+    {
+      "id": "applyGlobalSettingsButton",
+      "text": "Apply",
+      "disabled": false
+    },
+    {
+      "id": "",
+      "text": "Edit",
+      "disabled": false
+    },
+    {
+      "id": "",
+      "text": "Edit",
+      "disabled": false
+    },
+    {
+      "id": "",
+      "text": "Edit",
+      "disabled": false
+    },
+    {
+      "id": "",
+      "text": "Edit",
+      "disabled": false
+    },
+    {
+      "id": "",
+      "text": "Edit",
+      "disabled": false
+    },
+    {
+      "id": "",
+      "text": "Edit",
+      "disabled": false
+    },
+    {
+      "id": "",
+      "text": "Edit",
+      "disabled": false
+    },
+    {
+      "id": "",
+      "text": "Edit",
+      "disabled": false
+    },
+    {
+      "id": "",
+      "text": "Edit",
+      "disabled": false
+    },
+    {
+      "id": "copyScriptButton",
+      "text": "Copy Script",
+      "disabled": false
+    },
+    {
+      "id": "saveRscScriptButton",
+      "text": "Save to RSC",
+      "disabled": false
+    },
+    {
+      "id": "verify",
+      "text": "VERIFY YOUR E-MAIL NOW",
+      "disabled": false
+    },
+    {
+      "id": "not-subscribe",
+      "text": "SUBSCRIBE NOW",
+      "disabled": false
+    },
+    {
+      "id": "buananet-chat-btn",
+      "text": "💬 Ask Assistant",
+      "disabled": false
+    },
+    {
+      "id": "send-btn",
+      "text": "➤",
+      "disabled": false
+    }
+  ],
+  "outputs": [
+    {
+      "tag": "TEXTAREA",
+      "id": "mikrotikScriptOutput",
+      "length": 9759
+    }
+  ]
+}
