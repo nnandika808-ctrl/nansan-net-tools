@@ -1,0 +1,1681 @@
+{
+  "started_at": "2026-11-03T04:14:09.016Z",
+  "image_version": "7.25",
+  "image_sha256": "5b9c77075b67f8b53f747f9d918d0e446e8cfbd943dc82ee28b7fcb68130d140",
+  "emulator": "QEMU 11.1.0 TCG",
+  "isolation": "Fresh snapshot, three restricted user-mode networks, loopback console and management SSH; no host bridge, Internet packets or physical router address accepted",
+  "control_transport": "Noninteractive SSH after serial bootstrap",
+  "owned_vm_stopped": true,
+  "observed_version": "7.25",
+  "completed_at": "2026-11-03T04:16:48.306Z",
+  "status": "SCOPED_GAME_SYNTAX_PASSED",
+  "cases": [
+    {
+      "test_id": "ros7-ArenaOfValor-Mobile",
+      "script_sha256": "05ebcaea377d6ebc9f6764e50b6691cb9cdbac5c5934a1b5878589f15b5dea09",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-AmongUs-Mobile",
+      "script_sha256": "ec103968fc26b2af15eece06cb4f7d558cfc06f6a2befdbc2d1ffa9fe655d8ee",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-BooyaCapsaSusun-Mobile",
+      "script_sha256": "4a781fc53e4c3fc352c1251df51c57d9a91624929d36c317e849a022150a425f",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-BooyaDominoQiuqiu-Mobile",
+      "script_sha256": "367c64678df8c3c7d99583683ade5a9d8a22693b97a59d36a365d16ea2b172d1",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-ClashOfClans-Mobile",
+      "script_sha256": "cf6c1a36cb8311cd0696f4e45f503c3e01f7c181393d390f5621b601a4200e6e",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-ClashRoyale-Mobile",
+      "script_sha256": "cf6c1a36cb8311cd0696f4e45f503c3e01f7c181393d390f5621b601a4200e6e",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-CODCallOfDuty-Mobile",
+      "script_sha256": "821c82ccaabb719426a0ced9aad051e83f51283a8de65fd4c70c7309772fd200",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-DOTA2-Mobile",
+      "script_sha256": "60ce3bb4c52aa79a0cd0a3317d1ae5bb5548e51daeaa1ade7c6f033664c259f7",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-DominoQq-Mobile",
+      "script_sha256": "9064f35e42fb1e8a2e72a53536f3baaf2646eed8c9abcda227092ee430f76717",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-DragonNest-Mobile",
+      "script_sha256": "389eb3644866d0d6b1345d6421483e840b95f32aa77cd356b0b88644a51b5a5b",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-DreamLeagueSoccer-Mobile",
+      "script_sha256": "e260cc0587a2a859db074f9a71aba166a44d10fd22acff4bb9a4b8373460d145",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-FIFAONLINE-Mobile",
+      "script_sha256": "2be93df03b3ee9ba32b9527ac3b533670d78ba4633c3b5ac6937dcdec9c2f6e8",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-FreeFire-Mobile",
+      "script_sha256": "d68580aa313a2495891aee89250612d94ed82b614d82ae9a5df830b07c698d85",
+      "selected_games": 1,
+      "expected_raw_rules": 3,
+      "raw_rules": 3,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-GenshinImpact-Mobile",
+      "script_sha256": "540fc0f952afba4bf903404affa1792c1e29f2c168dc2a2ae2d2da50eddb7c17",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-HiggsDomino-Mobile",
+      "script_sha256": "6588f1d56d3f60f00b06d8548f26ccc83c8fbb1ce811a69bd1efa748e7b3114d",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-LeagueofLegends-Mobile",
+      "script_sha256": "f762e313eab8d1e5397511fb634fa2fe0ea9c5ec8ae8f3cdcefe106978faa9b4",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-LastEmpireWarZ-Mobile",
+      "script_sha256": "6bd8c33b15036f9a88034c781d1ff6cee5e36af894620764bb16470458e4a272",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-LineLetsGetRich-Mobile",
+      "script_sha256": "07d37c9d915d88a0deb583de0e512bedffc2eeeda98f5d3f84509e8b365faab7",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-Minecraft-Mobile",
+      "script_sha256": "343d51342796aa4d01d51a4456eaa4b3b1b5c9c8c1bf9425687bc72b1f8167ae",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-MobileLegends-Mobile",
+      "script_sha256": "1b215b951d7d442e305696b9ec363ab6e171b0fc93fb7cc293b0d501ec952d2d",
+      "selected_games": 1,
+      "expected_raw_rules": 4,
+      "raw_rules": 4,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-Mostly-Mobile",
+      "script_sha256": "1a27f3282e0c4dbaf53092917e74492c25ec9f8990c03176090037ed8a0cc4a9",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-NarutoLittleNinja-Mobile",
+      "script_sha256": "cadd5799a7a70a505cee1a0099bacd3f55242af4f95ed8142a4a157e83675ad9",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-Netmarble-Mobile",
+      "script_sha256": "fe9090170115ac16d3f08980a4bd824efcda78204c3fcd7f348cdc7f529eb164",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-PointBlank-Mobile",
+      "script_sha256": "c1aea3a201f458db90eb2bad132208134bde2679de0c825d7e16b08af6822544",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-PUBG-Mobile",
+      "script_sha256": "6e4e939f76c3fcf157fb9048e5b95c1345bcaa784b17049dca163e7973fd2495",
+      "selected_games": 1,
+      "expected_raw_rules": 3,
+      "raw_rules": 3,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-Roblox-Mobile",
+      "script_sha256": "15cd943c023447a2f2c35d70a1e67aa6db144817f2486bd4e44862bf2ae93633",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-RpgToramOnline-Mobile",
+      "script_sha256": "655f12041ba11e0796e5fdf1a09ccef5e93ab7709c33d2b11e6b3ab0aa1cee6c",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-RulesOfSurvival-Mobile",
+      "script_sha256": "87f1b1f18b63a5935c262558ef70277cca73c3859c700d0f4e799adfeb6f24d0",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-ShinobiHeroes-Mobile",
+      "script_sha256": "cab16ae8c1e7d412c2a6d8448b65ae139be576bf246116a60d7e8d8c4d5e9778",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-BallPool-WebGames",
+      "script_sha256": "02ba9e6022dcf4e5995f5f5dbbaa847e0b24393485ba9de572edb4d60a2ddf73",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-CastleVille-WebGames",
+      "script_sha256": "f962eb6709856ac524415097c17c32b7979ceee63a34bcfbc89db0b2a3727c1d",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-Headshot-WebGames",
+      "script_sha256": "beda9782b767e39e5b148fc03f4ff9d3d43d1147e461e3107ebe3464d513f9dd",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-EmpireAllies-WebGames",
+      "script_sha256": "f962eb6709856ac524415097c17c32b7979ceee63a34bcfbc89db0b2a3727c1d",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-LeagueofAngels-WebGames",
+      "script_sha256": "0ad07b6da2abc15ab2c444977331f21cd3e105ddd62a3aa74796f85e493dab39",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-MegarealmRiseOfChaos-WebGames",
+      "script_sha256": "5d332cb9721108d693c2e7e94b512bf5a3c00ed9c6239b0836128612e3adb33b",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-PerjuanganSemut-WebGames",
+      "script_sha256": "57e6c560920c7d8825a4c004c998b2703d7b49eaa8411f19c89967b10e9a943f",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-Roblox-WebGames",
+      "script_sha256": "b15063ed47c2f80a60afa7745ca7cec86f7df32fcef985139d3558e533f15078",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-SwordofAngels-WebGames",
+      "script_sha256": "2a783fbce8f8d460dd7577c5cb15c131e12139cb18a2dc2228091d001fcc5d7e",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-TexasHoldEmPoker-WebGames",
+      "script_sha256": "94a00adb6716f986eccf29affd8dc4bc1e2b8720fd64888a0eec5dd2ab6777b0",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-Warflare-WebGames",
+      "script_sha256": "e244c0f764356c4358232708ebbf81d87f33f0de57f09ed11c0bc686a2aca4eb",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-WildOnes-WebGames",
+      "script_sha256": "fcf78169dbefecf3b14018de9f42797ec7a9b57d698366d3851340eb93bf828d",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-Atlantica-PC",
+      "script_sha256": "8fd95d64dbee732505ae4545b7af7a31cf2d042497d80b200a0b025f3cd9bbe7",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-AuraKingdom-PC",
+      "script_sha256": "96272dc2ba4712ef53ff3ed3b9c73c025efbb107b8249a9b9fb19f8944715a51",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-Ayodance-PC",
+      "script_sha256": "b171948c64b27e1a800a3a08c8894c4a988b2514d17c5389e23959a4043989ab",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-OriginAPEXLegends-PC",
+      "script_sha256": "611a6f98f97b254fd71411bc914956fd1d652c4cccb59df6a31b9cd8c5177a67",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-BlackDesertOnline-PC",
+      "script_sha256": "b059d1748602ad5e1db4014bc4a431e563782069269ee8ca12f640dfeb298222",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-BlackDesertOnlinePS-PC",
+      "script_sha256": "24b2bb7aa97cdc18422ea76e90fc531881081428ca9d2f777e60d328fd712070",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-BlackDesertOnlineSteam-PC",
+      "script_sha256": "930116340ffe31d1f7043df61dc269b88ccba1a00a74317cb3bec22bb0964bcc",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-BlackDesertOnlineXbox-PC",
+      "script_sha256": "4de52e410a37ad70de1267b17d1ef2d11950ad39cc7cc58c2f52ca7dd3d87c24",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-Blackretribution-PC",
+      "script_sha256": "680175ea06744f88d566ba5b6b296d2b6d55497b4f4d24f26d1b69d372f09fd9",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-BlizzardBattleNet-PC",
+      "script_sha256": "65bb40df68827944a310cd8cdadc424ae009696d1fe4a4d6598952b957b396cc",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-BountyHound-PC",
+      "script_sha256": "8c31150b838c9498287304c6967b962182b7a46366f6ddd8de2eebd5db778a01",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-CabalExtremePrivate-PC",
+      "script_sha256": "79682c6ee3574f70e858cd466ed60b0c9aa859189c8aa4f6490a6f95f8e4d6fe",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-CabalIndonesia-PC",
+      "script_sha256": "bcb566f3b19f6fd30003fd30dc90ba3875d2ad5687907d4d57f9305462c4d778",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-CallofDutyBO-PC",
+      "script_sha256": "6ccd8d7a0170d03173e1e834185b15dd7d3da69a8cd7a2af6fe7092a2a6368b2",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-CallofDutyBOPS-PC",
+      "script_sha256": "f3f5f7d66a8bd7d0b286e54947e59a766b5bd3eb555195e2686b1a81b6e08997",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-CallofDutyBOXBox-PC",
+      "script_sha256": "a27622d70ec12210e27c0970e62b2c2b15292dba0f134cc3904d131c5fb44862",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-CallofDutyMWPC-PC",
+      "script_sha256": "f5c0bc3b773413eff4daf2726f739f014f7bd60c02f0c176a80816f0f17b8c10",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-CallofDutyMWPS-PC",
+      "script_sha256": "24b2bb7aa97cdc18422ea76e90fc531881081428ca9d2f777e60d328fd712070",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-CallofDutyMWXBox-PC",
+      "script_sha256": "f4de3f09faf891e243a9b0ad0544874d146d5653ccf0c0f28a04ee647fb0af20",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-ClashofGod-PC",
+      "script_sha256": "f164e6eb6a92e9fdeef23c67fc7fe9d3c9618c17b460a00b9ffe3c1562e1628c",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-CSGOPlaystation-PC",
+      "script_sha256": "a2134ba343e05740bb46c425889ed8d38524e5678d15e2e0f73b9dc24455849f",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-CSGOSteam-PC",
+      "script_sha256": "ec103968fc26b2af15eece06cb4f7d558cfc06f6a2befdbc2d1ffa9fe655d8ee",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-CSGOXbox-PC",
+      "script_sha256": "fde3a6e617a8c0294b81ce0dbcfe638dc4fcb62c5b78cdc7d3b59e1b163d449e",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-CrossFireindonesia-PC",
+      "script_sha256": "cd9baad017ccbca3b40a469d657a91551eb7a0d4f0cb185ac55f69ac44b6bf5f",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-DiabloIII-PC",
+      "script_sha256": "4e423770f0bb9f2740b820f17b2948841b11b690567193af085d7929f02ac451",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-DiabloII-PC",
+      "script_sha256": "1b235c73158f0650bf14553567fa0de2a75cc8b47a9ac66a10bf1fae2d2c386d",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-Diablo-PC",
+      "script_sha256": "7e5ad7a546e08b10aef4d9aea9e5c90478f62ad58a775f141cb6d555d36992f1",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-Dota2Steam-PC",
+      "script_sha256": "148ef9d190f1fdaf87d9dcb049d6cfa0c03de33da26e39d02ef708e93db605cb",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-DragonNest-PC",
+      "script_sha256": "ddbcbe09c741eab2544a9c4664dafa58f81a94f7e758a5d8ab6d0ad535c2bfd0",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-Dragona-PC",
+      "script_sha256": "4fb1366e64879116cf1705fbd10e096a5d348f30654bdbe43c79bfd131b5bf9e",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-FifaOnline3-PC",
+      "script_sha256": "2be93df03b3ee9ba32b9527ac3b533670d78ba4633c3b5ac6937dcdec9c2f6e8",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-FORTNITEEPICGAMES-PC",
+      "script_sha256": "8d9e5b91e3c022babff63dcd44488a009859363648d590b601ccedb67bfef05d",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-GrandChase-PC",
+      "script_sha256": "d79bacb0b41681051d5916ef7f1d992f2f76bbc7bfccc93f7ea470559d601bdd",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-HeroesoftheStorm-PC",
+      "script_sha256": "cd46d732cc6361467decbe50a6cd295a2135ad616ce6fb8eb9be20f9fa4d0f8b",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-HONHeroesofNewerth-PC",
+      "script_sha256": "a12465ed8876bb4e9095ad80dccd883441db60f0e3800d8900eabb894ea67522",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-HeroesofAtarsia-PC",
+      "script_sha256": "60f3a400547480dad72c9051ffc1aa6df38f58aec117aa80ffda1ac2b036ca99",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-IdolStreet-PC",
+      "script_sha256": "cf0a8f6ce38f21bacbfa89fce66d4eeed3e8b291eff3b8878bc3340fc6ce40e1",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-Left4Dead2Steam-PC",
+      "script_sha256": "29f8461e0d49ec1f9fe12cb612da6faf57844a7fa04775ad63c74e6be02e0cf1",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-Lineage2-PC",
+      "script_sha256": "d66aad5d83a9e35919db822970a215a26d8a69e93620fbd384cc5b2712f32251",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-LostSaga-PC",
+      "script_sha256": "a74f477fc51710c8e0075d088ffe6b174825ab4910528a1ce99ce757e762856f",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-Luneofeden-PC",
+      "script_sha256": "4d502208dff0fe73853ec70a6844600c34139a482c5d4935f2a18b4d8ec77d91",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-Mercenaryops-PC",
+      "script_sha256": "e04c1016856c49f2cf9040a9c32b9869e552f531a641b0c77ff77363407165cc",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-Mircovolt-PC",
+      "script_sha256": "84d2875956a7bd50820dabec6ea163d6c1287a497e14d7f01db21616481f63be",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-ModoMarble-PC",
+      "script_sha256": "7fd254a449e0c4234d476172f58b0f36c4999bdf284759dd7e3155dbc3f2ec95",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-Overwatch-PC",
+      "script_sha256": "9e8b96839ea135ba3b073c25061fae0c63f86a90733653245e63761296669098",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-PaladinsHiRez-PC",
+      "script_sha256": "6727a1e898f60a4bfcb6e014573e326ae0d184296d42584f5100e69d0b190c51",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-PointBlank-PC",
+      "script_sha256": "477c6d6d89ccdab87c95243a808d19c0e1b583e3668ab08340f82cdfb2a0427c",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-PUBG-PC",
+      "script_sha256": "39f611b1b5ed4bb71eb9a8c4358e74ed35909dfb4642c9d467176a69c539c586",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-Ragnarok2-PC",
+      "script_sha256": "95ad79881df1a214cdb18f88291a00f4dc66d4eccae5f69b8c7b6379980470a6",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-RFRisingForce-PC",
+      "script_sha256": "935a9c67cf37c9132c50cecf23cf021f196cdfecd3592f53092e3a75f2aed4af",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-ROERingofElysium-PC",
+      "script_sha256": "b023283a58e5a6264a14a3e6d8c155c6f935aa9e05a048dc05f3c60a37d35e6d",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-ROSRulesOfSurvival-PC",
+      "script_sha256": "0677ff0267d5ce3114f838c0f125e43efa1adfdca9696c1e425a8fdb76f3b503",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-SealOnline-PC",
+      "script_sha256": "27796b1d3b1c69a5937b17a5a450078aad9bdb060e464456154bc23d7feaa03e",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-SpecialForce-PC",
+      "script_sha256": "a0a1bc2b6c7154ab2ad4c1fad41ead48953f4fb1463e957fbb854d0aea65b4bf",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-StarCraftII-PC",
+      "script_sha256": "877d22516bbb84ecbef583483c4138bd056d92cc929fd1946bddb291cb845b8d",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-StarCraft-PC",
+      "script_sha256": "f89de3eb088cfd5e01d5cf50c4ef6ba4c96bbaf7321e20e2f1a826c37474d6be",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-Valorant-PC",
+      "script_sha256": "e2a003e4cf1e73211e8e8481af844fc2116d63c0ff1f6eb208ea6a901ca86ab2",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-WarcraftIIBattleNet-PC",
+      "script_sha256": "7e5ad7a546e08b10aef4d9aea9e5c90478f62ad58a775f141cb6d555d36992f1",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-WarcraftIII-PC",
+      "script_sha256": "607cef3c39f88b1ecf9f7b525240d6b4dfd74f6c095e8f82ccb8d32b9b0991b8",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-Warframe-PC",
+      "script_sha256": "9727897f9a2164864f444693e20ac72331e810021493a3bec5bd7f6b4f9aa503",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-WorldofTanks-PC",
+      "script_sha256": "27256e31ae36e99fc4163b6edae5d790e532e05ecc7e1405f5a07a4b0e67332c",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-WorldofWarcraft-PC",
+      "script_sha256": "6122c269c8e6d55388917578598bc47c3afcf5d6a692185ff33de63c5ae05e23",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-XshotIndonesia-PC",
+      "script_sha256": "72ce1f144e863162a8b4c2c246e6e4733c3efbd7d45e4636a959bfd4fd6efacf",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-none",
+      "script_sha256": "8942808440161152f10668b0b0929dde7b717bdccf181ffdb442698e5722052e",
+      "selected_games": 0,
+      "expected_raw_rules": 0,
+      "raw_rules": 0,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-mixed",
+      "script_sha256": "23106125800ffa7c99b16792d8afc7aaa6c2c987e59193123146b3fa3ff3b391",
+      "selected_games": 3,
+      "expected_raw_rules": 5,
+      "raw_rules": 5,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-pppoe",
+      "script_sha256": "140f71543e5d8fdb822881f2201e5b3761689000bf6f0bdfede7d43c39193a20",
+      "selected_games": 1,
+      "expected_raw_rules": 1,
+      "raw_rules": 1,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-scoped-gateway",
+      "script_sha256": "661afd3ac80f3eb8860497790b4db8b5fbda8e48802b25cc433d13908f680674",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-hidden-selection",
+      "script_sha256": "05ebcaea377d6ebc9f6764e50b6691cb9cdbac5c5934a1b5878589f15b5dea09",
+      "selected_games": 1,
+      "expected_raw_rules": 2,
+      "raw_rules": 2,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    },
+    {
+      "test_id": "ros7-all-safe",
+      "script_sha256": "b5b1f3bb27c67e887b3d8b271d79bb96842824e9901e10f923276f0f31dbca58",
+      "selected_games": 104,
+      "expected_raw_rules": 160,
+      "raw_rules": 160,
+      "local_entries": 3,
+      "mangle_rules": 2,
+      "game_routes": 1,
+      "effective_mangle_order": [
+        "mark-connection",
+        "mark-routing"
+      ],
+      "status": "CONFIGURATION_SYNTAX_AND_OBJECTS_PASSED"
+    }
+  ],
+  "reference_failures": [
+    {
+      "test_id": "ros7-LeagueofLegend-PC",
+      "source_script_sha256": "d9a8f976b48419782a0392878ec90c35319170f029b3ee309c2ca79ba6ccf3b5",
+      "native_error": "Script Error: syntax error (line 27 column 1) (:import; line 1)\n",
+      "status": "FAILED_REFERENCE_SYNTAX_CONFIRMED",
+      "imported_raw_rules": 0
+    },
+    {
+      "test_id": "ros7-Hearthstone-PC",
+      "source_script_sha256": "85137a763bd77ef8f07a36a8104c2145805db97083f925f844547568eaba0e96",
+      "native_error": "Script Error: syntax error (line 27 column 1) (:import; line 1)\n",
+      "status": "FAILED_REFERENCE_SYNTAX_CONFIRMED",
+      "imported_raw_rules": 0
+    }
+  ],
+  "scope": "Generated configuration syntax, object counts and effective mangle order on isolated CHR. No game traffic, discovery accuracy, port freshness, ISP reachability or production readiness proved."
+}

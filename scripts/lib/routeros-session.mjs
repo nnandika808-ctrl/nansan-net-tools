@@ -56,10 +56,11 @@ export async function withRouterOsLab(version,task,exercise){
     await pause(350);await exchange('',prompt,30000);await pause(200);
     await command('/system identity set name='+identity);await command('/user set admin password="'+password+'"');
     await command('/ip address add address=10.23.45.15/24 interface=ether3');await command('/ip service enable ssh');
+    console.log('Owned console initialized; waiting for private SSH management.');
     for(let attempt=0;attempt<4;attempt++){
       ssh=new Client();ssh.on('error',()=>{});
-      try{await new Promise((resolve,reject)=>{ssh.once('ready',resolve);ssh.once('error',reject);ssh.connect({host:'127.0.0.1',port:sshPort,username:'admin',password,readyTimeout:45000});});sshReady=true;break;}
-      catch(error){ssh.destroy();if(attempt===3)throw error;await pause(1500);}
+      try{await new Promise((resolve,reject)=>{ssh.once('ready',resolve);ssh.once('error',reject);ssh.connect({host:'127.0.0.1',port:sshPort,username:'admin',password,readyTimeout:120000});});sshReady=true;break;}
+      catch(error){ssh.destroy();if(attempt===3)throw error;console.log('Owned SSH handshake retry '+(attempt+1)+': '+safe(error.message));await pause(1500);}
     }
     metadata.observed_version=await command(':put [/system resource get version]');if(!metadata.observed_version.startsWith(version))throw new Error('Observed RouterOS version differs from approved image.');
     const sftp=await new Promise((resolve,reject)=>ssh.sftp((e,s)=>e?reject(e):resolve(s)));

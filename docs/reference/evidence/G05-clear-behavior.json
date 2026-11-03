@@ -1,0 +1,19 @@
+{
+  "source": "https://buananet.com/static-routing-games.html",
+  "observed_at": "2026-11-03T04:18:56.549Z",
+  "immediate_after_click": {
+    "gateway": "192.168.2.1",
+    "ros": "ros7",
+    "search": "Arena",
+    "checked": 1,
+    "output_characters": 1737
+  },
+  "after_navigation": {
+    "gateway": "",
+    "ros": "ros6",
+    "search": "",
+    "checked": 0,
+    "output_characters": 1233
+  },
+  "interpretation": "Clear All reloads the form; values observed after navigation return to defaults. NANSAN Reset restores its defaults and clears output. The initial synchronous observation preceded navigation."
+}

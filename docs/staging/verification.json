@@ -1,5 +1,5 @@
 {
-  "observed_at": "2026-11-03T02:55:48.314Z",
+  "observed_at": "2026-11-03T04:07:37.533Z",
   "scope": "Private staging only; temporary test identity; no production changes",
   "status": "PASSED",
   "operations": {
@@ -13,8 +13,8 @@
     },
     "backup": {
       "status": "restore_verified",
-      "restore_tested_at": "2026-11-03 09:56:23",
-      "bytes": 21886
+      "restore_tested_at": "2026-11-03 11:08:07",
+      "bytes": 24221
     },
     "off_host_backup": false
   },
@@ -31,10 +31,13 @@
   },
   "http": {
     "public_routes": 5,
-    "authenticated_routes": 7,
+    "authenticated_routes": 9,
     "login": "passed",
     "starlink_preview": "passed",
     "static_routing_preview": "passed",
+    "queue_qos_preview": "passed",
+    "routing_games_preview": "passed",
+    "malformed_game_source": "blocked_423",
     "static_dataset_sha256_verified": true,
     "known_static_failures_marked": [
       "Teams/tls-host/ROS7",
@@ -45,11 +48,11 @@
   },
   "performance": {
     "scope": "12 sequential catalog requests through SSH; not a capacity/load test",
-    "median_ms": 251,
-    "p95_ms": 424
+    "median_ms": 241,
+    "p95_ms": 267
   },
   "cleanup": {
     "temporary_identity_removed": true
   },
-  "completed_at": "2026-11-03T02:56:36.590Z"
+  "completed_at": "2026-11-03T04:08:21.748Z"
 }

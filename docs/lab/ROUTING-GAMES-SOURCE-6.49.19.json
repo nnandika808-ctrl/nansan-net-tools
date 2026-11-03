@@ -1,0 +1,15 @@
+{
+  "started_at": "2026-11-03T04:20:38.357Z",
+  "image_version": "6.49.19",
+  "image_sha256": "7dbd77e5704bc5f035501e6f2beb69e7f65978645c841503d69d43df9298d15b",
+  "emulator": "QEMU 11.1.0 TCG",
+  "isolation": "Fresh snapshot, three restricted user-mode networks, loopback console and management SSH; no host bridge, Internet packets or physical router address accepted",
+  "control_transport": "Noninteractive SSH after serial bootstrap",
+  "owned_vm_stopped": true,
+  "completed_at": "2026-11-03T04:26:26.155Z",
+  "status": "BLOCKED_AUTOMATION",
+  "cases": [],
+  "reference_failures": [],
+  "scope": "Supplementary unmodified observed source-file imports and native port/protocol readback only; no generated-case rerun or game traffic proof.",
+  "error": "read ECONNRESET"
+}
