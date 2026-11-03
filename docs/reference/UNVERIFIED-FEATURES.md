@@ -8,8 +8,8 @@
 | G04: https://buananet.com/mikrotik-pcc-lb-starlink.html | All untested combinations | UNVERIFIED — exhaustive behavior coverage, validation, exact formatting and RouterOS lab required |
 | G05: https://buananet.com/static-routing-games.html | All untested combinations | UNVERIFIED — exhaustive behavior coverage, validation, exact formatting and RouterOS lab required |
 | G01 datasets | All 47 applications and two match modes | 92 parameter snapshots for 46 apps; Shopify sources HTTP 404. Prefix freshness, complete application coverage and public release review remain open; no hotlink fallback. |
-| G02 remote datasets | All choices | No dataset acquisition or implementation yet |
-| G05 game ports | All 106 observed game entries | BLOCKED — independently verify port/protocol rules and provenance; do not invent ports |
+| G02 remote datasets | All choices | Uses G01 hash-matched snapshots; Shopify 404 and ROS7 Teams/Telegram duplicate failures retained. Real shaping and classifier accuracy unverified |
+| G05 game ports | All 106 observed game entries | Source-attributed snapshots retained; two malformed entries blocked. Port freshness, real game traffic and publication review remain open; no invented ports |
 | G03 | More than two WAN, decimal ratios and unexercised classifiers/local modes | UNVERIFIED — expand audit and tests before support claims |
 | G04 quoting | Initial escaping candidate | WITHDRAWN — byte-level inspection shows normal outer quotes. Nested script escaping is a separate context; no reference bug established |
 | G04 | DHCP renew/unbind and Netwatch | Six simulated-event cases passed. Three ROS7 synthetic-DHCP/UDP/NAT/renew/unbind protocol cases passed; two ROS6 gateway-only renewal cases FAILED. Physical ISP behavior and broader combinations remain UNVERIFIED |

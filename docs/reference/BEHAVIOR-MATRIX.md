@@ -22,3 +22,5 @@ Each scenario applies input deltas in order within a fresh page per generator. F
 | G05 | ros7-two-games | https://buananet.com/static-routing-games.html | {"pcc":[],"dhcp":false,"netwatch":false,"remoteDataset":false,"step1":false,"step2":false} | BLOCKED / UNVERIFIED |
 
 G01/G02/G05 output lengths and line counts in behavior.json were measured from body.innerText, including form/footer text. They are **not script-only counts** and must never be used for exact-output comparison. G03/G04 measurements used their output textarea. Flags containing routing-mark can match mangle rules as well as routes; they are not proof of ROS6 route syntax.
+
+The table above preserves the initial 16-scenario audit. Expanded G01, G02 and G05 comparisons supersede its initial BLOCKED implementation cells: see each generator report and G01/G02/G05-cases-semantics.json. G02 has 210 available ordered projections; G05 has 220. Neither expands the eligible full-text fixture count beyond zero.

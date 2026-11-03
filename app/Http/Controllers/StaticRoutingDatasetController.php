@@ -9,7 +9,7 @@ final class StaticRoutingDatasetController extends Controller
 {
     public function __invoke(string $digest, StaticRoutingDatasets $datasets, GeneratorRegistry $registry)
     {
-        abort_unless(app()->environment(['local', 'testing', 'staging']) || $registry->isPublished('G01'), 404);
+        abort_unless(app()->environment(['local', 'testing', 'staging']) || $registry->isPublished('G01') || $registry->isPublished('G02'), 404);
         foreach ($datasets->manifest()['datasets'] as $entry) {
             if (($entry['artifact_sha256'] ?? null) !== $digest) {
                 continue;

@@ -49,7 +49,19 @@ process.stdin.on('data',chunk=>{secret+=chunk.toString();if(secret.includes('\u0
     }
     return results;
    });
-   report.http={public_routes:5,authenticated_routes:7,login:'passed',starlink_preview:'passed',static_routing_preview:'passed',static_dataset_sha256_verified:true,known_static_failures_marked:marked};
+   await page.goto(origin+'/admin/tools/queue-qos/preview');
+   const queuePreview=page.waitForResponse(response=>response.url().endsWith('/admin/tools/queue-qos/preview')&&response.request().method()==='POST');
+   await page.getByRole('button',{name:'Preview draft',exact:true}).click();const queueResponse=await queuePreview;
+   if(queueResponse.status()!==200||(await queueResponse.json()).steps?.length!==2)throw new Error('Queue QoS preview failed.');
+   await page.goto(origin+'/admin/tools/static-routing-games/preview');
+   await page.locator('#field-ip-gateway-input').fill('192.168.2.1');await page.locator('#field-ArenaOfValor-Mobile').check();
+   const gamePreview=page.waitForResponse(response=>response.url().endsWith('/admin/tools/static-routing-games/preview')&&response.request().method()==='POST');
+   await page.getByRole('button',{name:'Preview draft',exact:true}).click();const gameResponse=await gamePreview;
+   if(gameResponse.status()!==200||!(await gameResponse.json()).steps?.[0]?.script.includes('10001-10094'))throw new Error('Routing Games preview failed.');
+   await page.getByLabel('Find Games',{exact:true}).fill('Hearthstone');await page.locator('#field-Hearthstone-PC').check();
+   const failedGame=page.waitForResponse(response=>response.url().endsWith('/admin/tools/static-routing-games/preview')&&response.request().method()==='POST');
+   await page.getByRole('button',{name:'Preview draft',exact:true}).click();if((await failedGame).status()!==423)throw new Error('Malformed game source was not blocked.');
+   report.http={public_routes:5,authenticated_routes:9,login:'passed',starlink_preview:'passed',static_routing_preview:'passed',queue_qos_preview:'passed',routing_games_preview:'passed',malformed_game_source:'blocked_423',static_dataset_sha256_verified:true,known_static_failures_marked:marked};
    const elapsed=[];for(let i=0;i<12;i++){const started=performance.now();const response=await context.request.get(origin+'/tools');if(response.status()!==200)throw new Error('Sequential catalog probe failed.');elapsed.push(performance.now()-started);}elapsed.sort((a,b)=>a-b);
    report.performance={scope:'12 sequential catalog requests through SSH; not a capacity/load test',median_ms:Math.round(elapsed[6]),p95_ms:Math.round(elapsed[11])};
    if(Object.values(report.operations.doctor).some(value=>value==='unavailable'||value==='failed'))throw new Error('A required staging runtime probe is unavailable.');

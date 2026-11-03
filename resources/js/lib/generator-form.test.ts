@@ -1,6 +1,7 @@
 import {describe,it,expect} from 'vitest';
 import {generatorDefaults,generatorFields,changeGeneratorField} from './generator-form';
 import schema from '../../generators/G04.json';
+import games from '../../generators/G05.json';
 import type {FormSchema} from '@/types';
 
 describe('Starlink dynamic form',()=>{
@@ -15,4 +16,16 @@ describe('Starlink dynamic form',()=>{
   values.netwatchTargets='9.9.9.9,8.8.8.8,1.1.1.1';
   expect(changeGeneratorField(form,values,'count','4').netwatchTargets).toBe(values.netwatchTargets);
  });
+});
+
+it('filters game choices without dropping checked games hidden by search',()=>{
+ const form=games as FormSchema;
+ let values=generatorDefaults(form);
+ values=changeGeneratorField(form,values,'ArenaOfValor-Mobile',true);
+ values=changeGeneratorField(form,values,'myInput','NO_GAME_MATCH');
+ expect(generatorFields(form,values).filter(field=>field.type==='checkbox')).toHaveLength(0);
+ expect(values['ArenaOfValor-Mobile']).toBe(true);
+ values=changeGeneratorField(form,values,'myInput','arena of valor');
+ expect(generatorFields(form,values).some(field=>field.key==='ArenaOfValor-Mobile')).toBe(true);
+ expect(values['ArenaOfValor-Mobile']).toBe(true);
 });

@@ -6,4 +6,4 @@ export interface Pagination<T> {data:T[];links:{url:string|null;label:string;act
 export interface Article {id:number;title:string;title_en?:string|null;slug:string;body:string;body_en?:string|null;excerpt?:string;excerpt_en?:string|null;owner_review_required?:boolean;published_at?:string}
 export interface Announcement {id:number;title:string;title_en?:string|null;body:string;body_en?:string|null;published_at:string;read?:boolean}
 export interface Field {key:string;label:string;type:string;default:string|boolean;placeholder?:string;options?:{label:string;value:string;disabled?:boolean}[];min?:number;max?:number;group?:string;conditional?:string}
-export interface FormSchema {id:string;fields:Field[];source:string;status:string}
+export interface FormSchema {id:string;fields:Field[];source:string;status:string;field_statuses?:Record<string,{status:string;message:string}>}

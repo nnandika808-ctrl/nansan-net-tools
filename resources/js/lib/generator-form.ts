@@ -2,6 +2,10 @@ import type {Field,FormSchema} from '@/types';
 
 export function generatorFields(schema:FormSchema|null,values:Record<string,string|boolean>):Field[] {
   if(!schema)return [];
+  if(schema.id==='G05'){
+    const query=String(values.myInput??'').trim().toLowerCase();
+    return schema.fields.filter(field=>field.type!=='checkbox'||!query||field.label.toLowerCase().includes(query));
+  }
   if(schema.id!=='G04')return schema.fields;
   const count=Math.max(2,Math.min(10,Number(values.count)||2));
   const repeated:Field[]=[];

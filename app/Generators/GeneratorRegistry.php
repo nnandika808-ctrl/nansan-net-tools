@@ -3,6 +3,8 @@
 namespace App\Generators;
 
 use App\Generators\Modules\PccModule;
+use App\Generators\Modules\QueueQosModule;
+use App\Generators\Modules\RoutingGamesModule;
 use App\Generators\Modules\StarlinkModule;
 use App\Generators\Modules\StaticRoutingModule;
 
@@ -19,8 +21,10 @@ final class GeneratorRegistry
 
         return match ($id) {
             'G01' => new StaticRoutingModule,
+            'G02' => new QueueQosModule,
             'G03' => new PccModule,
             'G04' => new StarlinkModule,
+            'G05' => new RoutingGamesModule,
             default => new UnverifiedGenerator($id),
         };
     }
