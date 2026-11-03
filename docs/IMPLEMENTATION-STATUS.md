@@ -1,4 +1,4 @@
-# Implementation status - 2026-11-03
+# Implementation status - 2026-11-04
 
 Working application and private staging; **not production-ready**. Production, DNS and physical router configurations have not been changed.
 
@@ -18,8 +18,8 @@ Private access recovery verified 2026-11-03: the Ubuntu services were healthy, b
 | G05 | Admin-only Routing Games draft; 106 observed game choices; 226 observations, 220 available ordered parameter comparisons; 110 native command/object/order cases pass per version; search retains hidden selections | Two malformed source games fail closed without guessed fixes (ROS7 import fails; ROS6 accepts source, supplementary readback blocked by SSH). Port freshness and real game traffic remain unverified. See G05-ROUTING-GAMES.md and lab reports |
 | G06 | Admin-only Bandwidth Management draft (Simple Queue & Queue Tree); 9 fields, 4 categories, 7 queue types; 12 observed scenarios; hierarchical limit-at math verified | Disposable lab RouterOS execution and shaping throughput verification; status AUDITED / TESTING |
 | G07 | Admin-only Burst Limit Calculator; 8 fields, 5 audited cases; 5/5 exact rate-limit strings matched; moving average burst formula | Rate limit string, Simple Queue, PPPoE and Hotspot user profiles generated; status AUDITED / TESTING |
-| QA | 75 PHP tests / 715 assertions; 9 component/form tests; 16 browser cases; type/lint/build pass; 3 privacy-helper and 4 dataset-parser tests; actual privacy-guard integration pass | All application source CI passed; no failed or blocked router case is counted as passing |
-| GitHub | Private nnandika808-ctrl/nansan-net-tools, feature/platform-audit; draft PR #1; source CI d836136 run 41576085658 passed including MySQL StaticRoutingTest/QueueQosTest/RoutingGamesTest and all seven Node privacy/parser checks | Draft review, no merge |
+| QA | 77 PHP tests / 725 assertions; 11 component/form tests; 16 browser cases; type/lint/build pass; 3 privacy-helper and 4 dataset-parser tests; actual privacy-guard integration pass | All application source CI passed; no failed or blocked router case is counted as passing |
+| GitHub | Private nnandika808-ctrl/nansan-net-tools, feature/platform-audit; PR #1 subsequently merged; historical source CI d836136 run 41576085658 passed including MySQL StaticRoutingTest/QueueQosTest/RoutingGamesTest and all seven Node privacy/parser checks | Draft review, no merge |
 | Private staging | Dedicated user/release, loopback Nginx/FPM/MariaDB/Redis, worker/scheduler; public/auth/admin/preview smoke, security headers and private-path denial; owner login/logout verified; temporary identities removed | Cloudflare Access/Tunnel/DNS, real Turnstile, off-host backups |
 | Backup | Encrypted DB/media, stored SHA-256, SQLite restore tests, actual MariaDB scratch restores, pre-migration verified backup | Off-host destination and protected key escrow; production retention observation |
 | Production | Not deployed or approved | Close critical gaps, staging acceptance and explicit owner approval |
@@ -33,3 +33,10 @@ Latest private staging release: /www/wwwroot/nansan-tools-staging/releases/20261
 G05 port visibility update: a fresh authenticated Playwright audit checked all 106 games individually on ROS6/ROS7 (226 scenarios including combinations). All observed command parameters remained unchanged; original catalog bytes were retained. Per-game TCP/UDP facts now appear in the private Admin checklist, two malformed entries remain FAILED, and generated code scrolls into view. Admin users can reach the draft from the public tool page. Baseline staging generation matched 220 ordered configurations; six malformed selections remained blocked. See reference/G05-PORT-CHECK.md and reference/evidence/G05-port-reaudit.json. No generator algorithm or port data was replaced.
 
 Deployed G05 visibility checks passed on release 20261103-070838: all 106 private game/port rows are present, generated code is visible on desktop and 390px mobile, the Admin preview link works from the public tool page, malformed selections return 423 and clear old output, and the temporary identity was removed. The guarded staging CLI compared all 220 available ordered configurations with source observations; six malformed selections stayed blocked. Report: docs/staging/game-port-comparison.json.
+
+
+## Current showcase redesign and availability (2026-11-04)
+
+Owner-requested showcase UI implemented across homepage, generator, dashboard and admin. Five G01–G05 featured cards, original router art, light default, responsive panels and real activity charts. Existing G06/G07 source is preserved without further generator work. See [design and verification notes](design/SHOWCASE-REDESIGN.md). Local preview is http://127.0.0.1:8000 through `Buka Desain NANSAN.cmd`.
+
+Current availability supersedes earlier staging health statements: old port 8091 returned 502 and the expected remote ownership marker/current target/PHP socket were missing. No repair bypassed the ownership guard. The redesign has not been deployed to Ubuntu or production. Generator publication gates, known FAILED/BLOCKED cases and dataset review requirements remain unchanged.

@@ -15,6 +15,13 @@ describe('generator presentation',()=>{
   const code='<img src=x onerror="alert(1)">';render(<ScriptOutput steps={[{title:'Test fixture',script:code}]} version="test" rosVersion="7"/>);
   expect(document.querySelector('img')).toBeNull();fireEvent.click(screen.getByRole('button',{name:'Salin script'}));await waitFor(()=>expect(navigator.clipboard.writeText).toHaveBeenCalledWith(code));
  });
+ it('switches output steps and copies the selected original script',async()=>{
+  render(<ScriptOutput steps={[{title:'First fixture',script:'first fixture text'},{title:'Second fixture',script:'second fixture text'}]} version="test" rosVersion="7"/>);
+  fireEvent.click(screen.getByRole('tab',{name:'STEP 2'}));
+  expect(screen.getByRole('tabpanel',{name:'STEP 2'})).toBeVisible();
+  fireEvent.click(screen.getByRole('button',{name:'Salin script'}));
+  await waitFor(()=>expect(navigator.clipboard.writeText).toHaveBeenCalledWith('second fixture text'));
+ });
 });
 describe('search',()=>{
  it('debounces requests and displays a synonym result',async()=>{
@@ -29,4 +36,9 @@ describe('search',()=>{
 it('persists guest theme and language preferences',async()=>{
  function Switch(){const {setTheme,setLocale,locale}=usePreferences();return <button onClick={()=>{setTheme('light');setLocale('en');}}>{locale}</button>;}
  render(<Preferences user={null}><Switch/></Preferences>);fireEvent.click(screen.getByRole('button'));await waitFor(()=>expect(document.documentElement.dataset.theme).toBe('light'));expect(localStorage.getItem('nansan-locale')).toBe('en');
+});
+it('uses the reference light theme for a new visitor',async()=>{
+ localStorage.removeItem('nansan-theme');
+ render(<Preferences user={null}><span>Reference theme</span></Preferences>);
+ await waitFor(()=>expect(document.documentElement.dataset.theme).toBe('light'));
 });

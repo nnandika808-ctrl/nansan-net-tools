@@ -19,7 +19,7 @@ class WorkspaceController extends Controller
         $user = $request->user();
 
         return Inertia::render('Dashboard', [
-            'stats' => ['histories' => $user->histories()->count(), 'presets' => $user->presets()->count(), 'favorites' => DB::table('favorites')->where('user_id', $user->id)->count()],
+            'stats' => ['histories' => $user->histories()->count(), 'presets' => $user->presets()->count(), 'favorites' => DB::table('favorites')->where('user_id', $user->id)->count(), 'tools' => Tool::count()],
             'histories' => $user->histories()->with('tool')->latest()->limit(6)->get(['id', 'user_id', 'tool_id', 'ros_version', 'generator_version', 'created_at']),
             'favorites' => Tool::whereIn('id', DB::table('favorites')->where('user_id', $user->id)->select('tool_id'))->get(),
             'announcements' => Announcement::published()->latest()->limit(10)->get()->map(fn ($a) => [...$a->toArray(), 'read' => DB::table('announcement_reads')->where('user_id', $user->id)->where('announcement_id', $a->id)->exists()]),

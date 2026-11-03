@@ -8,7 +8,7 @@ const messages:Record<string,[string,string]>={
 const Context=createContext({locale:'id' as Locale,theme:'system' as Theme,t:(key:string)=>messages[key]?.[0]??key,setLocale:(_v:Locale)=>{},setTheme:(_v:Theme)=>{}});
 export function Preferences({user,children}:{user:User|null;children:ReactNode}){
  const [storedLocale,updateLocale]=useState<Locale>(()=>localStorage.getItem('nansan-locale')==='en'?'en':'id');
- const [storedTheme,updateTheme]=useState<Theme>(()=>(localStorage.getItem('nansan-theme') as Theme)||'system');
+ const [storedTheme,updateTheme]=useState<Theme>(()=>(localStorage.getItem('nansan-theme') as Theme)||'light');
  const locale=user?.locale??storedLocale;const theme=user?.theme??storedTheme;
  useEffect(()=>{const media=matchMedia('(prefers-color-scheme: dark)');const apply=()=>{document.documentElement.dataset.theme=theme==='system'?(media.matches?'dark':'light'):theme;};apply();media.addEventListener('change',apply);localStorage.setItem('nansan-theme',theme);return()=>media.removeEventListener('change',apply);},[theme]);
  useEffect(()=>{document.documentElement.lang=locale;localStorage.setItem('nansan-locale',locale);},[locale]);

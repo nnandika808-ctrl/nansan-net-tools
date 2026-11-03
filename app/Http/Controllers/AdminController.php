@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Generators\GeneratorRegistry;
 use App\Models\Announcement;
 use App\Models\CmsPage;
 use App\Models\DocumentationArticle;
@@ -24,10 +25,15 @@ class AdminController extends Controller
 {
     public function index()
     {
+        $activity = DB::table('audit_logs')->where('action', 'generator.generated')->where('created_at', '>=', now()->subDays(6)->startOfDay())
+            ->selectRaw('DATE(created_at) as day, COUNT(*) as count')->groupByRaw('DATE(created_at)')->pluck('count', 'day');
+        $days = collect(range(6, 0))->map(fn ($offset) => ['day' => now()->subDays($offset)->toDateString(), 'count' => (int) ($activity[now()->subDays($offset)->toDateString()] ?? 0)]);
+
         return Inertia::render('Admin', ['section' => 'overview', 'stats' => [
             'users' => User::count(), 'active' => User::where('status', 'active')->count(), 'new' => User::where('created_at', '>=', now()->subDays(7))->count(),
             'tools' => Tool::count(), 'generated' => (int) Tool::sum('usage_count'), 'feedback' => FeedbackReport::where('status', 'open')->count(),
-        ], 'records' => DB::table('audit_logs')->latest('id')->limit(20)->get()]);
+            'published_tools' => Tool::all()->filter(fn ($tool) => app(GeneratorRegistry::class)->isPublished($tool->generator_id))->count(),
+        ], 'activity' => $days, 'popularTools' => Tool::orderByDesc('usage_count')->orderBy('sort_order')->limit(5)->get(['id', 'name', 'slug', 'icon', 'usage_count']), 'records' => DB::table('audit_logs')->latest('id')->limit(20)->get()]);
     }
 
     public function users(Request $request)
