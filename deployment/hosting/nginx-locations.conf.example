@@ -1,0 +1,20 @@
+# Merge inside the existing aaPanel site's HTTPS server block, not globally.
+# Document root MUST be /www/wwwroot/nansan-tools/public.
+# Preserve aaPanel's own certificate and PHP 8.4 FastCGI socket configuration.
+location / {
+    try_files $uri $uri/ /index.php?$query_string;
+}
+location ~ /\.(?!well-known(?:/|$)) {
+    deny all;
+}
+# Only the front controller is executable. Remove conflicting generic PHP rules.
+location = /index.php {
+    include fastcgi_params;
+    fastcgi_param SCRIPT_FILENAME $realpath_root/index.php;
+    fastcgi_param DOCUMENT_ROOT $realpath_root;
+    fastcgi_pass unix:/tmp/php-cgi-84.sock;
+    fastcgi_read_timeout 60s;
+}
+location ~ \.php$ {
+    return 404;
+}

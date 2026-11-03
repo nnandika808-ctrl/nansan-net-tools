@@ -13,7 +13,7 @@
     <meta data-inertia="og:description" property="og:description" content="{{ $page['props']['seo']['description'] ?? '' }}">
     @if($page['props']['seo']['image'] ?? null)<meta data-inertia="og:image" property="og:image" content="{{ $page['props']['seo']['image'] }}">@endif
     <script nonce="{{ Vite::cspNonce() }}" type="application/ld+json">{!! json_encode(['@context'=>'https://schema.org','@type'=>'WebSite','name'=>'NANSAN NET Tools','url'=>config('app.url')],JSON_HEX_TAG|JSON_HEX_AMP|JSON_HEX_APOS|JSON_HEX_QUOT|JSON_UNESCAPED_SLASHES) !!}</script>
-    <script nonce="{{ Vite::cspNonce() }}">try{let t=localStorage.getItem('nansan-theme')||'system';document.documentElement.dataset.theme=t==='system'?(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'):t}catch{}</script>
+    <script nonce="{{ Vite::cspNonce() }}">try{let t=localStorage.getItem('nansan-theme')||'light';document.documentElement.dataset.theme=t==='system'?(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'):t}catch{}</script>
     @viteReactRefresh
     @vite('resources/js/app.tsx')
     <x-inertia::head />

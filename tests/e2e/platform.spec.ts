@@ -1,7 +1,7 @@
 import {test,expect} from '@playwright/test';
 test('public catalog, search, docs, and generator access gate',async({page})=>{
- await page.goto('/');await expect(page.getByRole('heading',{name:'Jaringan lebih baik. Mulai dari sini.'})).toBeVisible();
- await expect(page.locator('.tool-card')).toHaveCount(7);
+ await page.goto('/');await expect(page.getByRole('heading',{name:'NANSAN NET Tools',exact:true})).toBeVisible();
+ await expect(page.locator('.tool-card')).toHaveCount(5);
  await page.getByRole('textbox',{name:'Cari tools atau dokumentasi…'}).fill('Load Balance');
  await expect(page.locator('.search-results a').first()).toContainText('PCC Load Balancing');
  await page.goto('/tools/static-routing');await expect(page.getByRole('heading',{name:'Masuk ke ruang kerja Anda'})).toBeVisible();
@@ -69,7 +69,7 @@ test('admin game search preserves hidden selections and blocks malformed source 
  await page.goto('/tools/static-routing-games');await page.getByRole('link',{name:'Buka preview Admin'}).click();await expect(page).toHaveURL(/\/admin\/tools\/static-routing-games\/preview/);await expect(page.locator('.game-port-values')).toHaveCount(106);await page.getByLabel('RouterOS Version',{exact:true}).selectOption('ros7');await page.locator('#field-ip-gateway-input').fill('192.168.2.1');await page.getByLabel('Find Games',{exact:true}).fill('Arena Of Valor');await expect(page.locator('.game-port-values')).toContainText('10001-10094');await page.locator('#field-ArenaOfValor-Mobile').check();
  await page.getByLabel('Find Games',{exact:true}).fill('NO_GAME_MATCH');await expect(page.locator('.dynamic-fields input[type=checkbox]')).toHaveCount(0);await expect(page.getByTestId('game-selection-count')).toContainText('1');await page.getByRole('button',{name:'Preview draft',exact:true}).click();await expect(page.locator('pre')).toContainText('/routing table');await expect(page.locator('pre')).toContainText('10001-10094');await expect(page.locator('.output-step pre')).toBeInViewport();
  await page.getByLabel('Find Games',{exact:true}).fill('Hearthstone');await expect(page.locator('.field-error')).toContainText('FAILED');await page.locator('#field-Hearthstone-PC').check();await expect(page.locator('pre')).toHaveCount(0);await page.getByRole('button',{name:'Preview draft',exact:true}).click();await expect(page.getByRole('alert')).toContainText('Hearthstone');await expect(page.locator('pre')).toHaveCount(0);
- await page.setViewportSize({width:390,height:844});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
+ await page.setViewportSize({width:390,height:844});await expect.poll(()=>page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
 });
 
 for(const width of [360,390,768,1440])test('responsive layout at '+width+' pixels',async({page})=>{

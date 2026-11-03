@@ -1,0 +1,14 @@
+; Supervisor example. Replace user/path/PHP binary for the approved aaPanel site.
+[program:nansan-tools-worker]
+directory=/www/wwwroot/nansan-tools
+command=/www/server/php/84/bin/php /www/wwwroot/nansan-tools/artisan queue:work redis --sleep=3 --tries=3 --timeout=610 --max-time=3600
+user=www
+autostart=true
+autorestart=true
+stopasgroup=true
+killasgroup=true
+stopwaitsecs=920
+redirect_stderr=true
+stdout_logfile=/www/wwwroot/nansan-tools/storage/logs/worker.log
+stdout_logfile_maxbytes=10MB
+stdout_logfile_backups=5

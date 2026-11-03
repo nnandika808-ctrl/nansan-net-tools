@@ -43,7 +43,7 @@ jobs:
       - run: npm run typecheck && npm run lint && npm test && npm run build
       - run: node --test tests/scripts/*.test.mjs
       - name: MySQL feature suite
-        run: php artisan test --filter='PlatformTest|TemplateTest|VersionTest|AnalyticsTest|SeoTest|StaticRoutingTest|QueueQosTest|RoutingGamesTest'
+        run: php artisan test --filter='PlatformTest|TemplateTest|VersionTest|AnalyticsTest|SeoTest|StaticRoutingTest|QueueQosTest|RoutingGamesTest|ShowcaseMetricsTest|HostingReadinessTest'
         env:
           DB_CONNECTION: mysql
           DB_DATABASE: ci_tools
@@ -65,3 +65,24 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
       - run: composer audit && npm audit
+      - name: Source and deployment syntax
+        run: |
+          node scripts/check-source-secrets.mjs
+          python3 -c "import ast,pathlib; [ast.parse(p.read_text()) for p in pathlib.Path('deployment').glob('*.py')]"
+          php -l deployment/zip-hosting-release.php
+          php -l deployment/extract-hosting-release.php
+      - name: Build isolated hosting ZIP with production dependencies
+        run: node deployment/build-hosting-release.mjs
+      - name: Install and smoke-test the actual ZIP
+        run: node deployment/smoke-hosting-release.mjs
+      - uses: actions/upload-artifact@v7.0.2
+        with:
+          name: nansan-hosting-${{ github.sha }}
+          path: |
+            .runtime/hosting-release-*/*.zip
+            .runtime/hosting-release-*/*.sha256
+            .runtime/hosting-release-*/build.json
+            .runtime/hosting-release-*/smoke.json
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 14
